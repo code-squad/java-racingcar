@@ -5,7 +5,7 @@
 * 코드 리뷰 피드백에 대한 개선 작업을 하고 다시 PUSH한다.
 * 모든 피드백을 완료하면 다음 단계를 도전하고 앞의 과정을 반복한다.
 
-## 코드 리뷰 과정
+## 코드 리뷰 과정 - 최초 작업
 > 저장소 브랜치에 자신의 github 아이디에 해당하는 브랜치가 존재해야 한다. 자신의 github 아이디에 해당하는 브랜치가 있는지 확인한다.
 >
 > 자신의 github 아이디에 해당하는 브랜치가 없는 경우 [브랜치 생성 요청](https://codesquad-members.slack.com/messages/C74HH4RJ8/) 채널을 통해 브랜치 생성을 요청한다.
@@ -25,28 +25,13 @@ cd {저장소 아이디}
 ex) cd java-racingcar
 ```
 
-4. original 저장소를 등록
-```
-git remote add upstream {original 저장소 URL}
-ex) git remote add upstream https://github.com/code-squad/java-racingcar
-```
-
-5. 본인 아이디로 브랜치를 만들기 위한 checkout
+4. 본인 아이디로 브랜치를 만들기 위한 checkout
 ```
 git checkout -t origin/본인_아이디
 ex) git checkout -t origin/javajigi
 ```
 
-6. 개발 시작
-```
-git pull upstream 본인_아이디 
-git rebase upstream/본인_아이디
-
-ex) git pull upstream javajigi
-git rebase upstream/javajigi
-```
-
-7. commit
+5. commit
 ```
 git status //확인
 git rm 파일명 //삭제된 파일
@@ -54,15 +39,19 @@ git add 파일명(or * 모두) // 추가/변경 파일
 git commit -m "메세지" // 커밋
 ```
 
-8. 본인 원격 저장소에 올리기
+6. 본인 원격 저장소에 올리기
 ```
 git push origin 본인_아이디
 ex) git push origin javajigi
 ```
 
-9. pull request
+7. pull request
 * pull request는 github 서비스에서 진행할 수 있다.
 * pull request는 반드시 original 저장소의 브랜치와 fork한 자신의 저장소 브랜치 이름이 같아야 하며, 브랜치 이름은 자신의 github 아이디여야 한다.
+
+8. code review 및 push
+* pull request를 통해 피드백을 받는다.
+* 코드 리뷰 피드백에 대한 개선 작업을 하고 다시 PUSH한다.
 
 ----
 ## 코드 리뷰 과정 [영상 보기](https://youtu.be/ZSZoaG0PqLg)
