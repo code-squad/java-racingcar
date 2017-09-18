@@ -54,7 +54,12 @@ ex) git push origin javajigi
 * 코드 리뷰 피드백에 대한 개선 작업을 하고 다시 PUSH한다.
 
 ----
+<<<<<<< HEAD
 ## 앞의 코드 리뷰 과정은 [영상 보기](https://youtu.be/ZSZoaG0PqLg){:target="_blank"} 를 통해 참고 가능
 
 ----
 ## 실습 중 모든 질문은 [슬랙 채널](https://codesquad-members.slack.com/messages/C74FV4Q10/){:target="_blank"} 에서...
+=======
+## 코드 리뷰 과정 [영상 보기](https://youtu.be/ZSZoaG0PqLg)
+* 앞의 과정을 동영상을 통해 참고할 수 있다.
+>>>>>>> parent of 423c6cd... refactor review process
