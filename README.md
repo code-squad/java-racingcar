@@ -65,4 +65,5 @@ ex) git push origin javajigi
 * pull request는 반드시 original 저장소의 브랜치와 fork한 자신의 저장소 브랜치 이름이 같아야 하며, 브랜치 이름은 자신의 github 아이디여야 한다.
 
 ----
-* 코드 리뷰 전체 과정에 대한 [영상](https://youtu.be/ZSZoaG0PqLg)을 참고한다.
+## 코드 리뷰 과정 [영상 보기](https://youtu.be/ZSZoaG0PqLg)
+* 앞의 과정을 동영상을 통해 참고할 수 있다.
