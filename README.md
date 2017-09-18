@@ -1,6 +1,6 @@
 # 자동차 경주 게임
 ## 진행 방법
-* 자동차 경주 게임에 대한 [요구사항](https://nextstep.camp/courses/-KtTrisFbiAQW0Sgo7SV/-KtTwBuUZ1LpPGD3vc8o/lessons){:target="_blank"}을 파악한다.
+* 자동차 경주 게임에 대한 [요구사항](https://nextstep.camp/courses/-KtTrisFbiAQW0Sgo7SV/-KtTwBuUZ1LpPGD3vc8o/lessons)을 파악한다.
 * 요구사항에 대한 구현을 완료한 후 자신의 github 아이디에 해당하는 브랜치에 Pull Request(이하 PR)를 통해 코드 리뷰 요청을 한다.
 * 코드 리뷰 피드백에 대한 개선 작업을 하고 다시 PUSH한다.
 * 모든 피드백을 완료하면 다음 단계를 도전하고 앞의 과정을 반복한다.
@@ -8,7 +8,7 @@
 ## 코드 리뷰 과정 - 최초 작업
 > 저장소 브랜치에 자신의 github 아이디에 해당하는 브랜치가 존재해야 한다. 자신의 github 아이디에 해당하는 브랜치가 있는지 확인한다.
 >
-> 자신의 github 아이디에 해당하는 브랜치가 없는 경우 [브랜치 생성 요청](https://codesquad-members.slack.com/messages/C74HH4RJ8/){:target="_blank"} 채널을 통해 브랜치 생성을 요청한다.
+> 자신의 github 아이디에 해당하는 브랜치가 없는 경우 [브랜치 생성 요청](https://codesquad-members.slack.com/messages/C74HH4RJ8/) 채널을 통해 브랜치 생성을 요청한다.
 
 ----
 1. 프로젝트를 자신의 계정으로 fork한다. 저장소 우측 상단의 fork 버튼을 활용한다.
@@ -53,13 +53,6 @@ ex) git push origin javajigi
 * pull request를 통해 피드백을 받는다.
 * 코드 리뷰 피드백에 대한 개선 작업을 하고 다시 PUSH한다.
 
-----
-<<<<<<< HEAD
-## 앞의 코드 리뷰 과정은 [영상 보기](https://youtu.be/ZSZoaG0PqLg){:target="_blank"} 를 통해 참고 가능
+## 앞의 코드 리뷰 과정은 [영상 보기](https://youtu.be/ZSZoaG0PqLg) 를 통해 참고 가능
 
-----
-## 실습 중 모든 질문은 [슬랙 채널](https://codesquad-members.slack.com/messages/C74FV4Q10/){:target="_blank"} 에서...
-=======
-## 코드 리뷰 과정 [영상 보기](https://youtu.be/ZSZoaG0PqLg)
-* 앞의 과정을 동영상을 통해 참고할 수 있다.
->>>>>>> parent of 423c6cd... refactor review process
+## 실습 중 모든 질문은 [슬랙 채널](https://codesquad-members.slack.com/messages/C74FV4Q10/)에서...
