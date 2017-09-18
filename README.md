@@ -41,6 +41,9 @@ ex) git checkout -t origin/javajigi
 ```
 git pull upstream 본인_아이디 
 git rebase upstream/본인_아이디
+
+ex) git pull upstream javajigi
+git rebase upstream/javajigi
 ```
 
 7. commit
@@ -56,6 +59,7 @@ git commit -m "메세지" // 커밋
 git push origin 본인_아이디
 ex) git push origin javajigi
 ```
+
 9. pull request
 * pull request는 github 서비스에서 진행할 수 있다.
 * pull request는 반드시 original 저장소의 브랜치와 fork한 자신의 저장소 브랜치 이름이 같아야 하며, 브랜치 이름은 자신의 github 아이디여야 한다.
