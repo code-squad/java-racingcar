@@ -1,0 +1,15 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+version = '1.0.0'
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile('com.sparkjava:spark-core:2.6.0')
+    compile('com.sparkjava:spark-template-handlebars:2.5.5')
+    compile('org.slf4j:slf4j-simple:1.7.21')
+}
