@@ -1,59 +1,47 @@
 package racingcar.service;
 
+import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
+import racingcar.model.Car;
 import racingcar.model.Racing;
 
 public class RacingService {
-	public void setRacing(Racing racing) {
+	private CarService carService = new CarService();
+	public Racing setRacing() {
 		Scanner scan = new Scanner(System.in);
-		int carCount;
-		int moveCount;
 		
-		System.out.println("자동차 대수는 몇 대 인가요?");
-		carCount = convertScanString(scan.nextLine());		
-		racing.setCarCount(carCount);
+		System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
+		List<Car> carList = carService.parseCar(scan.nextLine());
 		
 		System.out.println("시도할 회수는 몇 회 인가요?");
-		moveCount = convertScanString(scan.next());
-		racing.setMoveCount(moveCount);
+		int moveCount = convertScanString(scan.nextLine());
 		
 		scan.close();
-		
+		return new Racing(carList, moveCount);
 	}
 	
 	public void startRacing(Racing racing) {
-		int carCount = racing.getCarCount();
-		int moveCount = racing.getMoveCount();
-		
-		for(int i=0; i<carCount; i++) {
-			printStep(randomMove(moveCount));
-		}
-		
+		List<Car> carList = racing.getCars();
+		carService.carsMove(carList, racing.getMoveCount());
+		printResult(carList);
 	}
 	
-	public int randomMove(int moveCount) {
-		int randomMoveCount = 0;
-		
-		Random random = new Random();
-		for(int i=0; i<moveCount; i++) {
-			if(random.nextInt(10)>=4) randomMoveCount++;
-		}		
-		return randomMoveCount;
-	}
-	
-	public void printStep(int moveCount) {
-		String printString = "";
-		for(int i=0; i<moveCount; i++) {
-			printString += "-";
+	public void printResult(List<Car> carList) {
+		for(int i=0; i<carList.size(); i++) {
+			System.out.print(carList.get(i).getCarName()+" : ");
+			for(int j=0; j<carList.get(i).getPosition(); j++) {
+				System.out.print("-");
+			}
+			System.out.println();
 		}
-		System.out.println(printString);
 	}
 	
 	//returnValue Exception 처리 잘모르겠음 return 값 처리도 잘못한거같음
 	public int convertScanString(String scanString) {
 		int returnValue = 0;
+		
 		try {
 			returnValue = Integer.parseInt(scanString);			
 		}catch(Exception e) {

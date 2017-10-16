@@ -1,19 +1,22 @@
 package racingcar.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Racing {
-	private int carCount;
+	private List<Car> cars = new ArrayList<>();
 	private int moveCount;
 	
-	public int getCarCount() {
-		return carCount;
+	public Racing(List<Car> cars, int moveCount) {
+		super();
+		this.cars = cars;
+		this.moveCount = moveCount;
 	}
-	public void setCarCount(int carCount) {
-		this.carCount = carCount;
+	public List<Car> getCars() {
+		return cars;
 	}
 	public int getMoveCount() {
 		return moveCount;
 	}
-	public void setMoveCount(int moveCount) {
-		this.moveCount = moveCount;
-	}
+
 }
