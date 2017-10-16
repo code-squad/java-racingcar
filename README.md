@@ -31,7 +31,13 @@ git checkout -t origin/본인_아이디
 ex) git checkout -t origin/javajigi
 ```
 
-5. commit
+5. 기능 구현을 위한 브랜치 생성
+```
+git checkout -b 브랜치이름
+ex) git checkout -b racingcar-step1
+```
+
+6. commit
 ```
 git status //확인
 git rm 파일명 //삭제된 파일
@@ -39,20 +45,51 @@ git add 파일명(or * 모두) // 추가/변경 파일
 git commit -m "메세지" // 커밋
 ```
 
-6. 본인 원격 저장소에 올리기
+7. 본인 원격 저장소에 올리기
 ```
-git push origin 본인_아이디
-ex) git push origin javajigi
+git push --set-upstream origin 브랜치이름
+ex) git push --set-upstream origin racingcar-step1
 ```
 
-7. pull request
+8. pull request
 * pull request는 github 서비스에서 진행할 수 있다.
-* pull request는 반드시 original 저장소의 브랜치와 fork한 자신의 저장소 브랜치 이름이 같아야 하며, 브랜치 이름은 자신의 github 아이디여야 한다.
+* pull request는 original 저장소의 브랜치(자신의 github 아이디)와 앞 단계에서 생성한 브랜치 이름을 기준으로 한다.
+```
+ex) code-squad/java-racingcar javajigi 브랜치 기준 => javajigi/java-racingcar racingcar-step1
+```
 
-8. code review 및 push
+9. code review 및 push
 * pull request를 통해 피드백을 받는다.
 * 코드 리뷰 피드백에 대한 개선 작업을 하고 다시 PUSH한다.
 
-## 앞의 코드 리뷰 과정은 [영상 보기](https://youtu.be/ZSZoaG0PqLg) 를 통해 참고 가능
+10. 기본 브랜치 전환 및 base 저장소 추가하기(최초 한번만)
+```
+git checkout 본인_아이디
+git remote add upstream base_저장소_url
+
+ex) git checkout javajigi
+ex) git remote add upstream https://github.com/code-squad/java-racingcar.git
+```
+
+위와 같이 base 저장소 추가한 후 remote 브랜치 목록을 본다.
+
+```
+git remote -v
+```
+
+11. base 저장소와 sync하기
+```
+git fetch upstream
+git rebase upstream/본인_아이디
+
+ex) git rebase upstream/javajigi
+```
+
+12. 5단계부터 다시 진행
+
+
+## 동영상을 통한 코드 리뷰() 를 통해 참고 가능
+* [fork하여 코드 리뷰하기](https://youtu.be/ZSZoaG0PqLg)
+* [PR보내고 다시 PR보낼 때 유의 사항](https://youtu.be/CbLNbCUsh5c)
 
 ## 실습 중 모든 질문은 [슬랙 채널](https://codesquad-members.slack.com/messages/C74FV4Q10/)에서...
