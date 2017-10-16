@@ -8,7 +8,6 @@ import java.util.Random;
 import racingcar.model.Car;
 
 public class CarService {
-	//return 때문에 ArrayList가 좋지 않을까요?
 	public List<Car> parseCar(String fullString){
 		List<String> carNames = Arrays.asList(fullString.split(","));
 		List<Car> carList = new ArrayList<>();

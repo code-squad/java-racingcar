@@ -38,7 +38,6 @@ public class RacingService {
 		}
 	}
 	
-	//returnValue Exception 처리 잘모르겠음 return 값 처리도 잘못한거같음
 	public int convertScanString(String scanString) {
 		int returnValue = 0;
 		
