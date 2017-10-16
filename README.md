@@ -31,7 +31,13 @@ git checkout -t origin/본인_아이디
 ex) git checkout -t origin/javajigi
 ```
 
-5. commit
+5. 기능 구현을 위한 브랜치 생성
+```
+git checkout -b 브랜치이름
+ex) git checkout -b racingcar-step1
+```
+
+6. commit
 ```
 git status //확인
 git rm 파일명 //삭제된 파일
@@ -39,15 +45,16 @@ git add 파일명(or * 모두) // 추가/변경 파일
 git commit -m "메세지" // 커밋
 ```
 
-6. 본인 원격 저장소에 올리기
+7. 본인 원격 저장소에 올리기
 ```
-git push origin 본인_아이디
-ex) git push origin javajigi
+git push --set-upstream origin 브랜치이름
+ex) git push --set-upstream origin racingcar-step1
 ```
 
-7. pull request
+8. pull request
 * pull request는 github 서비스에서 진행할 수 있다.
-* pull request는 반드시 original 저장소의 브랜치와 fork한 자신의 저장소 브랜치 이름이 같아야 하며, 브랜치 이름은 자신의 github 아이디여야 한다.
+* pull request는 original 저장소의 브랜치(자신의 github 아이디)와 앞 단계에서 생성한 브랜치 이름을 기준으로 한다.
+
 
 8. code review 및 push
 * pull request를 통해 피드백을 받는다.
