@@ -8,7 +8,7 @@
 	<version>1.0.0</version>
 	<packaging>jar</packaging>
 
-	<name>java-racingcar</name>
+	<name>java-racingcar-javajigi</name>
 	<description>자동차 경주 게임</description>
 
 	<properties>
