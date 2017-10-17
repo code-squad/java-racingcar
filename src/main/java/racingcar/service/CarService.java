@@ -17,19 +17,14 @@ public class CarService {
 		return carList;
 	}
 	
-	public void carsMove(List<Car> carList, int moveCount) {
+	public void carsOnePhaseMove(List<Car> carList) {
 		for(int i=0; i<carList.size(); i++) {
-			carList.get(i).setPosition(randomMove(moveCount));
+			randomMove(carList.get(i));
 		}
 	}
 	
-	public int randomMove(int moveCount) {
-		int randomMoveCount = 0;
-		
+	public void randomMove(Car car) {		
 		Random random = new Random();
-		for(int i=0; i<moveCount; i++) {
-			if(random.nextInt(10)>=4) randomMoveCount++;
-		}		
-		return randomMoveCount;
+		if(random.nextInt(10)>=4) car.addPosition();;
 	}
 }
