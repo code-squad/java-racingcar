@@ -7,46 +7,45 @@ import java.util.Scanner;
 
 public class CarGame {
 
-	public int[] makeRandom(int carNum) {
+	public List<Car> makeRandom2(List<Car> carList) {
 		Random rand = new Random();
-		int[] randomNum = new int[carNum];
-		for(int i=0; i < carNum; i++) {
-			randomNum[i] = rand.nextInt(10);
+		for(Car car : carList) {
+			car.setRandomNumber(rand.nextInt(10));
 		}
-		return randomNum;
+		return carList;
 	}
 	
-	public void race(int carNum, List<Integer> runNum) {//턴1
-		for(int i=0; i < carNum; i++) {
-			run(runNum.get(i));
+	public void race2(List<Car> carList) {//턴1
+		for(Car car : carList) {
+			run2(car.getPosition(), car.getName());
 			System.out.print("\n");
 		}
 	}
 	
-	public void run(int runNum) { //차 1대
-		for(int i=0; i < runNum; i++ ) {
+	public void run2(int runNum, String carName) { //차 1대
+		System.out.print(carName + ":");
+		for(int i=0; i < runNum; i++ ) {						
 			System.out.print("-");
 		}
-	}
-	
-	public List<Integer> runMore(int carNum, int[]randNum, List<Integer> runNum) {
-		for(int i=0; i < carNum; i++) {
-			move(randNum, runNum, i);
-		}
-		return runNum;
+		//마지막에 결과값 필요
 	}
 
-	private void move(int[] randNum, List<Integer> runNum, int i) {
-		if(randNum[i] > 3) {
-			int run = runNum.get(i) + 1;
-			runNum.set(i, run);;
+	public List<Car> runMore2(List<Car> carList) {
+		for(Car car : carList) {
+			move2(car);
 		}
+		return carList;
 	}
-	
-	public void playGame(int carNum, int turnNum, List<Integer> runNum) {
-		int[] randNum = makeRandom(carNum);
-		runNum = runMore(carNum, randNum, runNum);
-		race(carNum, runNum);
+
+	public void move2(Car car) {
+		if(car.getRandomNumber() > 3) {
+			car.plusPosition();
+		}	}
+
+	public void playGame2(int carNum, int turnNum, List<Car> carList) {
+		carList = makeRandom2(carList);
+		carList = runMore2(carList);
+		race2(carList);
 	}
 	
 	public List<Integer> makeRunNumList(int carNum, List<Integer> runNum) {
@@ -55,24 +54,12 @@ public class CarGame {
 		}
 		return runNum;
 	}
-/* 메서드 바꿀 때 이런 식으로 고치기
-	public List<Integer> makeRunNumList2(int carNum, List<Integer> runNum) {
-		for(int i=0; i < carNum; i++) {
-			runNum.add(1);
-		}
-		return runNum;
-	}
-*/
-	private List<Car> carPosition(int carNum, List<Car> carList) {
-		// TODO Auto-generated method stub
-		return carList;
-	}	
 	
 	public void begin(){
 		Scanner sc = new Scanner(System.in);
 		List runNum = new ArrayList<Integer>();
 		System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
-		String  carNames = sc.next();
+		String  carNames = sc.nextLine();
 		System.out.println("시도할 회수는 몇 회 인가요?");
 		int turnNum = sc.nextInt();
 		//차 이름 배열
@@ -86,19 +73,18 @@ public class CarGame {
 			car = new Car(carNamesArr[i]);
 			carList.add(car);
 		}
-		//runNum 배열을 없애고 다 car 객체 사용으로 바꿔야 함. 
+		//makeRunNumList 는 처음에 1값을 주는 초기화 작업인데 car 객체를 쓰면 필요없음. 
 		//runNum = makeRunNumList(carNum, carList);
-		runNum = carPosition(carNum, carList);
 		for(int i=0; i < turnNum; i++) {
-			playGame(carNum, turnNum, runNum);
+			//runNum 배열을 없애고 다 car 객체 사용으로 바꿔야 함. 
+			//playGame(carNum, turnNum, runNum);
+			playGame2(carNum, turnNum, carList);
 			System.out.print("\n");
 		}
 		runNum = null;
 		//리턴 값은 1개만 가능
 	}
 	
-
-
 	public static void main(String args[]) {
 		CarGame car = new CarGame();
 		car.begin();
