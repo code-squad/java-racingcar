@@ -1,13 +1,14 @@
 package car;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
 public class CarGame {
 
-	public List<Car> makeRandom2(List<Car> carList) {
+	public List<Car> makeRandom(List<Car> carList) {
 		Random rand = new Random();
 		for(Car car : carList) {
 			car.setRandomNumber(rand.nextInt(10));
@@ -15,74 +16,73 @@ public class CarGame {
 		return carList;
 	}
 	
-	public void race2(List<Car> carList) {//턴1
+	public void oneTurn(List<Car> carList, Console c) {
 		for(Car car : carList) {
-			run2(car.getPosition(), car.getName());
-			System.out.print("\n");
+			c.oneCarPrint(car.getPosition(), car.getName());
 		}
 	}
 	
-	public void run2(int runNum, String carName) { //차 1대
-		System.out.print(carName + ":");
-		for(int i=0; i < runNum; i++ ) {						
-			System.out.print("-");
-		}
-		//마지막에 결과값 필요
-	}
-
-	public List<Car> runMore2(List<Car> carList) {
+	public List<Car> runMore(List<Car> carList) {
 		for(Car car : carList) {
-			move2(car);
+			car.plusPosition();
 		}
 		return carList;
 	}
 
-	public void move2(Car car) {
-		if(car.getRandomNumber() > 3) {
-			car.plusPosition();
-		}	}
-
-	public void playGame2(int carNum, int turnNum, List<Car> carList) {
-		carList = makeRandom2(carList);
-		carList = runMore2(carList);
-		race2(carList);
-	}
-	
-	public List<Integer> makeRunNumList(int carNum, List<Integer> runNum) {
-		for(int i=0; i < carNum; i++) {
-			runNum.add(1);
+	public List<Car> playGame(List<Car> carList, int turnNum, Console c) {
+		for(int i=0; i < turnNum; i++) {
+			carList = makeRandom(carList);
+			carList = runMore(carList);
+			oneTurn(carList, c);
+			System.out.print("\n");
 		}
-		return runNum;
+		return carList;
+	}
+
+	public List<Car> putNames(String[] carNamesArr, List<Car> carList) {
+		Car car = null;
+		String name = null;
+		for(String carName : carNamesArr) {
+//for문 안에서 Car car = new Car하고 매번 생성하는 것과 for문 밖에서 변수 생성하고 for문 안에서 = new Car() 하는 것이 성능이 많이 다른지?
+			name = carName.trim();
+			car = new Car(name);
+			carList.add(car);
+		}
+		return carList;
 	}
 	
 	public void begin(){
-		Scanner sc = new Scanner(System.in);
-		List runNum = new ArrayList<Integer>();
-		System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
-		String  carNames = sc.nextLine();
-		System.out.println("시도할 회수는 몇 회 인가요?");
-		int turnNum = sc.nextInt();
-		//차 이름 배열
-		String[] carNamesArr = carNames.split(",");
-		int carNum = carNamesArr.length;
 		List<Car> carList = new ArrayList<Car>();
-		//car 객체 생성
-		Car car = null;
-		for(int i=0; i < carNum; i++) {
-			//for문 안에서 Car car = new Car하고 매번 생성하는 것과 for문 밖에서 변수 생성하고 for문 안에서 = new Car() 하는 것이 다른가?
-			car = new Car(carNamesArr[i]);
-			carList.add(car);
+		Scanner sc = new Scanner(System.in);
+		Console c = new Console();
+		String[] carNamesArr = c.getNames(sc);
+		carList = putNames(carNamesArr, carList);
+		int turnNum = c.getTurn(sc);
+		carList = playGame(carList, turnNum, c);
+		List<String> winner = getWinner(carList);
+		c.printWinner(carList, winner);
+	}
+
+	
+	public int getMaxPosition(List<Car> carList) {
+		int maxNum = 0;
+		for(Car car : carList) {
+			if(maxNum < car.getPosition()) {
+				maxNum = car.getPosition();
+			}
 		}
-		//makeRunNumList 는 처음에 1값을 주는 초기화 작업인데 car 객체를 쓰면 필요없음. 
-		//runNum = makeRunNumList(carNum, carList);
-		for(int i=0; i < turnNum; i++) {
-			//runNum 배열을 없애고 다 car 객체 사용으로 바꿔야 함. 
-			//playGame(carNum, turnNum, runNum);
-			playGame2(carNum, turnNum, carList);
-			System.out.print("\n");
+		return maxNum;
+	}
+	
+	public List<String> getWinner(List<Car> carList) {
+		List<String> winner = new ArrayList<String>();
+		int maxNum = getMaxPosition(carList);
+		for(Car car : carList) {
+			if(maxNum == car.getPosition()) {
+				winner.add(car.getName());
+			}
 		}
-		runNum = null;
-		//리턴 값은 1개만 가능
+		return winner;
 	}
 	
 	public static void main(String args[]) {

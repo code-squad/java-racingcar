@@ -1,8 +1,9 @@
 package car;
 
 public class Car {
-//정보를 담는 클래스에 기능을 만들어도 되나? plusPosition 같이 +1 해주는 기능?
+
 	private String name = null;
+	
 	public Car(String name) {
 		this.name = name;
 	}
@@ -24,7 +25,9 @@ public class Car {
 	}
 	
 	public void plusPosition() {
-		setPosition(this.position + 1);
+		if(getRandomNumber() > 3) {
+			setPosition(this.position + 1);
+		}
 	}
 	public String getName() {
 		return name;
