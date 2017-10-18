@@ -3,35 +3,43 @@ package racingcar.service;
 import java.util.List;
 
 import racingcar.model.Car;
+import racingcar.model.Cars;
 
 public class ResultView {
+	private Cars cars = null;
 	private String printCarMove(Car car) {
-		String carMoveString = "";
-		for(int i=0; i<car.getPosition(); i++) {
-			carMoveString+="-";
+		return repeat("-", car.getPosition());
+	}
+	public String repeat(String keyword, int number) {
+		String resultString = "";
+		for(int i=0; i<number; i++) {
+			resultString+=keyword;
 		}
-		return carMoveString;
+		return resultString;
 	}
 	
 	private String getTopRankedCar(List<Car> carList) {
 		String topCarString = "";
+		cars = new Cars(carList);
 		int maxPosition = getMaxPosition(carList);
 		for(int i=0; i<carList.size(); i++) {
-			if(carList.get(i).getPosition()==maxPosition) topCarString += carList.get(i).getCarName() + ", ";			
+			if(cars.getPosition(i)==maxPosition) topCarString += cars.getCarName(i) + ", ";			
 		}
 		return topCarString.substring(0, topCarString.length()-2);
 	}
 	
 	private int getMaxPosition(List<Car> carList) {
 		int maxPosition = 0;
+		cars = new Cars(carList);
 		for(int i=0; i<carList.size(); i++) {
-			if(maxPosition < carList.get(i).getPosition()) maxPosition = carList.get(i).getPosition();
+			if(maxPosition < cars.getPosition(i)) maxPosition = cars.getPosition(i);
 		}
 		return maxPosition;
 	}
 	
 	public void printOnePhase(List<Car> carList) {
 		Car car = null;
+		
 		for(int i=0; i<carList.size(); i++) {
 			car = carList.get(i);
 			System.out.print(car.getCarName()+" : ");

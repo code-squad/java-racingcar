@@ -7,7 +7,7 @@ public class RacingTest {
 	public static void main(String[] args) {
 		RacingService racingService = new RacingService();
 		
-		Racing racing = racingService.setRacing();
+		Racing racing = racingService.createRacing();
 		racingService.startRacing(racing);
 	}
 }

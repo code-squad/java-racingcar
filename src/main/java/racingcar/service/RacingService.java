@@ -1,7 +1,6 @@
 package racingcar.service;
 
 import java.util.List;
-import java.util.Random;
 
 import racingcar.model.Car;
 import racingcar.model.Racing;
@@ -9,7 +8,7 @@ import racingcar.model.Racing;
 public class RacingService {
 	
 	//RacingTest가 수정하지 않아도 가능하도록 수정하고 남겨둠
-	public Racing setRacing() {
+	public Racing createRacing() {
 		InputView inputView = new InputView();
 		
 		return inputView.setRacing();
@@ -28,12 +27,7 @@ public class RacingService {
 	
 	public void carsOnePhaseMove(List<Car> carList) {
 		for(int i=0; i<carList.size(); i++) {
-			randomMove(carList.get(i));
+			carList.get(i).randomMove();
 		}
-	}
-	
-	private void randomMove(Car car) {		
-		Random random = new Random();
-		if(random.nextInt(10)>=4) car.addPosition();
 	}
 }

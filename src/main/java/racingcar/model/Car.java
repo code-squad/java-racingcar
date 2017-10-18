@@ -1,5 +1,7 @@
 package racingcar.model;
 
+import java.util.Random;
+
 public class Car {
 	private String carName;
 	private int position;
@@ -14,7 +16,11 @@ public class Car {
 	public int getPosition() {
 		return position;
 	}
-	public void addPosition() {
+	public void move() {
 		position++;
+	}
+	public void randomMove() {		
+		Random random = new Random();
+		if(random.nextInt(10)>=4) move();
 	}
 }
