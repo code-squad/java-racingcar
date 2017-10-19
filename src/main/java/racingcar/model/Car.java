@@ -6,21 +6,30 @@ public class Car {
 	private String carName;
 	private int position;
 	
+	public void addCar(String carName) {
+		this.carName = carName;
+	}
+	
 	public Car(String carName) {
 		super();
 		this.carName = carName;
 	}
+
 	public String getCarName() {
 		return carName;
 	}
+
 	public int getPosition() {
 		return position;
 	}
+
 	public void move() {
-		position++;
+		if (getRandomNo() >= 4)
+			this.position++;
 	}
-	public void randomMove() {		
+
+	public int getRandomNo() {
 		Random random = new Random();
-		if(random.nextInt(10)>=4) move();
+		return random.nextInt(10);
 	}
 }

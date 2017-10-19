@@ -1,27 +1,58 @@
 package racingcar.model;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class Cars {
-	private List<Car> carList = null;
+	private List<Car> cars = null;
 
-	public Cars(List<Car> carList) {
-		super();
-		this.carList = carList;
+	public Cars() {
+		this.cars = new ArrayList<>();
 	}
-	public Car getCar(int listNum) {
-		return carList.get(listNum);
+
+	public Cars(List<Car> cars) {
+		this.cars = cars;
 	}
-	public String getCarName(int listNum) {
-		return getCar(listNum).getCarName();
+
+	public void add(Car car) {
+		cars.add(car);
 	}
+
+	public List<Car> getCars() {
+		return cars;
+	}
+
+	public String getListString() {
+		String carsString = "";
+		for (Car car : cars) {
+			carsString += car.getCarName() + ",";
+		}
+		return carsString.substring(0, carsString.length() - 1);
+	}
+
+	private Car getCar(int listNum) {
+		return cars.get(listNum);
+	}
+
 	public int getPosition(int listNum) {
 		return getCar(listNum).getPosition();
 	}
-	public void move(int listNum) {
-		getCar(listNum).move();
+
+	public int size() {
+		return cars.size();
 	}
-	public void randomMove(int listNum) {
-		getCar(listNum).randomMove();
+	
+	public void sortByPosition() {
+		Collections.sort(cars, new PositionDescCompare());
+	}
+	
+	static class PositionDescCompare implements Comparator<Car> {
+		@Override
+		public int compare(Car car1, Car car2) {
+			return car1.getPosition() > car2.getPosition() ? -1 : car1.getPosition() < car2.getPosition() ? 1:0;
+		} 
 	}
 }
