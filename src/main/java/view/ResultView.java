@@ -1,13 +1,19 @@
-package car;
+package view;
 
 import java.util.List;
 
+import model.Car;
+import model.Cars;
+import util.StringUtils;
+
 public class ResultView {
-	public void oneCarPrint(int runNum, String carName) {
-		StringUtils util = new StringUtils();
-		System.out.print(carName + ":");
-		util.repeat("-", runNum);
-		System.out.print("\n");
+	public void printOneTurn(Cars cars) {
+		for(Car car : cars.getCars()) {
+			StringUtils util = new StringUtils();
+			System.out.print(car.getName() + ":");
+			util.repeat("-", car.getPosition());
+			System.out.print("\n");
+		}
 	}
 	
 	public void printWinner(List<String> winner) {
@@ -20,4 +26,5 @@ public class ResultView {
 		}
 		System.out.print("가 최종 우승했습니다.");
 	}
+
 }

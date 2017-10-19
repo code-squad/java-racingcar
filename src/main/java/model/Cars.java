@@ -1,14 +1,18 @@
-package car;
+package model;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Cars {
 
-	//필드는 다 prviate 으로 하는 게 좋나요?
 	private List<Car> cars = new ArrayList<Car>();
-	//turn 횟수를 Cars필드로 만들어도 될까요? 객체의 속성에 맞는지?
 	
+	private int turnNum = 0;
+	
+	public Cars(String[] carNamesArr) {
+		putNames(carNamesArr);
+	}
+
 	public List<Car> getCars() {
 		return cars;
 	}
@@ -17,6 +21,14 @@ public class Cars {
 		this.cars = cars;
 	}
 	
+	public int getTurnNum() {
+		return turnNum;
+	}
+
+	public void setTurnNum(int turnNum) {
+		this.turnNum = turnNum;
+	}
+
 	public void addCar(Car car) {
 		this.cars.add(car);
 	}
@@ -40,5 +52,17 @@ public class Cars {
 			}
 		}
 		return winner;
+	}
+	
+	public void putNames(String[] carNamesArr) {
+		for(String carName : carNamesArr) {
+			addCar(new Car(carName.trim()));
+		}
+	}
+	
+	public void runMore() {
+		for(Car car : cars) {
+			car.move();
+		}
 	}
 }

@@ -1,4 +1,4 @@
-package car;
+package util;
 
 public class StringUtils {
 

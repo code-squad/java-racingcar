@@ -1,4 +1,4 @@
-package car;
+package model;
 
 import java.util.List;
 import java.util.Random;
@@ -13,6 +13,10 @@ public class Car {
 	
 	public Car(String name) {
 		this.name = name;
+	}
+
+	public String getName() {
+		return name;
 	}
 
 	public int getPosition() {
@@ -38,8 +42,5 @@ public class Car {
 			this.position ++;
 			//setPosition(this.position + 1);
 		}
-	}
-	public String getName() {
-		return name;
 	}
 }
