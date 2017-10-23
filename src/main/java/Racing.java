@@ -7,26 +7,32 @@ public class Racing {
 	private int[] carPositions = {1, 1, 1};
 	Random random = new Random();
 	
-	public void run(int car) {
+	public int run(int car) {
 		int num = random.nextInt(11);
 		if(num>=4){
 			carPositions[car]++;
 		}
-	}
-	// 어떤 차를 시도할지 고르는 메소드
-	public int chooseCar(int numberOfCar){
-		int chosenCar = random.nextInt(2);
-		return chosenCar;
+		return carPositions[car];
 	}
 	// 고른 차로 시도하는 메소드
-	public int[] returnCarPositions(int numberOfCar, int numOfTry){
-		time = numOfTry;
-		for(int i=0; i<time; i++){
-			// 시도할 차를 고른다.
-			int chosenCar = chooseCar(numberOfCar);
-			// 고른 차를 시도한다.
-			run(chosenCar);
+	public void returnCurrCarPositions(int numberOfCar){
+		int currCarValue;
+		for(int j=0; j<numberOfCar; j++) {
+				currCarValue = run(j);
+				changeTo_(currCarValue);
+		}		
+	}
+	public void changeTo_(int value){
+		for(int i=0; i<value; i++){
+			System.out.print("-");
 		}
-		return carPositions;
+		System.out.println("\n");
+	}
+	public void printAllTries(int numberOfCar, int numberOfTry){
+		time = numberOfTry;
+		for(int i=0; i<time; i++){
+			returnCurrCarPositions(numberOfCar);
+			System.out.println("\n");
+		}
 	}
 }

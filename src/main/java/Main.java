@@ -10,11 +10,9 @@ public class Main {
 		int numOfCar = scan.nextInt();
 		System.out.println("시도할 회수는 몇 회 인가요?");
 		int numOfTry = scan.nextInt();
-		int[] finalLocation =  racing.returnCarPositions(numOfCar, numOfTry);
-		for(int i=0; i<finalLocation.length; i++){
-			System.out.print(finalLocation[i] + " ");
-		}
 		System.out.println("\n");
+		racing.printAllTries(numOfCar, numOfTry);
+		
 	}
 
 }
