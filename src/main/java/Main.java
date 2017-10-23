@@ -3,7 +3,6 @@ import java.util.Scanner;
 public class Main {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		Scanner scan = new Scanner(System.in);
 		Racing racing = new Racing();
 		System.out.println("자동차 대수는 몇 대 인가요?");
