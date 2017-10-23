@@ -65,9 +65,11 @@ ex) code-squad/java-racingcar javajigi 브랜치 기준 => javajigi/java-racingc
 10. 기본 브랜치 전환 및 base 저장소 추가하기(최초 한번만)
 ```
 git checkout 본인_아이디
+git branch -d 삭제할_브랜치이름
 git remote add upstream base_저장소_url
 
 ex) git checkout javajigi
+ex) git branch -d racingcar-step1
 ex) git remote add upstream https://github.com/code-squad/java-racingcar.git
 ```
 
