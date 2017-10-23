@@ -1,36 +1,34 @@
 package controller;
 
-import java.util.List;
 import java.util.Scanner;
 
+import model.Car;
+import model.CarService;
 import model.Cars;
 import view.InputView;
 import view.ResultView;
 
 public class CarGame {
-	public void playGame(Cars cars, ResultView rv) {
-		for(int i=0; i < cars.getTurnNum(); i++) {
-			cars.runMore();
-			rv.printOneTurn(cars);
-			System.out.print("\n");
-		}
-	}
-
-	public void begin(){
-		Scanner sc = new Scanner(System.in);
-		InputView iv = new InputView();
+	
+	public void game(String names, int turnNum) {
 		ResultView rv = new ResultView();
-		String[] carNamesArr = iv.getNames(sc);
-		Cars cars = new Cars(carNamesArr);
-		cars.setTurnNum(iv.getTurn(sc));
-		playGame(cars, rv);
-		List<String> winner = cars.getWinner();
-		rv.printWinner(winner);
-		sc.close();
+		CarService carService = new CarService();
+		Cars cars = carService.begin(names, turnNum);
+		for(int i = 0; i < turnNum ; i++) {
+			carService.makeOneTurn();
+			//객체는 참조변수니까 위에서 만든 거 그냥 써도 되는지
+			rv.printOneTurn(cars);
+		}
+		rv.printWinner(carService.getWinner());
 	}
 
-	public static void main(String args[]) {
-		CarGame car = new CarGame();
-		car.begin();
+	public static void main(String[] args) {
+		InputView iv = new InputView();
+		CarService cs = new CarService();
+		Scanner sc = new Scanner(System.in);
+		String names = iv.getNames(sc);
+		int turnNum = iv.getTurnNum(sc);
+		CarGame cg = new CarGame();
+		cg.game(names, turnNum);
 	}
 }
