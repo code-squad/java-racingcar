@@ -35,16 +35,6 @@ public class Racing {
 		position = car.getPosition();
 		return position;
 	}
-
-//	// String process
-//	public ArrayList<String> changeTo_(int value) {
-//		ArrayList<String> positionBy_ = new ArrayList<String>();
-//		for (int i = 0; i < value; i++) {
-//			positionBy_.add("-");
-//		}
-//		return positionBy_;
-//	}
-
 	public void returnCurrCarPosition(Car car) {
 		// 차 하나 현재위치 값 계산 후 "-" 으로 변환 후 출력.
 		int currCarPosition;
