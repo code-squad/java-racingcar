@@ -3,6 +3,7 @@ import java.util.ArrayList;
 public class ResultView {
 // Prints result
 	Racing racing = new Racing();
+	
 	public void printTry(ArrayList<Car> cars) {
 		// 시도 한번 수행시 print 하는 메소드.
 		for (Car car : cars) {

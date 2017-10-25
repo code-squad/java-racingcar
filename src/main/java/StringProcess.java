@@ -9,7 +9,6 @@ public class StringProcess {
 		}
 		return carNames;
 	}
-	
 	public ArrayList<String> changeTo_(int value) {
 		ArrayList<String> positionBy_ = new ArrayList<String>();
 		for (int i = 0; i < value; i++) {
