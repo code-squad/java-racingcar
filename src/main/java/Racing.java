@@ -35,7 +35,7 @@ public class Racing {
 		position = car.getPosition();
 		return position;
 	}
-	public void returnCurrCarPosition(Car car) {
+	public String returnCurrCarPosition(Car car) {
 		// 차 하나 현재위치 값 계산 후 "-" 으로 변환 후 출력.
 		String positionValue ="";
 		StringProcess stringProcess = new StringProcess();
@@ -44,23 +44,8 @@ public class Racing {
 		for (String value : currPositionValue) {
 			positionValue += value;
 		}
-		System.out.print(car.getName() + ":" + positionValue + "\n");
+		return (car.getName() + ":" + positionValue + "\n");
 	}
 
-	public void printTry(ArrayList<Car> cars) {
-		// 시도 한번 수행시 print 하는 메소드.
-		for (Car car : cars) {
-			returnCurrCarPosition(car);
-		}
-	}
-
-	public void printAllTries(ArrayList<Car> cars, int numberOfTry) {
-		// 전체 시도 모두 print 하는 메소드.
-		setTime(numberOfTry);
-		int numOfTry = getTime();
-		for (int i = 0; i < numOfTry; i++) {
-			printTry(cars);
-			System.out.println("\n");
-		}
-	}
+	
 }
