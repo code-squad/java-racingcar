@@ -1,16 +1,16 @@
-import java.util.ArrayList;
+import java.util.*;
 
 public class StringProcess {
-	public ArrayList<String> parseInputString(String inputString){
-		ArrayList<String> carNames = new ArrayList<String>();
+	public List<String> parseInputString(String inputString){
+		List<String> carNames = new ArrayList<String>();
 		String[] subStrings = inputString.split(",");
 		for(String subString : subStrings ){
 			carNames.add(subString);
 		}
 		return carNames;
 	}
-	public ArrayList<String> changeTo_(int value) {
-		ArrayList<String> positionBy_ = new ArrayList<String>();
+	public List<String> changeTo_(int value) {
+		List<String> positionBy_ = new ArrayList<String>();
 		for (int i = 0; i < value; i++) {
 			positionBy_.add("-");
 		}

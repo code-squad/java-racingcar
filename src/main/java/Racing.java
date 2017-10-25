@@ -1,5 +1,5 @@
 import java.util.Random;
-import java.util.ArrayList;
+import java.util.*;
 
 public class Racing {
 
@@ -14,9 +14,9 @@ public class Racing {
 		this.time = time;
 	}
 
-	public ArrayList<Car> createAllCars(ArrayList<String> carNames) {
+	public List<Car> createAllCars(List<String> carNames) {
 		// 입력한 차 개수대로 객체를 만드는 메소드.
-		ArrayList<Car> cars = new ArrayList<Car>();
+		List<Car> cars = new ArrayList<Car>();
 		for (String carName : carNames) {
 			Car car = new Car(carName);
 			cars.add(car);
@@ -40,7 +40,7 @@ public class Racing {
 		String positionValue ="";
 		StringProcess stringProcess = new StringProcess();
 		int currCarPosition = run(car);
-		ArrayList<String> currPositionValue = stringProcess.changeTo_(currCarPosition);
+		List<String> currPositionValue = stringProcess.changeTo_(currCarPosition);
 		for (String value : currPositionValue) {
 			positionValue += value;
 		}

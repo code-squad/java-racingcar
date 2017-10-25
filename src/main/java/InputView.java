@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+import java.util.*;
 import java.util.Scanner;
 
 public class InputView {
@@ -12,7 +12,7 @@ public class InputView {
 	public int getNumOfTry(){
 		return scan.nextInt();
 	}
-	public ArrayList<String> printInput(){
+	public List<String> printInput(){
 		StringProcess stringProcess = new StringProcess();
 		System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
 		String carNamesString = getCarNamesFromUser();
