@@ -1,0 +1,38 @@
+# Java
+# Sample output:
+# /home/skreft/opensource/git-lint/test/e2etest/data/checkstyle/error.java:0: Missing package-info.java file.
+# /home/skreft/opensource/git-lint/test/e2etest/data/checkstyle/error.java:1:7: warning: Name 'foo' must match pattern '^[A-Z][a-zA-Z0-9]*$'.
+checkstyle:
+  command: checkstyle
+  extensions:
+  - .java
+  requirements:
+  - java
+  arguments:
+  - "-c"
+  - "{DEFAULT_CONFIGS}/checkstyle.xml"
+  filter: "{filename}:(?P<line>{lines}):((?P<column>\\d+):)? (?P<message>.+)"
+  installation: "sudo apt-get install checkstyle or go to http://checkstyle.sourceforge.net/cmdline.html"
+
+# Sample output:
+# /home/skreft/opensource/git-lint/test/e2etest/data/pmd/error.java:1:  All methods are static.
+# Disabled rulesets because of false positives
+# rulesets/java/coupling.xml: Demeter
+# rulesets/java/design.xml: Static class
+# rulesets/java/optimizations.xml: Parameter could be final
+# rulesets/java/junit.xml: maximum asserts, asserts should have message
+pmd:
+  command: pmd
+  extensions:
+  - .java
+  requirements:
+  - java
+  arguments:
+  - "pmd"
+  - "-format"
+  - "text"
+  - "-rulesets"
+  - "rulesets/java/android.xml,rulesets/java/basic.xml,rulesets/java/braces.xml,rulesets/java/clone.xml,rulesets/java/codesize.xml,rulesets/java/empty.xml,rulesets/java/finalizers.xml,rulesets/java/imports.xml,rulesets/java/j2ee.xml,rulesets/java/logging-jakarta-commons.xml,rulesets/java/strictexception.xml,rulesets/java/strings.xml,rulesets/java/sunsecure.xml,rulesets/java/typeresolution.xml,rulesets/java/unnecessary.xml,rulesets/java/unusedcode.xml"
+  - "-d"
+  filter: "{filename}:(?P<line>{lines}):\\s+(?P<message>.+)"
+  installation: "Go to http://pmd.sourceforge.net/pmd-5.1.1/installing.html"
