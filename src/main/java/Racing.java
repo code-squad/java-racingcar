@@ -37,10 +37,9 @@ public class Racing {
 	}
 	public void returnCurrCarPosition(Car car) {
 		// 차 하나 현재위치 값 계산 후 "-" 으로 변환 후 출력.
-		int currCarPosition;
 		String positionValue ="";
 		StringProcess stringProcess = new StringProcess();
-		currCarPosition = run(car);
+		int currCarPosition = run(car);
 		ArrayList<String> currPositionValue = stringProcess.changeTo_(currCarPosition);
 		for (String value : currPositionValue) {
 			positionValue += value;
