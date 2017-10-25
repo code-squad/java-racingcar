@@ -3,9 +3,9 @@ import java.util.ArrayList;
 public class StringProcess {
 	public ArrayList<String> parseInputString(String inputString){
 		ArrayList<String> carNames = new ArrayList<String>();
-		String[] subString = inputString.split(",");
-		for(int i=0; i<subString.length; i++){
-			carNames.add(subString[i]);
+		String[] subStrings = inputString.split(",");
+		for(String subString : subStrings ){
+			carNames.add(subString);
 		}
 		return carNames;
 	}
