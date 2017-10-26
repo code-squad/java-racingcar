@@ -5,8 +5,7 @@ public class Main {
 		InputView inputView = new InputView();
 		List<String> carNames = inputView.printInput();
 		ResultView resultView = new ResultView();
-		resultView.printResult(carNames, inputView.numOfTry);
-		
+		resultView.printResult(carNames, inputView.numOfTry);	
 	}
 
 }

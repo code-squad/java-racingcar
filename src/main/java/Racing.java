@@ -1,10 +1,8 @@
-import java.util.Random;
 import java.util.*;
 
 public class Racing {
 
 	private int time;
-	Random random = new Random();
 
 	public int getTime() {
 		return time;
@@ -24,22 +22,11 @@ public class Racing {
 		return cars;
 	}
 
-	public int run(Car car) {
-		// 현재 position 반환.
-		int num = random.nextInt(11);
-		int position = car.getPosition();
-		if (num >= 4) {
-			position++;
-		}
-		car.setPosition(position);
-		position = car.getPosition();
-		return position;
-	}
 	public String returnCurrCarPosition(Car car) {
 		// 차 하나 현재위치 값 계산 후 "-" 으로 변환 후 출력.
 		String positionValue ="";
 		StringProcess stringProcess = new StringProcess();
-		int currCarPosition = run(car);
+		int currCarPosition = car.run();
 		List<String> currPositionValue = stringProcess.changeTo_(currCarPosition);
 		for (String value : currPositionValue) {
 			positionValue += value;
