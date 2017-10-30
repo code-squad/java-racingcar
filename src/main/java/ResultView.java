@@ -1,28 +1,25 @@
-import java.util.*;
+import java.util.List;
 
 public class ResultView {
-// Prints result
-	Racing racing = new Racing();
-	
-	public void printTry(List<Car> cars) {
-		// 시도 한번 수행시 print 하는 메소드.
-		for (Car car : cars) {
-			System.out.println(racing.returnCurrCarPosition(car));
+	// Racing 에 대한 결과출력.
+	public List<Car> printOneTry(Racing racing){
+		// 횟수당 처리결과 반환하기.
+		List<Car> oneTryResults = racing.doOneTry();
+		for(Car oneTryResult : oneTryResults){
+			System.out.println(oneTryResult.getName() + ":" + StringProcess.changeTo_(oneTryResult.getPosition()));
 		}
+		return oneTryResults;
 	}
-	public void printAllTries(List<Car> cars, int numberOfTry) {
-		// 전체 시도 모두 print 하는 메소드.
-		racing.setTime(numberOfTry);
-		int numOfTry = racing.getTime();
-		for (int i = 0; i < numOfTry; i++) {
-			printTry(cars);
-			System.out.println("\n");
+	public int printWinners(Racing racing, List<Car> lastTryResults){
+		for(String winner : racing.findWinner(lastTryResults)){
+			System.out.print(winner);
+			if(racing.findWinner(lastTryResults).size() == 1){
+				System.out.println("가 최종 우승했습니다.");
+				return 0;
+			}
+			System.out.print(",");
 		}
-	}
-	public void printResult(List<String> carNames, int numOfTry){
-		// car 생성 여러개 생성.
-		Racing racing = new Racing();
-		List<Car> cars = racing.createAllCars(carNames);
-		printAllTries(cars, numOfTry);
+		System.out.println("가 공동 우승했습니다.");
+		return 0;
 	}
 }

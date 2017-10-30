@@ -16,11 +16,14 @@ public class Car {
 		Random random = new Random();
 		return random.nextInt(11);
 	}
-	public int run() {
+	public void run() {
 		// 현재 position 반환.
 		if (createSpeed() >= 4) {
 			position++;
 		}
+	}
+
+	public int getPosition() {
 		return position;
 	}
 	

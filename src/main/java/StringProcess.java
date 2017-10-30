@@ -1,7 +1,8 @@
 import java.util.*;
 
 public class StringProcess {
-	public List<String> parseInputString(String inputString){
+	// 인스턴스 변수 없기때문에 static 으로 구현가능.
+	public static List<String> parseInputString(String inputString){
 		List<String> carNames = new ArrayList<String>();
 		String[] subStrings = inputString.split(",");
 		for(String subString : subStrings ){
@@ -9,10 +10,10 @@ public class StringProcess {
 		}
 		return carNames;
 	}
-	public List<String> changeTo_(int value) {
-		List<String> positionBy_ = new ArrayList<String>();
+	public static String changeTo_(int value) {
+		String positionBy_ = "";
 		for (int i = 0; i < value; i++) {
-			positionBy_.add("-");
+			positionBy_ += "-";
 		}
 		return positionBy_;
 	}
