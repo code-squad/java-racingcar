@@ -1,41 +1,40 @@
-import java.util.Random;
-import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class Racing {
-
-	private int time;
-	private int[] carPositions = { 1, 1, 1 };
-	Random random = new Random();
-
-	public int run(int car) {
-		int num = random.nextInt(11);
-		if (num >= 4) {
-			carPositions[car]++;
-		}
-		return carPositions[car];
-	}
-
-	// 고른 차로 시도하는 메소드
-	public void returnCurrCarPositions(int numberOfCar) {
-		int currCarValue;
-		for (int j = 0; j < numberOfCar; j++) {
-			currCarValue = run(j);
-			changeTo_(currCarValue);
+	List<Car> cars = new ArrayList<Car>();
+	// 사용자 입력 개수만큼 car 객체생성.
+	
+	public Racing (List<String> carNames){
+		for(String carName : carNames){
+			Car car = new Car(carName);
+			cars.add(car);
 		}
 	}
-
-	public void changeTo_(int value) {
-		for (int i = 0; i < value; i++) {
-			System.out.print("-");
+	
+	public List<Car> doOneTry(){
+		// 한번 실행결과 값을 반환.
+		for(Car car : cars){
+			car.run();
 		}
-		System.out.println("\n");
+		return cars;
 	}
-
-	public void printAllTries(int numberOfCar, int numberOfTry) {
-		time = numberOfTry;
-		for (int i = 0; i < time; i++) {
-			returnCurrCarPositions(numberOfCar);
-			System.out.println("\n");
-		}
+	// 2. 최종우승자 구하기.
+	public int findMaxRecord(List<Car> lastTryResults){
+		// list에 대한 stream 생성.
+		// list 에 대한 최대값 구하기.
+		Car car = lastTryResults.stream().max((Car car1, Car car2) -> Integer.compare(car1.getPosition(), car2.getPosition())).get();
+		int maxRecord = car.getPosition();
+											
+		return maxRecord;
+	}
+	
+	public List<Car> findWinner(List<Car> lastTryResults){
+		int maxRecord = findMaxRecord(lastTryResults);
+		List<Car> winnersCar = lastTryResults.stream() // list 를 stream으로 전환
+				.filter(car -> car.getPosition() == maxRecord) // filter the stream to create new stream
+				.collect(Collectors.toList()); // collect the final stream and convert it to a list 
+		return winnersCar;
 	}
 }
