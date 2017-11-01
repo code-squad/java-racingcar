@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Racing {
 	List<Car> cars = new ArrayList<Car>();
@@ -21,22 +22,19 @@ public class Racing {
 	}
 	// 2. 최종우승자 구하기.
 	public int findMaxRecord(List<Car> lastTryResults){
-		int maxRecord = lastTryResults.get(0).getPosition();
-		for(Car lastTryresult : lastTryResults){
-			if(maxRecord < lastTryresult.getPosition()){
-				maxRecord = lastTryresult.getPosition();
-			}
-		}
+		// list에 대한 stream 생성.
+		// list 에 대한 최대값 구하기.
+		Car car = lastTryResults.stream().max((Car car1, Car car2) -> Integer.compare(car1.getPosition(), car2.getPosition())).get();
+		int maxRecord = car.getPosition();
+											
 		return maxRecord;
 	}
-	public List<String> findWinner(List<Car> lastTryResults){
+	
+	public List<Car> findWinner(List<Car> lastTryResults){
 		int maxRecord = findMaxRecord(lastTryResults);
-		List<String> winners = new ArrayList<String>();
-		for(Car lastTryResult : lastTryResults){
-			if(maxRecord == lastTryResult.getPosition()){
-				winners.add(lastTryResult.getName());
-			}
-		}
-		return winners;
+		List<Car> winnersCar = lastTryResults.stream() // list 를 stream으로 전환
+				.filter(car -> car.getPosition() == maxRecord) // filter the stream to create new stream
+				.collect(Collectors.toList()); // collect the final stream and convert it to a list 
+		return winnersCar;
 	}
 }

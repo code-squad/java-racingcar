@@ -2,17 +2,16 @@ import java.util.List;
 
 public class ResultView {
 	// Racing 에 대한 결과출력.
-	public List<Car> printOneTry(Racing racing){
+	public void print(List<Car> cars){
 		// 횟수당 처리결과 반환하기.
-		List<Car> oneTryResults = racing.doOneTry();
-		for(Car oneTryResult : oneTryResults){
+		for(Car oneTryResult : cars){
 			System.out.println(oneTryResult.getName() + ":" + StringProcess.changeTo_(oneTryResult.getPosition()));
 		}
-		return oneTryResults;
 	}
+	
 	public int printWinners(Racing racing, List<Car> lastTryResults){
-		for(String winner : racing.findWinner(lastTryResults)){
-			System.out.print(winner);
+		for(Car winnersCar : racing.findWinner(lastTryResults)){
+			System.out.print(winnersCar.getName());
 			if(racing.findWinner(lastTryResults).size() == 1){
 				System.out.println("가 최종 우승했습니다.");
 				return 0;
