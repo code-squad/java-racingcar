@@ -11,6 +11,6 @@ repositories {
 dependencies {
     compile('com.sparkjava:spark-core:2.6.0')
     compile('com.sparkjava:spark-template-handlebars:2.5.5')
-    compile('org.slf4j:slf4j-simple:1.7.21')
+    compile('ch.qos.logback:logback-classic:1.2.3')
     testCompile('junit:junit:4.12')
 }
