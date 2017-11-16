@@ -8,16 +8,18 @@ public class CarRacing {
 	
 	public void run() {
 		Random random = new Random();
-		String[] goMark = {"-", "-", "-"};
+		String[] goMark = {"", "", ""};
 		for (int i = 0; i < carPositions.length; i++) {
 			int randomNum = random.nextInt(10);
+//			System.out.println(randomNum);
 			if (randomNum >= 4) {
 				carPositions[i] += 1;
 			}
-			for (int j = 0; j < carPositions[j]; j++) {
+			for (int j = 0; j < carPositions[i]; j++) {
 				goMark[i] += "-";
-				System.out.println(goMark[i]);
 			}
+			System.out.print(i + " : ");
+			System.out.println(goMark[i]);
 		}	
 	}
 	
@@ -28,9 +30,9 @@ public class CarRacing {
 		System.out.println("시도할 회수는 몇 회 인가요?");
 		CarRacing carRacing = new CarRacing();
 		carRacing.time = scanner.nextInt();
-		int timeNum = carRacing.time;
-		for (int i = 0; i < timeNum; i++) {
-			carRacing.run();
+		for (int i = 0; i < carRacing.time; i++) {
+			System.out.println("try :" + (i + 1));
+			carRacing.run(); 
 		}
 	}
 }
