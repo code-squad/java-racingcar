@@ -5,7 +5,7 @@ import java.util.Scanner;
 import javax.swing.plaf.synth.SynthSeparatorUI;
 
 public class CarRacing {
-	public String[] getNames() {
+	public static String[] getNames() {
 		System.out.println("이름을 입력하세요(ex : will,pobi,honux)");
 		Scanner sc = new Scanner(System.in);
 		String temp = sc.nextLine();
@@ -13,7 +13,7 @@ public class CarRacing {
 		return names;
 	}
 	
-	public int[] getCarPositions(String[] names) {
+	public static int[] getCarPositions(String[] names) {
 		int[] carPositions = new int[names.length];
 		for (int i = 0; i < names.length; i++) {
 			carPositions[i] = 1;
@@ -21,7 +21,7 @@ public class CarRacing {
 		return carPositions;
 	}
 	
-	public int getTime() {
+	public static int getTime() {
 		System.out.println("시도할 회수는 몇 회인가요?");
 		Scanner sc = new Scanner(System.in);
 		int temp = sc.nextInt();
@@ -33,7 +33,7 @@ public class CarRacing {
 		return temp;
 	}
 	
-	public int makeRandomNum() {
+	public static int makeRandomNum() {
 		Random random = new Random();
 		int randomNum = random.nextInt(10);
 		if (randomNum >= 4) {
@@ -42,14 +42,14 @@ public class CarRacing {
 		return 0;
 	}
 	
-	public int[] run(int[] carPositions) {
+	public static int[] run(int[] carPositions) {
 		for (int i = 0; i < carPositions.length; i++) {
 			carPositions[i] += makeRandomNum();
 		}
 		return carPositions;
 	}
 	
-	public String[] makeMarkDash(int[] carPositions, int j) {
+	public static String[] makeMarkDash(int[] carPositions, int j) {
 		String[] markDash = new String[carPositions.length];
 		for (int i = 0; i < carPositions.length; i++) {
 			markDash[i] = "-";
@@ -60,14 +60,14 @@ public class CarRacing {
 		return markDash;
 	}
 	
-	public void show(int[] carPositions, String[] names) {
+	public static void show(int[] carPositions, String[] names) {
 		run(carPositions);
 		for (int i = 0; i < carPositions.length; i++) {
 			System.out.println(names[i] + " : " + makeMarkDash(carPositions, i)[i]);
 		}
 	}
 	
-	public void showNTimes(int times, int[] carPositions, String[] names) {
+	public static void showNTimes(int times, int[] carPositions, String[] names) {
 		for (int i = 0; i < times; i++) {
 			show(carPositions, names);
 			System.out.println("");
@@ -75,11 +75,10 @@ public class CarRacing {
 	}
 	
 	public static void main(String[] args) {
-		CarRacing carRacing = new CarRacing();
-		String[] names = carRacing.getNames();
-		int times = carRacing.getTime();
-		int[] carPositions = carRacing.getCarPositions(names);
-		carRacing.showNTimes(times, carPositions, names);
+		String[] names = getNames();
+		int times = getTime();
+		int[] carPositions = getCarPositions(names);
+		showNTimes(times, carPositions, names);
 	}
 }
 	
