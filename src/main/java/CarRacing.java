@@ -81,5 +81,3 @@ public class CarRacing {
 		showNTimes(times, carPositions, names);
 	}
 }
-	
-	
