@@ -2,37 +2,64 @@
 import java.util.Random;
 import java.util.Scanner;
 
+import javax.swing.plaf.synth.SynthSeparatorUI;
+
 public class CarRacing {
 	private int time;
-	private int[] carPositions = {1, 1, 1};
+	private String[] carPositions;
+	private String[] namesArr;
+	
+	
+	public CarRacing() {	
+		System.out.println("이름을 입력하세요( ex: will,pobi,honux)");
+		Scanner sc = new Scanner(System.in);
+		String names = sc.nextLine();
+		this.namesArr = names.split(",");
+		this.carPositions = new String[namesArr.length];
+		for (int i = 0; i < namesArr.length; i++) {
+			this.carPositions[i] = "-";
+		}
+	}
+	
+	public void setTime() {
+		System.out.println("시도할 회수는 몇 회인가요?");
+		Scanner sc = new Scanner(System.in);
+		int temp = sc.nextInt();
+		if (!(temp > 0)) {
+			System.out.println("양의 정수로 다시 입력하세요");
+			setTime();
+			return;
+		} else {
+			this.time = temp;
+		}
+	}
+	
+	public int getTime() {
+		return this.time;
+	}
+	
+	public String makeRandomNum() {
+		Random random = new Random();
+		int randomNum = random.nextInt(10);
+		if (randomNum >= 4) {
+			return "-";
+		}
+		return "";
+	}
 	
 	public void run() {
-		Random random = new Random();
-		String[] goMark = {"", "", ""};
-		for (int i = 0; i < carPositions.length; i++) {
-			int randomNum = random.nextInt(10);
-//			System.out.println(randomNum);
-			if (randomNum >= 4) {
-				carPositions[i] += 1;
-			}
-			for (int j = 0; j < carPositions[i]; j++) {
-				goMark[i] += "-";
-			}
-			System.out.print(i + " : ");
-			System.out.println(goMark[i]);
-		}	
+		for (int i = 0; i < this.carPositions.length; i++) {
+			this.carPositions[i] += makeRandomNum();
+			System.out.println(this.namesArr[i] + " : " + this.carPositions[i]);
+		}
+		System.out.println("");
 	}
 	
 	public static void main(String[] args) {
-		System.out.println("자동차 대수는 몇 대 인가요?");
-		Scanner scanner = new Scanner(System.in);
-		int carNum = scanner.nextInt();
-		System.out.println("시도할 회수는 몇 회 인가요?");
 		CarRacing carRacing = new CarRacing();
-		carRacing.time = scanner.nextInt();
-		for (int i = 0; i < carRacing.time; i++) {
-			System.out.println("try :" + (i + 1));
-			carRacing.run(); 
+		carRacing.setTime();
+		for (int i = 0; i < carRacing.getTime(); i++) {
+			carRacing.run();
 		}
 	}
 }
