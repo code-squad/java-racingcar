@@ -6,10 +6,8 @@ public class RacingCar {
 	static boolean isCarMove() {
 		Random randomNum = new Random();
 		int isMove = randomNum.nextInt(11);
-		if (isMove > 3) {
-			return true;
-		}
-		return false;
+		
+		return isMove > 3;
 	}
 	//자동차의 위치를 배열에 초기화해준다. 입력받은 대 수만큼 배열을 초기화 한다.
 	static String[] initializeCarArray(int car) {
@@ -23,7 +21,7 @@ public class RacingCar {
 	//입력받은 자동차가 움직이면 "-"를 하나 추가한 뒤, 출력. 아닐 시에는 그냥 출력 (GO/STOP message 함께 출력)
 	private static void drawEachCar(String[] result, int carNum) {
 		boolean isMove = isCarMove();
-		if (isMove == true) {
+		if (isMove) {
 			result[carNum] += "-";
 			System.out.println(result[carNum] + "\n" + "CAR" + (carNum + 1) + " GO!");
 			return;
@@ -47,7 +45,8 @@ public class RacingCar {
 		String[] totalCarPos = initializeCarArray(totalCarNum);
 		
 		for (int i = 0; i < tryNum; i++) {
-			System.out.println("====================== STEP " + (i + 1) +" START ======================");
+			System.out.println("====================== STEP " + (i + 1) +"3"
+					+ " START ======================");
 			drawAllCar(totalCarPos);
 		}
 	}
