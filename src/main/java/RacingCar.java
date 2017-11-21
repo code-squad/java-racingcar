@@ -20,19 +20,20 @@ public class RacingCar {
 		}
 		return array;
 	}
+	//입력받은 자동차가 움직이면 "-"를 하나 추가한 뒤, 출력. 아닐 시에는 그냥 출력 (GO/STOP message 함께 출력)
+	static void drawEachCar(String[] result, int carNum, int isMove) {
+		if (isMove == 1) {
+			result[carNum] += "-";
+			System.out.println(result[carNum] + "\n" + "CAR" + (carNum + 1) + " GO!");
+			return;
+		}
+		System.out.println(result[carNum] + "\n" + "CAR" + (carNum + 1) + " STOP");
+	}
 	//자동차들이 움직이는지 정지했는지 매 시도 횟수마다 그려주는 메소드.
-	static void drawDistance(String[] resultArray, int numToTry, int carNum) {
-		for (int i = 0; i < numToTry; i++) {
-			System.out.println("====================== STEP " + (i + 1) +" START ======================");
-			for (int j = 0; j < carNum; j++) {
-				int move = isCarMove();
-				if (move == 1) {
-					resultArray[j] += "-";
-					System.out.println(resultArray[j] + "\n" + "CAR" + (j + 1) + " GO!");
-				}else if (move == 0){
-					System.out.println(resultArray[j] + "\n" + "CAR" + (j + 1) + " STOP");
-				}
-			}
+	static void drawAllCar(String[] resultArray, int carNum) {
+		for (int j = 0; j < carNum; j++) {
+			int move = isCarMove();
+			drawEachCar(resultArray, j, move);
 		}
 	}
 	
@@ -45,6 +46,9 @@ public class RacingCar {
 		
 		String[] carArray = initializeCarArray(totalCarNum);
 		
-		drawDistance(carArray, tryNum, totalCarNum);
+		for (int i = 0; i < tryNum; i++) {
+			System.out.println("====================== STEP " + (i + 1) +" START ======================");
+			drawAllCar(carArray, totalCarNum);
+		}
 	}
 }
