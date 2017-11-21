@@ -23,17 +23,16 @@ public class RacingCar {
 	//자동차들이 움직이는지 정지했는지 매 시도 횟수마다 그려주는 메소드.
 	static void drawDistance(String[] resultArray, int numToTry, int carNum) {
 		for (int i = 0; i < numToTry; i++) {
-			System.out.println("-----------STEP " + (i + 1) +" START-----------");
+			System.out.println("====================== STEP " + (i + 1) +" START ======================");
 			for (int j = 0; j < carNum; j++) {
 				int move = isCarMove();
 				if (move == 1) {
 					resultArray[j] += "-";
-					System.out.println(resultArray[j] + "\n");
+					System.out.println(resultArray[j] + "\n" + "CAR" + (j + 1) + " GO!");
 				}else if (move == 0){
-					System.out.println(resultArray[j] + "\n");
+					System.out.println(resultArray[j] + "\n" + "CAR" + (j + 1) + " STOP");
 				}
 			}
-			System.out.println("-----------STEP " + (i + 1) +" END-----------");
 		}
 	}
 	
