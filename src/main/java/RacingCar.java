@@ -10,7 +10,7 @@ public class RacingCar {
 		return isMove > 3;
 	}
 	//자동차의 위치를 배열에 초기화해준다. 입력받은 대 수만큼 배열을 초기화 한다.
-	static String[] initializeCarArray(int car) {
+	static String[] initializeCarList(int car) {
 		String[] totalCar = new String[car];
 		
 		for (int i = 0; i < car; i++) {
@@ -49,7 +49,7 @@ public class RacingCar {
 		System.out.println("시도할 횟수는 몇 회 입니까?");
 		int tryNum = new Scanner(System.in).nextInt();
 		
-		String[] totalCarPos = initializeCarArray(totalCarNum);
+		String[] totalCarPos = initializeCarList(totalCarNum);
 		
 		for (int i = 0; i < tryNum; i++) {
 			System.out.println("====================== STEP " + (i + 1) + " START ======================");
