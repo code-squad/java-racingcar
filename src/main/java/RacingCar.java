@@ -18,28 +18,28 @@ public class RacingCar {
 		}
 		return totalCar;
 	}
-	//입력받은 자동차가 움직이면 "-"를 하나 추가한 뒤, 출력. 아닐 시에는 그냥 출력
-	private static void drawEachCar(String[] result, int carNum) {
+	//입력받은 자동차가 움직이면 "-"를 하나 추가한 뒤, return. 아닐 시에는 그냥 return.
+	public static String move(String[] result, int carNum) {
 		if (isCarMove()) {
 			result[carNum] += "-";
-			draw(result, carNum, true);
-			return;
+			return result[carNum];
 		}
-		draw(result, carNum, false);
+		return result[carNum];
 	}
-	//모든 자동차들이 움직이는지 정지했는지 매 시도 횟수마다 그려주는 메소드.
+	//모든 자동차들이 움직이는지 정지했는지 check 후, 매 시도 횟수마다 그려주는 메소드.
 	private static void drawAllCar(String[] totalCar) {
 		for (int j = 0; j < totalCar.length; j++) {
-			drawEachCar(totalCar, j);
+			boolean isMove = totalCar[j].equals(move(totalCar,j));		//move 메소드에서 상태를 최신화 시켜주고, 움직였는지 아닌지를 isMove에 저장.
+			draw(totalCar, j, isMove);
 		}
 	}
 	//실제로 출력값을 그려주는 메소드. (GO/STOP message 함께 출력)
 	private static void draw(String[] drawList, int drawNum, boolean message) {
 		if (message) {
-			System.out.println(drawList[drawNum] + "\n" + "CAR" + (drawNum + 1) + " GO!");
+			System.out.println(drawList[drawNum] + "\n" + "CAR" + (drawNum + 1) + " STOP");
 			return;
 		}
-		System.out.println(drawList[drawNum] + "\n" + "CAR" + (drawNum + 1) + " STOP");
+		System.out.println(drawList[drawNum] + "\n" + "CAR" + (drawNum + 1) + " GO!");
 	}
 	
 	public static void main(String[] args) {
