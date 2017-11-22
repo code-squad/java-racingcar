@@ -10,7 +10,7 @@ public class RacingCar {
 		return isMove > 3;
 	}
 	//자동차의 위치를 배열에 초기화해준다. 입력받은 대 수만큼 배열을 초기화 한다.
-	static String[] initializeCarList(int car) {
+	static String[] initializeCar(int car) {
 		String[] totalCar = new String[car];
 		
 		for (int i = 0; i < car; i++) {
@@ -19,29 +19,27 @@ public class RacingCar {
 		return totalCar;
 	}
 	//입력받은 자동차가 움직이면 "-"를 하나 추가한 뒤, return. 아닐 시에는 그냥 return.
-	public static String move(String[] result, int carNum) {
+	public static String updateCarStatus(String result) {
 		if (isCarMove()) {
-			result[carNum] += "-";
-			return result[carNum];
+			result += "-";
+			return result;
 		}
-		return result[carNum];
+		return result;
 	}
 	//모든 자동차들이 움직이는지 정지했는지 check 후, 매 시도 횟수마다 그려주는 메소드.
-	private static void drawAllCar(String[] totalCar) {
+	public static String[] move(String[] totalCar) {
 		for (int j = 0; j < totalCar.length; j++) {
-			boolean isMove = totalCar[j].equals(move(totalCar,j));		//move 메소드에서 상태를 최신화 시켜주고, 움직였는지 아닌지를 isMove에 저장.
-			draw(totalCar, j, isMove);
+			totalCar[j] = updateCarStatus(totalCar[j]);		//update 된 차의 상태를 최신화한다.
+		}
+		return totalCar;
+	}
+	//실제로 출력값을 그려주는 메소드.
+	private static void draw(String[] drawList) {
+		for (int i = 0; i < drawList.length; i++) {
+			System.out.println(drawList[i] + "\n" + "CAR" + (i + 1));
 		}
 	}
-	//실제로 출력값을 그려주는 메소드. (GO/STOP message 함께 출력)
-	private static void draw(String[] drawList, int drawNum, boolean message) {
-		if (message) {
-			System.out.println(drawList[drawNum] + "\n" + "CAR" + (drawNum + 1) + " STOP");
-			return;
-		}
-		System.out.println(drawList[drawNum] + "\n" + "CAR" + (drawNum + 1) + " GO!");
-	}
-	
+	//main start
 	public static void main(String[] args) {
 		System.out.println("자동차는 총 몇 대 입니까?");
 		int totalCarNum = new Scanner(System.in).nextInt();
@@ -49,11 +47,12 @@ public class RacingCar {
 		System.out.println("시도할 횟수는 몇 회 입니까?");
 		int tryNum = new Scanner(System.in).nextInt();
 		
-		String[] totalCarPos = initializeCarList(totalCarNum);
+		String[] totalCarPos = initializeCar(totalCarNum);
 		
 		for (int i = 0; i < tryNum; i++) {
 			System.out.println("====================== STEP " + (i + 1) + " START ======================");
-			drawAllCar(totalCarPos);
+			totalCarPos = move(totalCarPos);
+			draw(totalCarPos);
 		}
 	}
 }
