@@ -18,7 +18,6 @@ public class Input {
 			sc.close();
 			return getTime();
 		}
-		System.out.println(sc);
 		sc.close();
 		return temp;
 	}
