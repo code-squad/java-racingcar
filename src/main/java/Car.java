@@ -9,6 +9,11 @@ public class Car {
 		this.name = name;
 	}
 	
+	Car(String name, int position) {
+		this.name = name;
+		this.position = position;
+	}
+	
 	String getName() {
 		return this.name;
 	}
@@ -17,14 +22,13 @@ public class Car {
 		return this.position;
 	}
 	
-	private int makeRandomNum() {
+	private static int makeRandomNum() {
 		Random random = new Random();
 		int randomNum = random.nextInt(10);
 		return randomNum;
 	}
 	
-	void run() {
-		int randomNum = makeRandomNum();
+	void run(int randomNum) {
 		if (randomNum >= 4) {
 			this.position++;
 		}
@@ -32,7 +36,8 @@ public class Car {
 	
 	static void runCars(ArrayList<Car> listCar) {
 		for (Car car: listCar) {
-			car.run();
+			int randomNumber = makeRandomNum();
+			car.run(randomNumber);
 		}
 	}
 	

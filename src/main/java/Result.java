@@ -50,9 +50,4 @@ public class Result {
 			System.out.print(car.getName() + " ");
 		}
 	}
-	
-	
-	// int max = findMaxPositions(listCar);
-	// ArrayList<Car> winnerCars = findWinnderCars(listCar, max);
-	// print(winnerCars);
 }
