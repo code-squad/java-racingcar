@@ -1,6 +1,4 @@
 package car;
-import java.util.Random;
-import java.util.Scanner;
 
 public class RacingCar {
 	//자동차의 이름 배열을 입력받아서, 그 이름으로 '차' 객체를 각각 생성한 뒤, 리턴.
@@ -19,7 +17,7 @@ public class RacingCar {
 		return carStatus;
 	}
 	//race를 시작하는 부분. 1 턴 동안에 car 객체들을 움직이거나 정지하게 하고, 변경된 상태를 리턴한다.
-	private static int[] startRace(Car[] car, int tryNum) {
+	private static int[] startRace(Car[] car) {
 		int[] carStatus = new int[car.length];
 		for (int i = 0; i < car.length; i++) {
 			carStatus[i] = car[i].move();
@@ -62,7 +60,7 @@ public class RacingCar {
 		int[] carStatus = new int[cars.length];		//자동차의 이동 상태를 알 수 있는 배열 생성.
 		
 		for (int i = 0; i < inputNum; i++) {
-			carStatus = startRace(cars, inputNum);		//car객체들을 1턴 움직이고 상태를 최신화
+			carStatus = startRace(cars);		//car객체들을 1턴 움직이고 상태를 최신화
 			ResultView.draw(carNameList, carStatus);		//최신화 된 car객체의 상태를 출력
 		}
 		int biggest = checkBiggest(carStatus);

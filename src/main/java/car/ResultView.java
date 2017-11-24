@@ -10,11 +10,11 @@ public class ResultView {
 		System.out.println("시도할 횟수는 몇 번 인가요?");
 	}
 	//각각의 차들의 현재 position값만큼 "-"문자를 출력해주는 메소드.
-	public static void drawEachCar(String name, int num) {
+	public static void drawEachCar(String name, int numToDraw) {
 		String result = "-";
-		while (num > 0) {
+		while (numToDraw > 0) {
 			result += "-";
-			num--;
+			numToDraw--;
 		}
 		System.out.println(name + " : " + result);
 	}
