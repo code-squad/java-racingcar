@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class InputView {
-	static String takeName() {
+	public static String takeName() {
 		Scanner scan = new Scanner(System.in);
         String inputCarName = scan.nextLine();
         //scan.close();
@@ -9,7 +9,7 @@ public class InputView {
         return inputCarName;
 	}
 	
-	static int takeNum() {
+	public static int takeNum() {
 		Scanner scan = new Scanner(System.in);
         int inputTryNum = scan.nextInt();
         //scan.close();
