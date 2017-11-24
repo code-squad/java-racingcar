@@ -1,3 +1,4 @@
+package car;
 
 public class ResultView {
 	//경주 할 자동차의 이름을 입력하라는 메세지 출력.
