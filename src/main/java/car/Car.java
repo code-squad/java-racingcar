@@ -2,7 +2,7 @@ package car;
 import java.util.Random;
 
 public class Car {
-	private String name = null;
+	private String name;
 
 	private int position = 0;
 
@@ -24,7 +24,11 @@ public class Car {
 		}
 		return position;
 	}
-	public static void printWinner(int[] status) {
-		
+	public String getName() {
+		return this.name;
+	}
+	
+	public int getPos() {
+		return this.position;
 	}
 }

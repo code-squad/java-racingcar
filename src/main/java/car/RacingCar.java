@@ -45,9 +45,9 @@ public class RacingCar {
 		return biggest;
 	}
 	//car객체의 이동거리를 최대 이동거리와 비교하여 같다면 출력해주는 메소드.
-	private static void isItWinner(String[] name, int[] distance, int biggest, int i) {
-		if (distance[i] == biggest) {
-			ResultView.noticeWinner(name[i]);
+	private static void isItWinner(Car[] cars, int biggest, int i) {
+		if (cars[i].getPos() == biggest) {
+			ResultView.noticeWinner(cars[i].getName());
 		}
 	}
 	//main start
@@ -67,7 +67,7 @@ public class RacingCar {
 		}
 		int biggest = checkBiggest(carStatus);
 		for (int i = 0; i < carStatus.length; i++) {
-			isItWinner(carNameList, carStatus, biggest, i);
+			isItWinner(cars, biggest, i);
 		}
 	}
 }
