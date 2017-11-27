@@ -37,45 +37,22 @@ public class RacingCar {
 		}
 		return biggest;
 	}
-	//우승자 목록을 만들어주는 메소드. 우승자 이름을 입력받는데, null값이 입력되면 리스트에 넣지 않는다.
-	private static String[] makeWinnerList(String carName, String[] winnerList, int i) {
-		if (carName != null) {
-			winnerList[i] = carName;
-		}
-		return winnerList;
-	}
-	//car객체의 이동거리를 최대 이동거리와 비교하여 같다면, 최대거리를 간 자동차의 이름을 리턴해주는 메소드.
-	private static String findWinner(Car[] cars, int biggest, int i) {
-		if (cars[i].getPos() == biggest) {
-			return cars[i].getName();
-		}
-		return null;		//최대거리를 간 차가 아니라면, null값 리턴.
-	}
 	//main start
 	public static void main(String[] args) {
-		ResultView.inputNameMessage();
+		InputView.inputNameMessage();
 		String inputName = InputView.takeName();		//이름을 입력 받는다.
-		ResultView.inputNumMessage();
+		InputView.inputNumMessage();
 		int inputNum = InputView.takeNum();			//횟수를 입력 받는다.
 		
 		String[] carNameList = splitName(inputName);
 		Car[] cars = initializeCar(carNameList);		//입력받은 이름 수 만큼 car 객체를 생성하고, cars 배열에 채워 넣는다.
-		int[] carStatus = new int[cars.length];		//자동차의 이동 상태를 알 수 있는 배열 생성.
+		int[] carStatus = startRace(cars);		//자동차의 이동 상태를 알 수 있는 배열 생성.
 		
 		for (int i = 0; i < inputNum; i++) {
 			carStatus = startRace(cars);		//car객체들을 1턴 움직이고 상태를 최신화
 			ResultView.draw(carNameList, carStatus);		//최신화 된 car객체의 상태를 출력
 		}
 		int biggest = findBiggest(carStatus);
-		
-		String winnerName;
-		String[] winnerList = new String[carStatus.length];
-		for (int i = 0; i < carStatus.length; i++) {
-			winnerName = findWinner(cars, biggest, i);		//최대거리를 간 차가 맞다면 winnerName에 자동차의 이름을 넣는다.
-			winnerList = makeWinnerList(winnerName, winnerList, i);		//자동차 이름을 winnerList에 넣는다.
-		}
-		for (int i = 0; i < winnerList.length; i++) {
-			ResultView.noticeWinner(winnerList[i]);		//winnerList를 출력해준다.
-		}
+		ResultView.printWinner(biggest, cars);
 	}
 }
