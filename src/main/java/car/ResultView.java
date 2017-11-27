@@ -28,6 +28,8 @@ public class ResultView {
 	}
 	
 	public static void noticeWinner(String carName) {
-		System.out.println("우승자는 " + carName + " 입니다.");
+		if (carName != null) {
+			System.out.println("우승자는 " + carName + " 입니다.");
+		}
 	}
 }
