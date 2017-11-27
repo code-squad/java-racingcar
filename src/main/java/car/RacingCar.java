@@ -1,5 +1,4 @@
 package car;
-import java.util.Stack;
 
 public class RacingCar {
 	//자동차의 이름 배열을 입력받아서, 그 이름으로 '차' 객체를 각각 생성한 뒤, 리턴.
