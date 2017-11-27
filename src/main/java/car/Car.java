@@ -3,9 +3,9 @@ import java.util.Random;
 
 public class Car {
 	private String name;
-
+	
 	private int position = 0;
-
+	
 	public Car(String name) {
 		this.name = name;
 	}
@@ -24,10 +24,11 @@ public class Car {
 		}
 		return position;
 	}
+	//이름을 받아올 때 사용하는 메소드.
 	public String getName() {
 		return this.name;
 	}
-	
+	//위치값을 받아올 때 사용하는 메소드.
 	public int getPos() {
 		return this.position;
 	}

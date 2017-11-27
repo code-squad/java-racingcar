@@ -8,7 +8,6 @@ public class RacingCar {
 		for (int i = 0; i < carNameList.size(); i++) {
 			cars.add(i, new Car(carNameList.get(i)));
 		}
-		
 		return cars;
 	}
 	//입력 받은 이름을 "," 기준으로 나눠 각각 배열의 다른 칸으로 넣어주는 메소드. 입력이 끝난 이름 배열을 리턴해준다.
@@ -17,11 +16,11 @@ public class RacingCar {
 	}
 	//race를 시작하는 부분. 1 턴 동안에 car 객체들을 움직이거나 정지하게 하고, 변경된 상태를 리턴한다.
 	private static ArrayList<Integer> startRace(ArrayList<Car> car) {
-		ArrayList<Integer> carStatus = new ArrayList<Integer> (car.size());
+		ArrayList<Integer> carLocation = new ArrayList<Integer> (car.size());
 		for (int i = 0; i < car.size(); i++) {
-			carStatus.add(i, car.get(i).move());
+			carLocation.add(i, car.get(i).move());
 		}
-		return carStatus;
+		return carLocation;
 	}
 	//car 객체들의 이동거리 중에서 가장 큰 값을 반환.
 	private static int returnBiggest(int distance, int biggest) {
@@ -44,11 +43,11 @@ public class RacingCar {
 		String inputName = InputView.takeName();		//이름을 입력 받는다.
 		InputView.inputNumMessage();
 		int inputNum = InputView.takeNum();			//횟수를 입력 받는다.
-
+		
 		ArrayList<String> carNameList = new ArrayList<String>(Arrays.asList(splitName(inputName)));		//","를 기준으로 단어를 나누어 ArrayList에 저장.
 		ArrayList<Car> cars = new ArrayList<Car>();
-		cars = initializeCar(carNameList, cars);		//입력받은 이름 수 만큼 car 객체를 생성하고, cars 배열에 채워 넣는다.
-		ArrayList<Integer> carStatus = startRace(cars);		//자동차의 이동 상태를 알 수 있는 배열 생성.
+		cars = initializeCar(carNameList, cars);		//입력받은 이름 수 만큼 car 객체를 생성하고, cars 배열에 채워 넣는다.	
+		ArrayList<Integer> carStatus = new ArrayList<Integer> ();		//자동차의 이동한 위치 상태를 알 수 있는 ArrayList 생성.
 		
 		for (int i = 0; i < inputNum; i++) {
 			carStatus = startRace(cars);		//car객체들을 1턴 움직이고 상태를 최신화

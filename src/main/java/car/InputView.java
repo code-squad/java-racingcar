@@ -10,20 +10,18 @@ public class InputView {
 	public static void inputNumMessage() {
 		System.out.println("시도할 횟수는 몇 번 인가요?");
 	}
-	
+	//이름을 입력받는 메소드.
 	public static String takeName() {
 		Scanner scan = new Scanner(System.in);
 		String inputCarName = scan.nextLine();
-		//scan.close();
-        
+		//scan.close();  
 		return inputCarName;
 	}
-	
+	//시도 횟수를 입력받는 메소드.
 	public static int takeNum() {
 		Scanner scan = new Scanner(System.in);
 		int inputTryNum = scan.nextInt();
-		//scan.close();
-        
+		//scan.close();       
 		return inputTryNum;
 	}
 }
