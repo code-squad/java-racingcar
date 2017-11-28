@@ -20,24 +20,29 @@ public class ResultView {
 		}
 	}
 	//최종 우승자를 출력해주는 메소드.
-	public static void noticeWinner(ArrayList<String> winner) {
+	public static void noticeWinner(ArrayList<Car> winner) {
 		for (int i = 0; i < winner.size(); i++) {
-			System.out.println("우승자는 " + winner.get(i) + " 입니다.");
+			System.out.println("우승자는 " + winner.get(i).getName() + " 입니다.");
 		}
 	}
-	//우승자 목록을 만들어주는 메소드. 우승자 이름을 입력받는데, null값이 입력되면 리스트에 넣지 않는다.
-	private static ArrayList<String> makeWinnerList(ArrayList<Car> cars, int biggest, int i, ArrayList<String> winnerList) {
-		if (cars.get(i).getPos() == biggest) {
-			winnerList.add(cars.get(i).getName());
+	//winner를 winnerList에 추가해주는 메소드.
+	private static ArrayList<Car> addWinner(ArrayList<Car> winner, ArrayList<Car> cars, int count, int biggest) {
+		if (cars.get(count).getPos() == biggest) {
+			winner.add(cars.get(count));
+		}
+		return winner;
+	}
+	//우승자 목록을 만들어주는 메소드. 우승자 이름을 입력받는다.
+	private static ArrayList<Car> makeWinnerList(ArrayList<Car> cars, int biggest) {
+		ArrayList<Car> winnerList = new ArrayList<Car> ();
+		for (int i = 0; i < cars.size(); i++) {
+			winnerList = addWinner(winnerList, cars, i, biggest);
 		}
 		return winnerList;
 	}
 	//winner 리스트를 만들어주고, 만들어진 리스트를 출력해준다.
 	public static void printWinner(int biggest, ArrayList<Car> cars) {
-		ArrayList<String> winnerList = new ArrayList<String>();
-		for (int i = 0; i < cars.size(); i++) {
-			winnerList = makeWinnerList(cars, biggest, i, winnerList);		//최대거리를 간 자동차 이름을 winnerList에 넣는다.
-		}
-		noticeWinner(winnerList);		//winnerList를 출력해준다.
+		ArrayList<Car> winnerCars = makeWinnerList(cars, biggest);
+		noticeWinner(winnerCars);		//winnerList를 출력해준다.
 	}
 }
