@@ -31,7 +31,7 @@ public class RacingCarTest {
 		int big = 10;
 		int small = 5;
 		
-		assertEquals(10, RacingCar.returnBiggest(big, small));
+		assertEquals(10, RacingCar.returnBiggest(big, small));		//더 큰 값이 리턴되는지 확인.
 		assertEquals(10, RacingCar.returnBiggest(small, big));
 	}
 	
@@ -46,6 +46,6 @@ public class RacingCarTest {
 		testList.add(90);
 		testList.add(80);
 		
-		assertEquals(90, RacingCar.findBiggest(testList));
+		assertEquals(90, RacingCar.findBiggest(testList));		//그 중 최댓값인 90이 리턴되는지 확인.
 	}
 }
