@@ -5,6 +5,10 @@ public class Car {
 	
 	public void goOrNot(int random) {
 		if(random > 4) sb.append("-"); 
+		print();
+	}
+	
+	public void print() {
 		System.out.println(sb);
 	}
 }
