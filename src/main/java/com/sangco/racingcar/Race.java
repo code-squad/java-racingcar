@@ -4,52 +4,62 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
-import ch.qos.logback.classic.pattern.MarkerConverter;
-
 public class Race {
 
-	private void startGame() {
-		Scanner scanCar = new Scanner(System.in);
-		System.out.println("자동차 대수는 몇 대 인가요?");
-		int howManyCar = scanCar.nextInt();
-		System.out.println("시도할 회수는 몇 회 인가요?");
-		int howManyTimes = scanCar.nextInt();
-		System.out.println();
+	private void startGame(){
+		Scanner sc = new Scanner(System.in);
+		InputView iv = InputView.getInstance();
+		String[] carNames = iv.InputName(sc);
+		int tryTimes = iv.InputTime(sc);
 		
-		ArrayList<Car> carList = new ArrayList<>();
-		makeCarInstance(howManyCar, carList);
-		doRace(howManyTimes, howManyCar, carList);
+		ArrayList<Car> carIns = new ArrayList<>();
+		createCar(carIns, carNames);
+		moveCar(tryTimes, carIns, carNames);
 	}
 	
-	private void makeCarInstance(int howManyCar, ArrayList<Car> carList) {
-		for (int i = 0; i < howManyCar; i++) {
-			carList.add(i, new Car());
+	private void createCar(ArrayList<Car> carIns, String[] carNames){
+		for (int i = 0; i < carNames.length; i++) {
+			Car car = new Car(carNames[i]);
+			carIns.add(i, car);
 		}
 	}
 	
-	private void doRace(int howManyTimes, int howManyCar, ArrayList<Car> carList) {
-		for (int i = 0; i < howManyTimes; i++) {
-			doRaceEachTime(howManyCar, carList);
+	private void moveCar(int tryTimes, ArrayList<Car> carIns, String[] carNames){
+		for (int i = 0; i < tryTimes; i++) {
+			injectNum(carNames, carIns);
+			System.out.println();
+		}
+		findMaxNum(carIns);
+	}
+	
+	private void injectNum(String[] carNames, ArrayList<Car> carIns) {
+		for (int i = 0; i < carNames.length; i++) {
+			int ranNum = createRanNum();
+			carIns.get(i).movePosition(ranNum);
+			ResultView.resultPrint(carIns.get(i));
 		}
 	}
 	
-	private void doRaceEachTime(int howManyCar, ArrayList<Car> carList) {
-		for (int i = 0; i < howManyCar; i++) {
-			int numb = makeRandomNumb();
-			Car car = carList.get(i);
-			car.goOrNot(numb);
-		}
-		printBlank();
-	}
-	
-	private int makeRandomNumb() {
+	private int createRanNum(){
 		Random random = new Random();
-		int numb = random.nextInt();
-		return numb;
+		return random.nextInt(10);
+	}
+
+	private void findMaxNum(ArrayList<Car> carIns) {
+		int num = 0;
+		for (int i = 0; i < carIns.size(); i++) {
+			if(num <= carIns.get(i).position) num = carIns.get(i).position;
+		}
+		compareScore(num, carIns);
 	}
 	
-	private void printBlank() {
-		System.out.println();
+	private void compareScore(int num, ArrayList<Car> carIns) {
+		for (int i = 0; i < carIns.size(); i++) {
+			if(num == carIns.get(i).position) {
+				String winner = carIns.get(i).name;
+				ResultView.printWinner(winner);
+			}
+		}
 	}
 	
 	public static void main(String[] args) {
