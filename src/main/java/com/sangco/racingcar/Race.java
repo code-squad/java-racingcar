@@ -6,6 +6,9 @@ import java.util.Scanner;
 
 public class Race {
 
+	public ArrayList<String> winners = new ArrayList<>();
+	//make for JUNIT Test
+	
 	private void startGame(){
 		Scanner sc = new Scanner(System.in);
 		InputView iv = InputView.getInstance();
@@ -17,14 +20,16 @@ public class Race {
 		moveCar(tryTimes, carIns, carNames);
 	}
 	
-	private void createCar(ArrayList<Car> carIns, String[] carNames){
+	public void createCar(ArrayList<Car> carIns, String[] carNames){
+	//private -> public : because of the JUNIT Test	
 		for (int i = 0; i < carNames.length; i++) {
 			Car car = new Car(carNames[i]);
 			carIns.add(i, car);
 		}
 	}
 	
-	private void moveCar(int tryTimes, ArrayList<Car> carIns, String[] carNames){
+	public void moveCar(int tryTimes, ArrayList<Car> carIns, String[] carNames){
+	//private -> public : because of the JUNIT Test	
 		for (int i = 0; i < tryTimes; i++) {
 			injectNum(carNames, carIns);
 			System.out.println();
@@ -32,7 +37,8 @@ public class Race {
 		findMaxNum(carIns);
 	}
 	
-	private void injectNum(String[] carNames, ArrayList<Car> carIns) {
+	public void injectNum(String[] carNames, ArrayList<Car> carIns) {
+	//private -> public : because of the JUNIT Test	
 		for (int i = 0; i < carNames.length; i++) {
 			int ranNum = createRanNum();
 			carIns.get(i).movePosition(ranNum);
@@ -45,7 +51,8 @@ public class Race {
 		return random.nextInt(10);
 	}
 
-	private void findMaxNum(ArrayList<Car> carIns) {
+	public void findMaxNum(ArrayList<Car> carIns) {
+	//private -> public : because of the JUNIT Test	
 		int num = 0;
 		for (int i = 0; i < carIns.size(); i++) {
 			if(num <= carIns.get(i).position) num = carIns.get(i).position;
@@ -53,10 +60,12 @@ public class Race {
 		compareScore(num, carIns);
 	}
 	
-	private void compareScore(int num, ArrayList<Car> carIns) {
+	public void compareScore(int num, ArrayList<Car> carIns) {
+	//private -> public : because of the JUNIT Test	
 		for (int i = 0; i < carIns.size(); i++) {
 			if(num == carIns.get(i).position) {
 				String winner = carIns.get(i).name;
+				winners.add(winner);
 				ResultView.printWinner(winner);
 			}
 		}
