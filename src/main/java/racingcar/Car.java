@@ -1,25 +1,22 @@
 package racingcar;
 
-import java.util.List;
-import java.util.Random;
-
 public class Car {
-	private String name;
-	private int initPosition = 1;
+	public String name;
+	public int position = 1;
+	public StringBuilder sb =  new StringBuilder("-");
 	
-	public Car(String name){
+	public Car(String name) {
 		this.name = name;
 	}
-	public static void setCar(int carNumber, List<Integer> carPosition) {
-		for (int i = 0; i < carNumber; i++) {
-			carPosition.add(1);
+	
+	public void movePosition(int ranNum) {
+		if(ranNum >= 4) {
+			position++;
+			sb.append("-");
 		}
 	}
-	public static void goStop(int carNumber, int tryNumber, List<Integer> carPosition) {
-		Random ran = new Random();
-		for (int i = 0; i < tryNumber; i++)
-			moveCar(carNumber, ran, carPosition);
-
-	}
+	
+	
+	
 
 }
