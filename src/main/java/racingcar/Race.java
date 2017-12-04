@@ -11,7 +11,7 @@ public class Race {
 		InputView iv = new InputView();
 		String[] carNames = iv.inputName(sc);
 		int tryTimes = iv.inputTime(sc);
-		
+
 		Cars carIns = createCar(carNames);
 		moveCar(tryTimes, carIns);
 		ResultView.printWinner(compareScore(findMaxScore(carIns), carIns));
@@ -27,24 +27,9 @@ public class Race {
 
 	private void moveCar(int tryTimes, Cars carIns) {
 		for (int i = 0; i < tryTimes; i++) {
-			setCarStatus(carIns);
+			carIns.setCarStatus();
 			System.out.println();
 		}
-	}
-
-	private void setCarStatus(Cars carIns) {
-		for (int i = 0; i < carIns.getCars().size(); i++) {
-			if (createRanNum() >= 4) {
-				carIns.getCars().get(i).movePosition();
-				carIns.getCars().get(i).appendDash();
-			}
-			ResultView.printCar(carIns.getCars().get(i));
-		}
-	}
-
-	private int createRanNum() {
-		Random random = new Random();
-		return random.nextInt(10);
 	}
 
 	private int findMaxScore(Cars carIns) {
