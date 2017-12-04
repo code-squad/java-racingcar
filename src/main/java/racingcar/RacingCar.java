@@ -11,17 +11,27 @@ public class RacingCar {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		List<Integer> carPosition = new ArrayList<Integer>();
+		String[] carNames;
 
-		System.out.println("자동차 대수는 몇 대 인가요?");
-		int carNumber = sc.nextInt();
+		System.out.println("경주할 자동차 이름을 입력하세요(자동차 이름은 쉼표(,)로 구분)");
+		String carName = sc.nextLine();
 		System.out.println("시도할 횟수는 몇 회 인가요?");
 		int tryNumber = sc.nextInt();
+		
+		carNames = carName.split(",");
+		Car car1 = new Car(carNames[0]);
+		Car car2 = new Car(carNames[1]);
+		Car car3 = new Car(carNames[2]);
+		
+		c
+		
+		
 
 		setCar(carNumber, carPosition);
 		goStop(carNumber, tryNumber, carPosition);
 		carPosition.clear();
 	}
-
+/*
 	public static void setCar(int carNumber, List<Integer> carPosition) {
 		for (int i = 0; i < carNumber; i++) {
 			carPosition.add(1);
@@ -34,6 +44,7 @@ public class RacingCar {
 			moveCar(carNumber, ran, carPosition);
 
 	}
+	*/
 
 	private static void moveCar(int carNumber, Random ran, List<Integer> carPosition) {
 		for (int k = 0; k < carNumber; k++) {
