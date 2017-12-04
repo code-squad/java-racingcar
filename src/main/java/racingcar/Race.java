@@ -12,8 +12,7 @@ public class Race {
 		String[] carNames = iv.inputName(sc);
 		int tryTimes = iv.inputTime(sc);
 		
-		Cars carIns = new Cars();
-		carIns = createCar(carNames);
+		Cars carIns = createCar(carNames);
 		moveCar(tryTimes, carIns);
 		ResultView.printWinner(compareScore(findMaxScore(carIns), carIns));
 	}
@@ -21,8 +20,7 @@ public class Race {
 	private Cars createCar(String[] carNames) {
 		Cars carIns = new Cars();
 		for (int i = 0; i < carNames.length; i++) {
-			Car car = new Car(carNames[i]);
-			carIns.add(car);
+			carIns.add(new Car(carNames[i]));
 		}
 		return carIns;
 	}
