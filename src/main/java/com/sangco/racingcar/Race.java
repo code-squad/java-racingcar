@@ -6,69 +6,86 @@ import java.util.Scanner;
 
 public class Race {
 
-	public ArrayList<String> winners = new ArrayList<>();
-	//make for JUNIT Test
-	
 	private void startGame(){
 		Scanner sc = new Scanner(System.in);
 		InputView iv = InputView.getInstance();
-		String[] carNames = iv.InputName(sc);
-		int tryTimes = iv.InputTime(sc);
+		String[] carNames = iv.inputName(sc);
+		int tryTimes = iv.inputTime(sc);
 		
-		ArrayList<Car> carIns = new ArrayList<>();
-		createCar(carIns, carNames);
-		moveCar(tryTimes, carIns, carNames);
+		ArrayList<Car> cars = createCar(carNames);
+		cars = moveCar(tryTimes, cars);
+		printWinner(compareScore(findMaxNum(cars), cars));
 	}
 	
-	public void createCar(ArrayList<Car> carIns, String[] carNames){
-	//private -> public : because of the JUNIT Test	
+	ArrayList<Car> createCar(String[] carNames){
+		ArrayList<Car> cars = new ArrayList<>(); 
 		for (int i = 0; i < carNames.length; i++) {
-			Car car = new Car(carNames[i]);
-			carIns.add(i, car);
+			cars.add(new Car(carNames[i]));
 		}
+		return cars;
 	}
 	
-	public void moveCar(int tryTimes, ArrayList<Car> carIns, String[] carNames){
-	//private -> public : because of the JUNIT Test	
+	private ArrayList<Car> moveCar(int tryTimes, ArrayList<Car> cars){
 		for (int i = 0; i < tryTimes; i++) {
-			injectNum(carNames, carIns);
-			System.out.println();
+			cars = injectNum(cars);
 		}
-		findMaxNum(carIns);
+		return cars;
 	}
 	
-	public void injectNum(String[] carNames, ArrayList<Car> carIns) {
-	//private -> public : because of the JUNIT Test	
-		for (int i = 0; i < carNames.length; i++) {
-			int ranNum = createRanNum();
-			carIns.get(i).movePosition(ranNum);
-			ResultView.resultPrint(carIns.get(i));
+	private ArrayList<Car> injectNum(ArrayList<Car> cars) {
+		for (int i = 0; i < cars.size(); i++) {
+			cars.get(i).movePosition(createRanNum());
 		}
+		printResult(cars);
+		System.out.println();
+		return cars;
 	}
 	
-	private int createRanNum(){
+	private int createRanNum() {
 		Random random = new Random();
 		return random.nextInt(10);
 	}
 
-	public void findMaxNum(ArrayList<Car> carIns) {
-	//private -> public : because of the JUNIT Test	
-		int num = 0;
-		for (int i = 0; i < carIns.size(); i++) {
-			if(num <= carIns.get(i).position) num = carIns.get(i).position;
+	private void printResult(ArrayList<Car> cars) {
+		StringBuilder sb;
+		for (int i = 0; i < cars.size(); i++) {
+			String carName = cars.get(i).getName() + " : ";
+			sb = getEachCarDash(cars.get(i).getPosition());
+			sb.insert(0, carName);
+			ResultView.resultPrint(sb);
 		}
-		compareScore(num, carIns);
 	}
 	
-	public void compareScore(int num, ArrayList<Car> carIns) {
-	//private -> public : because of the JUNIT Test	
-		for (int i = 0; i < carIns.size(); i++) {
-			if(num == carIns.get(i).position) {
-				String winner = carIns.get(i).name;
-				winners.add(winner);
-				ResultView.printWinner(winner);
+	private StringBuilder getEachCarDash(int position) {
+		StringBuilder sb = new StringBuilder("");
+		for (int i = 0; i < position; i++) {
+			sb.append("-");
+		}
+		return sb;
+	}
+	
+	private void printWinner(ArrayList<String> winners) {
+		for (int i = 0; i < winners.size(); i++) {
+			ResultView.printWinner(winners.get(i));
+		}
+	}
+	
+	ArrayList<String> compareScore(int maxNum, ArrayList<Car> cars) {
+		ArrayList<String> winners = new ArrayList<>();
+		for (int i = 0; i < cars.size(); i++) {
+			if(maxNum == cars.get(i).getPosition()) {
+				winners.add(cars.get(i).getName());
 			}
 		}
+		return winners;
+	}
+	
+	int findMaxNum(ArrayList<Car> cars) {
+		int num = 0;
+		for (int i = 0; i < cars.size(); i++) {
+			if(num <= cars.get(i).getPosition()) num = cars.get(i).getPosition();
+		}
+		return num;
 	}
 	
 	public static void main(String[] args) {
