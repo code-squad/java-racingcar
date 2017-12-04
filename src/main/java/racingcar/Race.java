@@ -1,7 +1,6 @@
 package racingcar;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -61,7 +60,7 @@ public class Race {
 	private ArrayList<String> compareScore(int num, ArrayList<Car> carIns) {
 		ArrayList<String> winners = new ArrayList<String>();
 		for (int i = 0; i < carIns.size(); i++) {
-			if (num == carIns.get(i).position) 
+			if (num == carIns.get(i).position)
 				winners.add(carIns.get(i).name);
 		}
 		return winners;
