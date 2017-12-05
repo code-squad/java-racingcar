@@ -9,13 +9,13 @@ public class Car {
 		this.name = name;
 	}
 
-	public void movePosition() { // 두가지 일을 하고있다 안대앵
-		position++;
+	public void movePosition() {
+		this.position++;
+		this.sb.append("-");
 	}
 
-
-	public void appendDash() {
-		sb.append("-");
+	public boolean isSameNum(int num) {
+		return this.position == num;
 	}
 
 }

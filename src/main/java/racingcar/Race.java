@@ -1,7 +1,5 @@
 package racingcar;
 
-import java.util.ArrayList;
-import java.util.Random;
 import java.util.Scanner;
 
 public class Race {
@@ -9,45 +7,21 @@ public class Race {
 	private void startGame() {
 		Scanner sc = new Scanner(System.in);
 		InputView iv = new InputView();
+		ResultView rv = new ResultView();
 		String[] carNames = iv.inputName(sc);
 		int tryTimes = iv.inputTime(sc);
 
-		Cars carIns = createCar(carNames);
-		moveCar(tryTimes, carIns);
-		ResultView.printWinner(compareScore(findMaxScore(carIns), carIns));
+		Cars carIns = createCars(carNames);
+		carIns.moveCars(tryTimes);
+		rv.printWinner(carIns.compareScore(carIns.findMaxScore()));
 	}
 
-	private Cars createCar(String[] carNames) {
-		Cars carIns = new Cars();
+	private Cars createCars(String[] carNames) {
+		Cars cars = new Cars();
 		for (int i = 0; i < carNames.length; i++) {
-			carIns.add(new Car(carNames[i]));
+			cars.add(new Car(carNames[i]));
 		}
-		return carIns;
-	}
-
-	private void moveCar(int tryTimes, Cars carIns) {
-		for (int i = 0; i < tryTimes; i++) {
-			carIns.setCarStatus();
-			System.out.println();
-		}
-	}
-
-	private int findMaxScore(Cars carIns) {
-		int num = 0;
-		for (int i = 0; i < carIns.getCars().size(); i++) {
-			if (num <= carIns.getCars().get(i).position)
-				num = carIns.getCars().get(i).position;
-		}
-		return num;
-	}
-
-	private ArrayList<String> compareScore(int num, Cars carIns) {
-		ArrayList<String> winners = new ArrayList<String>();
-		for (int i = 0; i < carIns.getCars().size(); i++) {
-			if (num == carIns.getCars().get(i).position)
-				winners.add(carIns.getCars().get(i).name);
-		}
-		return winners;
+		return cars;
 	}
 
 	public static void main(String[] args) {
