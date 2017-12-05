@@ -54,13 +54,13 @@ public class Cars {
 		return num;
 	}
 
-	public ArrayList<String> compareWinner(int num) {
+	public String[] compareWinner(int num) {
 		ArrayList<String> winners = new ArrayList<String>();
 		for (Car car : cars) {
 			if (car.isSameNum(num))
 				winners.add(car.getName());
 		}
-		return winners;
+		return winners.toArray(new String[winners.size()]);
 	}
 
 }

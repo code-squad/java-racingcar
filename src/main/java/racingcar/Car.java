@@ -8,9 +8,10 @@ public class Car {
 		this.name = name;
 	}
 
-	public void movePosition(int ranNum) {
+	public int movePosition(int ranNum) {
 		if (ranNum >= 4)
 			this.position++;
+		return this.position;
 	}
 
 	public int getPosition() {
