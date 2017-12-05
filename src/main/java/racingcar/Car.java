@@ -1,9 +1,8 @@
 package racingcar;
 
 public class Car {
-	public String name;
-	public int position = 1;
-	public StringBuilder sb = new StringBuilder("-");
+	private String name;
+	private int position = 1;
 
 	Car(String name) {
 		this.name = name;
@@ -11,7 +10,14 @@ public class Car {
 
 	public void movePosition() {
 		this.position++;
-		this.sb.append("-");
+	}
+	
+	public int getPosition(){
+		return this.position;
+	}
+	
+	public String getName(){
+		return this.name;
 	}
 
 	public boolean isSameNum(int num) {

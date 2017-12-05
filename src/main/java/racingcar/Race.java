@@ -13,6 +13,7 @@ public class Race {
 
 		Cars carIns = createCars(carNames);
 		carIns.moveCars(tryTimes);
+		rv.printCar(carIns);
 		rv.printWinner(carIns.compareScore(carIns.findMaxScore()));
 	}
 

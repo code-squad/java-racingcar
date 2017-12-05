@@ -14,6 +14,10 @@ public class Cars {
 		return cars;
 	}
 
+	public Car getCar(int i) {
+		return cars.get(i);
+	}
+
 	private int createRanNum() {
 		Random random = new Random();
 		return random.nextInt(10);
@@ -22,7 +26,6 @@ public class Cars {
 	public void moveCars(int tryTimes) {
 		for (int i = 0; i < tryTimes; i++) {
 			this.setCarStatus();
-			System.out.println();
 		}
 	}
 
@@ -32,7 +35,7 @@ public class Cars {
 			if (createRanNum() >= 4) {
 				findCar(i).movePosition();
 			}
-			rv.printCar(findCar(i));
+
 		}
 	}
 
@@ -43,8 +46,8 @@ public class Cars {
 	public int findMaxScore() {
 		int num = 0;
 		for (int i = 0; i < cars.size(); i++) {
-			if (num <= findCar(i).position)
-				num = findCar(i).position;
+			if (num <= findCar(i).getPosition())
+				num = findCar(i).getPosition();
 		}
 		return num;
 	}
@@ -53,7 +56,7 @@ public class Cars {
 		ArrayList<String> winners = new ArrayList<String>();
 		for (Car car : cars) {
 			if (car.isSameNum(num))
-				winners.add(car.name);
+				winners.add(car.getName());
 		}
 		return winners;
 	}
