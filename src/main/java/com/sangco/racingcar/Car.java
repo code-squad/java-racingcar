@@ -1,14 +1,24 @@
 package com.sangco.racingcar;
 
 public class Car {
-	private StringBuilder sb = new StringBuilder("-");
-	
-	public void goOrNot(int random) {
-		if(random > 4) sb.append("-"); 
-		print();
+	private String name;
+	private int position = 1;
+
+	public Car(String name) {
+		this.name = name;
 	}
-	
-	public void print() {
-		System.out.println(sb);
+
+	public void movePosition(int ranNum) {
+		if (ranNum >= 4) {
+			position++;
+		}
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public int getPosition() {
+		return position;
 	}
 }
