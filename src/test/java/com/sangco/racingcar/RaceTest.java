@@ -9,14 +9,12 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class RaceTest {
-	private Race race;
 	private Cars cars;
 
 	@Before
 	public void setup() {
-		race = new Race();
+		cars = new Cars();
 		String[] carNames = { "a", "b", "c" };
-		cars = race.cars;
 		cars.addCar(carNames);
 	}
 
@@ -33,7 +31,7 @@ public class RaceTest {
 	public void findMaxNumTest() {
 		cars.getGroupOfCar().get(0).movePosition(6);
 		cars.getGroupOfCar().get(0).movePosition(7);
-		assertEquals(3, race.findMaxNum());
+		assertEquals(3, cars.findMaxNum());
 	}
 
 	@Test
