@@ -6,23 +6,13 @@ public class Race {
 
 	private void startGame() {
 		Scanner sc = new Scanner(System.in);
-		InputView iv = new InputView();
 		ResultView rv = new ResultView();
-		String[] carNames = iv.inputName(sc);
-		int tryTimes = iv.inputTime(sc);
+		String[] carNames = InputView.inputName(sc);
+		int tryTimes = InputView.inputTime(sc);
 
-		Cars carIns = createCars(carNames);
+		Cars carIns = new Cars(carNames);
 		carIns.moveCars(tryTimes);
-		rv.printCar(carIns);
-		rv.printWinner(carIns.compareScore(carIns.findMaxScore()));
-	}
-
-	private Cars createCars(String[] carNames) {
-		Cars cars = new Cars();
-		for (int i = 0; i < carNames.length; i++) {
-			cars.add(new Car(carNames[i]));
-		}
-		return cars;
+		rv.printResult(carIns);
 	}
 
 	public static void main(String[] args) {

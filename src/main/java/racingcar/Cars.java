@@ -6,6 +6,12 @@ import java.util.Random;
 public class Cars {
 	private ArrayList<Car> cars = new ArrayList<>();
 
+	Cars(String[] carNames) {
+		for (int i = 0; i < carNames.length; i++) {
+			cars.add(new Car(carNames[i]));
+		}
+	}
+
 	public void add(Car car) {
 		cars.add(car);
 	}
@@ -30,12 +36,8 @@ public class Cars {
 	}
 
 	public void setCarStatus() {
-		ResultView rv = new ResultView();
 		for (int i = 0; i < cars.size(); i++) {
-			if (createRanNum() >= 4) {
-				findCar(i).movePosition();
-			}
-
+			findCar(i).movePosition(createRanNum());
 		}
 	}
 
@@ -45,14 +47,14 @@ public class Cars {
 
 	public int findMaxScore() {
 		int num = 0;
-		for (int i = 0; i < cars.size(); i++) {
-			if (num <= findCar(i).getPosition())
-				num = findCar(i).getPosition();
+		for (Car car : cars) {
+			if (num <= car.getPosition())
+				num = car.getPosition();
 		}
 		return num;
 	}
 
-	public ArrayList<String> compareScore(int num) {
+	public ArrayList<String> compareWinner(int num) {
 		ArrayList<String> winners = new ArrayList<String>();
 		for (Car car : cars) {
 			if (car.isSameNum(num))

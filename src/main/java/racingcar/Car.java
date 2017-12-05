@@ -8,15 +8,16 @@ public class Car {
 		this.name = name;
 	}
 
-	public void movePosition() {
-		this.position++;
+	public void movePosition(int ranNum) {
+		if (ranNum >= 4)
+			this.position++;
 	}
-	
-	public int getPosition(){
+
+	public int getPosition() {
 		return this.position;
 	}
-	
-	public String getName(){
+
+	public String getName() {
 		return this.name;
 	}
 
