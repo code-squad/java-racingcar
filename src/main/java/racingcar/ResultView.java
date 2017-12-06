@@ -19,7 +19,7 @@ public class ResultView {
 		return sb.toString();
 	}
 
-	public void printWinner(String[] winners) {
+	public void printWinner(ArrayList<String> winners) {
 		for (String winner : winners) 
 			System.out.println(winner + ": 가 최종 우승하셨습니다");
 	}

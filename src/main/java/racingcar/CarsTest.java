@@ -8,23 +8,14 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-public class RaceTest {
+public class CarsTest {
 	Cars cars;
 
 	@Before
 	public void setUp() {
-		String[] carNames = {"차1", "차2"};
+		String[] carNames = { "차1", "차2" };
 		cars = new Cars(carNames);
 
-	}
-
-	@Test
-	public void movePositionTest() {
-		cars.getCar(0).movePosition(5);
-		assertEquals(2, cars.getCar(0).getPosition());
-
-		cars.getCar(0).movePosition(1);
-		assertEquals(2, cars.getCar(0).getPosition());
 	}
 
 	@Test
@@ -37,7 +28,7 @@ public class RaceTest {
 	@Test
 	public void compareWinnerTest() {
 		cars.getCar(0).movePosition(7);
-		assertEquals("차1", cars.compareWinner(2)[0]);
+		assertEquals("차1", cars.compareWinner(2).get(0));
 	}
 
 	@After
