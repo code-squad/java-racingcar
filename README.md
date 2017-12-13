@@ -85,7 +85,3 @@ ex) git rebase upstream/javajigi
 
 12. 5단계부터 다시 진행
 
-
-## 앞의 코드 리뷰 과정은 [영상 보기](https://youtu.be/ZSZoaG0PqLg) 를 통해 참고 가능
-
-## 실습 중 모든 질문은 [슬랙 채널](https://codesquad-members.slack.com/messages/C74FV4Q10/)에서...
