@@ -1,10 +1,13 @@
+package view;
 import java.util.*;
 import java.util.Scanner;
+
+import model.StringProcess;
 
 public class InputView {
 // Accepts user input.
 	Scanner scan = new Scanner(System.in);
-	int numOfTry;
+	public int numOfTry;
 	
 	public String getCarNamesFromUser(){
 		return scan.next();

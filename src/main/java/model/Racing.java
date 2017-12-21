@@ -1,3 +1,4 @@
+package model;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -5,21 +6,28 @@ import java.util.stream.Collectors;
 public class Racing {
 	List<Car> cars = new ArrayList<Car>();
 	// 사용자 입력 개수만큼 car 객체생성.
-	
-	public Racing (List<String> carNames){
-		for(String carName : carNames){
-			Car car = new Car(carName);
-			cars.add(car);
+	public Racing (List<Car> cars){
+		this.cars = cars;
+	}
+	public void doOneTry(){
+		// 한번 실행결과 값을 반환.
+		for(Car car : cars){
+			car.run();
 		}
 	}
 	
-	public List<Car> doOneTry(){
+	public List<Car> getCars() {
+		return cars;
+	}
+
+	public List<Car> doOneTry1(){
 		// 한번 실행결과 값을 반환.
 		for(Car car : cars){
 			car.run();
 		}
 		return cars;
 	}
+	
 	// 2. 최종우승자 구하기.
 	public int findMaxRecord(List<Car> lastTryResults){
 		// list에 대한 stream 생성.

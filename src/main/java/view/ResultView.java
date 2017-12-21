@@ -1,4 +1,9 @@
+package view;
 import java.util.List;
+
+import model.Car;
+import model.Racing;
+import model.StringProcess;
 
 public class ResultView {
 	// Racing 에 대한 결과출력.
