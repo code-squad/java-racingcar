@@ -15,8 +15,8 @@ import spark.ModelAndView;
 import spark.template.handlebars.HandlebarsTemplateEngine;
 
 public class Main {
-	static Racing racing;
-	static List<Car> cars;
+	private static Racing racing;
+	private static List<Car> cars;
 	public static void main(String[] args) {
 		port(8080);
 		get("/", (req, res) -> {
