@@ -1,3 +1,4 @@
+package model;
 import java.util.Random;
 
 public class Car {
@@ -8,7 +9,7 @@ public class Car {
 		this.name = name;
 	}
 	
-	Car(String name, int position){
+	public Car(String name, int position){
 		this.name = name;
 		this.position = position;
 	}
@@ -25,6 +26,7 @@ public class Car {
 		Random random = new Random();
 		return random.nextInt(11);
 	}
+	
 	public void run() {
 		// 현재 position 반환.
 		if (createSpeed() >= 4) {
