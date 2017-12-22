@@ -14,11 +14,13 @@ public class RacingCar {
 		return sc.nextInt();
 	}
 	
-	private static void makeCar(String carDistance, int carCount, String[] car) {
+	private static String[] makeCar(String carDistance, int carCount) {
+		String[] car = new String[carCount]; // 자동차 개수만큼의 크기의 배열 생성;
 		for (int i = 0; i < carCount; i++) {
 			car[i] = carDistance;
 			System.out.println(car[i]);
 		}
+		return car;
 	}
 	
 	private static int makeRandomNumber() {
@@ -27,8 +29,8 @@ public class RacingCar {
 	}
 	
 	private static String determineCondition(String[] car, String carDistance, int i) {
-		int ForwardCondition = makeRandomNumber();// 4이상이면 이동
-		if (ForwardCondition >= 4) {
+		int forwardCondition = makeRandomNumber();// 4이상이면 이동
+		if (forwardCondition >= 4) {
 			car[i] += carDistance;
 		}
 		return car[i];
@@ -47,13 +49,11 @@ public class RacingCar {
 		int carCount = getInt("자동차 수 : ", sc);
 		int moveCount = getInt("이동 회수 : ", sc);
 
-		String[] car = new String[carCount]; // 자동차 개수만큼의 크기의 배열 생성;
-
 		print("==== 시작 ====");
 		
 		String carDistance = "-";
 		// 자동차 개수 생성
-		makeCar(carDistance, carCount, car);
+		String[] cars = makeCar(carDistance, carCount);
 		
 		print("==== 결과 ====");
 
@@ -61,7 +61,7 @@ public class RacingCar {
 		// 자동차 개수 만들고, 1번째자동차에 이동조건을 걸고, 맞으면 이동
 		for (int i = 0; i < moveCount; i++) {
 			System.out.println((i+1) + "회 움직였습니다." );
-			moveCar(carDistance, carCount, car);
+			moveCar(carDistance, carCount, cars);
 			System.out.println();
 		}
 
