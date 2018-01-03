@@ -3,22 +3,30 @@ package racingcar_step3;
 import java.util.Random;
 
 public class Car {
-	String name;
-	int position = 0;
+	private String name;
+	private int position = 0;
 
 	public Car(String name) {
 		this.name = name;
 	}
+	
+	public String getName() {
+		return name;
+	}
+	
+	public int getPosition() {
+		return position;
+	}
 
-	public void move(int randomNumber, Car myCar) {
+	public void move(int randomNumber) {
 		if (randomNumber > 4) {
-			myCar.position++;
+			position++;
 		}
 	}
 
 	public int makeRandomNumber() {
 		Random rd = new Random();
-		return rd.nextInt(10) + 1;
+		return rd.nextInt(10);
 	}
 
 }
