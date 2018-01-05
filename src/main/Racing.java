@@ -3,8 +3,24 @@ import java.util.Scanner;
 
 public class Racing {
     private int time;
-//    static private int [] carPositions = new int[number];
+    //    static private int [] carPositions = new int[number];
     static private int [] carPositions;
+
+    public String repeat (int number) {
+        String string = "";
+        for (int i = 0; i < number; i++) {
+            string += "-";
+        }
+        return string;
+    }
+
+    public void print(int [] carPositions) {
+        for (int i = 0; i < carPositions.length; i++) {
+            int empty = carPositions[i];
+            String result = repeat(empty);
+            System.out.println(result);
+        }
+    }
 
     public static void main (String args[]) {
         Racing racing = new Racing();
@@ -22,21 +38,14 @@ public class Racing {
         String count = scanner.nextLine();
         int counting = Integer.parseInt(count);
 
-        //System.out.println(racing.carPositions);
-        // address of array
-
-        //System.out.println(rnd.nextInt(10));
-
         System.out.println("실행 결과");
-        for (int data:carPositions) {
-            data = rnd.nextInt(10);
-            if (data >= 4) {
-                System.out.println(data);
-            } else {
-                System.out.println("Not moving");
+        for (int i = 0; i < number; i++) {
+            for (int j = 0; j < counting; j++) {
+                if (rnd.nextInt(9) >= 4) {
+                    carPositions[i] += 1;
+                }
             }
-
+            System.out.println(carPositions[i]);
         }
-
     }
 }
