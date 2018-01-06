@@ -11,6 +11,8 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="java-racingcar" target="1.8" />
+      <module name="java-racingcar_main" target="1.8" />
+      <module name="java-racingcar_test" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
