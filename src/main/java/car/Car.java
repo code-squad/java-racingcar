@@ -1,6 +1,7 @@
 package car;
 
 import java.util.Random;
+import java.util.stream.IntStream;
 
 /**
  * Created by youngjae on 2018. 1. 6..
@@ -10,20 +11,15 @@ public class Car {
     private static final Random RANDOM = new Random();
     private static final String GO = "-";
 
-    public Car() {
-    }
-
-    public Car(int move) {
-        this.move = move;
-    }
-
     public void randomMove() {
         int randomNumber = RANDOM.ints(0, 9).findAny().getAsInt();
-        if(checkIsMoreFour(randomNumber)) { move++; }
+        if(checkIsMoreFour(randomNumber)) { increaseMove(); }
     }
 
+    public void increaseMove() { move++; }
+
     public String print() {
-        return appendResultString(new StringBuilder()).toString();
+        return appendResultString().toString();
     }
 
     public boolean checkIsMoreFour(int randomNumber) {
@@ -31,10 +27,9 @@ public class Car {
         return false;
     }
 
-    private StringBuilder appendResultString(StringBuilder builder) {
-        for(int i = 0; i < move; i++) {
-            builder.append(GO);
-        }
+    private StringBuilder appendResultString() {
+        StringBuilder builder = new StringBuilder();
+        IntStream.range(0, move).forEach(i -> builder.append(GO));
         return builder;
     }
 }

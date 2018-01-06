@@ -2,6 +2,8 @@ package car;
 
 import org.junit.Test;
 
+import java.util.stream.IntStream;
+
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -11,9 +13,12 @@ public class CarTest {
 
     @Test
     public void Car의_출력값이_잘_찍히는가() {
-        Car car1 = new Car(4);
-        Car car2 = new Car(5);
-        Car car3 = new Car(6);
+        Car car1 = new Car();
+        Car car2 = new Car();
+        Car car3 = new Car();
+        IntStream.rangeClosed(0, 3).forEach(i -> car1.increaseMove());
+        IntStream.rangeClosed(0, 4).forEach(i -> car2.increaseMove());
+        IntStream.rangeClosed(0, 5).forEach(i -> car3.increaseMove());
 
         assertEquals(car1.print(), "----");
         assertEquals(car2.print(), "-----");
