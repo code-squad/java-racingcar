@@ -5,3 +5,11 @@
 /.project
 /target/
 /.gradle/
+# Intellij
+.idea/
+*.iml
+*.iws
+/out
+
+.DS_Store
+.idea
