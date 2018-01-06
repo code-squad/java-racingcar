@@ -5,20 +5,23 @@ import java.util.List;
 
 public class CarManager {
     private List<Car> cars;
+    private int carSize;
+    private int tryNumber;
 
-
-    public CarManager() {
+    public CarManager(int carSize, int tryNumber) {
         this.cars = new ArrayList<>();
+        this.carSize = carSize;
+        this.tryNumber = tryNumber;
     }
 
-    public void moveCars(int tryNumber) {
+    public void moveCars() {
         for(Car car:cars){
-            car.move(tryNumber);
+            car.move(this.tryNumber);
         }
     }
 
-    public void createCarBySize(int carSize) {
-        for(int i=0;i<carSize;i++){
+    public void createCarBySize() {
+        for(int i=0;i<this.carSize;i++){
             cars.add(new Car());
         }
     }

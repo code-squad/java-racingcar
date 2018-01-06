@@ -8,11 +8,6 @@ public class CarTest {
 
     CarManager carManager;
 
-    @Before
-    public void init(){
-        carManager = new CarManager();
-    }
-
     @Test
     public void carMove테스트(){
         Car car = new Car();
@@ -21,18 +16,11 @@ public class CarTest {
         }
     }
 
-
     @Test
     public void createCarBySize테스트(){
-        carManager.createCarBySize(3);
+        carManager = new CarManager(3,5);
+        carManager.createCarBySize();
         assertEquals(carManager.getCars().size(), 3);
     }
-
-    @Test
-    public void moveCars테스트(){
-        carManager.createCarBySize(3);
-        assertEquals(carManager.getCars().size(), 3);
-    }
-
 
 }

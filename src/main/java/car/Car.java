@@ -19,13 +19,18 @@ public class Car {
         System.out.println(sb.toString());
     }
 
-    public int tryForward(int tryNumber, int range) {
+    int tryForward(int tryNumber, int range) {
         int position = 0;
         for(int i=0;i<tryNumber;i++) {
-            int random = makeRandomNumber(range);
-            if (isMovable(random)) {
-                position ++;
-            }
+            position = tryMove(range, position);
+        }
+        return position;
+    }
+
+    private int tryMove(int range, int position) {
+        int random = makeRandomNumber(range);
+        if (isMovable(random)) {
+            position ++;
         }
         return position;
     }
