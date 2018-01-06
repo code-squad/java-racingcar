@@ -15,13 +15,12 @@ public class CarTest {
     }
 
     @Test
-    public void move() {
-        car.move();
-        car.move();
+    public void move_back() {
+        assertEquals(0, car.move(3));
     }
 
     @Test
-    public void print() {
-        assertEquals("---", car.print());
+    public void move_forward() {
+        assertEquals(1, car.move(4));
     }
 }
