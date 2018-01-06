@@ -1,4 +1,4 @@
-package test.java;
+package java.car;
 
 public class CarTest {
 }
