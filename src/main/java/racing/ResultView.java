@@ -1,33 +1,35 @@
 package racing;
 
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
+
+import static racing.RacingResultUtils.getBestCarNames;
 
 public class ResultView {
     private final RacingGame racingGame;
 
-    private final char token;
-
-    public ResultView(RacingGame racingGame, char token) {
+    public ResultView(RacingGame racingGame) {
+        checkArguments(racingGame);
         this.racingGame = racingGame;
-        this.token = token;
     }
 
-    public List<String> drawLines() {
-        return racingGame.moveAllCars()
-                         .stream()
-                         .map(this::drawLine)
-                         .collect(Collectors.toList());
+    public void showResult() {
+        List<RacingResult> results = racingGame.doRacing();
+
+        showAllCarResult(results);
+        showBestCarResult(results);
     }
 
-    private String drawLine(Integer i) {
-        return repeatChar(token, i);
+    private void showBestCarResult(List<RacingResult> results) {
+        System.out.println(getBestCarNames(results) + "가 최종 우승하였습니다");
     }
 
-    private String repeatChar(char c, Integer length) {
-        char[] data = new char[length];
-        Arrays.fill(data, c);
-        return new String(data);
+    private void showAllCarResult(List<RacingResult> results) {
+        results.forEach(result -> System.out.println(result.getResult()));
+    }
+
+    private void checkArguments(RacingGame racingGame) {
+        if (racingGame == null) {
+            throw new IllegalArgumentException("racingGame should not be null");
+        }
     }
 }
