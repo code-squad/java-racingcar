@@ -8,8 +8,16 @@ import java.util.stream.IntStream;
  */
 public class Car {
     private int move;
+    private String name;
     private static final Random RANDOM = new Random();
     private static final String GO = "-";
+
+    public Car() {
+    }
+
+    public Car(String name) {
+        this.name = name;
+    }
 
     public void randomMove() {
         int randomNumber = RANDOM.ints(0, 9).findAny().getAsInt();
@@ -25,6 +33,10 @@ public class Car {
     public boolean checkIsMoreFour(int randomNumber) {
         if(randomNumber >= 4) { return true; }
         return false;
+    }
+
+    public String getName() {
+        return name;
     }
 
     private StringBuilder appendResultString() {
