@@ -12,9 +12,6 @@ public class Car {
     private static final Random RANDOM = new Random();
     private static final String GO = "-";
 
-    public Car() {
-    }
-
     public Car(String name) {
         this.name = name;
     }

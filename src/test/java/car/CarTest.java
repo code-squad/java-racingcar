@@ -15,9 +15,9 @@ public class CarTest {
 
     @Test
     public void Car의_출력값이_잘_찍히는가() {
-        Car car1 = new Car();
-        Car car2 = new Car();
-        Car car3 = new Car();
+        Car car1 = new Car("test");
+        Car car2 = new Car("test");
+        Car car3 = new Car("test");
         IntStream.rangeClosed(0, 3).forEach(i -> car1.increaseMove());
         IntStream.rangeClosed(0, 4).forEach(i -> car2.increaseMove());
         IntStream.rangeClosed(0, 5).forEach(i -> car3.increaseMove());
@@ -29,7 +29,7 @@ public class CarTest {
 
     @Test
     public void Car의_4이상일때만_true를_반환하는가() {
-        Car car = new Car();
+        Car car = new Car("test");
 
         assertFalse(car.checkIsMoreFour(0));
         assertFalse(car.checkIsMoreFour(3));
