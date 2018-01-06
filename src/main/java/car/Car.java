@@ -1,6 +1,7 @@
 package car;
 
 public class Car {
+
   int position;
 
   public int move(int condition) {
