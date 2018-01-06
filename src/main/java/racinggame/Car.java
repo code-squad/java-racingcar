@@ -1,30 +1,23 @@
 package racinggame;
 
 public class Car {
-    private int position = 0;
-
     private static final int FORWARD_NUM = 4;
 
-    public int move() {
-        int number = (int) (Math.random()*10) +1;
+    private int position = 0;
+
+    public int move(int number) {
         if (number >= FORWARD_NUM) {
             position++;
         }
         return position;
     }
 
-    public int getPosition() {
-        return position;
-    }
-
-    public String print() {
+    public void printPosition() {
         String result = "";
         while (position > 0) {
             result += "-";
             position--;
         }
-        return result;
+        System.out.println(result);
     }
-
-
 }
