@@ -5,25 +5,18 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class RandomRacingGame implements RacingGame {
+public class RacingGame {
 
-    private final Car[] randomCars;
-
+    private final Car[] cars;
     private final int times;
 
-    private final MoveStrategy strategy = new RandomMoveStrategy();
-
-    public RandomRacingGame(int times, int numberOfCars) {
-        this.randomCars = new Car[numberOfCars];
+    public RacingGame(Car[] cars, int times) {
+        this.cars = cars;
         this.times = times;
-
-        IntStream.range(0, numberOfCars)
-                 .forEach(i -> randomCars[i] = new CarImpl(strategy));
     }
 
-    @Override
-    public List<Integer> move() {
-        return Arrays.stream(randomCars)
+    public List<Integer> moveAllCars() {
+        return Arrays.stream(cars)
                      .map(rc -> IntStream.range(0, times)
                                          .map(i -> rc.move())
                                          .sum())

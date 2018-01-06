@@ -10,7 +10,7 @@ import static org.junit.Assert.*;
 import static org.mockito.Mockito.doReturn;
 
 @RunWith(MockitoJUnitRunner.class)
-public class CarImplTest {
+public class CarTest {
 
     private Car car;
 

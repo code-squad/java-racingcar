@@ -1,5 +1,8 @@
+package racing;
+
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ResultView {
     private final RacingGame racingGame;
@@ -11,14 +14,15 @@ public class ResultView {
         this.token = token;
     }
 
-    public void print() {
-        List<Integer> result = racingGame.move();
-
-        result.forEach(this::drawLine);
+    public List<String> drawLines() {
+        return racingGame.moveAllCars()
+                         .stream()
+                         .map(this::drawLine)
+                         .collect(Collectors.toList());
     }
 
-    private void drawLine(Integer i) {
-        System.out.println(repeatChar(token, i));
+    private String drawLine(Integer i) {
+        return repeatChar(token, i);
     }
 
     private String repeatChar(char c, Integer length) {

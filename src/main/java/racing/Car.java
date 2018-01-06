@@ -1,14 +1,13 @@
 package racing;
 
-public class CarImpl implements Car {
+public class Car {
 
     private final MoveStrategy moveStrategy;
 
-    public CarImpl(MoveStrategy moveStrategy) {
+    public Car(MoveStrategy moveStrategy) {
         this.moveStrategy = moveStrategy;
     }
 
-    @Override
     public int move() {
         int moveValue = moveStrategy.move();
 

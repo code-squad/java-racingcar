@@ -5,3 +5,7 @@
 /.project
 /target/
 /.gradle/
+
+/.idea/
+*.iml
+/out/
