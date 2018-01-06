@@ -3,7 +3,10 @@ package racing;
 public class Car {
     private int number;
     private int distance;
-    private int moveCount;
+
+    public Car(int number) {
+        this.number = number;
+    }
 
     public Car() {
     }
@@ -20,15 +23,7 @@ public class Car {
         return distance;
     }
 
-    public void setDistance(int distance) {
-        this.distance = distance;
-    }
-
-    public int getMoveCount() {
-        return moveCount;
-    }
-
-    public void setMoveCount(int moveCount) {
-        this.moveCount = moveCount;
+    public void move() {
+        this.distance++;
     }
 }
