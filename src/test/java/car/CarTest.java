@@ -5,6 +5,8 @@ import org.junit.Test;
 import java.util.stream.IntStream;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created by youngjae on 2018. 1. 6..
@@ -29,10 +31,10 @@ public class CarTest {
     public void Car의_4이상일때만_true를_반환하는가() {
         Car car = new Car();
 
-        assertEquals(false, car.checkIsMoreFour(0));
-        assertEquals(false, car.checkIsMoreFour(3));
-        assertEquals(true, car.checkIsMoreFour(4));
-        assertEquals(true, car.checkIsMoreFour(9));
+        assertFalse(car.checkIsMoreFour(0));
+        assertFalse(car.checkIsMoreFour(3));
+        assertTrue(car.checkIsMoreFour(4));
+        assertTrue(car.checkIsMoreFour(9));
     }
 
     @Test
