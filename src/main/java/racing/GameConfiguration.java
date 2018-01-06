@@ -13,15 +13,7 @@ public class GameConfiguration {
         return carCount;
     }
 
-    void setCarCount(int carCount) {
-        this.carCount = carCount;
-    }
-
     int getTryCount() {
         return tryCount;
-    }
-
-    void setTryCount(int tryCount) {
-        this.tryCount = tryCount;
     }
 }
