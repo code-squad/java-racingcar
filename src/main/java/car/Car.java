@@ -24,24 +24,24 @@ public class Car {
         if(checkIsMoreFour(randomNumber)) { increaseMove(); }
     }
 
-    public void increaseMove() { move++; }
-
-    public String print() {
-        return appendResultString().toString();
-    }
-
     public boolean checkIsMoreFour(int randomNumber) {
         if(randomNumber >= 4) { return true; }
         return false;
     }
 
-    public String getName() {
-        return name;
+    protected void increaseMove() { move++; }
+
+    public String print() {
+        return appendResultString().toString();
     }
 
     private StringBuilder appendResultString() {
         StringBuilder builder = new StringBuilder();
         IntStream.range(0, move).forEach(i -> builder.append(GO));
         return builder;
+    }
+
+    public String getName() {
+        return name;
     }
 }
