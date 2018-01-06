@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: com.sparkjava:spark-template-handlebars:2.5.5">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.sparkjava/spark-template-handlebars/2.5.5/6b7bffecca1d9343fac373d4183b2bce1a0f5fb5/spark-template-handlebars-2.5.5.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.sparkjava/spark-template-handlebars/2.5.5/b2b84e6160fcda156760771da4b59189cf302085/spark-template-handlebars-2.5.5-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
