@@ -35,4 +35,14 @@ public class CarTest {
         assertEquals(car.checkIsMoreFour(9),  true);
     }
 
+    @Test
+    public void Car의_이름이_잘_찍히는가() {
+        String pobi = "pobi";
+        String crong = "crong";
+        String honux = "honux";
+
+        assertEquals(new Car(pobi).getName(), pobi);
+        assertEquals(new Car(crong).getName(), crong);
+        assertEquals(new Car(honux).getName(), honux);
+    }
 }
