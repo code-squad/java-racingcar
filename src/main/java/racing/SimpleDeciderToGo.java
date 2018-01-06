@@ -11,6 +11,7 @@ public class SimpleDeciderToGo implements DeciderToGo {
         random = new Random();
     }
 
+    @Override
     public boolean canWeGo() {
         int random = getRandom();
 
@@ -21,7 +22,12 @@ public class SimpleDeciderToGo implements DeciderToGo {
         return random.nextInt(RANDOM_MAX + 1);
     }
 
-    public int moveOrStop(boolean go, int movement) {
+    @Override
+    public int moveOrStop(int movement) {
+        return moveOrStop(canWeGo(), movement);
+    }
+
+    int moveOrStop(boolean go, int movement) {
         if (go) {
             movement++;
         }

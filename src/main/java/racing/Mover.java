@@ -4,12 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Mover {
-    private DeciderToGo deciderToGo = new SimpleDeciderToGo();
+    private DeciderToGo deciderToGo;
 
-    List<Integer> getMoveList(int carCount, int tryCount) {
+    public Mover(DeciderToGo deciderToGo) {
+        this.deciderToGo = deciderToGo;
+    }
+
+    List<Integer> getMoveList(GameConfiguration gameConfiguration) {
         List<Integer> moveList = new ArrayList<>();
-        for (int i=0; i<carCount; i++) {
-            moveList.add(calcEachCarMovement(tryCount));
+        for (int i=0; i<gameConfiguration.getCarCount(); i++) {
+            moveList.add(calcEachCarMovement(gameConfiguration.getTryCount()));
         }
 
         return moveList;
@@ -18,10 +22,10 @@ public class Mover {
     private Integer calcEachCarMovement(int tryCount) {
         int movement = 0;
         for (int i=0; i<tryCount; i++) {
-            boolean canWeGo = deciderToGo.canWeGo();
-            movement = deciderToGo.moveOrStop(canWeGo, movement);
+            movement = deciderToGo.moveOrStop(movement);
         }
 
         return movement;
     }
+
 }
