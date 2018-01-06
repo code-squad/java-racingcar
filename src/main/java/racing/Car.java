@@ -2,14 +2,14 @@ package racing;
 
 public class Car {
 
-    private final MoveStrategy moveStrategy;
+    private final MoveStrategy strategy;
 
-    public Car(MoveStrategy moveStrategy) {
-        this.moveStrategy = moveStrategy;
+    public Car(MoveStrategy strategy) {
+        this.strategy = strategy;
     }
 
     public int move() {
-        int moveValue = moveStrategy.move();
+        int moveValue = strategy.go();
 
         if (moveValue >= 4) {
             return moveValue;
