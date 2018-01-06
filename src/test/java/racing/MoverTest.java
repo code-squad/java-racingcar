@@ -1,6 +1,5 @@
 package racing;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -9,14 +8,11 @@ import java.util.List;
 import static org.junit.Assert.*;
 
 public class MoverTest {
-    private Mover mover = new Mover(new SimpleDeciderToGo());
+    private Mover mover;
 
     @Before
     public void setUp() throws Exception {
-    }
-
-    @After
-    public void tearDown() throws Exception {
+        mover = new Mover(new SimpleDeciderToGo());
     }
 
     @Test
@@ -29,7 +25,7 @@ public class MoverTest {
     }
 
     private void checkMove(int carCount, int i) {
-        List<Integer> moveList = mover.getMoveList(new GameConfiguration(carCount, i));
+        List<Integer> moveList = mover.generatePositions(new GameConfiguration(carCount, i));
 
         if (moveList.size() != carCount) {
             assertTrue(false);
@@ -46,4 +42,9 @@ public class MoverTest {
         }
     }
 
+    @Test
+    public void move() throws Exception {
+        assertEquals(10, mover.move(true, 9));
+        assertEquals(9, mover.move(false, 9));
+    }
 }

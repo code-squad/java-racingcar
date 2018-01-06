@@ -20,9 +20,7 @@ public class RacingGame {
 
     private void startGame() {
         GameConfiguration gameConfiguration = inputView.requestToInput();
-
-        List<Integer> moveList = mover.getMoveList(gameConfiguration);
-
-        resultView.showGameResult(moveList);
+        List<Integer> positions = mover.generatePositions(gameConfiguration);
+        resultView.showGameResult(positions);
     }
 }

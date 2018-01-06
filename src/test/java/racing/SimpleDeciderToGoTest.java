@@ -1,6 +1,5 @@
 package racing;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -12,10 +11,6 @@ public class SimpleDeciderToGoTest {
     @Before
     public void setUp() throws Exception {
         simpleDeciderToGo = new SimpleDeciderToGo();
-    }
-
-    @After
-    public void tearDown() throws Exception {
     }
 
     @Test
@@ -35,11 +30,4 @@ public class SimpleDeciderToGoTest {
         assertTrue(trueCount > 0);
         assertTrue(falseCount > 0);
     }
-
-    @Test
-    public void moveOrStop() throws Exception {
-        assertEquals(10, simpleDeciderToGo.moveOrStop(true, 9));
-        assertEquals(9, simpleDeciderToGo.moveOrStop(false, 9));
-    }
-
 }

@@ -10,22 +10,34 @@ public class Mover {
         this.deciderToGo = deciderToGo;
     }
 
-    List<Integer> getMoveList(GameConfiguration gameConfiguration) {
-        List<Integer> moveList = new ArrayList<>();
-        for (int i=0; i<gameConfiguration.getCarCount(); i++) {
-            moveList.add(calcEachCarMovement(gameConfiguration.getTryCount()));
-        }
+    List<Integer> generatePositions(GameConfiguration gameConfiguration) {
+        int carCount = gameConfiguration.getCarCount();
+        int tryCount = gameConfiguration.getTryCount();
 
-        return moveList;
+        List<Integer> positions = new ArrayList<>();
+        for (int i=0; i<carCount; i++) {
+            positions.add(calculatePosition(tryCount));
+        }
+        return positions;
     }
 
-    private Integer calcEachCarMovement(int tryCount) {
-        int movement = 0;
+    private Integer calculatePosition(int tryCount) {
+        int position = 0;
         for (int i=0; i<tryCount; i++) {
-            movement = deciderToGo.moveOrStop(movement);
+            position = move(position);
         }
-
-        return movement;
+        return position;
     }
 
+    int move(int position) {
+        return move(deciderToGo.canWeGo(), position);
+    }
+
+    int move(boolean go, int position) {
+        if (go) {
+            position++;
+        }
+
+        return position;
+    }
 }
