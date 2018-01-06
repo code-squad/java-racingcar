@@ -52,12 +52,10 @@ public class Main {
         String names[] = scanner.nextLine().split(REGEX);
         System.out.println("시도할 회수는 몇 회 인가요?");
         int tryCount = scanner.nextInt();
-
         CarRacing carRacing = CarRacing.readyForRacing();
         carRacing.createCarsByName(names);
         carRacing.setTryCount(tryCount);
         List<Car> cars = carRacing.startRacing();
-
         System.out.println("실행 결과");
         printRacingUi(cars);
         System.out.println(resultFormatting(carRacing.getWinners()));
