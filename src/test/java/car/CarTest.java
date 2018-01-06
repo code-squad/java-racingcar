@@ -20,19 +20,19 @@ public class CarTest {
         IntStream.rangeClosed(0, 4).forEach(i -> car2.increaseMove());
         IntStream.rangeClosed(0, 5).forEach(i -> car3.increaseMove());
 
-        assertEquals(car1.print(), "----");
-        assertEquals(car2.print(), "-----");
-        assertEquals(car3.print(), "------");
+        assertEquals("----", car1.print());
+        assertEquals("-----", car2.print());
+        assertEquals("------", car3.print());
     }
 
     @Test
     public void Car의_4이상일때만_true를_반환하는가() {
         Car car = new Car();
 
-        assertEquals(car.checkIsMoreFour(0), false);
-        assertEquals(car.checkIsMoreFour(3), false);
-        assertEquals(car.checkIsMoreFour(4), true);
-        assertEquals(car.checkIsMoreFour(9),  true);
+        assertEquals(false, car.checkIsMoreFour(0));
+        assertEquals(false, car.checkIsMoreFour(3));
+        assertEquals(true, car.checkIsMoreFour(4));
+        assertEquals(true, car.checkIsMoreFour(9));
     }
 
     @Test
@@ -41,8 +41,8 @@ public class CarTest {
         String crong = "crong";
         String honux = "honux";
 
-        assertEquals(new Car(pobi).getName(), pobi);
-        assertEquals(new Car(crong).getName(), crong);
-        assertEquals(new Car(honux).getName(), honux);
+        assertEquals(pobi, new Car(pobi).getName());
+        assertEquals(crong, new Car(crong).getName());
+        assertEquals(honux, new Car(honux).getName());
     }
 }
