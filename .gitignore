@@ -5,3 +5,12 @@
 /.project
 /target/
 /.gradle/
+
+/build
+/out
+/log
+.idea/workspace.xml
+.idea/*.iml
+.idea/*.xml
+.idea/modules/*.iml
+*.orig
