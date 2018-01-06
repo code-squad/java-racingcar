@@ -15,10 +15,8 @@ public class Car {
     }
 
     public void randomMove(int randomNumber) {
-        if(randomNumber >= 4) { increaseMove(); }
+        if(randomNumber >= 4) { move++; }
     }
-
-    protected void increaseMove() { move++; }
 
     public String appendResultString() {
         StringBuilder builder = new StringBuilder();

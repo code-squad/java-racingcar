@@ -14,21 +14,7 @@ import static org.junit.Assert.assertTrue;
 public class CarTest {
 
     @Test
-    public void Car의_출력값이_잘_찍히는가() {
-        Car car1 = new Car("test");
-        Car car2 = new Car("test");
-        Car car3 = new Car("test");
-        IntStream.rangeClosed(0, 3).forEach(i -> car1.increaseMove());
-        IntStream.rangeClosed(0, 4).forEach(i -> car2.increaseMove());
-        IntStream.rangeClosed(0, 5).forEach(i -> car3.increaseMove());
-
-        assertEquals("----", car1.appendResultString());
-        assertEquals("-----", car2.appendResultString());
-        assertEquals("------", car3.appendResultString());
-    }
-
-    @Test
-    public void Car의_4이상일때만_true를_반환하는가() {
+    public void Car의_4이상일때만_move가_증가하는가() {
         Car car = new Car("test");
 
         car.randomMove(0);
