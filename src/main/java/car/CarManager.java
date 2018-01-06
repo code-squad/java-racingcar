@@ -11,9 +11,9 @@ public class CarManager {
         this.cars = new ArrayList<>();
     }
 
-    public void moveCars(int carTryNumber) {
+    public void moveCars(int tryNumber) {
         for(Car car:cars){
-            car.move(carTryNumber);
+            car.move(tryNumber);
         }
     }
 

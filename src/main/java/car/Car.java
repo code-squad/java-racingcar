@@ -3,25 +3,31 @@ package car;
 import java.util.Random;
 
 public class Car {
-    
+    private static int RANGE = 9;
+    private int position;
+
     public void move(int tryNumber){
-        StringBuilder sb = tryForward(tryNumber, 9);
-        print(sb);
+        this.position = tryForward(tryNumber, RANGE);
+        print(this.position);
     }
 
-    private void print(StringBuilder sb) {
+    private void print(int position) {
+        StringBuilder sb = new StringBuilder();
+        for(int i=0; i<position; i++){
+              sb.append("-");
+        }
         System.out.println(sb.toString());
     }
 
-    private StringBuilder tryForward(int tryNumber, int range) {
-        StringBuilder sb = new StringBuilder();
+    public int tryForward(int tryNumber, int range) {
+        int position = 0;
         for(int i=0;i<tryNumber;i++) {
             int random = makeRandomNumber(range);
             if (isMovable(random)) {
-                sb.append("-");
+                position ++;
             }
         }
-        return sb;
+        return position;
     }
 
     private boolean isMovable(int random) {
