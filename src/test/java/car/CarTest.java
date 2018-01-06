@@ -22,19 +22,23 @@ public class CarTest {
         IntStream.rangeClosed(0, 4).forEach(i -> car2.increaseMove());
         IntStream.rangeClosed(0, 5).forEach(i -> car3.increaseMove());
 
-        assertEquals("----", car1.print());
-        assertEquals("-----", car2.print());
-        assertEquals("------", car3.print());
+        assertEquals("----", car1.appendResultString());
+        assertEquals("-----", car2.appendResultString());
+        assertEquals("------", car3.appendResultString());
     }
 
     @Test
     public void Car의_4이상일때만_true를_반환하는가() {
         Car car = new Car("test");
 
-        assertFalse(car.checkIsMoreFour(0));
-        assertFalse(car.checkIsMoreFour(3));
-        assertTrue(car.checkIsMoreFour(4));
-        assertTrue(car.checkIsMoreFour(9));
+        car.randomMove(0);
+        assertEquals(0, car.getMove());
+        car.randomMove(3);
+        assertEquals(0, car.getMove());
+        car.randomMove(4);
+        assertEquals(1, car.getMove());
+        car.randomMove(9);
+        assertEquals(2, car.getMove());
     }
 
     @Test
