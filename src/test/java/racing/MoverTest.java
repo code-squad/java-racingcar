@@ -28,9 +28,7 @@ public class MoverTest {
     private void checkMove(int carCount, int i) {
         List<Integer> moveList = mover.generatePositions(new GameConfiguration(carCount, i));
 
-        if (moveList.size() != carCount) {
-            assertTrue(false);
-        }
+        assertTrue(moveList.size() == carCount);
 
         for (Integer move : moveList) {
             checkMaxMove(i, move);
