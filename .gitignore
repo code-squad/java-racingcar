@@ -5,5 +5,6 @@
 /.project
 /target/
 /.gradle/
-/.idea/
+.idea
 /.idea
+/.idea/
