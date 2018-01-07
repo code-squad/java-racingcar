@@ -8,7 +8,7 @@ import static junit.framework.TestCase.assertTrue;
 
 public class RandomUtilTest {
     private static final int TRY_COUNT = 1000;
-    private static final int BOUND_NUM = 100;
+    public static final int BOUND_NUM = 100;
 
     @Test
     public void nextIntTest() {

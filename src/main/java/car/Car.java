@@ -11,22 +11,20 @@ public class Car {
         this.currentPosition = 0;
     }
 
-    public boolean tryMove() {
-        if(RandomUtil.nextInt(RANDOM_NUM_BOUND) < MOVE_STANDARD_NUM)
-            return false;
-
-        move();
-        return true;
+    public void tryMove() {
+        if(isMovable(RandomUtil.nextInt(RANDOM_NUM_BOUND)))
+            currentPosition++;
     }
 
-    private void move() {
-        currentPosition++;
+    public boolean isMovable(int randomNum) {
+        return randomNum >= MOVE_STANDARD_NUM;
     }
 
     public int getCurrentPosition() {
         return currentPosition;
     }
 
+    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         for(int i = 0 ; i < currentPosition ; ++i)
