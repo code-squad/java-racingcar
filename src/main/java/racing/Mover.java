@@ -1,6 +1,8 @@
 package racing;
 
-import java.util.ArrayList;
+import racing.model.Car;
+import racing.model.GameConfiguration;
+
 import java.util.List;
 
 public class Mover {
@@ -10,15 +12,13 @@ public class Mover {
         this.deciderToGo = deciderToGo;
     }
 
-    public List<Integer> generatePositions(GameConfiguration gameConfiguration) {
-        int carCount = gameConfiguration.getCarCount();
+    public void generatePositions(GameConfiguration gameConfiguration) {
+        List<Car> cars = gameConfiguration.getCars();
         int tryCount = gameConfiguration.getTryCount();
 
-        List<Integer> positions = new ArrayList<>();
-        for (int i=0; i<carCount; i++) {
-            positions.add(calculatePosition(tryCount));
+        for (Car car : cars) {
+            car.setPosition(calculatePosition(tryCount));
         }
-        return positions;
     }
 
     private Integer calculatePosition(int tryCount) {
@@ -30,7 +30,7 @@ public class Mover {
     }
 
     public int move(int position) {
-        return move(deciderToGo.canWeGo(), position);
+        return move(deciderToGo.isPossibleToGo(), position);
     }
 
     private int move(boolean go, int position) {

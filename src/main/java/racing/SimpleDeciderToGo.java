@@ -13,7 +13,7 @@ public class SimpleDeciderToGo implements DeciderToGo {
     }
 
     @Override
-    public boolean canWeGo() {
+    public boolean isPossibleToGo() {
         int random = getRandom();
 
         return random >= GO_THRESHOLD;
