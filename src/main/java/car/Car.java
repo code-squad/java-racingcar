@@ -1,30 +1,36 @@
-package java.car;
+package car;
 
-import java.utils.Seed;
+import util.RandomUtil;
+
+import static util.Static.*;
 
 public class Car {
-    private final static int MOVE_STANDARD = 4;
-    private int movedDistance;
+    private int currentPosition;
 
     public Car() {
-        movedDistance = 0;
+        this.currentPosition = 0;
     }
 
-    public void move() {
-        //+1이 되었는지 테스트 가능하도록
-        if(isMovable(Seed.getRandomValue()))
-            movedDistance++;
+    public boolean tryMove() {
+        if(RandomUtil.nextInt(RANDOM_NUM_BOUND) < MOVE_STANDARD_NUM)
+            return false;
+
+        move();
+        return true;
     }
 
-    private boolean isMovable(int randomValue) {
-        return randomValue >= MOVE_STANDARD;
+    private void move() {
+        currentPosition++;
+    }
+
+    public int getCurrentPosition() {
+        return currentPosition;
     }
 
     public String toString() {
         StringBuilder sb = new StringBuilder();
-
-        for(int i = 0 ; i < movedDistance ; ++i)
-            sb.append('-');
+        for(int i = 0 ; i < currentPosition ; ++i)
+            sb.append(MOVE_MARK);
 
         return sb.toString();
     }
