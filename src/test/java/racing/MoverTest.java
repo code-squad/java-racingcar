@@ -22,6 +22,7 @@ public class MoverTest {
             checkMove(20, i);
             checkMove(200, i);
         }
+        assertTrue(true);
     }
 
     private void checkMove(int carCount, int i) {
