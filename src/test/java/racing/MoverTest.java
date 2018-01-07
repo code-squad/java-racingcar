@@ -4,8 +4,6 @@ import org.junit.Test;
 import racing.model.Car;
 import racing.model.GameConfiguration;
 
-import java.util.List;
-
 import static org.junit.Assert.*;
 
 public class MoverTest {
