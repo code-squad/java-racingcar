@@ -30,10 +30,9 @@ public class CarTest {
     @Test
     public void 자동차최종거리_출력_테스트() {
 
-        racingGame = new RacingGame();
-        racingGame.setCars(3);
+        racingGame = new RacingGame(3, 5);
 
-
+        racingGame.printCarsDistance();
 
 
     }

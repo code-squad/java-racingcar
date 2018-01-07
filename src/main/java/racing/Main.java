@@ -21,12 +21,7 @@ public class Main {
         int tryCount = scanner.nextInt();
 
 
-        RacingGame racingGame = new RacingGame();
-
-
-        //자동차 세팅
-        racingGame.setCars(countOfCar);
-
+        RacingGame racingGame = new RacingGame(countOfCar, tryCount);
 
 
         //경주 시작
@@ -35,7 +30,7 @@ public class Main {
         }
 
         //결과 출력
-        racingGame.printCarsDistance(racingGame.getCarList());
+        racingGame.printCarsDistance();
 
         return;
 

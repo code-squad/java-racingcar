@@ -8,29 +8,41 @@ import java.util.Random;
  */
 public class RacingGame {
 
-    private static ArrayList<Car> carList = new ArrayList<>();
+    private ArrayList<Car> carList = new ArrayList<>();
+    private int tryCount;
 
-    public void setCars(int countOfCar) {
+    public RacingGame(int countOfCar, int tryCount) {
         for(int i=0; i<countOfCar; i++) {
             Car car = new Car();
             carList.add(car);
         }
+        this.tryCount = tryCount;
     }
 
+
     public void racing(int tryCount, Car car) {
-        Random rand;
 
         for(int i = 0; i<tryCount; i++) {
-            rand =  new Random();
-            int value = rand.nextInt(10);
-
-            if(value >= 4) {
-                car.move();
-            }
+            moveByRandomValue(car ,generateRandomValue());
         }
     }
 
-    public void printCarsDistance(ArrayList<Car> carList) {
+    public boolean moveByRandomValue(Car car, int randomValue) {
+        if(randomValue >= 4) {
+            car.move();
+            return true;
+        }
+        return false;
+    }
+
+    public static int generateRandomValue() {
+
+        return new Random().nextInt(10);
+    }
+
+
+
+    public void printCarsDistance() {
 
         System.out.println("실행 결과");
         for(Car car:carList) {
@@ -39,7 +51,7 @@ public class RacingGame {
         }
     }
 
-    public static ArrayList<Car> getCarList() {
+    public ArrayList<Car> getCarList() {
         return carList;
     }
 }
