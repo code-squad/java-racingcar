@@ -29,11 +29,11 @@ public class Mover {
         return position;
     }
 
-    int move(int position) {
+    public int move(int position) {
         return move(deciderToGo.canWeGo(), position);
     }
 
-    int move(boolean go, int position) {
+    private int move(boolean go, int position) {
         return go ? (position+1) : position;
     }
 }
