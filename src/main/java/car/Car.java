@@ -10,9 +10,12 @@ public class Car {
         name = number + "번 차";
     }
 
-    public void move(){
-        int ran = randomInt();
-        if(ran >= 4){
+    public void moveCar(){
+        move(randomInt());
+    }
+
+    public void move(int random){
+        if(random >= 4){
             position += 1;
             return;
         }

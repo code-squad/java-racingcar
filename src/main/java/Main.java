@@ -37,7 +37,7 @@ public class Main {
 
     private static void moveCar(List<Car> cars){
         for(Car car : cars){
-            car.move();
+            car.moveCar();
         }
     }
 }
