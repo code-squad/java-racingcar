@@ -23,4 +23,26 @@ public class CarTest {
     public void move_forward() {
         assertEquals(1, car.move(4));
     }
+
+    @Test
+    public void getResult(){
+        move_two_step();
+        assertEquals("--", car.getResult(car.getPosition()));
+    }
+
+    @Test
+    public void getPosition(){
+        move_two_step();
+        assertEquals(2, car.getPosition());
+    }
+
+    private void move_two_step() {
+        car.move(5);
+        car.move(6);
+        car.move(2);
+    }
+
+    private void java8 (){
+
+    }
 }

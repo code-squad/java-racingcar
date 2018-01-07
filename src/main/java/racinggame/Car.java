@@ -12,12 +12,20 @@ public class Car {
         return position;
     }
 
-    public void printPosition() {
+    public int getPosition() {
+        return position;
+    }
+
+    String getResult(int position) {
         String result = "";
         while (position > 0) {
             result += "-";
             position--;
         }
-        System.out.println(result);
+        return result;
+    }
+
+    public void printResult() {
+        System.out.println(getResult(getPosition()));
     }
 }
