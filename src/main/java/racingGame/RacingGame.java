@@ -9,7 +9,6 @@ public class RacingGame {
 
     private List<Car> carList = new ArrayList<>(); // 차 list
 
-
     public RacingGame(int time, int carNum) {
         this.time = time;
 
@@ -19,26 +18,24 @@ public class RacingGame {
     }
 
     public void move() {
-
         for(int i = 0; i < time; i++) {
             runGame();
-        }
-        printGameResult();
-    }
-
-    public void printGameResult() {
-        for (Car car : carList) {
-            car.printCarMove();
         }
     }
 
     private void runGame() {
-
         for (Car car : carList) {
             int random = (int) (Math.random() * 10);
             car.rePosition(random);
         }
+    }
 
+    public void printCar() {
+        StringBuilder sb = new StringBuilder();
+        for (Car car : carList) {
+            sb.append(car.resultString()).append(System.getProperty("line.separator"));
+
+        }
     }
 
 }

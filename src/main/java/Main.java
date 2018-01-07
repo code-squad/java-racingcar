@@ -16,7 +16,6 @@ public class Main {
 
         RacingGame racingGame = new RacingGame(time,carNum);
         racingGame.move();
-
-
+        racingGame.printCar();
     }
 }
