@@ -25,6 +25,10 @@ public class Car {
         return this.name;
     }
 
+    public MoveStrategy getStrategy() {
+        return strategy;
+    }
+
     private void checkArguments(MoveStrategy strategy, String name) {
         if (strategy == null) {
             throw new IllegalArgumentException("strategy should not be null");

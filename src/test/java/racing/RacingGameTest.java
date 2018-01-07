@@ -11,17 +11,19 @@ public class RacingGameTest {
 
     private RacingGame game;
 
-    private Car[] cars;
+    private String[] names;
 
     private int times = 3;
 
     @Before
     public void setUp() throws Exception {
-        Car car1 = new Car(() -> 2, "test1");
-        Car car2 = new Car(() -> 6, "test2");
-
-        cars = new Car[] {car1, car2};
-        game = new RacingGameImpl(cars, times);
+        names = new String[] {"test1", "test2"};
+        game = new RacingGame(names, times) {
+            @Override
+            protected Car[] createCars(String[] names) {
+                return new Car[] {new Car(() -> 0, "test1"), new Car(() -> 5, "test2")};
+            }
+        };
     }
 
     @Test
@@ -37,17 +39,17 @@ public class RacingGameTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void RacingGameImpl_times값이0인경우() throws Exception {
-        new RacingGameImpl(cars, 0);
+        new RandomRacingGame(names, 0);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void RacingGameImpl_times값이0보다작은경우() throws Exception {
-        new RacingGameImpl(cars, -1);
+        new RandomRacingGame(names, -1);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void RacingGameImpl_cars이널인경우() throws Exception {
-        new RacingGameImpl(null, 3);
+    public void RacingGameImpl_names가널인경우() throws Exception {
+        new RandomRacingGame(null, 3);
     }
 
 }
