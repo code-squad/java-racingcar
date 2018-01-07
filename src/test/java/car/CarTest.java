@@ -11,13 +11,16 @@ public class CarTest {
 
   @Before
   public void setUp() throws Exception {
-    car = new Car();
+    car = new Car("ggulmool");
   }
 
   @Test
-  public void moved_position() {
-    assertEquals(1, car.move(4));
-    assertEquals(1, car.move(3));
-    assertEquals(2, car.move(4));
+  public void move_condition_4이상() {
+    car.setMoveCondition(() -> 4);
+    assertEquals(1, car.move());
+    car.setMoveCondition(() -> 3);
+    assertEquals(1, car.move());
+    car.setMoveCondition(() -> 4);
+    assertEquals(2, car.move());
   }
 }
