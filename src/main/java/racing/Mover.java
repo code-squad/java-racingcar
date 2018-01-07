@@ -10,7 +10,7 @@ public class Mover {
         this.deciderToGo = deciderToGo;
     }
 
-    List<Integer> generatePositions(GameConfiguration gameConfiguration) {
+    public List<Integer> generatePositions(GameConfiguration gameConfiguration) {
         int carCount = gameConfiguration.getCarCount();
         int tryCount = gameConfiguration.getTryCount();
 

@@ -4,16 +4,16 @@ public class GameConfiguration {
     private int carCount;
     private int tryCount;
 
-    GameConfiguration(int carCount, int tryCount) {
+    public GameConfiguration(int carCount, int tryCount) {
         this.carCount = carCount;
         this.tryCount = tryCount;
     }
 
-    int getCarCount() {
+    public int getCarCount() {
         return carCount;
     }
 
-    int getTryCount() {
+    public int getTryCount() {
         return tryCount;
     }
 }

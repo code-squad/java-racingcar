@@ -3,7 +3,7 @@ package racing;
 import java.util.List;
 
 public class ResultView {
-    void showGameResult(List<Integer> moveList) {
+    public void showGameResult(List<Integer> moveList) {
         for (Integer move : moveList) {
             showGameResult(move);
         }
