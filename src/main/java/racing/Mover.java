@@ -34,10 +34,6 @@ public class Mover {
     }
 
     int move(boolean go, int position) {
-        if (go) {
-            position++;
-        }
-
-        return position;
+        return go ? (position+1) : position;
     }
 }
