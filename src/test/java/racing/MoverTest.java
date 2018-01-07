@@ -18,14 +18,13 @@ public class MoverTest {
     @Test
     public void getMoveList() throws Exception {
         for (int i=10; i<1000; i++) {
-            checkMove(2, i);
-            checkMove(20, i);
-            checkMove(200, i);
+            assertTrue(checkMove(2, i));
+            assertTrue(checkMove(20, i));
+            assertTrue(checkMove(200, i));
         }
-        assertTrue(true);
     }
 
-    private void checkMove(int carCount, int i) {
+    private boolean checkMove(int carCount, int i) {
         List<Integer> moveList = mover.generatePositions(new GameConfiguration(carCount, i));
 
         assertTrue(moveList.size() == carCount);
@@ -33,12 +32,12 @@ public class MoverTest {
         for (Integer move : moveList) {
             checkMaxMove(i, move);
         }
+
+        return true;
     }
 
     private void checkMaxMove(int i, Integer move) {
-        if (move > i) {
-            assertTrue(false);
-        }
+        assertFalse(move > i);
     }
 
     @Test
