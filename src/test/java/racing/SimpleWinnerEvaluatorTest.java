@@ -13,7 +13,7 @@ public class SimpleWinnerEvaluatorTest {
     private SimpleWinnerEvaluator simpleWinnerEvaluator;
 
     @Before
-    public void setup() {
+    public void setUp() {
         simpleWinnerEvaluator = new SimpleWinnerEvaluator();
     }
 
