@@ -16,9 +16,4 @@ public class RacingGameTest {
         racingGame = new RacingGame(3,5);
     }
 
-    @Test
-    public void isAdvanceTest() throws Exception {
-    }
-
-
 }

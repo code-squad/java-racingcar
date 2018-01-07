@@ -1,15 +1,27 @@
-.DS_Store
-/.settings/
-/bin/
-/.classpath
-/.project
-/target/
-/.gradle/
-# Intellij
-.idea/
-*.iml
-*.iws
-/out
+.gradle
+/build/
+!gradle/wrapper/gradle-wrapper.jar
 
-.DS_Store
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+
+### IntelliJ IDEA ###
 .idea
+*.iws
+*.iml
+*.ipr
+out
+
+### NetBeans ###
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+classes
