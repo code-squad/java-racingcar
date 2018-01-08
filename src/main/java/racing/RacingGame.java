@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RacingGame {
-    private int numberOfCar;
     private int tryCount;
     private List<Car> carList;
 
@@ -14,7 +13,6 @@ public class RacingGame {
         if(numberOfCars < 0 || tryCount < 0)
             throw new IllegalArgumentException("Invalid inputs");
 
-        this.numberOfCar = numberOfCars;
         this.tryCount = tryCount;
         carList = new ArrayList<>();
 
