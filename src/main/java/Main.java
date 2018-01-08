@@ -12,9 +12,7 @@ public class Main {
         int tryNumber = scan.nextInt();
 
         CarManager carManager = new CarManager(carSize, tryNumber);
-        carManager.createCarBySize();
         carManager.moveCars();
+        carManager.printCars();
     }
-
-
 }
