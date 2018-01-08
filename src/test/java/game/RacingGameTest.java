@@ -4,43 +4,30 @@ import static org.junit.Assert.assertEquals;
 
 import car.Car;
 import java.util.List;
-import java.util.stream.IntStream;
 import org.junit.Before;
 import org.junit.Test;
 
 public class RacingGameTest {
 
   private RacingGame racingGame;
-  private List<Car> cars;
 
   @Before
   public void setUp() throws Exception {
-    cars = RacingGameCarFactory.createCars("ggulmool,javajigi,thekarin");
+    List<Car> cars = RacingGameCarFactory.createCars("ggulmool,javajigi,thekarin");
+    racingGame = new RacingGame(cars, 5);
   }
 
   @Test
-  public void winner_한명() {
-    IntStream.range(0, cars.size())
-        .forEach(i -> {
-          cars.get(i).setMoveCondition(() -> i + 2);
-        });
+  public void racing_all_5회_전진() {
+    List<Result> results = racingGame.racing(() -> 5);
 
-    racingGame = new RacingGame(cars, 5);
-    racingGame.racing();
-    assertEquals("thekarin", racingGame.getWinner());
+    assertEquals("ggulmool", results.get(0).getName());
+    assertEquals(5, results.get(0).getPosition());
+
+    assertEquals("javajigi", results.get(1).getName());
+    assertEquals(5, results.get(1).getPosition());
+
+    assertEquals("thekarin", results.get(2).getName());
+    assertEquals(5, results.get(2).getPosition());
   }
-
-  @Test
-  public void winner_공동우승() {
-    IntStream.range(0, cars.size())
-        .forEach(i -> {
-          cars.get(i).setMoveCondition(() -> i + 3);
-        });
-
-    racingGame = new RacingGame(cars, 5);
-    racingGame.racing();
-    assertEquals("javajigi,thekarin", racingGame.getWinner());
-  }
-
-  //TODO:RandomMoveCondition의 경우에 어떻게 테스트 할수 있을까?
 }

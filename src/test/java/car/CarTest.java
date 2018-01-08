@@ -15,12 +15,9 @@ public class CarTest {
   }
 
   @Test
-  public void move_condition_4이상() {
-    car.setMoveCondition(() -> 4);
-    assertEquals(1, car.move());
-    car.setMoveCondition(() -> 3);
-    assertEquals(1, car.move());
-    car.setMoveCondition(() -> 4);
-    assertEquals(2, car.move());
+  public void move_전진_멈춤_전진() {
+    assertEquals(1, car.move(4));
+    assertEquals(1, car.move(3));
+    assertEquals(2, car.move(4));
   }
 }

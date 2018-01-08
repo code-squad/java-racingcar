@@ -2,6 +2,7 @@ package game;
 
 import car.Car;
 import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
 
 public class RacingGameMain {
@@ -12,9 +13,14 @@ public class RacingGameMain {
     System.out.print("시도할 회수는 몇 회 인가요? ");
     int times = scanner.nextInt();
 
-    List<Car> cars = RacingGameCarFactory.createRandomMoveConditionCars(carNames);
+    List<Car> cars = RacingGameCarFactory.createCars(carNames);
     RacingGame racingGame = new RacingGame(cars, times);
-    racingGame.racing();
-    racingGame.printResult();
+    ResultView resultView = new ResultView(carNames);
+
+    RacingGameRuleGenerator gameRuleGenerator = () -> new Random().nextInt(10);
+    List<Result> results = racingGame.racing(gameRuleGenerator);
+
+    resultView.setResults(results);
+    resultView.printResult();
   }
 }

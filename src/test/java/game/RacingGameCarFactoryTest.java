@@ -14,11 +14,4 @@ public class RacingGameCarFactoryTest {
     List<Car> result = RacingGameCarFactory.createCars(carNames);
     assertEquals(3, result.size());
   }
-
-  @Test
-  public void createRandomMoveConditionCars() {
-    String carNames = "ggulmool,javajigi,thekarin";
-    List<Car> result = RacingGameCarFactory.createRandomMoveConditionCars(carNames);
-    assertEquals(3, result.size());
-  }
 }
