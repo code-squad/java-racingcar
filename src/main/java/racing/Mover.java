@@ -16,9 +16,12 @@ public class Mover {
         List<Car> cars = gameConfiguration.getCars();
         int tryCount = gameConfiguration.getTryCount();
 
-        for (Car car : cars) {
-            calculatePosition(tryCount, car);
-        }
+        // jdk 7
+//        for (Car car : cars) {
+//            calculatePosition(tryCount, car);
+//        }
+
+        cars.forEach(car -> calculatePosition(tryCount, car));
     }
 
     private void calculatePosition(int tryCount, Car car) {

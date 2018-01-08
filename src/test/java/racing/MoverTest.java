@@ -20,17 +20,21 @@ public class MoverTest {
         }
     }
 
-    private boolean checkMove(String carNameString, int carCount, int i) {
+    private boolean checkMove(String carNameString, int carCount, int tryCount) {
         String[] carNames = carNameString.split(",");
 
-        GameConfiguration gameConfiguration = new GameConfiguration(carNames, i);
+        GameConfiguration gameConfiguration = new GameConfiguration(carNames, tryCount);
         mover.generatePositions(gameConfiguration);
 
         assertTrue(gameConfiguration.getCars().size() == carCount);
 
-        for (Car car : gameConfiguration.getCars()) {
-            checkMaxMove(i, car.getPosition());
-        }
+        // jdk 7
+//        for (Car car : gameConfiguration.getCars()) {
+//            checkMaxMove(i, car.getPosition());
+//        }
+
+        gameConfiguration.getCars()
+                .forEach(car -> checkMaxMove(tryCount, car.getPosition()));
 
         return true;
     }

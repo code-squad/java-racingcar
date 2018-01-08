@@ -8,10 +8,18 @@ import java.util.stream.Collectors;
 public class ResultView {
     public void showGameResult(List<Car> cars) {
         System.out.println("\n실행 결과");
-        for (Car car : cars) {
+
+        // jdk 7
+//        for (Car car : cars) {
+//            System.out.print(car.getName() + " : ");
+//            showGameResult(car.getPosition());
+//        }
+
+        cars.forEach(car -> {
             System.out.print(car.getName() + " : ");
             showGameResult(car.getPosition());
-        }
+        });
+
         System.out.println("");
     }
 

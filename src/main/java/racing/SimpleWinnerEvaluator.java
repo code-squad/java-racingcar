@@ -3,7 +3,9 @@ package racing;
 import racing.model.Car;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class SimpleWinnerEvaluator implements WinnerEvaluator {
     @Override
@@ -14,22 +16,32 @@ public class SimpleWinnerEvaluator implements WinnerEvaluator {
     }
 
     private List<Car> getWinnerCars(int maxPosition, List<Car> cars) {
-        List<Car> winnerCars = new ArrayList<>();
-        for (Car car : cars) {
-            if (maxPosition == car.getPosition()) {
-                winnerCars.add(car);
-            }
-        }
-        return winnerCars;
+        // jdk 7
+//        List<Car> winnerCars = new ArrayList<>();
+//        for (Car car : cars) {
+//            if (maxPosition == car.getPosition()) {
+//                winnerCars.add(car);
+//            }
+//        }
+
+        return cars.stream()
+                .filter(car -> maxPosition == car.getPosition())
+                .collect(Collectors.toList());
+
     }
 
     private int calcMaxPosition(List<Car> cars) {
-        int max = 0;
-        for (Car car : cars) {
-            if (car.getPosition() > max) {
-                max = car.getPosition();
-            }
-        }
-        return max;
+        // jdk 7
+//        int max = 0;
+//        for (Car car : cars) {
+//            if (car.getPosition() > max) {
+//                max = car.getPosition();
+//            }
+//        }
+
+        return cars.stream()
+                .max(Comparator.comparingInt(Car::getPosition))
+                .orElseThrow(() -> new IllegalStateException("max is not exist."))
+                .getPosition();
     }
 }
