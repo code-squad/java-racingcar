@@ -19,26 +19,27 @@ public class RacingGame {
             System.out.println("시도할 회수는 몇 회 인가요?");
             termCount = Integer.parseInt(bufferRead.readLine());
 
-            start(carCount, termCount);
+            Car[] racingCars = start(carCount, termCount);
+
+            viewRacingResult(racingCars);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public static void start(int carCount, int termCount){
+    public static Car[] start(int carCount, int termCount){
         if(carCount <= 0 || termCount <= 0){
             throw new IllegalArgumentException("입력한 숫자가 잘못되었습니다.");
         }
 
         Car[] cars = setCars(carCount);
         for(int term = 0 ; term < termCount ; term++){
-            doRacing(cars);
+            startTerm(cars);
         }
-
-        viewRacingResult(cars);
+        return cars;
     }
 
-    private static void doRacing(Car[] cars) {
+    private static void startTerm(Car[] cars) {
         for(Car car : cars){
             int value = getRandomValue();
             car.move(value);
