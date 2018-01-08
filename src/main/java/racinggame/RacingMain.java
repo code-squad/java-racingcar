@@ -16,5 +16,6 @@ public class RacingMain {
 
         System.out.println("실행 결과");
         racing.racingResult();
+        System.out.println(racing.getWinners()+"가 최종 우승했습니다");
     }
 }

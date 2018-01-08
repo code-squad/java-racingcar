@@ -9,6 +9,10 @@ public class Racing {
 
     private int count;
 
+    public Racing(List<Car> cars) {
+        this.cars = cars;
+    }
+
     public Racing(int count, String[] carNames) {
         this.cars = createCars(carNames);
         this.count = count;
@@ -25,11 +29,11 @@ public class Racing {
     }
 
     public void racingResult() {
-        for (Car car : cars) {
-            car.printResult();
-        }
-//        Comparator.comparingInt(Car::getPosition).reversed();
-//        cars.stream().findFirst().get().getName();
+        cars.forEach(car -> car.printResult());
+    }
 
+    public String getWinners() {
+        int maxPosition = cars.stream().mapToInt(Car::getPosition).summaryStatistics().getMax();
+        return cars.stream().filter(car -> car.getPosition() == maxPosition).map(car -> car.getName()).collect(Collectors.joining(","));
     }
 }
