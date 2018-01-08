@@ -8,13 +8,10 @@ import static org.junit.Assert.*;
 public class CarTest {
 
     private Car car;
-    private int standard;
 
     @Before
     public void setUp() {
-        car = new Car();
-        standard = 4;
-        car.rePosition(standard);
+        car = new Car(1);
     }
 
     @Test
@@ -23,8 +20,16 @@ public class CarTest {
     }
 
     @Test
-    public void 전진_테스트() throws Exception {
-        assertEquals(1, car.getPosition());
+    public void 랜덤이_기준보다_높을때() throws Exception {
+        car.rePosition(5);
+        assertEquals(2,car.getPosition());
     }
+
+    @Test
+    public void 랜덤이_기준보다_낮을때() {
+        car.rePosition(1);
+        assertEquals(1,car.getPosition());
+    }
+
 
 }

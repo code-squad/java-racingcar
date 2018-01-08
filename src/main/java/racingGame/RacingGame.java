@@ -17,13 +17,13 @@ public class RacingGame {
         }
     }
 
-    public void move() {
+    public void runGame() {
         for(int i = 0; i < time; i++) {
-            runGame();
+            move();
         }
     }
 
-    private void runGame() {
+    private void move() {
         for (Car car : carList) {
             int random = (int) (Math.random() * 10);
             car.rePosition(random);
@@ -31,11 +31,12 @@ public class RacingGame {
     }
 
     public void printCar() {
-        StringBuilder sb = new StringBuilder();
         for (Car car : carList) {
-            sb.append(car.resultString()).append(System.getProperty("line.separator"));
-
+            System.out.println(car.resultString());
         }
     }
 
+    public List<Car> getCarList() {
+        return carList;
+    }
 }
