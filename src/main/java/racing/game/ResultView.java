@@ -15,7 +15,7 @@ public class ResultView {
     }
 
     public void printResult() {
-        carList.getCars().forEach(car -> {
+        carList.forEach(car -> {
             printCarNameAndPosition(car);
             System.out.println();
         });

@@ -2,8 +2,6 @@ package racing.car;
 
 import org.junit.Test;
 
-import java.util.stream.IntStream;
-
 import static org.junit.Assert.*;
 
 /**
