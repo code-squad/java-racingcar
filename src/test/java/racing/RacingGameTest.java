@@ -15,8 +15,8 @@ public class RacingGameTest {
 
        RacingGame racingGame = new RacingGame(3, 5);
        Car car1 = racingGame.getCarList().get(0);
-       assertEquals(false,racingGame.moveByRandomValue(car1,3));
-       assertEquals(true,racingGame.moveByRandomValue(car1,4));
+       assertEquals(false,car1.move(3));
+       assertEquals(true,car1.move(4));
 
     }
 

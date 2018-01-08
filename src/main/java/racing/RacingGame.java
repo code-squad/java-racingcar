@@ -1,6 +1,7 @@
 package racing;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -8,7 +9,9 @@ import java.util.Random;
  */
 public class RacingGame {
 
-    private ArrayList<Car> carList = new ArrayList<>();
+    private static int RANDOM_SEED = 10;
+
+    private List<Car> carList = new ArrayList<>();
     private int tryCount;
 
     public RacingGame(int countOfCar, int tryCount) {
@@ -23,35 +26,25 @@ public class RacingGame {
     public void racing(int tryCount, Car car) {
 
         for(int i = 0; i<tryCount; i++) {
-            moveByRandomValue(car ,generateRandomValue());
+            car.move(generateRandomValue(RANDOM_SEED));
         }
     }
 
-    public boolean moveByRandomValue(Car car, int randomValue) {
-        if(randomValue >= 4) {
-            car.move();
-            return true;
-        }
-        return false;
-    }
 
-    public static int generateRandomValue() {
-
-        return new Random().nextInt(10);
+    public static int generateRandomValue(int seed) {
+        return new Random().nextInt(seed);
     }
 
 
 
     public void printCarsDistance() {
-
-        System.out.println("실행 결과");
         for(Car car:carList) {
-            car.showDistance();
+            ResultView.printDistanceResultEachCar(car.getDistance());
             System.out.println();
         }
     }
 
-    public ArrayList<Car> getCarList() {
+    public List<Car> getCarList() {
         return carList;
     }
 }

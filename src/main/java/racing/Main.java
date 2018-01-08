@@ -30,6 +30,8 @@ public class Main {
         }
 
         //결과 출력
+
+        System.out.println("실행 결과");
         racingGame.printCarsDistance();
 
         return;

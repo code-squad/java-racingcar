@@ -20,8 +20,8 @@ public class CarTest {
     public void 자동차_이동_테스트() {
 
         car = new Car();
-        car.move();
-        car.move();
+        car.move(4);
+        car.move(5);
 
         assertEquals(2, car.getDistance());
     }
