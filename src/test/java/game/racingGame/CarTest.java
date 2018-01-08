@@ -16,13 +16,13 @@ public class CarTest {
 
     @Test
     public void moveTest_이동안함() {
-        car.move(2);
-        assertEquals(0, car.getPosition());
+        int position = car.move(2);
+        assertEquals(0, position);
     }
 
     @Test
     public void moveTest_이동() {
-        car.move(5);
-        assertEquals(1, car.getPosition());
+        int position = car.move(4);
+        assertEquals(1, position);
     }
 }

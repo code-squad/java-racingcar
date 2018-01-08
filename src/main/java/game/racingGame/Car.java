@@ -1,8 +1,8 @@
 package game.racingGame;
 
-import lombok.Data;
+import lombok.Getter;
 
-@Data
+@Getter
 public class Car{
 
     private int position;
@@ -11,9 +11,10 @@ public class Car{
         this.position = 0;
     }
 
-    public void move(int value){
-        if(value > 4){
-            position += 1;
+    public int move(int value){
+        if(value >= 4){
+            position ++;
         }
+        return position;
     }
 }

@@ -1,6 +1,7 @@
 package game;
 
 import game.racingGame.RacingGame;
+import game.racingGame.View;
 
 import java.util.Scanner;
 
@@ -13,6 +14,6 @@ public class Main {
 
         RacingGame racingGame = new RacingGame(Integer.parseInt(numberOfCar), Integer.parseInt(trialNum));
         racingGame.move();
-        racingGame.getResult();
+        View.getResult(racingGame.getCars());
     }
 }

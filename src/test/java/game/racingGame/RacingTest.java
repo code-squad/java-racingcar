@@ -10,6 +10,6 @@ public class RacingTest {
     public void newGame(){
         racingGame = new RacingGame(3, 5);
         racingGame.move();
-        racingGame.getResult();
+        View.getResult(racingGame.getCars());
     }
 }
