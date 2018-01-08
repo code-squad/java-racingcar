@@ -12,28 +12,9 @@ import static org.junit.Assert.*;
 public class CarTest {
 
     @Test
-    public void testAlwaysMoveEngine() {
-        NumberGenerator generator = () -> 5;
-        Engine engine = new Engine(4, generator);
-        for(int i=0; i<10; i++) {
-            assertTrue(engine.move());
-        }
-    }
-
-    @Test
-    public void testNeverMoveEngine() {
-        NumberGenerator generator = () -> 0;
-        Engine engine = new Engine(4, generator);
-        for(int i=0; i<10; i++) {
-            assertFalse(engine.move());
-        }
-    }
-
-    @Test
     public void testCarMove() {
-        NumberGenerator generator = () -> 5;
-        Engine engine = new Engine(4, generator);
-        Car car = new Car(engine);
+        Movable movable = () -> true;
+        Car car = new Car(movable);
         for(int i=0; i<10; i++) {
             car.move();
         }

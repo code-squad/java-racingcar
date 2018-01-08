@@ -9,7 +9,7 @@ import java.util.List;
  */
 public class CarList {
 
-    List<Car> cars;
+    private List<Car> cars;
 
     public CarList(int count) {
         cars = new ArrayList<>();

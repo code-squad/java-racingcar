@@ -5,29 +5,26 @@ package racing.car;
  */
 public class Car {
 
-    private static int id = 1;
-    private static int BOUND = 4;
-    private String name;
+    private static int ID = 1;
+
+    private final String name;
+    private final Movable movable;
+
     private int position;
-    private Engine engine;
 
     public Car() {
-        this(new Engine(4, new RandomNumberGenerator()));
+        this(new RandomMover());
     }
 
-    public Car(Engine engine) {
-        this.engine = engine;
-        this.name = "Car" + id++;
+    public Car(Movable movable) {
+        this.movable = movable;
+        this.name = "Car" + ID++;
     }
 
     public void move() {
-        if (canMoveCar()) {
+        if (movable.move()) {
             this.position++;
         }
-    }
-
-    private boolean canMoveCar() {
-        return engine.move();
     }
 
     public String getName() {
