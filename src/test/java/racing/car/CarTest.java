@@ -11,12 +11,13 @@ public class CarTest {
 
     @Test
     public void testCarMove() {
-        Movable movable = () -> true;
-        Car car = new Car(movable);
-        for(int i=0; i<10; i++) {
-            car.move();
-        }
-        assertEquals(10, car.getPosition());
+        Car movableCar = new Car(() -> true);
+        Car notMovableCar = new Car(() -> false);
+
+        movableCar.move();
+        notMovableCar.move();
+        assertEquals(1, movableCar.getPosition());
+        assertEquals(0, notMovableCar.getPosition());
     }
 
 }
