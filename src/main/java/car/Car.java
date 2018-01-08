@@ -1,7 +1,5 @@
 package car;
 
-import util.RandomUtil;
-
 import static util.Static.*;
 
 public class Car {
@@ -11,13 +9,9 @@ public class Car {
         this.currentPosition = 0;
     }
 
-    public void tryMove() {
-        if(isMovable(RandomUtil.nextInt(RANDOM_NUM_BOUND)))
+    public void tryMove(int randomNum) {
+        if(randomNum >= MOVE_STANDARD_NUM)
             currentPosition++;
-    }
-
-    public boolean isMovable(int randomNum) {
-        return randomNum >= MOVE_STANDARD_NUM;
     }
 
     public int getCurrentPosition() {

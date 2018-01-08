@@ -1,9 +1,12 @@
 package racing;
 
 import car.Car;
+import util.RandomUtil;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static util.Static.RANDOM_NUM_BOUND;
 
 public class RacingGame {
     private int tryCount;
@@ -27,7 +30,8 @@ public class RacingGame {
 
     private void tryToMoveCarList() {
         for(Car car : carList)
-            car.tryMove();
+            car.tryMove(RandomUtil.nextInt(RANDOM_NUM_BOUND));
+
     }
 
     public void showState() {

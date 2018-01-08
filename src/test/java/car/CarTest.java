@@ -5,10 +5,9 @@ import org.junit.Test;
 import util.RandomUtil;
 
 import static junit.framework.TestCase.assertEquals;
-import static junit.framework.TestCase.assertTrue;
-import static org.junit.Assert.assertFalse;
 import static util.RandomUtilTest.BOUND_NUM;
 import static util.Static.MOVE_MARK;
+import static util.Static.RANDOM_NUM_BOUND;
 
 public class CarTest {
     private Car car;
@@ -19,16 +18,18 @@ public class CarTest {
     }
 
     @Test
-    public void isMovableTest() {
-        assertFalse(car.isMovable(3));
-        assertTrue(car.isMovable(4));
+    public void tryMoveTest() {
+        car.tryMove(3);
+        assertEquals(0, car.getCurrentPosition());
+        car.tryMove(4);
+        assertEquals(1, car.getCurrentPosition());
     }
 
     @Test
     public void toStringTest() {
         int testTime = RandomUtil.nextInt(BOUND_NUM);
         for(int i = 0 ; i < testTime ; ++i)
-            car.tryMove();
+            car.tryMove(RandomUtil.nextInt(RANDOM_NUM_BOUND));
 
         int movedDistance = car.getCurrentPosition();
         StringBuilder sb = new StringBuilder();
