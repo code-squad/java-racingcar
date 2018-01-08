@@ -5,16 +5,19 @@ package racing.car;
  */
 public class Car {
 
+    private static int id = 1;
     private static int BOUND = 4;
+    private String name;
     private int position;
-    private NumberGenerator numberGenerator;
+    private Engine engine;
 
     public Car() {
-        this.numberGenerator = new RandomNumberGenerator();
+        this(new Engine(4, new RandomNumberGenerator()));
     }
 
-    public Car(NumberGenerator engine) {
-        this.numberGenerator = engine;
+    public Car(Engine engine) {
+        this.engine = engine;
+        this.name = "Car" + id++;
     }
 
     public void move() {
@@ -24,12 +27,14 @@ public class Car {
     }
 
     private boolean canMoveCar() {
-        return numberGenerator.generateNumber() > BOUND;
+        return engine.move();
+    }
+
+    public String getName() {
+        return name;
     }
 
     public int getPosition() {
         return position;
     }
-
-
 }

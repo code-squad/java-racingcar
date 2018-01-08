@@ -18,7 +18,7 @@ public class CarList {
         }
     }
 
-    public void move() {
+    public void moveAll() {
         cars.forEach(car -> car.move());
     }
 

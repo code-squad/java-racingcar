@@ -1,5 +1,6 @@
 package racing.game;
 
+import racing.car.Car;
 import racing.car.CarList;
 
 /**
@@ -14,12 +15,17 @@ public class ResultView {
     }
 
     public void printResult() {
-        carList.getCars().stream().forEach(car -> {
-            for (int i = 0; i < car.getPosition(); i++) {
-                System.out.print("-");
-            }
+        carList.getCars().forEach(car -> {
+            printCarNameAndPosition(car);
             System.out.println();
         });
+    }
+
+    private void printCarNameAndPosition(Car car) {
+        System.out.print(car.getName() + ": ");
+        for (int i = 0; i < car.getPosition(); i++) {
+            System.out.print("-");
+        }
     }
 
 }

@@ -12,23 +12,32 @@ import static org.junit.Assert.*;
 public class CarTest {
 
     @Test
-    public void move() throws Exception {
-        NumberGenerator generator = () -> 10;
-        Car car = new Car(generator);
+    public void testAlwaysMoveEngine() {
+        NumberGenerator generator = () -> 5;
+        Engine engine = new Engine(4, generator);
+        for(int i=0; i<10; i++) {
+            assertTrue(engine.move());
+        }
+    }
+
+    @Test
+    public void testNeverMoveEngine() {
+        NumberGenerator generator = () -> 0;
+        Engine engine = new Engine(4, generator);
+        for(int i=0; i<10; i++) {
+            assertFalse(engine.move());
+        }
+    }
+
+    @Test
+    public void testCarMove() {
+        NumberGenerator generator = () -> 5;
+        Engine engine = new Engine(4, generator);
+        Car car = new Car(engine);
         for(int i=0; i<10; i++) {
             car.move();
         }
         assertEquals(10, car.getPosition());
-    }
-
-    @Test
-    public void cantMoveCar() throws Exception {
-        NumberGenerator generator = () -> 0;
-        Car car = new Car(generator);
-        for(int i=0; i<10; i++) {
-            car.move();
-        }
-        assertEquals(0, car.getPosition());
     }
 
 }

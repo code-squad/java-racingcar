@@ -7,8 +7,13 @@ import racing.car.CarList;
  */
 public class RacingGame {
 
+    public static void main(String[] args) {
+        RacingGame racingGame = new RacingGame();
+        racingGame.startGame();
+    }
 
     public void startGame() {
+        //사용자에게 게임에 필요한 값 입력받기
         InputView inputView = new InputView();
         inputView.inputFromUser();
         int numberOfCar = inputView.getNumberOfCar();
@@ -25,7 +30,7 @@ public class RacingGame {
 
     private void playRacing(CarList carList, int numOfMove) {
         for (int i = 0; i < numOfMove; i++) {
-            carList.move();
+            carList.moveAll();
         }
     }
 
