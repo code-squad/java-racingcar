@@ -17,23 +17,13 @@ public class Mover {
         int tryCount = gameConfiguration.getTryCount();
 
         for (Car car : cars) {
-            car.setPosition(calculatePosition(tryCount));
+            calculatePosition(tryCount, car);
         }
     }
 
-    private Integer calculatePosition(int tryCount) {
-        int position = 0;
+    private void calculatePosition(int tryCount, Car car) {
         for (int i=0; i<tryCount; i++) {
-            position = move(position);
+            car.move(deciderToGo.isPossibleToGo());
         }
-        return position;
-    }
-
-    public int move(int position) {
-        return move(deciderToGo.isPossibleToGo(), position);
-    }
-
-    private int move(boolean go, int position) {
-        return go ? (position+1) : position;
     }
 }

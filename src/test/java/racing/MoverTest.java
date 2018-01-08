@@ -38,21 +38,4 @@ public class MoverTest {
     private void checkMaxMove(int i, Integer move) {
         assertFalse(move > i);
     }
-
-    @Test
-    public void move() throws Exception {
-        // Replace with lambda : 아래 주석은 메모로 남겨둠
-//        mover = new Mover(new DeciderToGo() {
-//            @Override
-//            public boolean isPossibleToGo() {
-//                return true;
-//            }
-//        });
-
-        mover = new Mover(() -> true);
-        assertEquals(10, mover.move( 9));
-
-        mover = new Mover(() -> false);
-        assertEquals(9, mover.move(9));
-    }
 }

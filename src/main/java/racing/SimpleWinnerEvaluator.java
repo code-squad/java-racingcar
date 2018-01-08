@@ -8,31 +8,28 @@ import java.util.List;
 public class SimpleWinnerEvaluator implements WinnerEvaluator {
     @Override
     public List<Car> voteWinner(List<Car> cars) {
+        int maxPosition = calcMaxPosition(cars);
+
+        return getWinnerCars(maxPosition, cars);
+    }
+
+    private List<Car> getWinnerCars(int maxPosition, List<Car> cars) {
         List<Car> winnerCars = new ArrayList<>();
-
         for (Car car : cars) {
-            voteWinner(winnerCars, car);
+            if (maxPosition == car.getPosition()) {
+                winnerCars.add(car);
+            }
         }
-
         return winnerCars;
     }
 
-    private void voteWinner(List<Car> winnerCars, Car car) {
-        if (winnerCars.isEmpty()) {
-            winnerCars.add(car);
-            return;
+    private int calcMaxPosition(List<Car> cars) {
+        int max = 0;
+        for (Car car : cars) {
+            if (car.getPosition() > max) {
+                max = car.getPosition();
+            }
         }
-
-        Car oneOfWinnerCar = winnerCars.get(0);
-
-        if (oneOfWinnerCar.getPosition() > car.getPosition()) {
-            return;
-        }
-
-        if (oneOfWinnerCar.getPosition() < car.getPosition()) {
-            winnerCars.clear();
-        }
-        
-        winnerCars.add(car);
+        return max;
     }
 }
