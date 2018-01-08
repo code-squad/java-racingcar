@@ -6,5 +6,6 @@
 /.project
 /target/
 /out/
+/build/
 /.gradle/
 /.idea/

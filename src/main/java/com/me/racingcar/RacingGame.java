@@ -32,20 +32,20 @@ public class RacingGame {
 
         Car[] cars = setCars(carCount);
         for(int term = 0 ; term < termCount ; term++){
-            moveCars(cars);
+            doRacing(cars);
         }
 
-        finishGame(cars);
+        viewRacingResult(cars);
     }
 
-    private static void moveCars(Car[] cars) {
+    private static void doRacing(Car[] cars) {
         for(Car car : cars){
             int value = getRandomValue();
             car.move(value);
         }
     }
 
-    private static void finishGame(Car[] cars) {
+    private static void viewRacingResult(Car[] cars) {
         for(Car car : cars){
             System.out.println(car);
         }

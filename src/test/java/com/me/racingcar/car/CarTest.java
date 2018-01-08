@@ -14,8 +14,15 @@ public class CarTest {
     }
 
     @Test
-    public void move_under_4(){
-        car.move(3);
+    public void move_value_under_4(){
+        int curPosition = car.move(3);
+        assertTrue(0 == curPosition);
+    }
+
+    @Test
+    public void move_value_ge_4(){
+        int curPosition = car.move(4);
+        assertTrue(0 < curPosition);
     }
 
 }
