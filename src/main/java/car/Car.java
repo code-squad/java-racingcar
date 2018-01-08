@@ -19,7 +19,7 @@ public class Car {
         System.out.println(sb.toString());
     }
 
-    int tryForward(int tryNumber, int range) {
+    public int tryForward(int tryNumber, int range) {
         int position = 0;
         for(int i=0;i<tryNumber;i++) {
             position = tryMove(range, position);

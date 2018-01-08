@@ -5,4 +5,4 @@
 /.project
 /target/
 /.gradle/
-.idea/
+/.idea/*.*
