@@ -9,10 +9,10 @@ public class Main {
 
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
-        String numberOfCar = scan.nextLine();
-        String trialNum = scan.nextLine();
+        Integer numberOfCar = scan.nextInt();
+        Integer trialNum = scan.nextInt();
 
-        RacingGame racingGame = new RacingGame(Integer.parseInt(numberOfCar), Integer.parseInt(trialNum));
+        RacingGame racingGame = new RacingGame(numberOfCar, trialNum);
         racingGame.move();
         View.getResult(racingGame.getCars());
     }
