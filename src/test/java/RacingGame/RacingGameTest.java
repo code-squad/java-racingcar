@@ -10,10 +10,12 @@ import org.junit.Test;
 
 public class RacingGameTest {
 	RacingGame game;
+	Car car;
 	
 	@Before
 	public void setup(){
 		game = new RacingGame();
+		car = new Car();
 	}
 	
 	@Test
@@ -27,11 +29,11 @@ public class RacingGameTest {
 
 	@Test
 	public void moveYn_N() {
-		assertEquals(4, game.moveYn(3, 4));
+		assertEquals(4, car.moveYn(3, 4));
 	}
 
 	@Test
 	public void moveYn_Y() {
-		assertEquals(5, game.moveYn(5, 4));
+		assertEquals(5, car.moveYn(5, 4));
 	}
 }
