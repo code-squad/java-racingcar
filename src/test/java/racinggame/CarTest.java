@@ -42,7 +42,15 @@ public class CarTest {
         car.move(2);
     }
 
-    private void java8 (){
+    @Test
+    public void matchPosition_false(){
+        move_two_step();
+        assertEquals(false, car.matchPosition(3));
+    }
 
+    @Test
+    public void matchPosition_true(){
+        move_two_step();
+        assertEquals(true, car.matchPosition(1));
     }
 }

@@ -11,11 +11,6 @@ public class Car {
         this.name = name;
     }
 
-    public Car(String name, int position) {
-        this.name = name;
-        this.position = position;
-    }
-
     public int getPosition() {
         return position;
     }
@@ -42,5 +37,9 @@ public class Car {
 
     public void printResult() {
         System.out.println(this.name+" : "+getResult(getPosition()));
+    }
+
+    public boolean matchPosition(int maxPosition) {
+        return this.position >= maxPosition;
     }
 }
