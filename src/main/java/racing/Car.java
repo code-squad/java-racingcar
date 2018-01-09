@@ -8,7 +8,6 @@ public class Car {
     private int distance;
 
     public boolean move(int randomValue) {
-
         if(randomValue >= 4) {
             this.distance ++;
             return true;
@@ -19,6 +18,4 @@ public class Car {
     public int getDistance() {
         return distance;
     }
-
-
 }

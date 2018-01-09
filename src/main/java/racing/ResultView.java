@@ -10,5 +10,4 @@ public class ResultView {
             System.out.print("-");
         }
     }
-
 }
