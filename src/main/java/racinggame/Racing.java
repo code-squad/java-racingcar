@@ -32,8 +32,14 @@ public class Racing {
         cars.forEach(car -> car.printResult());
     }
 
-    public String getWinners() {
-        int maxPosition = cars.stream().mapToInt(Car::getPosition).summaryStatistics().getMax();
-        return cars.stream().filter(car -> car.getPosition() == maxPosition).map(car -> car.getName()).collect(Collectors.joining(","));
+    public List<Car> getWinnerCars() {
+        return cars.stream().filter(car -> car.matchPosition(getMaxPosition())).collect(Collectors.toList());
+    }
+
+    public String getWinnerCarNames(List<Car> winners) {
+        return winners.stream().map(car -> car.getName()) .collect(Collectors.joining(","));
+    }
+    private int getMaxPosition() {
+        return cars.stream().mapToInt(Car::getPosition).max().getAsInt();
     }
 }
