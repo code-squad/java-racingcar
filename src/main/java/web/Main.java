@@ -1,10 +1,12 @@
 package web;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import racing.RacingResult;
 import racing.RacingResultUtils;
 import racing.RandomRacingGame;
 import spark.ModelAndView;
+import spark.Request;
 import spark.template.handlebars.HandlebarsTemplateEngine;
 
 import java.util.Collections;
@@ -18,7 +20,7 @@ import static spark.Spark.post;
 
 public class Main {
 
-    private static String[] carNames;
+    private static final String NAME = "NAME";
 
     public static void main(String[] args) {
         port(8080);
@@ -26,25 +28,37 @@ public class Main {
         get("/", (req, res) -> render(Collections.emptyMap(), "/index.html"));
 
         post("/name", (req, res) -> {
-            carNames = StringUtils.split(req.queryParams("names"), ' ');
+            String[] carNames = StringUtils.split(req.queryParams("names"), ' ');
 
+            req.session().attribute(NAME, carNames);
             return render(Collections.singletonMap("names", carNames), "/game.html");
         });
 
         post("/result", (req, res) -> {
-            int turn = Integer.valueOf(req.queryParams("turn"));
-
-            RandomRacingGame randomRacingGame = new RandomRacingGame(carNames, turn);
-
-            List<RacingResult> results = randomRacingGame.doRacing();
-            String winners = RacingResultUtils.getBestCarNames(results);
-
+            checkRequestParameter(req);
+            String[] names = req.session().attribute(NAME);
             Map<String, Object> model = new HashMap<>();
-            model.put("results", results);
-            model.put("winners", winners);
+
+            if (checkRequestParameter(req) && !ArrayUtils.isEmpty(names)) {
+                int turn = Integer.valueOf(req.queryParams("turn"));
+
+                RandomRacingGame randomRacingGame = new RandomRacingGame(names, turn);
+
+                List<RacingResult> results = randomRacingGame.doRacing();
+                String winners = RacingResultUtils.getBestCarNames(results);
+
+                model.put("results", results);
+                model.put("winners", winners);
+            }
 
             return render(model, "/result.html");
         });
+    }
+
+    private static boolean checkRequestParameter(Request req) {
+        String turnString = req.queryParams("turn");
+        return !StringUtils.isEmpty(turnString) && StringUtils.isNumeric(turnString)
+            && Integer.valueOf(turnString) > 0;
     }
 
     private static String render(Map<String, Object> model, String templatePath) {

@@ -27,6 +27,10 @@ public class RacingResult {
         return name;
     }
 
+    public String getMove() {
+        return StringUtils.repeat("&nbsp;", position);
+    }
+
     private void checkArguments(String name, int position) {
         if (position < 0) {
             throw new IllegalArgumentException("position should be bigger than 0");
