@@ -6,25 +6,23 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Random;
+import java.util.Scanner;
 
 public class RacingGame {
 
     public static void main(String[] args) {
-        int carCount, termCount;
 
-        try (BufferedReader bufferRead = new BufferedReader(new InputStreamReader(System.in))) {
-            System.out.println("자동차 대수는 몇 대 인가요?");
-            carCount = Integer.parseInt(bufferRead.readLine());
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("자동차 대수는 몇 대 인가요?");
+        int carCount = scanner.nextInt();
 
-            System.out.println("시도할 회수는 몇 회 인가요?");
-            termCount = Integer.parseInt(bufferRead.readLine());
+        System.out.println("시도할 회수는 몇 회 인가요?");
+        int termCount = scanner.nextInt();
 
-            Car[] racingCars = start(carCount, termCount);
+        Car[] racingCars = start(carCount, termCount);
 
-            viewRacingResult(racingCars);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        viewRacingResult(racingCars);
+
     }
 
     public static Car[] start(int carCount, int termCount){
@@ -32,7 +30,7 @@ public class RacingGame {
             throw new IllegalArgumentException("입력한 숫자가 잘못되었습니다.");
         }
 
-        Car[] cars = setCars(carCount);
+        Car[] cars = createCar(carCount);
         for(int term = 0 ; term < termCount ; term++){
             startTerm(cars);
         }
@@ -46,13 +44,7 @@ public class RacingGame {
         }
     }
 
-    private static void viewRacingResult(Car[] cars) {
-        for(Car car : cars){
-            System.out.println(car);
-        }
-    }
-
-    private static Car[] setCars(int carCount) {
+    private static Car[] createCar(int carCount) {
         Car[] cars = new Car[carCount];
         for(int i=0 ; i<carCount ; i++){
             cars[i] = new Car("car-"+(i+1));
@@ -63,5 +55,11 @@ public class RacingGame {
     private static int getRandomValue() {
         Random random = new Random();
         return random.nextInt(10);
+    }
+
+    private static void viewRacingResult(Car[] cars) {
+        for(Car car : cars){
+            System.out.println(car);
+        }
     }
 }
