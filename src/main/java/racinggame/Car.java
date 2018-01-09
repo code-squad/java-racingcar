@@ -26,19 +26,6 @@ public class Car {
         return position;
     }
 
-    String getResult(int position) {
-        String result = "";
-        while (position > 0) {
-            result += "-";
-            position--;
-        }
-        return result;
-    }
-
-    public void printResult() {
-        System.out.println(this.name+" : "+getResult(getPosition()));
-    }
-
     public boolean matchPosition(int maxPosition) {
         return this.position >= maxPosition;
     }

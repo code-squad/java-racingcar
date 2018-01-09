@@ -25,12 +25,6 @@ public class CarTest {
     }
 
     @Test
-    public void getResult(){
-        move_two_step();
-        assertEquals("--", car.getResult(car.getPosition()));
-    }
-
-    @Test
     public void getPosition(){
         move_two_step();
         assertEquals(2, car.getPosition());

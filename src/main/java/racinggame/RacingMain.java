@@ -15,7 +15,8 @@ public class RacingMain {
         racing.racing();
 
         System.out.println("실행 결과");
-        racing.racingResult();
-        System.out.println(racing.getWinnerCarNames(racing.getWinnerCars())+"가 최종 우승했습니다");
+        RacingUI racingUI = new RacingUI(racing);
+        racingUI.racingResult();
+        racingUI.printWinners();
     }
 }

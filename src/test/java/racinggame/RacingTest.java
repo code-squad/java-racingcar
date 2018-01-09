@@ -38,9 +38,4 @@ public class RacingTest {
       assertEquals(2,winnerCars.size());
     }
 
-    @Test
-    public void getWinnersCarNames() {
-        String winnerCarNames = racing.getWinnerCarNames(racing.getWinnerCars());
-        assertEquals("Sooyoung,Code",winnerCarNames);
-    }
 }
