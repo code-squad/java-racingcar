@@ -57,13 +57,13 @@ body {
 
       <div class="col-md-12">
 
-          {{#cars}}
-          <div id="standings">{{name}}</div>
-          {{/cars}}
+          {{#names}}
+          <div id="standings">{{this}}</div>
+          {{/names}}
 
           <form class="form-lotto" method="post" action="/result">
               Count 수 : <input type="number" name="turn">
-          <div class="submit-button">
+              <div class="submit-button">
             <button class="btn btn-lg btn-primary btn-block" type="submit">게임
               시작! </button>
           </div>
@@ -74,4 +74,5 @@ body {
   </div>
 
 </body>
+
 </html>

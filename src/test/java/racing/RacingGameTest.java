@@ -49,7 +49,7 @@ public class RacingGameTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void RacingGameImpl_names가널인경우() throws Exception {
-        new RandomRacingGame((String[]) null, 3);
+        new RandomRacingGame(null, 3);
     }
 
 }

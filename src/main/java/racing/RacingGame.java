@@ -17,11 +17,6 @@ public abstract class RacingGame {
         this.times = times;
     }
 
-    protected RacingGame(Car[] cars, int times) {
-        this.cars = cars;
-        this.times = times;
-    }
-
     public List<RacingResult> doRacing() {
         return Arrays.stream(cars)
                      .map(this::doRacing)
