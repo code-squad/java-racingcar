@@ -6,42 +6,42 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GameResult {
-    private List<Car> carList;
-    private List<String> winnerList;
+    private List<Car> cars;
+    private List<String> winners;
 
-    public GameResult(List<Car> carList) {
-        this.carList = carList;
-        this.winnerList = getWinnerList(carList);
+    public GameResult(List<Car> cars) {
+        this.cars = cars;
+        this.winners = getWinners(cars);
     }
 
-    public static List<String> getWinnerList(List<Car> carList) {
-        int maxScore = getMaxScore(carList);
-        List<String> winnerList = new ArrayList<>();
+    public static List<String> getWinners(List<Car> cars) {
+        int maxScore = getMaxScore(cars);
+        List<String> winners = new ArrayList<>();
 
-        for(Car car : carList)
-            tryToPutWinner(winnerList, car, maxScore);
+        for(Car car : cars)
+            tryToPutWinner(winners, car, maxScore);
 
-        return winnerList;
+        return winners;
     }
 
-    public static int getMaxScore(List<Car> carList) {
+    public static int getMaxScore(List<Car> cars) {
         int maxScore = -1;
-        for(Car car : carList)
+        for(Car car : cars)
             maxScore = Math.max(maxScore, car.getCurrentPosition());
 
         return maxScore;
     }
 
-    public static void tryToPutWinner(List<String> winnerList, Car car, int maxScore) {
-        if(car.getCurrentPosition() == maxScore)
-            winnerList.add(car.getName());
+    public static void tryToPutWinner(List<String> winners, Car car, int maxScore) {
+        if(car.isMaxPosition(maxScore))
+            winners.add(car.getName());
     }
 
-    public List<Car> getCarList() {
-        return carList;
+    public List<Car> getCars() {
+        return cars;
     }
 
-    public List<String> getWinnerList() {
-        return winnerList;
+    public List<String> getWinners() {
+        return winners;
     }
 }

@@ -12,12 +12,12 @@ public class ResultView {
 
     public void showResult() {
         System.out.println("실행 결과");
-        for(Car car : gameResult.getCarList())
+        for(Car car : gameResult.getCars())
             System.out.println(car);
     }
 
     public void showWinner() {
-        System.out.println(String.join(", ", gameResult.getWinnerList()) + "가 최종 우승했습니다.");
+        System.out.println(String.join(", ", gameResult.getWinners()) + "가 최종 우승했습니다.");
     }
 
 /*    public void showWinner() {

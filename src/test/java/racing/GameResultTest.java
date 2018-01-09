@@ -5,65 +5,51 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertTrue;
 
 public class GameResultTest {
-    private List<Car> carList;
+    private List<Car> cars;
 
     @Before
     public void init() {
-        carList = makeTestCarList();
+        cars = makeTestCarList();
     }
 
     @Test
     public void tryToPutCarTest() {
         int maxScore = 10;
-        Car pobiCar = carList.get(0);
-        List<String> winnerList = new ArrayList<>();
+        Car pobiCar = cars.get(0);
+        List<String> winners = new ArrayList<>();
 
-        GameResult.tryToPutWinner(winnerList, pobiCar, maxScore);
+        GameResult.tryToPutWinner(winners, pobiCar, maxScore);
 
-        assertEquals(winnerList.get(0), pobiCar.getName());
+        assertEquals(winners.get(0), pobiCar.getName());
     }
 
     @Test
     public void getMaxScoreTest() {
-        assertEquals(10, GameResult.getMaxScore(carList));
+        assertEquals(10, GameResult.getMaxScore(cars));
     }
 
     @Test
     public void getWinnerListTest() {
         String[] expectedWinner = new String[]{"pobi", "crong"};
-        List<String> simulatedWinner = GameResult.getWinnerList(carList);
-        assertEquals(expectedWinner.length, simulatedWinner.size());
+        List<String> simulatedWinners = GameResult.getWinners(cars);
+        assertEquals(expectedWinner.length, simulatedWinners.size());
 
         for(int i = 0 ; i < expectedWinner.length ; ++i)
-            assertTrue(expectedWinner[i].equals(simulatedWinner.get(i)));
+            assertTrue(expectedWinner[i].equals(simulatedWinners.get(i)));
     }
 
     private List<Car> makeTestCarList() {
-        List<Car> carList = new ArrayList<>();
-
-        Car pobiCar = new Car("pobi");
-        Car crongCar = new Car("crong");
-        Car honuxCar = new Car("honux");
-
-        forceToMoveCar(pobiCar, 10);
-        forceToMoveCar(crongCar, 10);
-        forceToMoveCar(honuxCar, 6);
-
-        carList.add(pobiCar);
-        carList.add(crongCar);
-        carList.add(honuxCar);
-
-        return carList;
-    }
-
-    private void forceToMoveCar(Car car, int moveTime) {
-        for(int i = 0 ; i < moveTime ; ++i)
-            car.tryMove(5);
+        return Arrays.asList(
+                new Car("pobi").setCurrentPosition(10),
+                new Car("crong").setCurrentPosition(10),
+                new Car("honux").setCurrentPosition(6)
+        );
     }
 }

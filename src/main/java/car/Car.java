@@ -11,6 +11,11 @@ public class Car implements Comparable<Car> {
         this.currentPosition = 0;
     }
 
+    public Car setCurrentPosition(int newPosition) {
+        currentPosition = newPosition;
+        return this;
+    }
+
     public void tryMove(int randomNum) {
         if(randomNum >= MOVE_STANDARD_NUM)
             currentPosition++;
@@ -36,5 +41,9 @@ public class Car implements Comparable<Car> {
     @Override
     public int compareTo(Car compareCar) {
         return compareCar.getCurrentPosition() - getCurrentPosition();
+    }
+
+    public boolean isMaxPosition(int maxScore) {
+        return currentPosition == maxScore;
     }
 }
