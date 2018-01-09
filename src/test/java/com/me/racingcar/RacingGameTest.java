@@ -28,7 +28,4 @@ public class RacingGameTest {
         RacingGame.start(10, 0);
     }
 
-
-
-
 }
