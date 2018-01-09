@@ -8,30 +8,24 @@ import static org.junit.Assert.assertTrue;
 
 public class RaceTest {
 
-    private Race race;
+    private RaceGame race;
     private final static int CAR_COUNT = 3;
     private final static int TRY_COUNT = 5;
 
     @Before
     public void setup() {
-        race = new Race();
+        race = new RaceGame();
         race.initRace(CAR_COUNT, TRY_COUNT);
-    }
-
-    @Test(expected = RuntimeException.class)
-    public void 경주차량_객체_등록_테스트_예외처리() {
-        RaceVO vo = new RaceVO();
-        vo.enrollCars();
     }
 
     @Test
     public void UI_로직_체크_NOT_NUMERIC_STRING() {
-        assertTrue(race.isOutOfNumber(null));
-        assertTrue(race.isOutOfNumber(new String()));
-        assertTrue(race.isOutOfNumber(""));
-        assertTrue(race.isOutOfNumber("a12"));
-        assertTrue(race.isOutOfNumber("가나다"));
-        assertTrue(race.isOutOfNumber("\n"));
+        assertTrue(InputView.isOutOfNumber(null));
+        assertTrue(InputView.isOutOfNumber(new String()));
+        assertTrue(InputView.isOutOfNumber(""));
+        assertTrue(InputView.isOutOfNumber("a12"));
+        assertTrue(InputView.isOutOfNumber("가나다"));
+        assertTrue(InputView.isOutOfNumber("\n"));
     }
 
     /**
@@ -39,31 +33,20 @@ public class RaceTest {
      */
     @Test
     public void UI_로직_체크_NUMERIC_STRING() {
-        assertTrue(race.isOutOfNumber("-1"));
-        assertTrue(race.isOutOfNumber("0"));
-        assertTrue(race.isOutOfNumber("101"));
-
-        assertFalse(race.isOutOfNumber("100"));
-    }
-
-    @Test
-    public void 랜덤_로직_바운드_확인(){
-        for (int i = 0; i < 1000; i++) {
-            int random = race.getRandom();
-            assertTrue(random > -1 && random < 10);
-        }
+        assertTrue(InputView.isOutOfNumber("-1"));
+        assertTrue(InputView.isOutOfNumber("0"));
+        assertTrue(InputView.isOutOfNumber("101"));
+        assertFalse(InputView.isOutOfNumber("100"));
     }
 
     @Test
     public void 경주_결과_확인() {
-        race.racing();
         race.printResult();
     }
 
     @Test(expected = RuntimeException.class)
     public void 경주_결과_예외처리_확인() {
-        Race race = new Race();
+        RaceGame race = new RaceGame();
         race.printResult();
     }
-
 }
