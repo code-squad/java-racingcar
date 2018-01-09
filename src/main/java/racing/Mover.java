@@ -12,7 +12,7 @@ public class Mover {
         this.deciderToGo = deciderToGo;
     }
 
-    public void generatePositions(GameConfiguration gameConfiguration) {
+    public void move(GameConfiguration gameConfiguration) {
         List<Car> cars = gameConfiguration.getCars();
         int tryCount = gameConfiguration.getTryCount();
 
@@ -26,7 +26,7 @@ public class Mover {
 
     private void calculatePosition(int tryCount, Car car) {
         for (int i=0; i<tryCount; i++) {
-            car.move(deciderToGo.isPossibleToGo());
+            car.move(deciderToGo);
         }
     }
 }

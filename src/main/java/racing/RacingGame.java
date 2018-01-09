@@ -27,7 +27,7 @@ public class RacingGame {
 
     private void startGame() {
         GameConfiguration gameConfiguration = inputView.requestToInput();
-        mover.generatePositions(gameConfiguration);
+        mover.move(gameConfiguration);
 
         List<Car> cars = gameConfiguration.getCars();
         resultView.showGameResult(cars);

@@ -1,5 +1,7 @@
 package racing.model;
 
+import racing.DeciderToGo;
+
 public class Car {
     private static final int START_POSITION = 0;
 
@@ -23,9 +25,13 @@ public class Car {
         return position;
     }
 
-    public void move(boolean go) {
-        if (go) {
+    public void move(DeciderToGo deciderToGo) {
+        if (deciderToGo.isPossibleToGo()) {
             position++;
         }
+    }
+
+    public boolean matchPosition(int position) {
+        return this.position == position;
     }
 }

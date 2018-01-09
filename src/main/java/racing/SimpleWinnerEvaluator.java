@@ -23,9 +23,8 @@ public class SimpleWinnerEvaluator implements WinnerEvaluator {
 //                winnerCars.add(car);
 //            }
 //        }
-
         return cars.stream()
-                .filter(car -> maxPosition == car.getPosition())
+                .filter(car -> car.matchPosition(maxPosition))
                 .collect(Collectors.toList());
 
     }

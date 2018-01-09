@@ -51,7 +51,7 @@ public class SimpleWinnerEvaluatorTest {
 
     private void moveCar(int moveCount, Car car) {
         for (int i=0; i<moveCount; i++) {
-            car.move(true);
+            car.move(() -> true);
         }
     }
 

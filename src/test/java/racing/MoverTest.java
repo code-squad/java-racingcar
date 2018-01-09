@@ -1,7 +1,6 @@
 package racing;
 
 import org.junit.Test;
-import racing.model.Car;
 import racing.model.GameConfiguration;
 
 import static org.junit.Assert.*;
@@ -10,7 +9,7 @@ public class MoverTest {
     private Mover mover;
 
     @Test
-    public void getMoveList() throws Exception {
+    public void move() throws Exception {
         mover = new Mover(new SimpleDeciderToGo());
 
         for (int i=10; i<1000; i++) {
@@ -24,7 +23,7 @@ public class MoverTest {
         String[] carNames = carNameString.split(",");
 
         GameConfiguration gameConfiguration = new GameConfiguration(carNames, tryCount);
-        mover.generatePositions(gameConfiguration);
+        mover.move(gameConfiguration);
 
         assertTrue(gameConfiguration.getCars().size() == carCount);
 
