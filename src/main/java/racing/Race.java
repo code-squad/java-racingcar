@@ -1,7 +1,5 @@
 package racing;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -9,61 +7,47 @@ import static java.lang.String.format;
 
 public class Race {
 
-    private final int MIN_COUNT = 1;
-    private final int MAX_COUNT = 100;
-    private final int MIN_FORWARD = 4;
-    private final int RANDOM_BOUND = 10;
+    private final static int MIN_COUNT = 1;
+    private final static int MAX_COUNT = 100;
+    private final static int MIN_FORWARD_NUMBER = 4;
+    private final static int RANDOM_BOUND = 10;
 
-    private int carCount;
-    private int maxMoveCount;
-    private List<Car> carList;
+    private RaceVO vo;
 
     public Race() {
+        vo = new RaceVO();
     }
 
-    public int getCarCount() {
-        return carCount;
+    public void initRace() {
+        initRace(0,0);
     }
 
-    public int getMaxMoveCount() {
-        return maxMoveCount;
+    public void initRace(int carCount, int moveCount) {
+        if (carCount == 0 || moveCount == 0) {
+            setCountByUser();
+            carCount = vo.getCarCount();
+            moveCount = vo.getMaxMoveCount();
+        }
+        setVOCount(carCount, moveCount);
+        vo.enrollCars();
     }
 
-    public void setCarCount(int count) {
-        this.carCount = count;
+    public void setVOCount(int carCount, int moveCount) {
+        vo.setCarCount(carCount);
+        vo.setMaxMoveCount(moveCount);
     }
 
-    public void setMaxMoveCount(int count) {
-        this.maxMoveCount = count;
-    }
-
-    public List<Car> getCarList() {
-        return carList;
-    }
-
-    public void setCarList(List<Car> carList) {
-        this.carList = carList;
-    }
-
-    /**
-     * UI 전용.
-     */
-    @Deprecated
     private void setCountByUser() {
         System.out.println(format("자동차 대수는 몇 대 인가요? %d~%d 사이의 숫자를 입력해주세요.", MIN_COUNT, MAX_COUNT));
-        setCarCount(getNumberByUser());
+        vo.setCarCount(getNumberByUser());
 
         System.out.println(format("시도할 회수는 몇 회 인가요? %d~%d 사이의 숫자를 입력해주세요.", MIN_COUNT, MAX_COUNT));
-        setMaxMoveCount(getNumberByUser());
+        vo.setMaxMoveCount(getNumberByUser());
 
-        System.out.println(format("[안내] 자동차 대수 : %d, 이동 횟수 : %d", getCarCount(), getMaxMoveCount()));
+        System.out.println(format("[안내] 자동차 대수 : %d, 이동 횟수 : %d", vo.getCarCount(), vo.getMaxMoveCount()));
     }
 
-    /**
-     * UI 전용.
-     */
-    @Deprecated
-    protected int getNumberByUser() {
+    private int getNumberByUser() {
         Scanner scanner = new Scanner(System.in);
         String temp = scanner.nextLine();
         while (isOutOfNumber(temp)) {
@@ -73,7 +57,7 @@ public class Race {
         return Integer.parseInt(temp);
     }
 
-    private boolean isOutOfNumber(String temp) {
+    public boolean isOutOfNumber(String temp) {
         return isBlank(temp) ||
                 !isNumeric(temp) ||
                 isOutOfBound(temp);
@@ -91,32 +75,17 @@ public class Race {
         return Integer.parseInt(temp) < MIN_COUNT || Integer.parseInt(temp) > MAX_COUNT;
     }
 
-    public void initRace() {
-        setCountByUser();
-        enrollRacingCars();
-    }
-
     public void racing() {
-        for (Car car : getCarList()) {
+        for (Car car : vo.getCars()) {
             raceACar(car);
         }
     }
 
     private void raceACar(Car car) {
-        for (int i = 0; i < maxMoveCount; i++) {
-            if (getRandom() >= MIN_FORWARD) {
-                car.move();
-            }
+        for (int i = 0; i < vo.getMaxMoveCount(); i++) {
+            if (getRandom() < MIN_FORWARD_NUMBER) continue;
+            car.move();
         }
-    }
-
-    void enrollRacingCars() {
-        if (this.carCount == 0) throw new RuntimeException("carCount가 0 입니다. initRace 메소드를 실행 후 진행하세요.");
-        List<Car> carList = new ArrayList<>();
-        for (int i = 0; i < getCarCount(); i++) {
-            carList.add(new Car(i));
-        }
-        setCarList(carList);
     }
 
     int getRandom() {
@@ -124,8 +93,8 @@ public class Race {
     }
 
     public void printResult() {
-        if (getCarCount() < MIN_COUNT && getMaxMoveCount() < MIN_COUNT || getCarList() == null || getCarList().isEmpty()) throw new RuntimeException("initRace 메소드를 실행 후 진행하세요.");
-        for (Car car : getCarList()) {
+        if (vo.getCarCount() < MIN_COUNT && vo.getMaxMoveCount() < MIN_COUNT || vo.getCars() == null || vo.getCars().isEmpty()) throw new RuntimeException("initRace 메소드를 실행 후 진행하세요.");
+        for (Car car : vo.getCars()) {
             printCarDistance(car);
         }
     }
