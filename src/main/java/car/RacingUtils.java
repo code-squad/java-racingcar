@@ -5,6 +5,8 @@ import java.util.stream.IntStream;
 
 public class RacingUtils {
     public static final String REGEX = ",";
+    public static final String SPACE = " ";
+    public static final String RESULT_UI = "&nbsp;&nbsp;&nbsp;&#128652;";
     private static final String GO = "-";
     private static final String UI_FORMAT = "%s : %s";
     private static final String WINNER_FORMAT = "%s가 최종 우승했습니다.";

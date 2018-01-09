@@ -8,7 +8,6 @@ import java.util.stream.Collectors;
 
 import static car.RacingUtils.REGEX;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -23,7 +22,8 @@ public class CarRacingTest {
 
     @Before
     public void init() {
-        carRacing = CarRacing.readyForRacing(TRY_COUNT);
+        carRacing = CarRacing.readyForRacing();
+        carRacing.setTryCount(3);
         carRacing.createCarsByName(new String[]{TEST_NAME_1, TEST_NAME_2, TEST_NAME_3});
     }
 
@@ -52,6 +52,6 @@ public class CarRacingTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void tryCount가_올바르지_않을때_예외가_발생하는가() {
-        CarRacing.readyForRacing(0);
+        carRacing.setTryCount(0);
     }
 }
