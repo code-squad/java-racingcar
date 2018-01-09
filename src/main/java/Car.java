@@ -1,33 +1,23 @@
-import java.util.Random;
-
 /**
  * Created by hoon on 2018. 1. 6..
  */
 public class Car {
-    private int position = 0;
 
-    public int getPosition() {
+    private final Integer LIMIT_NUMBER = 4;
+    private Integer position = 0;
+
+    public Integer move() {
+        if(shouldMove(Utils.getRandomNumber())) {
+            this.position++;
+        }
+        return this.position;
+    }
+
+    public Integer getPosition() {
         return position;
     }
 
-    public void move() {
-        if(shouldMove(getRandom())) {
-            this.position++;
-        }
-    }
-
-    public boolean shouldMove(int num) {
-        return num >= 4;
-    }
-
-    public int getRandom() {
-        return new Random().nextInt(9);
-    }
-
-    public void print() {
-        for(int i = 0; i < position; i++) {
-            System.out.print("-");
-        }
-        System.out.println();
+    public boolean shouldMove(Integer num) {
+        return num >= LIMIT_NUMBER;
     }
 }

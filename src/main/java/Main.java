@@ -4,8 +4,13 @@
 public class Main {
 
     public static void main(String args[]) {
-        Racing racing = new Racing(3, 10);
+
+        int carNum = InputView.readCarNum();
+        int raceNum = InputView.readRaceNum();
+
+        Racing racing = new Racing(carNum, raceNum);
         racing.doRace();
-        racing.printResult();
+
+        ResultView.printResult(racing.getCars());
     }
 }

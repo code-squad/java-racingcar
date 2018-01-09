@@ -1,21 +1,20 @@
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 /**
  * Created by hoon on 2018. 1. 6..
  */
 public class Racing {
 
-    private int moveNums;
+    private Integer repeatNum;
 
-    private static List<Car> cars = new ArrayList<>();
+    private List<Car> cars;
 
     public Racing() {}
 
-    public Racing(int carNums, int moveNums) {
-        this.moveNums = moveNums;
-        generateCars(carNums);
+    public Racing(Integer carNum, Integer repeatNum) {
+        this.repeatNum = repeatNum;
+        this.cars = generateCars(carNum);
     }
 
 
@@ -23,23 +22,23 @@ public class Racing {
         return cars;
     }
 
-    private void generateCars(int carNums) {
-        for(int i = 0; i < carNums; i++) {
+    private List<Car> generateCars(Integer carNum) {
+        List<Car> cars = new ArrayList<>();
+        for(int i = 0; i < carNum; i++) {
             cars.add(new Car());
         }
+        return cars;
     }
 
     public void doRace() {
-        for(int i = 0; i < this.moveNums; i++) {
-            for(Car car : cars) {
-                car.move();
-            }
+        for(int i = 0; i < repeatNum; i++) {
+            phase();
         }
     }
 
-    public void printResult() {
+    private void phase() {
         for(Car car : cars) {
-            car.print();
+            car.move();
         }
     }
 
