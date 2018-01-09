@@ -14,7 +14,7 @@ public class CarTest {
 
     @Before
     public void init() {
-        car = new Car();
+        car = new Car("TestCar");
     }
 
     @Test
@@ -32,7 +32,7 @@ public class CarTest {
             car.tryMove(RandomUtil.nextInt(RANDOM_NUM_BOUND));
 
         int movedDistance = car.getCurrentPosition();
-        StringBuilder sb = new StringBuilder();
+        StringBuilder sb = new StringBuilder("TestCar");
         for(int i = 0 ; i < movedDistance ; ++i)
             sb.append(MOVE_MARK);
 
