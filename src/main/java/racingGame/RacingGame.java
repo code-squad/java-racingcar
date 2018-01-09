@@ -6,15 +6,12 @@ import java.util.List;
 public class RacingGame {
 
     private int time; // 시도회수
-
     private List<Car> carList = new ArrayList<>(); // 차 list
 
-    public RacingGame(int time, int carNum) {
+    public RacingGame(int time, String carName) {
         this.time = time;
 
-        for(int i =0; i<carNum; i++) {
-            carList.add(new Car());
-        }
+        this.carList = GameHelperUtil.getCarList(carName);
     }
 
     public void runGame() {
@@ -30,11 +27,6 @@ public class RacingGame {
         }
     }
 
-    public void printCar() {
-        for (Car car : carList) {
-            System.out.println(car.resultString());
-        }
-    }
 
     public List<Car> getCarList() {
         return carList;
