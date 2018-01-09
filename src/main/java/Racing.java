@@ -30,16 +30,18 @@ public class Racing {
         return cars;
     }
 
-    public void doRace() {
+    public List<Car> doRace() {
         for(int i = 0; i < repeatNum; i++) {
             phase();
         }
+        return cars;
     }
 
-    private void phase() {
+    private List<Car> phase() {
         for(Car car : cars) {
-            car.move();
+            car.move(Utils.getRandomNumber());
         }
+        return cars;
     }
 
 }

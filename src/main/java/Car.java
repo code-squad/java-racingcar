@@ -3,21 +3,21 @@
  */
 public class Car {
 
-    private final Integer LIMIT_NUMBER = 4;
+    private static final Integer LIMIT_NUMBER = 4;
     private Integer position = 0;
 
-    public Integer move() {
-        if(shouldMove(Utils.getRandomNumber())) {
+    public Integer move(Integer randomNumber) {
+        if(shouldMove(randomNumber)) {
             this.position++;
         }
         return this.position;
     }
 
-    public Integer getPosition() {
+    public int getPosition() {
         return position;
     }
 
-    public boolean shouldMove(Integer num) {
+    private boolean shouldMove(Integer num) {
         return num >= LIMIT_NUMBER;
     }
 }

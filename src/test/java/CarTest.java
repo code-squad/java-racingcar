@@ -1,7 +1,7 @@
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 /**
  * Created by hoon on 2018. 1. 6..
@@ -19,8 +19,10 @@ public class CarTest {
 
     @Test
     public void 랜덤숫자가_4이상일때만_움직인다() {
-        assertFalse(car.shouldMove(3));
-        assertTrue(car.shouldMove(4));
+        car.move(3);
+        assertEquals(0, car.getPosition());
+        car.move(4);
+        assertEquals(1, car.getPosition());
     }
 
     @Test
