@@ -3,19 +3,27 @@ package racing;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+
+import static org.junit.Assert.*;
 
 public class RaceTest {
 
+    private final int CAR_COUNT = 3;
+    private final int TRY_COUNT = 5;
+    private final int MIN_FORWARD_NUMBER = 4;
+    private final int RANDOM_BOUND = 10;
+    private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private RaceGame race;
-    private final static int CAR_COUNT = 3;
-    private final static int TRY_COUNT = 5;
+    String expectedString;
 
     @Before
     public void setup() {
         race = new RaceGame();
         race.initRace(CAR_COUNT, TRY_COUNT);
+        System.setOut(new PrintStream(outContent));
+        expectedString = "";
     }
 
     @Test
@@ -37,6 +45,30 @@ public class RaceTest {
         assertTrue(InputView.isOutOfNumber("0"));
         assertTrue(InputView.isOutOfNumber("101"));
         assertFalse(InputView.isOutOfNumber("100"));
+    }
+
+    @Test
+    public void 자동차_경주_로직_빈칸_출력() {
+        RacingCar racingCar = new RacingCar();
+        for (int i = 0; i < MIN_FORWARD_NUMBER; i++) {
+            racingCar.move(i);
+        }
+        expectedString+="\n";
+        racingCar.printCarDistance();
+        assertEquals(expectedString, outContent.toString());
+    }
+
+    @Test
+    public void 자동차_경주_로직_거리_출력() {
+        RacingCar racingCar = new RacingCar();
+        String bar = "-";
+        for (int i = MIN_FORWARD_NUMBER; i < RANDOM_BOUND; i++) {
+            racingCar.move(i);
+            expectedString+=bar;
+        }
+        expectedString+="\n";
+        racingCar.printCarDistance();
+        assertEquals(expectedString, outContent.toString());
     }
 
     @Test
