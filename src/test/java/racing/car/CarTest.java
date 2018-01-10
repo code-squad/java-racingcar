@@ -10,15 +10,15 @@ import static org.junit.Assert.*;
 public class CarTest {
 
     @Test
-    public void movableCar() {
-        Car movableCar = new Car(() -> true);
+    public void moveCar() {
+        Car movableCar = CarFactory.createAlwaysMoveCar("move");
         movableCar.move();
         assertEquals(1, movableCar.getPosition());
     }
 
     @Test
-    public void notMovableCar() {
-        Car notMovableCar = new Car(() -> false);
+    public void notMoveCar() {
+        Car notMovableCar = CarFactory.createNeverMoveCar("notMove");
         notMovableCar.move();
         assertEquals(0, notMovableCar.getPosition());
     }

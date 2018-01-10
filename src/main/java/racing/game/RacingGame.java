@@ -16,14 +16,15 @@ public class RacingGame {
         //사용자에게 게임에 필요한 값 입력받기
         InputView inputView = new InputView();
         inputView.inputFromUser();
-        int numberOfCar = inputView.getNumberOfCar();
+//        int numberOfCar = inputView.getNumberOfCar();
+        String[] carNames = inputView.getCarNames();
         int numOfMove = inputView.getNumberOfMove();
 
         //입력받은 수만큼 자동차 생성
-        CarList carList = new CarList(numberOfCar);
+        CarList carList = new CarList(carNames);
         //모든 자동차에게 이동 명령
         playRacing(carList, numOfMove);
-        //자동차의 위치 출력
+        //결과 출력
         ResultView resultView = new ResultView(carList);
         resultView.printResult();
     }

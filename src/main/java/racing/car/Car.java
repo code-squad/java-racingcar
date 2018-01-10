@@ -5,6 +5,7 @@ package racing.car;
  */
 public class Car {
 
+    public static final String DEFAULT_CAR_NAME = "Car";
     private static int ID = 1;
 
     private final String name;
@@ -13,12 +14,16 @@ public class Car {
     private int position;
 
     public Car() {
-        this(new RandomMover());
+        this(DEFAULT_CAR_NAME + ID++, new RandomMover());
     }
 
-    public Car(Movable movable) {
+    public Car(String name) {
+        this(name, new RandomMover());
+    }
+
+    public Car(String name, Movable movable) {
+        this.name = name.trim();
         this.movable = movable;
-        this.name = "Car" + ID++;
     }
 
     public void move() {
