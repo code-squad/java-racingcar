@@ -19,5 +19,4 @@ public class CarTest {
         car.randomMove(9);
         assertEquals(2, car.getMove());
     }
-
 }

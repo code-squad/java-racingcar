@@ -13,12 +13,15 @@ public class CarRacing {
     private List<Car> cars;
     private int tryCount;
 
-    private CarRacing() {
+    private CarRacing(String names[], int tryCount) {
+        checkArguments(names, tryCount);
         this.cars = new ArrayList<>();
+        createCarsByName(names);
+        this.tryCount = tryCount;
     }
 
-    public static CarRacing readyForRacing() {
-        return new CarRacing();
+    public static CarRacing readyForRacing(String names[], int tryCount) {
+        return new CarRacing(names, tryCount);
     }
 
     public List<Car> startRacing() {
@@ -47,13 +50,8 @@ public class CarRacing {
         return cars.stream().filter(car -> car.getMove() == max).map(Car::getName).collect(Collectors.joining(REGEX));
     }
 
-    public CarRacing setTryCount(int tryCount) {
-        checkTryCount(tryCount);
-        this.tryCount = tryCount;
-        return this;
-    }
-
-    private void checkTryCount(int tryCount) {
+    private void checkArguments(String names[], int tryCount) {
+        if(names == null) { throw new IllegalArgumentException(); }
         if(tryCount <= 0) { throw new IllegalArgumentException(); }
     }
 }
