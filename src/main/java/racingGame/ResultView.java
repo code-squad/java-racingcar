@@ -5,7 +5,7 @@ import java.util.List;
 public class ResultView {
 
     public void printResult(RacingGame racingGame) {
-        List<Car> carList = racingGame.getCarList();
+        List<Car> carList = racingGame.getCars();
         for (Car car : carList) {
             System.out.println(car.resultString());
         }

@@ -11,7 +11,7 @@ public class RacingGame {
     public RacingGame(int time, String carName) {
         this.time = time;
 
-        this.carList = GameHelperUtil.getCarList(carName);
+        this.carList = GameHelperUtil.getCarNames(carName);
     }
 
     public void runGame() {
@@ -28,7 +28,7 @@ public class RacingGame {
     }
 
 
-    public List<Car> getCarList() {
+    public List<Car> getCars() {
         return carList;
     }
 }

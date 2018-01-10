@@ -13,7 +13,7 @@ public class GameHelperUtil {
     public static final String RESULT_APPEND = " : ";
 
 
-    public static List<Car> getCarList(String input) {
+    public static List<Car> getCarNames(String input) {
         List<String> carNameList = Arrays.asList(input.split(NAME_SPLITER));
         List<Car> carList = new ArrayList<>();
 
@@ -30,7 +30,7 @@ public class GameHelperUtil {
     }
 
     public static String getWinnerToString(List<Car> carList, int max) {
-        return carList.stream().filter(car -> max == car.getPosition())
+        return carList.stream().filter(car -> car.isMaxPosition(max))
                 .map(Car::getName)
                 .collect(Collectors.joining(", "));
     }

@@ -4,10 +4,6 @@ public class Car implements Comparable<Car>{
     private int position;
     private String name;
 
-    public Car() {
-        this.position = 0;
-    }
-
     public Car(String name) {
         this.name = name;
         this.position = 0;
@@ -16,10 +12,6 @@ public class Car implements Comparable<Car>{
     public Car(int position, String name) {
         this.position = position;
         this.name = name;
-    }
-
-    public Car(int position) {
-        this.position = 1;
     }
 
     public void rePosition(int random) {
@@ -46,6 +38,10 @@ public class Car implements Comparable<Car>{
             result.append(GameHelperUtil.MARK);
         }
         return String.valueOf(result);
+    }
+
+    public boolean isMaxPosition(int max) {
+        return this.position == max;
     }
 
     @Override
