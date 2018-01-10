@@ -22,9 +22,7 @@ public class CarRacingTest {
 
     @Before
     public void init() {
-        carRacing = CarRacing.readyForRacing();
-        carRacing.setTryCount(3);
-        carRacing.createCarsByName(new String[]{TEST_NAME_1, TEST_NAME_2, TEST_NAME_3});
+        carRacing = CarRacing.readyForRacing(new String[]{TEST_NAME_1, TEST_NAME_2, TEST_NAME_3}, 3);
     }
 
     @Test
@@ -52,6 +50,11 @@ public class CarRacingTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void tryCount가_올바르지_않을때_예외가_발생하는가() {
-        carRacing.setTryCount(0);
+        carRacing = CarRacing.readyForRacing(new String[]{TEST_NAME_1, TEST_NAME_2, TEST_NAME_3}, 0);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void names가_올바르지_않을때_예외가_발생하는가() {
+        carRacing = CarRacing.readyForRacing(null, 3);
     }
 }

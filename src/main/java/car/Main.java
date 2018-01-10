@@ -6,11 +6,7 @@ public class Main {
         String names[] = RacingInput.getNames();
         int tryCount = RacingInput.getTryCount();
 
-        CarRacing carRacing = CarRacing.readyForRacing();
-        carRacing.createCarsByName(names);
-        carRacing.setTryCount(tryCount);
-
-        RacingView racingView = new RacingView(carRacing);
-        racingView.printResult();
+        CarRacing carRacing = CarRacing.readyForRacing(names, tryCount);
+        RacingView.createView(carRacing).printResult();
     }
 }

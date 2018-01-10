@@ -1,6 +1,8 @@
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import car.Car;
 import car.CarRacing;
 import spark.ModelAndView;
 import spark.template.handlebars.HandlebarsTemplateEngine;
@@ -14,9 +16,7 @@ import static spark.Spark.post;
  * Created by youngjae on 2018. 1. 6..
  */
 public class WebMain {
-
     private static final String NAMES = "names";
-    private static final String CAR_RACING = "carRacing";
     private static final String CARS = "cars";
 
     public static void main(String[] args) {
@@ -26,10 +26,7 @@ public class WebMain {
 
         post("/name", (req, res) -> {
             String names[] = req.queryParams(NAMES).split(SPACE);
-
-            CarRacing carRacing = CarRacing.readyForRacing();
-            carRacing.createCarsByName(names);
-            req.session().attribute(CAR_RACING, carRacing);
+            req.session().attribute(NAMES, names);
 
             Map<String, Object> model = new HashMap<>();
             model.put(NAMES, names);
@@ -39,11 +36,12 @@ public class WebMain {
         post("/result", (req, res) -> {
             int tryCount = Integer.parseInt(req.queryParams("turn"));
 
-            CarRacing carRacing = req.session().attribute(CAR_RACING);
-            carRacing.setTryCount(tryCount);
+            String names[] = req.session().attribute(NAMES);
+            CarRacing carRacing = CarRacing.readyForRacing(names, tryCount);
+            List<Car> cars = carRacing.startRacing();
 
             Map<String, Object> model = new HashMap<>();
-            model.put(CARS, carRacing.startRacing());
+            model.put(CARS, cars);
             return render(model, "/result.html");
         });
     }
