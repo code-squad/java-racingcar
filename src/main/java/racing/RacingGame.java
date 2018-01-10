@@ -11,7 +11,7 @@ public abstract class RacingGame {
     private Car[] cars;
     private int times;
 
-    public RacingGame(String[] names, int times) {
+    protected RacingGame(String[] names, int times) {
         checkArguments(names, times);
         this.cars = createCars(names);
         this.times = times;
