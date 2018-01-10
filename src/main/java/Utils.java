@@ -11,11 +11,19 @@ public class Utils {
         return new Random().nextInt(RANDOM_NUMBER_BOUNDARY);
     }
 
-    public static String makeResult(Integer position) {
+    public static String makeResult(Car car) {
         StringBuilder builder = new StringBuilder();
-        for(int i = 0; i < position; i++) {
+        builder.append(car.getName()).append(" : ");
+        for(int i = 0; i < car.getPosition(); i++) {
             builder.append("-");
         }
         return builder.toString();
+    }
+
+    public static String[] splitWithComma(String target) {
+        if (target == null || target.isEmpty()) {
+            throw new IllegalArgumentException();
+        }
+        return target.split(",");
     }
 }

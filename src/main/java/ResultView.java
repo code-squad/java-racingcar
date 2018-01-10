@@ -9,6 +9,6 @@ public class ResultView {
     }
 
     private static void print(Car car) {
-        System.out.println(Utils.makeResult(car.getPosition()));
+        System.out.println(Utils.makeResult(car));
     }
 }
