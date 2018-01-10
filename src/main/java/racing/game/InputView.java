@@ -9,13 +9,12 @@ public class InputView {
 
     private String carInputText;
     private String moveInputText;
-
-    private int numberOfCar;
+    private String[] carNames;
     private int numberOfMove;
     private Scanner scanner;
 
     public InputView() {
-        this("몇대의 자동차로 몇번의 이동을 할지 입력자동차 대수는 몇 대 인가요?", "시도할 회수는 몇 회 인가요?");
+        this("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).", "시도할 회수는 몇 회 인가요?");
     }
 
     public InputView(String carInputText, String moveInputText) {
@@ -32,13 +31,13 @@ public class InputView {
      * 5
      */
     public void inputFromUser() {
-        inputNumberOfCar();
+        inputCarNames();
         inputNumberOfMove();
     }
 
-    private void inputNumberOfCar() {
+    private void inputCarNames() {
         System.out.println(carInputText);
-        numberOfCar = scanner.nextInt();
+        carNames = scanner.nextLine().split(",");
     }
 
     private void inputNumberOfMove() {
@@ -46,8 +45,8 @@ public class InputView {
         numberOfMove = scanner.nextInt();
     }
 
-    public int getNumberOfCar() {
-        return numberOfCar;
+    public String[] getCarNames() {
+        return carNames;
     }
 
     public int getNumberOfMove() {
