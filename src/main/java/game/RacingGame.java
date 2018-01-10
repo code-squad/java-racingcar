@@ -9,11 +9,12 @@ import java.util.stream.IntStream;
 
 public class RacingGame {
     private List<Car> cars;
+    private int tryCount;
 
     public RacingGame(String carsName, int tryCount) {
         cars = new ArrayList<>();
+        this.tryCount = tryCount;
         makeCars(carsName);
-        moveTry(tryCount);
     }
 
     private void makeCars(String carsName) {
@@ -23,7 +24,7 @@ public class RacingGame {
         }
     }
 
-    private void moveTry(int tryCount) {
+    public void moveTry() {
         IntStream.range(0, tryCount).forEach(i -> moveCars());
     }
 
@@ -34,22 +35,30 @@ public class RacingGame {
     }
 
     public void resultPrint() {
+        StringBuilder sb = new StringBuilder();
         for (Car car : cars) {
-            System.out.println(car.getName() + " : " + printLine(car));
+            sb.append(car.getName());
+            sb.append(" : ");
+            sb.append(printLine(car));
+            sb.append("\n");
         }
-        System.out.println("\n" + winnerPrint());
+        sb.append("\n");
+        sb.append(findWinner());
+        sb.append("가 최종 우승했습니다.");
+
+        System.out.println(sb.toString());
     }
 
-    private String winnerPrint() {
+    public String findWinner() {
         StringBuilder sb = new StringBuilder();
         for (Car car : cars) {
             winnerCheck(car, sb);
         }
         sb.delete(sb.length() - 2, sb.length());
-        return sb.toString() + "가 최종 우승했습니다.";
+        return sb.toString();
     }
 
-    private int findTopPosition() {
+    public int findTopPosition() {
         int max = 0;
         for (Car car : cars) {
             max = maxSwap(max, car.getPosition());
@@ -71,9 +80,13 @@ public class RacingGame {
         }
     }
 
-    public String printLine(Car car) {
+    private String printLine(Car car) {
         StringBuilder sb = new StringBuilder();
         IntStream.range(0, car.getPosition()).forEach(i -> sb.append("-"));
         return sb.toString();
+    }
+
+    public List<Car> getCars() {
+        return cars;
     }
 }

@@ -11,6 +11,7 @@ public class Main {
         int tryCount = sc.nextInt();
 
         RacingGame game = new RacingGame(carsName, tryCount);
+        game.moveTry();
         game.resultPrint();
     }
 }
