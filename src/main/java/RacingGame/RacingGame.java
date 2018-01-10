@@ -26,7 +26,7 @@ public class RacingGame {
 	 */
 	public List<Car> move(int time) {
 		for(Car car : cars){
-			car.movePosition(countOfMove(time, car));
+			countOfMove(time, car);
 		}
 		return cars;
 	}
@@ -37,12 +37,10 @@ public class RacingGame {
 	 * @param car 자동차
 	 * @return 자동차의 이동 거리
 	 */
-	public int countOfMove(int time, Car car){
-		int count = 0;
+	public void countOfMove(int time, Car car){
 		for(int i=0;i<time;i++){
-			count += car.moveYn(getRandom());
+			car.movePosition(getRandom());
 		}
-		return count;
 	}
 
 	/**
