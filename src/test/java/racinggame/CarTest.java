@@ -11,7 +11,7 @@ public class CarTest {
 
     @Before
     public void setUp() throws Exception {
-        car = new Car();
+        car = new Car("Sooyoung");
     }
 
     @Test
@@ -22,12 +22,6 @@ public class CarTest {
     @Test
     public void move_forward() {
         assertEquals(1, car.move(4));
-    }
-
-    @Test
-    public void getResult(){
-        move_two_step();
-        assertEquals("--", car.getResult(car.getPosition()));
     }
 
     @Test
@@ -42,7 +36,15 @@ public class CarTest {
         car.move(2);
     }
 
-    private void java8 (){
+    @Test
+    public void matchPosition_false(){
+        move_two_step();
+        assertEquals(false, car.matchPosition(3));
+    }
 
+    @Test
+    public void matchPosition_true(){
+        move_two_step();
+        assertEquals(true, car.matchPosition(1));
     }
 }
