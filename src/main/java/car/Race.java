@@ -10,25 +10,24 @@ public class Race {
 
     private List<Car> cars;
     private int tryNumber;
-    private int isMovablesRange;
-    private int isMovablesStandard;
+    private final int MOVABLES_RANGE = 9;
+    private final int MOVABLES_STANDARD_NUMBER = 4;
 
-    public Race(List<String> carNames, int tryNumber, int isMovablesRange, int isMovablesStandard) {
+    public Race(List<String> carNames, int tryNumber) {
         this.cars = createCars(carNames);
         this.tryNumber = tryNumber;
-        this.isMovablesRange = isMovablesRange;
-        this.isMovablesStandard = isMovablesStandard;
     }
 
     private void moveCars(List<Car> cars){
-        cars.forEach(car -> car.move(CarMoveCalculator.calculatePosition(isMovablesRange, isMovablesStandard)));
+        cars.forEach(car -> car.move(MOVABLES_RANGE, MOVABLES_STANDARD_NUMBER));
     }
 
     public void startRacing() {
         IntStream.range(0, this.tryNumber).forEach(i -> moveCars(cars));
     }
 
-    public List<Car> calCulateWinners(List<Car> cars, int maxPosition){
+    public List<Car> calCulateWinners(List<Car> cars){
+        int maxPosition = getMaxPositionCar(cars).getPosition();
         return cars.stream().filter(car->car.getPosition() == maxPosition).collect(Collectors.toList());
     }
 
@@ -38,26 +37,8 @@ public class Race {
 
     private List<Car> createCars(List<String> carNames) {
         List<Car> cars = new ArrayList<>();
-        carNames.forEach(carName->cars.add(new Car(carName,0)));
+        carNames.forEach(carName -> cars.add(new Car(carName,0)));
         return cars;
-    }
-
-    public void printRacing(){
-        printCarsMove();
-        printWinner();
-    }
-
-    private void printCarsMove() {
-        cars.forEach(car -> System.out.println(car.toString()));
-    }
-
-    private void printWinner() {
-        System.out.println("");
-        for(Car car: calCulateWinners(this.cars, getMaxPositionCar(cars).getPosition())){
-            System.out.print(car.getName() + " ");
-        }
-        System.out.print("가 최종 우승하셨습니다");
-        System.out.println("");
     }
 
     public List<Car> getCars() {
