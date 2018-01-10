@@ -13,7 +13,7 @@ public class CarTest {
 
     @Before
     public void setup() {
-        racing = new Racing(3, 5);
+        racing = new Racing("pobi,crong,honux", 5);
         car = new Car();
     }
 
@@ -31,6 +31,12 @@ public class CarTest {
             int random = Utils.getRandomNumber();
             assertTrue(random >= 0 && random < 10);
         }
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void split_with_comma_테스트() {
+        Utils.splitWithComma("");
+        Utils.splitWithComma(null);
     }
 
 }
