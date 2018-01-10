@@ -2,14 +2,20 @@ package game.racingGame;
 
 import org.junit.Test;
 
-public class RacingTest {
+import static org.junit.Assert.assertEquals;
 
-    RacingGame racingGame;
+public class RacingTest {
+    private Integer TRIAL_TIME = 5;
 
     @Test
     public void newGame(){
-        racingGame = new RacingGame(3, 5);
+        String[] nameOfCars = {"car1", "car2", "car3"};
+
+        RacingGame racingGame = new RacingGame(nameOfCars, TRIAL_TIME);
         racingGame.move();
-        View.getResult(racingGame.getCars());
+        View.getResult(racingGame);
+
+        assertEquals(TRIAL_TIME, racingGame.getTrialTime());
+        assertEquals(nameOfCars.length, racingGame.getCars().size());
     }
 }
