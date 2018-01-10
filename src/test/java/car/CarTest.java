@@ -5,6 +5,7 @@ import org.junit.Test;
 import util.RandomUtil;
 
 import static junit.framework.TestCase.assertEquals;
+import static junit.framework.TestCase.assertTrue;
 import static util.RandomUtilTest.BOUND_NUM;
 import static util.Static.MOVE_MARK;
 import static util.Static.RANDOM_NUM_BOUND;
@@ -14,7 +15,7 @@ public class CarTest {
 
     @Before
     public void init() {
-        car = new Car();
+        car = new Car("TestCar");
     }
 
     @Test
@@ -32,10 +33,16 @@ public class CarTest {
             car.tryMove(RandomUtil.nextInt(RANDOM_NUM_BOUND));
 
         int movedDistance = car.getCurrentPosition();
-        StringBuilder sb = new StringBuilder();
+        StringBuilder sb = new StringBuilder("TestCar : ");
         for(int i = 0 ; i < movedDistance ; ++i)
             sb.append(MOVE_MARK);
 
         assertEquals(sb.toString(), car.toString());
+    }
+
+    @Test
+    public void isMaxPositionTest() {
+        car.setCurrentPosition(10);
+        assertTrue(car.isMaxPosition(10));
     }
 }

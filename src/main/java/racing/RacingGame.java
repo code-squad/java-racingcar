@@ -10,33 +10,31 @@ import static util.Static.RANDOM_NUM_BOUND;
 
 public class RacingGame {
     private int tryCount;
-    private List<Car> carList;
+    private List<Car> cars;
 
-    public RacingGame(int numberOfCars, int tryCount) {
-        if(numberOfCars < 0 || tryCount < 0)
+    public RacingGame(List<String> nameList, int tryCount) {
+        if(nameList.isEmpty() || tryCount < 0)
             throw new IllegalArgumentException("Invalid inputs");
 
         this.tryCount = tryCount;
-        carList = new ArrayList<>();
+        cars = new ArrayList<>();
 
-        for(int i = 0 ; i < numberOfCars ; ++i)
-            carList.add(new Car());
+        for(String name : nameList)
+            cars.add(new Car(name));
     }
 
     public void playRacing() {
         for(int i = 0 ; i < tryCount ; ++i)
-            tryToMoveCarList();
+            tryToMoveCars();
     }
 
-    private void tryToMoveCarList() {
-        for(Car car : carList)
+    private void tryToMoveCars() {
+        for(Car car : cars)
             car.tryMove(RandomUtil.nextInt(RANDOM_NUM_BOUND));
 
     }
 
-    public void showState() {
-        System.out.println("실행 결과");
-        for(Car car : carList)
-            System.out.println(car);
+    public List<Car> getResultState() {
+        return cars;
     }
 }
