@@ -21,6 +21,13 @@ public class Result {
     return position;
   }
 
+  public String getStatus() {
+    StringBuilder sb = new StringBuilder();
+    sb.append(name).append(" : ");
+    IntStream.range(0, position).forEach(i -> sb.append("&nbsp;"));
+    return sb.toString();
+  }
+
   public String drawResultLine() {
     return name + " : " + printBar(position) + "\n";
   }

@@ -17,7 +17,9 @@
 	crossorigin="anonymous">
 
 <!-- Latest compiled and minified JavaScript -->
-<script
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+
+  <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
 	integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
 	crossorigin="anonymous"></script>
@@ -59,19 +61,15 @@ body {
 
         <div class="form-show-div" class="form-group">
           <table>
+            {{#names}}
             <tr>
-              <td>박재성</td>
+              <td>{{this}}</td>
             </tr>
-            <tr>
-              <td>윤지수</td>
-            </tr>
-            <tr>
-              <td>정호영</td>
-            </tr>
+            {{/names}}
           </table>
 
         </div>
-        <form class="form-lotto" method="get" action="/result">
+        <form class="form-lotto" method="post" action="/result">
           Count 수 : <input type="number" name="turn"> 
           <div class="submit-button">
             <button class="btn btn-lg btn-primary btn-block" type="submit">게임

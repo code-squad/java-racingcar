@@ -9,7 +9,15 @@ import java.util.List;
 public class RacingGameCarFactory {
 
   public static List<Car> createCars(String input) {
-    String[] names = input.split(",");
+    return createCars(input, ",");
+  }
+
+  public static List<Car> createCars(String input, String separator) {
+    String[] names = input.split(separator);
+    return createCars(names);
+  }
+
+  public static List<Car> createCars(String[] names) {
     return Arrays.stream(names)
         .map(Car::new)
         .collect(toList());
