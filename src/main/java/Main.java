@@ -1,27 +1,49 @@
-import racing.GameResult;
+import car.Car;
 import racing.RacingGame;
-import view.ResultView;
+import spark.ModelAndView;
+import spark.template.handlebars.HandlebarsTemplateEngine;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
-import java.util.Scanner;
+import java.util.Map;
+
+import static spark.Spark.*;
 
 public class Main {
-    private static Scanner sc = new Scanner(System.in);
-
     public static void main(String[] args) {
-        int tryCount;
-        System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
-        List<String> nameList = Arrays.asList(sc.nextLine().split(","));
-        System.out.println("시도할 회수는 몇 번 인가요?");
-        tryCount = sc.nextInt();
+        port(8080);
 
-        RacingGame racingGame = new RacingGame(nameList, tryCount);
-        racingGame.playRacing();
+        get("/", (req, res) -> {
+            return render(new HashMap<>(), "/index.html");
+        });
 
-        GameResult gameResult = new GameResult(racingGame.getResultState());
-        ResultView resultView = new ResultView(gameResult);
-        resultView.showResult();
-        resultView.showWinner();
+        post("/name", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            String nameInput = req.queryParams("names");
+            List<Car> cars = Car.createCars(Arrays.asList(nameInput.split(" ")));
+
+            req.session(true);
+            req.session().attribute("cars", cars);
+
+            model.put("cars", cars);
+            return render(model, "/game.html");
+        });
+
+        get("/result", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            int tryCount = Integer.parseInt(req.queryParams("turn"));
+            List<Car> cars = req.session().attribute("cars");
+
+            RacingGame racingGame = new RacingGame(cars, tryCount);
+            racingGame.playRacing();
+
+            model.put("cars", racingGame.getResultState());
+            return render(model, "/result.html");
+        });
+    }
+
+    private static String render(Map<String, Object> model, String templatePath) {
+        return new HandlebarsTemplateEngine().render(new ModelAndView(model, templatePath));
     }
 }
