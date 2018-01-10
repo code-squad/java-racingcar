@@ -5,7 +5,12 @@ package racing;
  */
 public class Car {
 
+    private String name;
     private int distance;
+
+    public Car(String name) {
+        this.name = name;
+    }
 
     public boolean move(int randomValue) {
         if(randomValue >= 4) {
@@ -15,6 +20,9 @@ public class Car {
         return false;
     }
 
+    public String getName() {
+        return name;
+    }
     public int getDistance() {
         return distance;
     }
