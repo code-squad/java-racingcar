@@ -1,9 +1,9 @@
 package racinggame.domain;
 
+import java.util.Objects;
+
 import racinggame.dto.CarDto;
 import racinggame.utils.StringUtils;
-
-import java.util.Objects;
 
 public class Car {
     private static final int FORWARD_NUM = 4;

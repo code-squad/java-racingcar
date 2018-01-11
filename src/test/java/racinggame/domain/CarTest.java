@@ -1,10 +1,11 @@
 package racinggame.domain;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import org.junit.Before;
 import org.junit.Test;
-import racinggame.dto.CarDto;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import racinggame.dto.CarDto;
 
 public class CarTest {
     private Car car;

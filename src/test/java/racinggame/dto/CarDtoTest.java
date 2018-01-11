@@ -1,9 +1,8 @@
 package racinggame.dto;
 
-import org.junit.Test;
-import racinggame.dto.CarDto;
-
 import static org.assertj.core.api.Assertions.assertThat;
+
+import org.junit.Test;
 
 public class CarDtoTest {
     @Test

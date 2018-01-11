@@ -1,10 +1,11 @@
 package racinggame.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import racinggame.dto.RacingResult;
 import racinggame.utils.RandomValueGenerator;
 import racinggame.utils.StringUtils;
-
-import java.util.*;
 
 public class RacingGame {
     private static final int MAX_BOUND = 10;
