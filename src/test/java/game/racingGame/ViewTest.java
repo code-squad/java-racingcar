@@ -8,7 +8,9 @@ import org.mockito.Mock;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.Arrays;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
@@ -25,6 +27,9 @@ public class ViewTest {
 
     @Before
     public void setUp(){
+        Map<String, Integer> expectresult = new LinkedHashMap();
+        expectresult.put("car1", 1);
+        expectresult.put("car2", 0);
 
         cars = Arrays.asList(
             new Car("car1", 1), new Car("car2", 0)
@@ -33,8 +38,9 @@ public class ViewTest {
         racingGame = mock(RacingGame.class);
 
         when(racingGame.getCars()).thenReturn(cars);
-        when(racingGame.getWinners()).thenReturn(cars);
         when(racingGame.getTrialTime()).thenReturn(5);
+        when(racingGame.getResult()).thenReturn(expectresult);
+        when(racingGame.getWinnersName()).thenReturn(Arrays.asList("car1"));
 
         System.setOut(new PrintStream(outputStream));
     }
@@ -47,6 +53,6 @@ public class ViewTest {
     @Test
     public void printResult(){
         View.printResult(racingGame);
-        assertEquals("car1 -\ncar2 \n", outputStream.toString());
+        assertEquals("car1 -\ncar2 \ncar1 ", outputStream.toString());
     }
 }
