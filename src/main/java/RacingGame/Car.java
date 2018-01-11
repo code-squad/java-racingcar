@@ -3,9 +3,18 @@ package RacingGame;
 public class Car {
 
     private int carPosition;
+    private String carName;
 
     public int getCarPosition(){
-        return carPosition;
+        return this.carPosition;
+    }
+
+    public String getCarName(){
+        return this.carName;
+    }
+
+    public void setCarName(String carName){
+        this.carName = carName;
     }
 
     /**
