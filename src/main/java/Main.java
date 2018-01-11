@@ -1,21 +1,42 @@
-import In.Input;
+import car.Car;
 import car.Race;
-import print.Print;
+import spark.ModelAndView;
+import spark.template.handlebars.HandlebarsTemplateEngine;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
+
+import static spark.Spark.*;
 
 public class Main {
+    private static HandlebarsTemplateEngine handlebarsTemplateEngine = new HandlebarsTemplateEngine();
+
     public static void main(String[] args) {
+        List<Car> cars = new ArrayList<>();
 
-        List<String> carNames = Arrays.asList(Input.inputCars().split(","));
-        Race race = new Race(carNames, Input.inputTryNumber());
-        Print print = new Print();
+        port(8080);
 
-        race.startRacing();
+        get("/",(req,res) -> render(new HashMap<>(), "/index.html"));
 
-        print.printCarsMove(race.getCars());
-        print.printWinner(race.calCulateWinners(race.getCars()));
+        post("/name",(req,res) ->  {
+            Map<String, Object> model = new HashMap<>();
 
+            Arrays.asList(req.queryParams("names").split(" ")).forEach(carName -> cars.add(new Car(carName,0)));
+
+            model.put("cars", cars);
+            return render(model, "/game.html");
+        });
+
+        get("/result",(req,res) ->  {
+            Map<String, Object> model = new HashMap<>();
+
+            new Race(cars, Integer.parseInt(req.queryParams("turn"))).startRacing();
+
+            model.put("cars", cars);
+            return render(model, "/result.html");
+        });
+    }
+
+    private static String render(Map<String, Object> model, String templatePath) {
+        return handlebarsTemplateEngine.render(new ModelAndView(model, templatePath));
     }
 }
