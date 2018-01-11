@@ -13,8 +13,8 @@ public class RacingGameTest {
     private List<Car> cars;
 
     @Before
-    public void setup(){
-        rg = new RacingGame("car1,car2", 1);
+    public void setup() {
+        rg = new RacingGame("car1 car2");
         cars = rg.getCars();
         cars.get(0).move(5);
     }
@@ -28,9 +28,15 @@ public class RacingGameTest {
     }
 
     @Test
-    public void findTopPosition(){
+    public void findTopPosition() {
         assertEquals(1, rg.findTopPosition());
         cars.get(0).move(5);
         assertEquals(2, rg.findTopPosition());
+    }
+
+    @Test
+    public void getCarsName() {
+        assertEquals("car1", rg.getCarsName().get(0));
+        assertEquals("car2", rg.getCarsName().get(1));
     }
 }
