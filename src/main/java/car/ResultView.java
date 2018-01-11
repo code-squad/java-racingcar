@@ -1,7 +1,12 @@
 package car;
 import java.util.ArrayList;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class ResultView {
+	
+	private static final Logger log = LoggerFactory.getLogger(ResultView.class);
 	//각각의 차들의 현재 position값만큼 "-"문자를 출력해주는 메소드.
 	public static void drawEachCar(String name, int numToDraw) {
 		String result = "-";
@@ -10,11 +15,13 @@ public class ResultView {
 			result += "-";
 			drawCount--;
 		}
-		System.out.println(name + " : " + result);
+		log.info(name + " : " + result);
+		//System.out.println(name + " : " + result);
 	}
 	//각각의 차를 입력받은 수만큼 for loop안에서 찍어서 전체 차량의 1턴 이동을 찍어주는 메소드.
 	public static void draw(ArrayList<String> name, ArrayList<Integer> carDistance) {
-		System.out.println("--------------------------START--------------------------");
+		log.info("--------------------------START--------------------------");
+		//System.out.println("--------------------------START--------------------------");
 		for (int i = 0; i < carDistance.size(); i++) {
 			drawEachCar(name.get(i), carDistance.get(i));
 		}
@@ -22,7 +29,8 @@ public class ResultView {
 	//최종 우승자를 출력해주는 메소드.
 	public static void noticeWinner(ArrayList<Car> winner) {
 		for (int i = 0; i < winner.size(); i++) {
-			System.out.println("우승자는 " + winner.get(i).getName() + " 입니다.");
+			log.info("우승자는 {} 입니다.", winner.get(i).getName());
+			//System.out.println("우승자는 " + winner.get(i).getName() + " 입니다.");
 		}
 	}
 	//winner를 winnerList에 추가해주는 메소드.
