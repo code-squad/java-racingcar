@@ -13,10 +13,7 @@ public class Utils {
 
     public static String makeResult(Car car) {
         StringBuilder builder = new StringBuilder();
-        builder.append(car.getName()).append(" : ");
-        for(int i = 0; i < car.getPosition(); i++) {
-            builder.append("-");
-        }
+        builder.append(car.getName()).append(" : ").append(car.toString());
         return builder.toString();
     }
 

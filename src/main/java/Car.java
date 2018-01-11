@@ -7,9 +7,6 @@ public class Car {
     private Integer position = 0;
     private String name;
 
-    public Car() {
-    }
-
     public Car(String name) {
         this.name = name;
     }
@@ -31,5 +28,14 @@ public class Car {
 
     private boolean shouldMove(Integer num) {
         return num >= LIMIT_NUMBER;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        for(int i = 0; i < position; i++) {
+            builder.append("-");
+        }
+        return builder.toString();
     }
 }

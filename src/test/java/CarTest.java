@@ -14,7 +14,7 @@ public class CarTest {
     @Before
     public void setup() {
         racing = new Racing("pobi,crong,honux", 5);
-        car = new Car();
+        car = new Car("test");
     }
 
     @Test
@@ -37,6 +37,13 @@ public class CarTest {
     public void split_with_comma_테스트() {
         Utils.splitWithComma("");
         Utils.splitWithComma(null);
+    }
+
+    @Test
+    public void make_result_테스트() {
+        Car car = new Car("hoon");
+        car.move(4);
+        assertEquals("hoon : -", Utils.makeResult(car));
     }
 
 }
