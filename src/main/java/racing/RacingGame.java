@@ -1,6 +1,7 @@
 package racing;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Created by Joeylee on 2018-01-06.
@@ -10,12 +11,10 @@ public class RacingGame {
     private static final int RANDOM_SEED = 10;
     private static final String SEPERATOR = ",";
     private List<Car> carList = new ArrayList<>();
-    private String winner;
-    private int maxDistance=0;
 
 
-    public RacingGame(String carNameList) {
-        String[] carName = carNameList.split(",");
+    public RacingGame(String carNames) {
+        String[] carName = carNames.split(",");
         for(int i=0; i<carName.length; i++) {
             Car car = new Car(carName[i]);
             carList.add(car);
@@ -26,9 +25,6 @@ public class RacingGame {
         for(int i = 0; i<tryCount; i++) {
             moveCarList();
         }
-        //레이싱이 끝나고 최고거리와 승리자 계산
-        maxDistance = getMaxDistance();
-        winner = getWinner(maxDistance);
     }
 
     public void moveCarList() {
@@ -46,10 +42,14 @@ public class RacingGame {
             ResultView.printDistanceResultEachCar(car.getName(), car.getDistance());
             System.out.println();
         }
-        ResultView.printWinner(winner);
+    }
+
+    public void printWinner() {
+        ResultView.printWinner(getWinner(getMaxDistance()));
     }
 
     public int getMaxDistance() {
+        int maxDistance = 0;
         for(Car car : carList) {
             maxDistance = Math.max(car.getDistance(), maxDistance);
         }
@@ -58,17 +58,14 @@ public class RacingGame {
 
     public String getWinner(int maxDistance) {
 
-        StringBuilder sb = new StringBuilder();
+        List<String> winnerNames = new ArrayList<>();
+
         for(Car car : carList) {
             if(car.getDistance() == maxDistance) {
-                sb.append(car.getName()).append(SEPERATOR);
+                winnerNames.add(car.getName());
             }
         }
-        int stringLength = sb.length();
-        if(stringLength > 0) {
-            sb.delete(stringLength - SEPERATOR.length(), stringLength);
-        }
-        return sb.toString();
+        return String.join(", ",winnerNames);
     }
 
     public List<Car> getCarList() {

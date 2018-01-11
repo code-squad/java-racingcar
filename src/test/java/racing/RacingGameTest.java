@@ -46,6 +46,7 @@ public class RacingGameTest {
         RacingGame racingGame = new RacingGame("car1,car2,car3");
         racingGame.getCarList().get(0).move(4);
         int maxDistance = racingGame.getMaxDistance();
+
         assertEquals("car1",racingGame.getWinner(maxDistance));
 
     }

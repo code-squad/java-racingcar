@@ -10,7 +10,7 @@ public class ResultView {
 
     public static void printDistanceResultEachCar(String carName, int distance) {
         System.out.print(carName + " : ");
-        for(int i=0; i<=distance; i++) {
+        for(int i=0; i<distance; i++) {
             System.out.print("-");
         }
     }

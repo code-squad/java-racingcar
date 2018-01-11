@@ -37,12 +37,9 @@ public class CarTest {
     @Test
     public void 자동차최종거리_출력_테스트() {
 
-//        racingGame = new RacingGame(3, 5);
-
         racingGame = new RacingGame("car1,car2,car3");
         racingGame.racing(3);
         racingGame.printCarsDistance();
-
 
     }
 
