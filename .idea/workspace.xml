@@ -2,12 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d955e7f0-a516-4f2a-9e33-28644476dc54" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/test/java/RacingGame/RacingGameTest.java" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/RacingGame/Car.java" afterPath="$PROJECT_DIR$/src/main/java/RacingGame/Car.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/RacingGame/InputView.java" afterPath="$PROJECT_DIR$/src/main/java/RacingGame/InputView.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/RacingGame/RacingGame.java" afterPath="$PROJECT_DIR$/src/main/java/RacingGame/RacingGame.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/RacingGame/ResultView.java" afterPath="$PROJECT_DIR$/src/main/java/RacingGame/ResultView.java" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/RacingGame/RacingGameTest.java" afterPath="$PROJECT_DIR$/src/test/java/RacingGame/RacingGameTest.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -49,8 +45,8 @@
       <file leaf-file-name="RacingGame.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/RacingGame/RacingGame.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="43" column="22" lean-forward="false" selection-start-line="43" selection-start-column="12" selection-end-line="43" selection-end-column="22" />
+            <state relative-caret-position="-188">
+              <caret line="22" column="4" lean-forward="false" selection-start-line="22" selection-start-column="4" selection-end-line="22" selection-end-column="4" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#327#328#0" expanded="true" />
@@ -63,8 +59,8 @@
       <file leaf-file-name="RacingGameTest.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/RacingGame/RacingGameTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="23" column="5" lean-forward="false" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
+            <state relative-caret-position="450">
+              <caret line="30" column="28" lean-forward="false" selection-start-line="30" selection-start-column="28" selection-end-line="30" selection-end-column="28" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#387#388#0" expanded="true" />
@@ -126,8 +122,8 @@
         <option value="$PROJECT_DIR$/src/main/java/RacingGame/InputView.java" />
         <option value="$PROJECT_DIR$/src/main/java/RacingGame/Car.java" />
         <option value="$PROJECT_DIR$/src/main/java/RacingGame/ResultView.java" />
-        <option value="$PROJECT_DIR$/src/main/java/RacingGame/RacingGame.java" />
         <option value="$PROJECT_DIR$/src/test/java/RacingGame/RacingGameTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/RacingGame/RacingGame.java" />
       </list>
     </option>
   </component>
@@ -481,44 +477,44 @@
       <workItem from="1515455506652" duration="47000" />
       <workItem from="1515503455513" duration="9141000" />
       <workItem from="1515595655871" duration="728000" />
-      <workItem from="1515642617251" duration="5947000" />
+      <workItem from="1515642617251" duration="6580000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="RacingGameTest - 2018.01.09 at 00h 17m 36s.xml">
-      <configuration name="RacingGameTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="RacingGameTest - 2018.01.10 at 00h 39m 12s.xml">
-      <configuration name="RacingGameTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="RacingGameTest_max - 2018.01.12 at 01h 38m 42s.xml">
-      <configuration name="RacingGameTest.max" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="RacingGameTest_moveYn_N - 2018.01.09 at 00h 17m 20s.xml">
-      <configuration name="RacingGameTest.moveYn_N" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="RacingGameTest_moveYn_Y - 2018.01.09 at 00h 17m 26s.xml">
-      <configuration name="RacingGameTest.moveYn_Y" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="RacingGameTest_setWinners_Y - 2018.01.12 at 01h 55m 04s.xml">
-      <configuration name="RacingGameTest.setWinners_Y" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="RacingGameTest_setWinners_Y - 2018.01.12 at 01h 55m 18s.xml">
-      <configuration name="RacingGameTest.setWinners_Y" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="RacingGameTest_setWinners_Y - 2018.01.12 at 01h 56m 16s.xml">
-      <configuration name="RacingGameTest.setWinners_Y" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="RacingGameTest_setWinners_Y - 2018.01.12 at 01h 56m 48s.xml">
       <configuration name="RacingGameTest.setWinners_Y" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="RacingGameTest_totalMoveYn - 2018.01.09 at 00h 17m 30s.xml">
-      <configuration name="RacingGameTest.totalMoveYn" configurationId="JUnit" />
+    <history-entry file="RacingGameTest_setWinners_Y - 2018.01.12 at 02h 11m 47s.xml">
+      <configuration name="RacingGameTest.setWinners_Y" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="RacingGameTest_setWinners_Y - 2018.01.12 at 02h 12m 19s.xml">
+      <configuration name="RacingGameTest.setWinners_Y" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="RacingGameTest_setWinners_Y - 2018.01.12 at 02h 12m 36s.xml">
+      <configuration name="RacingGameTest.setWinners_Y" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="RacingGameTest_setWinners_Y - 2018.01.12 at 02h 12m 43s.xml">
+      <configuration name="RacingGameTest.setWinners_Y" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="RacingGameTest_setWinners_Y - 2018.01.12 at 02h 14m 03s.xml">
+      <configuration name="RacingGameTest.setWinners_Y" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="RacingGameTest_setWinners_Y - 2018.01.12 at 02h 15m 27s.xml">
+      <configuration name="RacingGameTest.setWinners_Y" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="RacingGameTest_setWinners_Y - 2018.01.12 at 02h 16m 12s.xml">
+      <configuration name="RacingGameTest.setWinners_Y" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="RacingGameTest_setWinners_Y - 2018.01.12 at 02h 16m 54s.xml">
+      <configuration name="RacingGameTest.setWinners_Y" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="RacingGameTest_setWinners_Y - 2018.01.12 at 02h 17m 23s.xml">
+      <configuration name="RacingGameTest.setWinners_Y" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="19719000" />
+    <option name="totallyTimeSpent" value="20352000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
@@ -802,8 +798,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/RacingGame/RacingGameTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="23" column="5" lean-forward="false" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
+        <state relative-caret-position="450">
+          <caret line="30" column="28" lean-forward="false" selection-start-line="30" selection-start-column="28" selection-end-line="30" selection-end-column="28" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#387#388#0" expanded="true" />
@@ -814,8 +810,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/RacingGame/RacingGame.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="43" column="22" lean-forward="false" selection-start-line="43" selection-start-column="12" selection-end-line="43" selection-end-column="22" />
+        <state relative-caret-position="-188">
+          <caret line="22" column="4" lean-forward="false" selection-start-line="22" selection-start-column="4" selection-end-line="22" selection-end-column="4" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#327#328#0" expanded="true" />

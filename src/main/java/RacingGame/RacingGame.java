@@ -16,7 +16,11 @@ public class RacingGame {
 		return this.winners;
 	}
 
-	public RacingGame(){}
+	public RacingGame(){
+		cars = new ArrayList<Car>();
+		winners = new ArrayList<String>();
+	}
+	
 	public RacingGame(String carNames){
 		cars = new ArrayList<Car>();
 		winners = new ArrayList<String>();
