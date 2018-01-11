@@ -10,8 +10,8 @@ public class RaceVO {
 
     private List<RacingCar> cars;
 
-    public RaceVO(final int carCount, final int maxMoveCount) {
-        enrollCars(carCount);
+    public RaceVO(final String[] names, final int maxMoveCount) {
+        enrollCars(names);
         race(maxMoveCount);
     }
 
@@ -19,10 +19,10 @@ public class RaceVO {
         return cars;
     }
 
-    private void enrollCars(final int carCount) {
+    private void enrollCars(final String[] carNames) {
         List<RacingCar> carList = new ArrayList<>();
-        for (int i = 0; i < carCount; i++) {
-            carList.add(new RacingCar());
+        for (int i = 0; i < carNames.length; i++) {
+            carList.add(new RacingCar(carNames[i]));
         }
         this.cars = carList;
     }
