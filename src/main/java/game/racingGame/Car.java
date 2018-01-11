@@ -5,10 +5,17 @@ import lombok.Getter;
 @Getter
 public class Car{
 
-    private int position;
+    private String name;
+    private Integer position;
 
-    Car() {
+    Car(String name) {
+        this.name = name;
         this.position = 0;
+    }
+
+    Car(String name, Integer position){
+        this.name = name;
+        this.position = position;
     }
 
     public int move(int value){
