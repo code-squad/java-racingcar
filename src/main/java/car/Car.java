@@ -1,10 +1,14 @@
 package car;
 
 import java.util.Random;
-import java.util.stream.IntStream;
 
 public class Car {
+    private String name;
     private int position = 0;
+
+    public Car(String name) {
+        this.name = name;
+    }
 
     public void moveCar() {
         move(randomInt());
@@ -21,9 +25,11 @@ public class Car {
         return ran.nextInt(10);
     }
 
-    public String getPosition() {
-        StringBuilder sb = new StringBuilder();
-        IntStream.range(0, position).forEach(i -> sb.append("-"));
-        return sb.toString();
+    public int getPosition(){
+        return position;
+    }
+
+    public String getName() {
+        return name;
     }
 }
