@@ -58,16 +58,9 @@ body {
       <div class="col-md-12">
 
         <div class="form-show-div" class="form-group">
-          <table>
-            <tr>
-              <td>박재성</td>
-            </tr>
-            <tr>
-              <td>윤지수</td>
-            </tr>
-            <tr>
-              <td>정호영</td>
-            </tr>
+            {{#cars}}
+            <div id="standings">{{name}}</div>
+            {{/cars}}
           </table>
 
         </div>

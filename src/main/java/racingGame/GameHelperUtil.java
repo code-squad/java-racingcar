@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 public class GameHelperUtil {
     public static final int STANDARD_POINT = 4;
     public static final String MARK = "-";
-    public static final String NAME_SPLITER = ",";
+    public static final String NAME_SPLITER = " ";
     public static final String RESULT_APPEND = " : ";
 
 
