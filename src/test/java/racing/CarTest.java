@@ -19,21 +19,27 @@ public class CarTest {
     @Test
     public void 자동차_이동_테스트() {
 
-        car = new Car();
+        car = new Car("car1");
         car.move(4);
         car.move(5);
 
         assertEquals(2, car.getDistance());
     }
 
+    @Test
+    public void 자동차_이름_테스트() {
+
+        car = new Car("car1");
+
+        assertEquals("car1", car.getName());
+    }
 
     @Test
     public void 자동차최종거리_출력_테스트() {
 
-        racingGame = new RacingGame(3, 5);
-
+        racingGame = new RacingGame("car1,car2,car3");
+        racingGame.racing(3);
         racingGame.printCarsDistance();
-
 
     }
 

@@ -1,24 +1,24 @@
 package racing;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Created by Joeylee on 2018-01-06.
  */
 public class RacingGame {
 
-    private static int RANDOM_SEED = 10;
+    private static final int RANDOM_SEED = 10;
+    private static final String SEPERATOR = ",";
     private List<Car> carList = new ArrayList<>();
-    private int tryCount;
 
-    public RacingGame(int countOfCar, int tryCount) {
-        for(int i=0; i<countOfCar; i++) {
-            Car car = new Car();
+
+    public RacingGame(String carNames) {
+        String[] carName = carNames.split(",");
+        for(int i=0; i<carName.length; i++) {
+            Car car = new Car(carName[i]);
             carList.add(car);
         }
-        this.tryCount = tryCount;
     }
 
     public void racing(int tryCount) {
@@ -39,9 +39,33 @@ public class RacingGame {
 
     public void printCarsDistance() {
         for(Car car:carList) {
-            ResultView.printDistanceResultEachCar(car.getDistance());
+            ResultView.printDistanceResultEachCar(car.getName(), car.getDistance());
             System.out.println();
         }
+    }
+
+    public void printWinner() {
+        ResultView.printWinner(getWinner(getMaxDistance()));
+    }
+
+    public int getMaxDistance() {
+        int maxDistance = 0;
+        for(Car car : carList) {
+            maxDistance = Math.max(car.getDistance(), maxDistance);
+        }
+        return maxDistance;
+    }
+
+    public String getWinner(int maxDistance) {
+
+        List<String> winnerNames = new ArrayList<>();
+
+        for(Car car : carList) {
+            if(car.getDistance() == maxDistance) {
+                winnerNames.add(car.getName());
+            }
+        }
+        return String.join(", ",winnerNames);
     }
 
     public List<Car> getCarList() {
