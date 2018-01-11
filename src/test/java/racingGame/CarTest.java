@@ -11,7 +11,7 @@ public class CarTest {
 
     @Before
     public void setUp() {
-        car = new Car(1);
+        car = new Car(1,"jisun");
     }
 
     @Test
@@ -29,6 +29,11 @@ public class CarTest {
     public void 랜덤이_기준보다_낮을때() {
         car.rePosition(1);
         assertEquals(1,car.getPosition());
+    }
+
+    @Test
+    public void 우승자_테스트() {
+        assertEquals(true,car.isMaxPosition(1));
     }
 
 
