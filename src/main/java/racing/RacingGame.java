@@ -3,7 +3,6 @@ package racing;
 import car.Car;
 import util.RandomUtil;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static util.Static.RANDOM_NUM_BOUND;
@@ -12,15 +11,12 @@ public class RacingGame {
     private int tryCount;
     private List<Car> cars;
 
-    public RacingGame(List<String> nameList, int tryCount) {
-        if(nameList.isEmpty() || tryCount < 0)
+    public RacingGame(List<Car> cars, int tryCount) {
+        if(cars == null || tryCount < 0)
             throw new IllegalArgumentException("Invalid inputs");
 
         this.tryCount = tryCount;
-        cars = new ArrayList<>();
-
-        for(String name : nameList)
-            cars.add(new Car(name));
+        this.cars = cars;
     }
 
     public void playRacing() {

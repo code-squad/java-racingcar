@@ -1,5 +1,8 @@
 package car;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static util.Static.*;
 
 public class Car implements Comparable<Car> {
@@ -9,6 +12,15 @@ public class Car implements Comparable<Car> {
     public Car(String name) {
         this.name = name;
         this.currentPosition = 0;
+    }
+
+    public static List<Car> createCars(List<String> names) {
+        List<Car> cars = new ArrayList<>();
+
+        for(String name : names)
+            cars.add(new Car(name));
+
+        return cars;
     }
 
     public Car setCurrentPosition(int newPosition) {
