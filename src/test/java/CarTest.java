@@ -1,6 +1,10 @@
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 /**
@@ -40,10 +44,26 @@ public class CarTest {
     }
 
     @Test
-    public void make_result_테스트() {
-        Car car = new Car("hoon");
-        car.move(4);
-        assertEquals("hoon : -", Utils.makeResult(car));
+    public void 내림차순_정렬_테스트() {
+        List<Car> cars = new ArrayList<>();
+        Car car1 = new Car("류광현");
+        Car car2 = new Car("강지선");
+        Car car3 = new Car("조정훈");
+
+        car1.move(3);
+        car2.move(4);
+        car3.move(4);
+        car3.move(4);
+
+        cars.add(car1);
+        cars.add(car2);
+        cars.add(car3);
+
+        List<Car> sortedCars = Utils.sortByPositionDesc(cars);
+
+        assertEquals("조정훈", sortedCars.get(0).getName());
+        assertEquals("강지선", sortedCars.get(1).getName());
+        assertEquals("류광현", sortedCars.get(2).getName());
     }
 
 }
