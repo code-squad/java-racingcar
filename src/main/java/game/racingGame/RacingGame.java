@@ -4,7 +4,9 @@ import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 import java.util.stream.Collectors;
 
@@ -14,6 +16,7 @@ public class RacingGame {
     private List<Car> cars;
     private Integer trialTime;
     private Random random;
+    private List<Car> winners;
 
     public RacingGame(String[] nameOfCars, Integer trialTime) {
         this.random = new Random();
@@ -41,19 +44,38 @@ public class RacingGame {
     }
 
     private List<Car> findCoWinner(List<Car> sortedCars) {
-        List<Car> winners = new ArrayList();
+        winners = new ArrayList();
+        Integer maxPosition = sortedCars.get(0).getPosition();
 
-        for (int i = 0 ; i < sortedCars.size() - 1 ; i++){
-            if(!sortedCars.get(i).getPosition().equals(sortedCars.get(i + 1).getPosition())){
-                winners.add(sortedCars.get(i));
-                return winners;
+        for(Car car : sortedCars) {
+            if(car.getPosition().equals(maxPosition)){
+                winners.add(car);
             }
-            winners.add(sortedCars.get(i));
         }
+
         return winners;
     }
 
     private Integer getRandom() {
         return random.nextInt(10);
+    }
+
+    public Map<String, Integer> getResult(){
+        Map<String, Integer> result = new LinkedHashMap();
+
+        for (Car car: cars){
+            result.put(car.getName(), car.getPosition());
+        }
+
+        return result;
+    }
+
+    public List<String> getWinnersName(){
+        List<String> winnersName = new ArrayList();
+
+        for (Car car: winners){
+            winnersName.add(car.getName());
+        }
+        return winnersName;
     }
 }

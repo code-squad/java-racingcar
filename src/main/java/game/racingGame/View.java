@@ -1,29 +1,23 @@
 package game.racingGame;
 
-import java.util.List;
+import java.util.Map;
 
 public class View {
-    public static void getResult(RacingGame racingGame){
+    public static void printResult(RacingGame racingGame) {
+        Map<String, Integer> result = racingGame.getResult();
 
-        List<Car> cars = racingGame.getCars();
-
-        for (Car car: cars){
-            printName(car);
-            printPosition(car);
+        for (String key: result.keySet()){
+            System.out.print(key + " ");
+            printPosition(result.get(key));
         }
 
-        List<Car> winners = racingGame.pickWinners();
-        for (Car car: winners){
-            printName(car);
+        for (String name: racingGame.getWinnersName()){
+            System.out.print(name + " ");
         }
     }
 
-    public static void printName(Car car) {
-        System.out.print(car.getName() + " ");
-    }
-
-    public static void printPosition(Car car){
-        for (int i = 0; i < car.getPosition(); i++) {
+    private static void printPosition(Integer position){
+        for (int i = 0; i < position; i++) {
             System.out.print("-");
         }
         System.out.println();

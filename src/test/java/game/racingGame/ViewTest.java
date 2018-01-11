@@ -33,6 +33,7 @@ public class ViewTest {
         racingGame = mock(RacingGame.class);
 
         when(racingGame.getCars()).thenReturn(cars);
+        when(racingGame.getWinners()).thenReturn(cars);
         when(racingGame.getTrialTime()).thenReturn(5);
 
         System.setOut(new PrintStream(outputStream));
@@ -44,26 +45,8 @@ public class ViewTest {
     }
 
     @Test
-    public void printName(){
-        for (Car car:cars){
-            View.printName(car);
-        }
-
-        assertEquals("car1 car2 ", outputStream.toString());
-    }
-
-    @Test
-    public void printPosition(){
-        for (Car car:cars){
-            View.printPosition(car);
-        }
-
-        assertEquals("-\n\n", outputStream.toString());
-    }
-
-    @Test
-    public void viewTest(){
-        View.getResult(racingGame);
+    public void printResult(){
+        View.printResult(racingGame);
         assertEquals("car1 -\ncar2 \n", outputStream.toString());
     }
 }

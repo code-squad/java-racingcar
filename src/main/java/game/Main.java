@@ -3,7 +3,6 @@ package game;
 import game.racingGame.RacingGame;
 import game.racingGame.View;
 
-import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -21,9 +20,10 @@ public class Main {
 
         RacingGame racingGame = new RacingGame(nameOfCars, trialNum);
         racingGame.move();
+        racingGame.pickWinners();
 
         System.out.println("실행결과");
-        View.getResult(racingGame);
+        View.printResult(racingGame);
         System.out.println("최종 우승했습니다.");
     }
 }
