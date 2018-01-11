@@ -4,16 +4,13 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.anyInt;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -22,20 +19,16 @@ public class ViewTest {
     @Mock
     RacingGame racingGame;
 
+    private List<Car> cars;
+
     private final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 
     @Before
     public void setUp(){
-        List<Car> cars = new ArrayList();
 
-        Car car1 = new Car("car1");
-        car1.move(4);
-        cars.add(car1);
-
-        Car car2 = new Car("car2");
-        car2.move(3);
-        cars.add(car2);
-
+        cars = Arrays.asList(
+            new Car("car1", 1), new Car("car2", 0)
+        );
 
         racingGame = mock(RacingGame.class);
 
@@ -48,6 +41,24 @@ public class ViewTest {
     @After
     public void cleanUp(){
         System.setOut(null);
+    }
+
+    @Test
+    public void printName(){
+        for (Car car:cars){
+            View.printName(car);
+        }
+
+        assertEquals("car1 car2 ", outputStream.toString());
+    }
+
+    @Test
+    public void printPosition(){
+        for (Car car:cars){
+            View.printPosition(car);
+        }
+
+        assertEquals("-\n\n", outputStream.toString());
     }
 
     @Test

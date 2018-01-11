@@ -35,12 +35,16 @@ public class RacingGame {
     }
 
     public List<Car> pickWinners() {
-        List<Car> winners = new ArrayList();
-
         List<Car> sortedCars  = cars.stream().sorted(Comparator.comparing(Car::getPosition).reversed()).collect(Collectors.toList());
 
+        return findCoWinner(sortedCars);
+    }
+
+    private List<Car> findCoWinner(List<Car> sortedCars) {
+        List<Car> winners = new ArrayList();
+
         for (int i = 0 ; i < sortedCars.size() - 1 ; i++){
-            if(sortedCars.get(i).getPosition() != sortedCars.get(i+1).getPosition()){
+            if(!sortedCars.get(i).getPosition().equals(sortedCars.get(i + 1).getPosition())){
                 winners.add(sortedCars.get(i));
                 return winners;
             }

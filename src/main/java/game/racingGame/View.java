@@ -18,11 +18,11 @@ public class View {
         }
     }
 
-    private static void printName(Car car) {
+    public static void printName(Car car) {
         System.out.print(car.getName() + " ");
     }
 
-    private static void printPosition(Car car){
+    public static void printPosition(Car car){
         for (int i = 0; i < car.getPosition(); i++) {
             System.out.print("-");
         }

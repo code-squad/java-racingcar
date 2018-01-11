@@ -6,11 +6,16 @@ import lombok.Getter;
 public class Car{
 
     private String name;
-    private int position;
+    private Integer position;
 
     Car(String name) {
         this.name = name;
         this.position = 0;
+    }
+
+    Car(String name, Integer position){
+        this.name = name;
+        this.position = position;
     }
 
     public int move(int value){
