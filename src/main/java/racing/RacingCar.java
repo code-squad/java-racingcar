@@ -25,14 +25,6 @@ public class RacingCar implements Car, Comparable<RacingCar> {
         this.distance++;
     }
 
-    public void printCarDistance() {
-        System.out.print(String.format("%s : ", name));
-        for (int i = 0; i < distance; i++) {
-            System.out.print("-");
-        }
-        System.out.println();
-    }
-
     @Override
     public int compareTo(RacingCar o) {
         return distance - o.distance;
