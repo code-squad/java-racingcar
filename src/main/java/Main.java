@@ -5,10 +5,10 @@ public class Main {
 
     public static void main(String args[]) {
 
-        int carNum = InputView.readCarNum();
+        String carNames = InputView.readCarNames();
         int raceNum = InputView.readRaceNum();
 
-        Racing racing = new Racing(carNum, raceNum);
+        Racing racing = new Racing(carNames, raceNum);
         racing.doRace();
 
         ResultView.printResult(racing.getCars());

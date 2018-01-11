@@ -1,6 +1,10 @@
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 /**
@@ -13,8 +17,8 @@ public class CarTest {
 
     @Before
     public void setup() {
-        racing = new Racing(3, 5);
-        car = new Car();
+        racing = new Racing("pobi,crong,honux", 5);
+        car = new Car("test");
     }
 
     @Test
@@ -31,6 +35,35 @@ public class CarTest {
             int random = Utils.getRandomNumber();
             assertTrue(random >= 0 && random < 10);
         }
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void split_with_comma_테스트() {
+        Utils.splitWithComma("");
+        Utils.splitWithComma(null);
+    }
+
+    @Test
+    public void 내림차순_정렬_테스트() {
+        List<Car> cars = new ArrayList<>();
+        Car car1 = new Car("류광현");
+        Car car2 = new Car("강지선");
+        Car car3 = new Car("조정훈");
+
+        car1.move(3);
+        car2.move(4);
+        car3.move(4);
+        car3.move(4);
+
+        cars.add(car1);
+        cars.add(car2);
+        cars.add(car3);
+
+        List<Car> sortedCars = Utils.sortByPositionDesc(cars);
+
+        assertEquals("조정훈", sortedCars.get(0).getName());
+        assertEquals("강지선", sortedCars.get(1).getName());
+        assertEquals("류광현", sortedCars.get(2).getName());
     }
 
 }

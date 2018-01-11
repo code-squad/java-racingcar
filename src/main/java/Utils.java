@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -11,11 +14,17 @@ public class Utils {
         return new Random().nextInt(RANDOM_NUMBER_BOUNDARY);
     }
 
-    public static String makeResult(Integer position) {
-        StringBuilder builder = new StringBuilder();
-        for(int i = 0; i < position; i++) {
-            builder.append("-");
+    public static String[] splitWithComma(String target) {
+        if (target == null || target.isEmpty()) {
+            throw new IllegalArgumentException();
         }
-        return builder.toString();
+        return target.split(",");
+    }
+
+    public static List<Car> sortByPositionDesc(List<Car> cars) {
+        List<Car> sortedCars = new ArrayList<>();
+        sortedCars.addAll(cars);
+        sortedCars.sort(Comparator.comparing(Car::getPosition).reversed());
+        return sortedCars;
     }
 }
