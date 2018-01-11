@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration>
+<configuration>
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <Pattern>%d{HH:mm:ss.SSS} [%-5level] [%thread] [%logger{36}] - %m%n</Pattern>
+            <!-- Pattern에서 로깅메세지를 어떻게 출력을 하겠다고 세팅
+             ex) 11:22:08.306 [INFO ] [main] [Racing] - 자동차 대수는 몇 대 인가요? - using logger
+             -->
+        </layout>
+    </appender>
+
+    <!--
+    밑에 root는 level이 INFO로 설정이 되어있는데, 특정 패키지에 대해서만 DEBUG레벨을 쓰고 싶으면 아래 코드를 쓴다.
+    <logger name="package_name" level="DEBUG"></logger>
+    -->
+
+    <!-- 기본 log level을 설정한다. -->
+    <root level="INFO">
+        <appender-ref ref="STDOUT" />
+    </root>
+</configuration>
