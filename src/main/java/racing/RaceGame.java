@@ -9,20 +9,20 @@ public class RaceGame {
     }
 
     public void initRace() {
-        initRace(0,0);
+        initRace(new String[]{},0);
     }
 
-    public void initRace(int carCount, int moveCount) {
-        if (carCount == 0 || moveCount == 0) {
+    public void initRace(String[] names, int moveCount) {
+        if (moveCount == 0) {
             InputView inputView = InputView.getByUser();
-            carCount = inputView.getCarCount();
+            names = inputView.getNames();
             moveCount = inputView.getMaxMoveCount();
         }
-        vo = new RaceVO(carCount, moveCount);
+        vo = new RaceVO(names, moveCount);
     }
 
     public void printResult() {
         if (vo == null || vo.getCars() == null || vo.getCars().isEmpty()) throw new RuntimeException("initRace 메소드를 실행 후 진행하세요.");
-        vo.getCars().forEach(RacingCar::printCarDistance);
+        OutputView.getInstance().printResult(vo.getCars());
     }
 }
