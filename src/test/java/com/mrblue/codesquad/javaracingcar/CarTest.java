@@ -5,6 +5,7 @@ import org.junit.Test;
 
 import java.util.stream.IntStream;
 
+import static com.mrblue.codesquad.testutil.TestUtil.invokeMethod;
 import static org.junit.Assert.*;
 
 /**
@@ -24,18 +25,17 @@ public class CarTest {
 		// Repeat 자동으로 안될까요?
 		IntStream.rangeClosed(1, 10000)
 				 .forEach(index -> {
-					 final int randomNumber = this.car.randomNumber();
+					 final int randomNumber = invokeMethod(car, "randomNumber", Integer.class);
 					 assertTrue(randomNumber >= 0 && randomNumber < 10);
 				 });
 	}
 
 	@Test
 	public void test_isAllowRange() {
-		assertFalse(car.isAllowRange(3));
-		assertTrue(car.isAllowRange(4));
-		assertTrue(car.isAllowRange(9));
-		assertFalse(car.isAllowRange(10));
-
+		assertFalse(invokeMethod(car, "isAllowRange", boolean.class, int.class, 3));
+		assertTrue(invokeMethod(car, "isAllowRange", boolean.class, int.class, 4));
+		assertTrue(invokeMethod(car, "isAllowRange", boolean.class, int.class, 9));
+		assertFalse(invokeMethod(car, "isAllowRange", boolean.class, int.class, 10));
 	}
 
 	@Test(expected = IllegalArgumentException.class)

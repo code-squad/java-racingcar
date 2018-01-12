@@ -1,5 +1,6 @@
 package com.mrblue.codesquad.javaracingcar;
 
+import java.util.Optional;
 import java.util.Random;
 import java.util.stream.IntStream;
 
@@ -13,35 +14,33 @@ import java.util.stream.IntStream;
 public class Car {
 	private int carID;
 
-	public Car(final int carID) {
+	private Car(final int carID) {
 		this.carID = carID;
 	}
 
-	public void move(final int numberOfMove) {
-		IntStream.rangeClosed(1, numberOfMove)
-				 .mapToObj(idx -> this.randomNumber())
-				 .filter(this::isAllowRange)
-				 .reduce((first, second) -> first + second)
-				 .ifPresent(this::printResult);
+	public int move(final int numberOfMove) {
+		final Optional<Integer> optionalDistance =
+				IntStream.rangeClosed(1, numberOfMove)
+						 .mapToObj(idx -> this.randomNumber())
+						 .filter(this::isAllowRange)
+						 .reduce((first, second) -> first + second);
+
+		if (optionalDistance.isPresent())
+			return optionalDistance.get();
+
+		return 0;
 	}
 
-	public int randomNumber() {
+	private int randomNumber() {
 		return new Random().nextInt(10);
 	}
 
-	public boolean isAllowRange(final int randomNumber) {
+	private boolean isAllowRange(final int randomNumber) {
 		return randomNumber >= 4 && randomNumber < 10;
 	}
 
-	public void printResult(final int distance) {
-		final String resultMessage = new StringBuilder()
-				.append(this.carID)
-				.append("번 자동차의 총 이동 거리는 ")
-				.append(distance)
-				.append("입니다.")
-				.toString();
-
-		System.out.println(resultMessage);
+	public int getCarID() {
+		return carID;
 	}
 
 	public static Car newCar(final int carID) {
