@@ -5,26 +5,25 @@ import car.Car;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class RacingGame {
     private List<Car> cars;
-    private int tryCount;
 
-    public RacingGame(String carsName, int tryCount) {
+    public RacingGame(String carsName) {
         cars = new ArrayList<>();
-        this.tryCount = tryCount;
         makeCars(carsName);
     }
 
     private void makeCars(String carsName) {
-        StringTokenizer st = new StringTokenizer(carsName, ",");
+        StringTokenizer st = new StringTokenizer(carsName, " ");
         while (st.hasMoreTokens()) {
             cars.add(new Car(st.nextToken()));
         }
     }
 
-    public void moveTry() {
+    public void moveTry(int tryCount) {
         IntStream.range(0, tryCount).forEach(i -> moveCars());
     }
 
@@ -73,8 +72,8 @@ public class RacingGame {
         return b;
     }
 
-    private void winnerCheck(Car car, StringBuilder sb){
-        if(car.getPosition() == findTopPosition()) {
+    private void winnerCheck(Car car, StringBuilder sb) {
+        if (car.getPosition() == findTopPosition()) {
             sb.append(car.getName());
             sb.append(", ");
         }
@@ -88,5 +87,9 @@ public class RacingGame {
 
     public List<Car> getCars() {
         return cars;
+    }
+
+    public List<String> getCarsName() {
+        return cars.stream().map(car -> car.getName()).collect(Collectors.toList());
     }
 }

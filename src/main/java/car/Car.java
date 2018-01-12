@@ -1,6 +1,7 @@
 package car;
 
 import java.util.Random;
+import java.util.stream.IntStream;
 
 public class Car {
     private String name;
@@ -25,11 +26,19 @@ public class Car {
         return ran.nextInt(10);
     }
 
-    public int getPosition(){
+    public int getPosition() {
         return position;
     }
 
     public String getName() {
         return name;
+    }
+
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(name);
+        sb.append(" : ");
+        IntStream.range(0, position).forEach(i -> sb.append("&nbsp;"));
+        return sb.toString();
     }
 }

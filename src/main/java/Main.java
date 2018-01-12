@@ -1,17 +1,40 @@
 import game.RacingGame;
+import spark.ModelAndView;
+import spark.template.handlebars.HandlebarsTemplateEngine;
 
-import java.util.Scanner;
+import java.util.HashMap;
+import java.util.Map;
+
+import static spark.Spark.*;
 
 public class Main {
-    public static void main(String[] agrs) {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
-        String carsName = sc.next();
-        System.out.println("시도할 회수는 몇 회 인가요?");
-        int tryCount = sc.nextInt();
 
-        RacingGame game = new RacingGame(carsName, tryCount);
-        game.moveTry();
-        game.resultPrint();
+    static RacingGame game;
+
+    public static void main(String[] args) {
+        port(8080);
+        get("/", (req, res) -> {
+            return render(null, "/index.html");
+        });
+
+        post("/name", (req, res) -> {
+            String name = req.queryParams("names");
+            game = new RacingGame(name);
+            Map<String, Object> model = new HashMap<>();
+            model.put("names", game.getCarsName());
+
+            return render(model, "/game.html");
+        });
+
+        post("/result", (req, res) -> {
+            game.moveTry(Integer.parseInt(req.queryParams("turn")));
+            Map<String, Object> model = new HashMap<>();
+            model.put("cars", game.getCars());
+            return render(model, "/result.html");
+        });
+    }
+
+    private static String render(Map<String, Object> model, String templatePath) {
+        return new HandlebarsTemplateEngine().render(new ModelAndView(model, templatePath));
     }
 }
