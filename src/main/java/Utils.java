@@ -14,11 +14,11 @@ public class Utils {
         return new Random().nextInt(RANDOM_NUMBER_BOUNDARY);
     }
 
-    public static String[] splitWithComma(String target) {
+    public static String[] splitWithDelimiter(String target, String delimiter) {
         if (target == null || target.isEmpty()) {
             throw new IllegalArgumentException();
         }
-        return target.split(",");
+        return target.split(delimiter);
     }
 
     public static List<Car> sortByPositionDesc(List<Car> cars) {

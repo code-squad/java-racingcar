@@ -12,12 +12,10 @@ import static org.junit.Assert.assertTrue;
  */
 public class CarTest {
 
-    private Racing racing;
     private Car car;
 
     @Before
     public void setup() {
-        racing = new Racing("pobi,crong,honux", 5);
         car = new Car("test");
     }
 
@@ -39,8 +37,8 @@ public class CarTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void split_with_comma_테스트() {
-        Utils.splitWithComma("");
-        Utils.splitWithComma(null);
+        Utils.splitWithDelimiter("", ",");
+        Utils.splitWithDelimiter(null, ",");
     }
 
     @Test
