@@ -43,6 +43,7 @@ public class Racing {
         Random rnd = new Random();
         for (int i = 0; i < carnumber;i++) {
             carPositions[i] = new Car();
+            // 중요.
             for (int j = 0; j < count; j++) {
                 carPositions[i].move(rnd.nextInt(10));
             }
