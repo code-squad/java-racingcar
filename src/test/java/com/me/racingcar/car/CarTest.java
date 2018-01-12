@@ -1,5 +1,6 @@
 package com.me.racingcar.car;
 
+import com.me.racingcar.game.racing.Car;
 import org.junit.Before;
 import org.junit.Test;
 
