@@ -5,8 +5,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class ResultView {
-	
 	private static final Logger log = LoggerFactory.getLogger(ResultView.class);
+	
 	//각각의 차들의 현재 position값만큼 "-"문자를 출력해주는 메소드.
 	public static void drawEachCar(String name, int numToDraw) {
 		String result = "-";
