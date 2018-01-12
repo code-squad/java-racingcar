@@ -2,17 +2,15 @@ package car;
 
 public class Car {
 	private String name;
-	
 	private int position = 0;
-	
+	private String result = "";
+
 	public Car(String name) {
 		this.name = name;
 	}
-	//4 이상이면 1리턴(전진), 미만이면 0리턴(정지)를 구현하기 위한 Random 수 생성/boolean값 리턴
 	public static boolean isCarMove(int moveDice) {
 		return moveDice > 3;
 	}
-	//만약 isCarMove의 값이 참이라면 position값을 1 증가.
 	public int move(int moveDice) {
 		if (isCarMove(moveDice)) {
 			position += 1;
@@ -20,12 +18,16 @@ public class Car {
 		}
 		return position;
 	}
-	//이름을 받아올 때 사용하는 메소드.
 	public String getName() {
 		return this.name;
 	}
-	//위치값을 받아올 때 사용하는 메소드.
 	public int getPos() {
 		return this.position;
+	}
+	public String getResult() {
+		for (int i = 0; i < position; i++) {
+			result += "-";
+		}
+		return result;
 	}
 }
