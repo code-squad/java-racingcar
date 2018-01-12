@@ -5,7 +5,7 @@ import org.junit.Test;
 
 import java.util.stream.IntStream;
 
-import static com.mrblue.codesquad.testutil.TestUtil.invokeMethod;
+import static com.mrblue.codesquad.helpers.TestHelper.invokeMethod;
 import static org.junit.Assert.*;
 
 /**
@@ -17,7 +17,13 @@ public class CarTest {
 
 	@Before
 	public void setup() {
-		this.car = Car.newCar(5);
+		this.car = Car.newCar("AstonMartin");
+	}
+
+	@Test
+	public void test_move() {
+		// TODO: move 메서드 테스트 방법을 연구해보자!
+		// 코드 가독성이나 간결함이 좋아서 Stream API 사용을 선호하는데, 테스트가 어렵네요 ㅠ.ㅜ
 	}
 
 	@Test
@@ -40,6 +46,20 @@ public class CarTest {
 
 	@Test(expected = IllegalArgumentException.class)
 	public void test_newCar() {
-		assertEquals(car, Car.newCar(-1));
+		assertEquals(car, Car.newCar(null));
+	}
+
+	@Test
+	public void test_getName() {
+		assertEquals("AstonMartin", invokeMethod(car, "getName", String.class));
+	}
+
+	@Test
+	public void test_getDistance() {
+		assertEquals(0, invokeMethod(car, "getDistance", int.class).intValue());
+
+		car.move(1);
+
+		assertNotEquals(0, invokeMethod(car, "getDistance", int.class).intValue());
 	}
 }
