@@ -31,6 +31,14 @@ public class Car {
         return position;
     }
 
+    public String getPositionBlank(){
+        String result="";
+        for (int i = 0 ; i < this.position ; i++) {
+            result +="&nbsp;";
+        }
+        return result;
+    }
+
     public boolean matchPosition(int maxPosition) {
         return this.position >= maxPosition;
     }

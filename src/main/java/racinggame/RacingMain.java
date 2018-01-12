@@ -1,22 +1,46 @@
 package racinggame;
 
-import java.util.Scanner;
+import static spark.Spark.port;
+import static spark.Spark.post;
+import static spark.Spark.staticFileLocation;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import spark.ModelAndView;
+import spark.template.handlebars.HandlebarsTemplateEngine;
 
 public class RacingMain {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
-        String carNames = scanner.nextLine();
+        port(8080);
+        staticFileLocation("templates");
+        post("/name",(req, res) -> {
+            String carNames = req.queryParams("names");
+            req.session().attribute("carNames", carNames);
 
-        System.out.println("시도할 회수는 몇회 인가요?");
-        int count = scanner.nextInt();
+            List<Car> cars = new ArrayList<>();
+            Arrays.stream(carNames.split(" ")).forEach(i -> cars.add(new Car(i)));
 
-        Racing racing = new Racing(count, carNames.split(","));
-        racing.racing();
+            Map<String, Object> map = new HashMap<>();
+            map.put("cars", cars);
+            return  render(map, "game.html");
+        });
 
-        System.out.println("실행 결과");
-        RacingUI racingUI = new RacingUI(racing);
-        racingUI.racingResult();
-        racingUI.printWinners();
+        post("/result", (req, res)->{
+            String turn = req.queryParams("turn");
+            String carNames = req.session().attribute("carNames");
+            Racing racing = new Racing(Integer.parseInt(turn), carNames.split(" "));
+            racing.racing();
+            Map<String, Object> map = new HashMap<>();
+            map.put("cars",racing.getCars());
+            map.put("winners", racing.getWinnerCars());
+            return  render(map, "result.html");
+        });
+
+    }
+    public static String render(Map<String, Object> model, String templatePath) {
+        return new HandlebarsTemplateEngine().render(new ModelAndView(model, templatePath));
     }
 }
