@@ -8,7 +8,7 @@ public class SimpleDeciderToGo implements DeciderToGo {
 
     private Random random;
 
-    SimpleDeciderToGo() {
+    public SimpleDeciderToGo() {
         random = new Random();
     }
 

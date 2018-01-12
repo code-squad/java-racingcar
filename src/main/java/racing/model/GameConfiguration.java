@@ -15,10 +15,23 @@ public class GameConfiguration {
 //            cars.add(Car.newInstance(carName));
 //        }
 
-        this.cars = Arrays.stream(carNames)
+        this.cars = makeCars(carNames);
+        this.tryCount = tryCount;
+    }
+
+    public GameConfiguration(String carNames, int turn) {
+        this.cars = makeCars(carNames);
+        this.tryCount = turn;
+    }
+
+    private static List<Car> makeCars(String[] carNames) {
+        return Arrays.stream(carNames)
                         .map(Car::newInstance)
                         .collect(Collectors.toList());
-        this.tryCount = tryCount;
+    }
+
+    public static List<Car> makeCars(String carNames) {
+        return makeCars(carNames.split(" "));
     }
 
     public List<Car> getCars() {

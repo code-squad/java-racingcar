@@ -2,39 +2,32 @@ package racing.view;
 
 import racing.model.Car;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class ResultView {
-    public void showGameResult(List<Car> cars) {
-        System.out.println("\n실행 결과");
-
-        // jdk 7
-//        for (Car car : cars) {
-//            System.out.print(car.getName() + " : ");
-//            showGameResult(car.getPosition());
-//        }
-
-        cars.forEach(car -> {
-            System.out.print(car.getName() + " : ");
-            showGameResult(car.getPosition());
-        });
-
-        System.out.println("");
+    public List<String> showGameResult(List<Car> cars) {
+        List<String> results = new ArrayList<>();
+        cars.forEach(car -> results.add(showGameResult(car, car.getPosition())));
+        return results;
     }
 
-    private void showGameResult(int move) {
+    private String showGameResult(Car car, int move) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(car.getName())
+            .append(" : ");
         for (int i=0; i<move; i++) {
-            System.out.print("-");
+            sb.append("&nbsp");
         }
-        System.out.println("");
+        return sb.toString();
     }
 
-    public void showGameWinner(List<Car> cars) {
-        System.out.print(cars
-                        .stream()
-                        .map(Car::getName)
-                        .collect(Collectors.joining(", ")));
-        System.out.println("가 최종 우승했습니다.");
+    public String showGameWinner(List<Car> cars) {
+        return cars
+                .stream()
+                .map(Car::getName)
+                .collect(Collectors.joining(", ")) +
+                "가 최종 우승했습니다.";
     }
 }
