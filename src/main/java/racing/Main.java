@@ -4,6 +4,6 @@ public class Main {
     public static void main(String[] args) {
         RaceGame race = new RaceGame();
         race.initRace();
-        race.printResult();
+        race.getResult();
     }
 }

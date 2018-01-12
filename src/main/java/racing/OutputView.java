@@ -1,5 +1,7 @@
 package racing;
 
+import org.slf4j.*;
+
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -8,11 +10,17 @@ import static java.lang.String.format;
 
 public final class OutputView {
 
-    private final static String JOIN_STRING = ", ";
+    private final static Logger logger = LoggerFactory.getLogger(OutputView.class);
+
     private final static String RECORD_SYMBOL = "-";
     private final static OutputView instance = new OutputView();
+    public final static String JOIN_STRING = setBySplitSymbol();
 
     private OutputView() {
+    }
+
+    private static String setBySplitSymbol() {
+        return InputValidationUtil.SPLIT_SYMBOL.equals(" ") ? InputValidationUtil.SPLIT_SYMBOL : InputValidationUtil.SPLIT_SYMBOL+" ";
     }
 
     public static OutputView getInstance() {
@@ -23,12 +31,12 @@ public final class OutputView {
         printWinner(cars);
     }
     private void printRacingRecord(List<RacingCar> cars) {
-        System.out.println("실행 결과");
-        cars.forEach(car -> System.out.println(getCarRecord(car)));
+        logger.info("실행 결과");
+        cars.forEach(car -> logger.info(getCarRecord(car)));
     }
 
     private void printWinner(List<RacingCar> cars) {
-        System.out.println(format("\n%s가 최종 우승했습니다.", getWinnerName(cars)));
+        logger.info(format("\n%s가 최종 우승했습니다.", getWinnerName(cars)));
     }
 
     public String getWinnerName(List<RacingCar> cars) {

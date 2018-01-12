@@ -47,21 +47,23 @@ public class RaceTest {
 
     @Test
     public void UI_이름_입력_로직_체크() {
+        String splitSymbol = InputValidationUtil.SPLIT_SYMBOL;
         String carName = CAR_NAMES[0];
         assertTrue(InputValidationUtil.isInvalidNameInput(null));
         assertTrue(InputValidationUtil.isInvalidNameInput(new String()));
         assertTrue(InputValidationUtil.isInvalidNameInput(""));
 
-        assertTrue(InputValidationUtil.isInvalidNameInput(","));
-        assertTrue(InputValidationUtil.isInvalidNameInput(" , , "));
+        assertTrue(InputValidationUtil.isInvalidNameInput(splitSymbol));
+        assertTrue(InputValidationUtil.isInvalidNameInput(" "+splitSymbol+" "+splitSymbol+" "));
 
         assertTrue(InputValidationUtil.isInvalidNameInput(carName));
-        assertTrue(InputValidationUtil.isInvalidNameInput(","+carName));
-        assertTrue(InputValidationUtil.isInvalidNameInput(carName+", "));
+        assertTrue(InputValidationUtil.isInvalidNameInput(splitSymbol+carName));
+        if(!splitSymbol.equals(" ")) {
+            assertTrue(InputValidationUtil.isInvalidNameInput(carName+splitSymbol+" "));// 빈칸이 SPLIT_SYMBOL일 경우, trim이 있기 때문에 결과가 달라진다.
+        }
+        assertFalse(InputValidationUtil.isInvalidNameInput(carName+splitSymbol));
 
-        assertFalse(InputValidationUtil.isInvalidNameInput(carName+","));
-
-        String joinedNames = Stream.of(CAR_NAMES).collect(Collectors.joining(", "));
+        String joinedNames = Stream.of(CAR_NAMES).collect(Collectors.joining(OutputView.JOIN_STRING));
         assertFalse(InputValidationUtil.isInvalidNameInput(joinedNames));
     }
 
@@ -102,13 +104,13 @@ public class RaceTest {
             racingCar.move(MIN_FORWARD_NUMBER);
             racingCars.add(racingCar);
         }
-        String joinedNames = Stream.of(CAR_NAMES).collect(Collectors.joining(", "));
+        String joinedNames = Stream.of(CAR_NAMES).collect(Collectors.joining(OutputView.getInstance().JOIN_STRING));
         assertEquals(joinedNames, outputView.getWinnerName(racingCars));
     }
 
     @Test(expected = RuntimeException.class)
     public void UI_출력_결과_예외처리_확인() {
         RaceGame race = new RaceGame();
-        race.printResult();
+        race.getResult();
     }
 }
