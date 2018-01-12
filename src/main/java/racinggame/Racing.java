@@ -39,4 +39,5 @@ public class Racing {
     private int getMaxPosition() {
         return cars.stream().mapToInt(Car::getPosition).max().getAsInt();
     }
+
 }
