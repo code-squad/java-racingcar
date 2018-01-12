@@ -12,23 +12,9 @@ public class Racing {
 
     public Racing() {}
 
-    public Racing(String carNames, Integer repeatNum) {
+    public Racing(List<Car> cars, Integer repeatNum) {
         this.repeatNum = repeatNum;
-        this.cars = generateCars(carNames);
-    }
-
-
-    public List<Car> getCars() {
-        return cars;
-    }
-
-    private List<Car> generateCars(String carNames) {
-        String[] names = Utils.splitWithComma(carNames);
-        List<Car> cars = new ArrayList<>();
-        for(int i = 0; i < names.length; i++) {
-            cars.add(new Car(names[i]));
-        }
-        return cars;
+        this.cars = cars;
     }
 
     public List<Car> doRace() {

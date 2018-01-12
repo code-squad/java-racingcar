@@ -30,6 +30,14 @@ public class Car {
         return num >= LIMIT_NUMBER;
     }
 
+    public String getStatus() {
+        StringBuilder builder = new StringBuilder();
+        for(int i = 0; i < position; i++) {
+            builder.append("&nbsp");
+        }
+        return builder.toString();
+    }
+
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
