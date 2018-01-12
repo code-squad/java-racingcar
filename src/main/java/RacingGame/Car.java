@@ -3,10 +3,19 @@ package RacingGame;
 public class Car {
 
     private int carPosition;
+    private String carName;
+
+    public Car(String carName){
+        this.carName = carName;
+    }
 
     public int getCarPosition(){
-        return carPosition;
+        return this.carPosition;
     }
+
+    public String getCarName(){
+        return this.carName;
+    }   
 
     /**
      * 입력된 값에 따라 이동 여부를 반환하는 메서드
