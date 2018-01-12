@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class Racing {
     private static final Logger logger = LoggerFactory.getLogger(Racing.class);
     static private int count, carnumber;
-    static private Car [] carPositions;
+    static private Car [] cars;
 
     public static String repeat (int number) {
         String string = "";
@@ -16,7 +16,7 @@ public class Racing {
         return string;
     }
 
-    public static void print_result(Car [] carPositions) {
+    public static void printResult(Car [] carPositions) {
         for (int i = 0; i < carPositions.length; i++) {
             int empty = carPositions[i].getPosition();
             String result = repeat(empty);
@@ -24,16 +24,16 @@ public class Racing {
         }
     }
 
-    public static Car [] Carinput(Scanner scanner){
+    public static Car [] carinput(Scanner scanner){
         logger.info("자동차 대수는 몇 대 인가요? -- 메서드 분리");
         Car car = new Car();
         int car_number = scanner.nextInt();
-        carPositions = new Car[car_number];
+        cars = new Car[car_number];
         // carPositions에는 배열의 주소값이 들어가있다.
-        return carPositions;
+        return cars;
     }
 
-    public static int Count(Scanner scanner){
+    public static int count(Scanner scanner){
         logger.info("시도할 회수는 몇 회 인가요?");
         int count = scanner.nextInt();
         return count;
@@ -42,14 +42,14 @@ public class Racing {
     public static void loop(int carnumber,int count){
         Random rnd = new Random();
         for (int i = 0; i < carnumber;i++) {
-            carPositions[i] = new Car();
+            cars[i] = new Car();
             // 중요.
             for (int j = 0; j < count; j++) {
-                carPositions[i].move(rnd.nextInt(10));
+                cars[i].move(rnd.nextInt(10));
             }
-            logger.info((i+1)+"번째 자동차의 위치는 " + "current position is {}", carPositions[i].getPosition());
+            logger.info((i+1)+"번째 자동차의 위치는 " + "current position is {}", cars[i].getPosition());
         }
-        print_result(carPositions);
+        printResult(cars);
     }
 
     public static void main (String args[]) {
@@ -58,9 +58,9 @@ public class Racing {
         Car car = new Car();
         car.move(rnd.nextInt(9));
         Scanner scanner = new Scanner(System.in);
-        Carinput(scanner);
-        count = Count(scanner);
-        carnumber = carPositions.length;
+        carinput(scanner);
+        count = count(scanner);
+        carnumber = cars.length;
         logger.info("실행 결과");
         loop(carnumber, count);
 
