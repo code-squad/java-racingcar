@@ -6,14 +6,6 @@ public class RacingGame {
     private List<Car> cars;
     private int termCount;
 
-    public RacingGame(int termCount){
-        if(termCount <= 0){
-            throw new IllegalArgumentException("게임 생성정보가 잘못되었습니다.");
-        }
-
-        this.termCount = termCount;
-    }
-
     public RacingGame(int carCount, int termCount){
         if(carCount <= 0 || termCount <= 0){
             throw new IllegalArgumentException("게임 생성정보가 잘못되었습니다.");
