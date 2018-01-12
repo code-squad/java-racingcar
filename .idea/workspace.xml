@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d955e7f0-a516-4f2a-9e33-28644476dc54" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/src/main/java/RacingGame/Car.java" afterPath="$PROJECT_DIR$/src/main/java/RacingGame/Car.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/RacingGame/RacingGame.java" afterPath="$PROJECT_DIR$/src/main/java/RacingGame/RacingGame.java" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/RacingGame/CarTest.java" afterPath="$PROJECT_DIR$/src/test/java/RacingGame/CarTest.java" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/RacingGame/RacingGameTest.java" afterPath="$PROJECT_DIR$/src/test/java/RacingGame/RacingGameTest.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -27,11 +25,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Car.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Car.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/RacingGame/Car.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="8" column="31" lean-forward="false" selection-start-line="8" selection-start-column="31" selection-end-line="8" selection-end-column="31" />
+            <state relative-caret-position="255">
+              <caret line="17" column="8" lean-forward="false" selection-start-line="17" selection-start-column="8" selection-end-line="17" selection-end-column="8" />
               <folding>
                 <element signature="e#129#130#0" expanded="true" />
                 <element signature="e#167#168#0" expanded="true" />
@@ -39,8 +37,6 @@
                 <element signature="e#240#241#0" expanded="true" />
                 <element signature="e#273#274#0" expanded="true" />
                 <element signature="e#308#309#0" expanded="true" />
-                <element signature="e#353#354#0" expanded="true" />
-                <element signature="e#391#392#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -91,7 +87,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ResultView.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ResultView.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/RacingGame/ResultView.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="270">
@@ -127,10 +123,10 @@
         <option value="$PROJECT_DIR$/src/test/java/CarTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/RacingGame/InputView.java" />
         <option value="$PROJECT_DIR$/src/main/java/RacingGame/ResultView.java" />
-        <option value="$PROJECT_DIR$/src/main/java/RacingGame/Car.java" />
         <option value="$PROJECT_DIR$/src/test/java/RacingGame/RacingGameTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/RacingGame/CarTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/RacingGame/RacingGame.java" />
+        <option value="$PROJECT_DIR$/src/main/java/RacingGame/Car.java" />
       </list>
     </option>
   </component>
@@ -484,7 +480,7 @@
       <workItem from="1515455506652" duration="47000" />
       <workItem from="1515503455513" duration="9141000" />
       <workItem from="1515595655871" duration="728000" />
-      <workItem from="1515642617251" duration="11966000" />
+      <workItem from="1515642617251" duration="12228000" />
     </task>
     <servers />
   </component>
@@ -521,7 +517,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="25738000" />
+    <option name="totallyTimeSpent" value="26000000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
@@ -588,8 +584,6 @@
             <element signature="e#240#241#0" expanded="true" />
             <element signature="e#273#274#0" expanded="true" />
             <element signature="e#308#309#0" expanded="true" />
-            <element signature="e#353#354#0" expanded="true" />
-            <element signature="e#391#392#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -626,8 +620,6 @@
             <element signature="e#240#241#0" expanded="true" />
             <element signature="e#273#274#0" expanded="true" />
             <element signature="e#308#309#0" expanded="true" />
-            <element signature="e#353#354#0" expanded="true" />
-            <element signature="e#391#392#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -675,8 +667,6 @@
             <element signature="e#240#241#0" expanded="true" />
             <element signature="e#273#274#0" expanded="true" />
             <element signature="e#308#309#0" expanded="true" />
-            <element signature="e#353#354#0" expanded="true" />
-            <element signature="e#391#392#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -724,8 +714,6 @@
             <element signature="e#240#241#0" expanded="true" />
             <element signature="e#273#274#0" expanded="true" />
             <element signature="e#308#309#0" expanded="true" />
-            <element signature="e#353#354#0" expanded="true" />
-            <element signature="e#391#392#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -765,8 +753,6 @@
             <element signature="e#240#241#0" expanded="true" />
             <element signature="e#273#274#0" expanded="true" />
             <element signature="e#308#309#0" expanded="true" />
-            <element signature="e#353#354#0" expanded="true" />
-            <element signature="e#391#392#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -777,23 +763,6 @@
         <state relative-caret-position="105">
           <caret line="8" column="65" lean-forward="false" selection-start-line="8" selection-start-column="65" selection-end-line="8" selection-end-column="65" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/RacingGame/Car.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="31" lean-forward="false" selection-start-line="8" selection-start-column="31" selection-end-line="8" selection-end-column="31" />
-          <folding>
-            <element signature="e#129#130#0" expanded="true" />
-            <element signature="e#167#168#0" expanded="true" />
-            <element signature="e#201#202#0" expanded="true" />
-            <element signature="e#240#241#0" expanded="true" />
-            <element signature="e#273#274#0" expanded="true" />
-            <element signature="e#308#309#0" expanded="true" />
-            <element signature="e#353#354#0" expanded="true" />
-            <element signature="e#391#392#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -842,6 +811,21 @@
           <caret line="18" column="63" lean-forward="false" selection-start-line="18" selection-start-column="63" selection-end-line="18" selection-end-column="63" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/RacingGame/Car.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="8" lean-forward="false" selection-start-line="17" selection-start-column="8" selection-end-line="17" selection-end-column="8" />
+          <folding>
+            <element signature="e#129#130#0" expanded="true" />
+            <element signature="e#167#168#0" expanded="true" />
+            <element signature="e#201#202#0" expanded="true" />
+            <element signature="e#240#241#0" expanded="true" />
+            <element signature="e#273#274#0" expanded="true" />
+            <element signature="e#308#309#0" expanded="true" />
           </folding>
         </state>
       </provider>
