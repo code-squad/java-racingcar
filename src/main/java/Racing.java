@@ -55,6 +55,8 @@ public class Racing {
     public static void main (String args[]) {
         Racing racing = new Racing();
         Random rnd = new Random();
+        Car car = new Car();
+        car.move(rnd.nextInt(9));
         Scanner scanner = new Scanner(System.in);
         Carinput(scanner);
         count = Count(scanner);
