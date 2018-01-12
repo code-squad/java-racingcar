@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class Racing {
     private static final Logger logger = LoggerFactory.getLogger(Racing.class);
     static private int count, carnumber;
-    static private int [] carPositions;
+    static private Car [] carPositions;
 
     public static String repeat (int number) {
         String string = "";
@@ -16,20 +16,20 @@ public class Racing {
         return string;
     }
 
-    public static void print_result(int [] carPositions) {
+    public static void print_result(Car [] carPositions) {
         for (int i = 0; i < carPositions.length; i++) {
-            int empty = carPositions[i];
-
+            int empty = carPositions[i].getPosition();
             String result = repeat(empty);
-
             System.out.println(result);
         }
     }
 
-    public static int [] Carinput(Scanner scanner){
+    public static Car [] Carinput(Scanner scanner){
         logger.info("자동차 대수는 몇 대 인가요? -- 메서드 분리");
+        Car car = new Car();
         int car_number = scanner.nextInt();
-        carPositions = new int[car_number];
+        carPositions = new Car[car_number];
+        // carPositions에는 배열의 주소값이 들어가있다.
         return carPositions;
     }
 
@@ -42,11 +42,11 @@ public class Racing {
     public static void loop(int carnumber,int count){
         Random rnd = new Random();
         for (int i = 0; i < carnumber;i++) {
-            Car car = new Car();
+            carPositions[i] = new Car();
             for (int j = 0; j < count; j++) {
-                car.move(rnd.nextInt(10));
+                carPositions[i].move(rnd.nextInt(10));
             }
-            logger.info("final position is {}", car.getPosition());
+            logger.info((i+1)+"번째 자동차의 위치는 " + "current position is {}", carPositions[i].getPosition());
         }
         print_result(carPositions);
     }
