@@ -58,11 +58,8 @@ public class Main {
             racingGame.runGame();
             List<String> results = new ArrayList<>();
 
-            for(int i=0; i<racingGame.getCars().size(); i++) {
-                results.add(racingGame.getCars().get(i).resultString());
-            }
 
-            model.put("results",results);
+            model.put("results",racingGame.getResult());
             return render(model,"result.html");
         });
 

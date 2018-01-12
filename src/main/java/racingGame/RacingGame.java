@@ -27,8 +27,15 @@ public class RacingGame {
         }
     }
 
-
     public List<Car> getCars() {
         return carList;
+    }
+
+    public List<String> getResult() {
+        List<String> results = new ArrayList<>();
+        for (Car car : this.carList) {
+            results.add(car.resultString());
+        }
+        return results;
     }
 }
