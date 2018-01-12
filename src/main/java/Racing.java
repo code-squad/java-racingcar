@@ -39,18 +39,22 @@ public class Racing {
         return count;
     }
 
-    public static void loop(int carnumber,int count){
+    public static void loop(int carnumber){
         Random rnd = new Random();
         for (int i = 0; i < carnumber;i++) {
             cars[i] = new Car();
-            // 중요.
-            for (int j = 0; j < count; j++) {
-                cars[i].move(rnd.nextInt(10));
-            }
-            logger.info((i+1)+"번째 자동차의 위치는 " + "current position is {}", cars[i].getPosition());
+            checkMove(i,count);
         }
         printResult(cars);
     }
+
+    public static void checkMove (int j,int count) {
+        Random rnd = new Random();
+        for (int i = 0; i < count; i++) {
+            cars[j].move(rnd.nextInt(10));
+        }
+    }
+
 
     public static void main (String args[]) {
         Racing racing = new Racing();
@@ -62,7 +66,7 @@ public class Racing {
         count = count(scanner);
         carnumber = cars.length;
         logger.info("실행 결과");
-        loop(carnumber, count);
+        loop(carnumber);
 
     }
 }
