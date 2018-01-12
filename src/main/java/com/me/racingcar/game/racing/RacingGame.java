@@ -1,65 +1,95 @@
-package com.me.racingcar;
+package com.me.racingcar.game.racing;
 
-import com.me.racingcar.car.Car;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
 
 public class RacingGame {
+    private List<Car> cars;
+    private int termCount;
 
-    public static void main(String[] args) {
-
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("자동차 대수는 몇 대 인가요?");
-        int carCount = scanner.nextInt();
-
-        System.out.println("시도할 회수는 몇 회 인가요?");
-        int termCount = scanner.nextInt();
-
-        Car[] racingCars = start(carCount, termCount);
-
-        viewRacingResult(racingCars);
-
-    }
-
-    public static Car[] start(int carCount, int termCount){
-        if(carCount <= 0 || termCount <= 0){
-            throw new IllegalArgumentException("입력한 숫자가 잘못되었습니다.");
+    public RacingGame(int termCount){
+        if(termCount <= 0){
+            throw new IllegalArgumentException("게임 생성정보가 잘못되었습니다.");
         }
 
-        Car[] cars = createCar(carCount);
-        for(int term = 0 ; term < termCount ; term++){
-            startTerm(cars);
+        this.termCount = termCount;
+    }
+
+    public RacingGame(int carCount, int termCount){
+        if(carCount <= 0 || termCount <= 0){
+            throw new IllegalArgumentException("게임 생성정보가 잘못되었습니다.");
+        }
+
+        createCar(carCount);
+        this.termCount = termCount;
+    }
+
+    public RacingGame(String carNames, int termCount){
+        if(Objects.isNull(carNames) || carNames.isEmpty() || termCount <= 0){
+            throw new IllegalArgumentException("게임 생성정보가 잘못되었습니다.");
+        }
+
+        String[] names = carNames.split(",");
+        if(names.length == 0){
+            throw new IllegalArgumentException("게임 생성정보가 잘못되었습니다.");
+        }
+
+        createCar(names);
+        this.termCount = termCount;
+    }
+
+    public static List<Car> getWinner(List<Car> cars){
+        int winnerPosition = 0;
+        for(Car car : cars){
+            if(winnerPosition < car.getPosition()){
+                winnerPosition = car.getPosition();
+            }
+        }
+
+        List<Car> winner = new ArrayList<>();
+        for(Car car : cars){
+            if(car.getPosition() == winnerPosition){
+                winner.add(car);
+            }
+        }
+        return winner;
+    }
+
+    public static void viewResult(List<Car> cars){
+        for(Car car : cars){
+            System.out.println(car);
+        }
+    }
+
+    public List<Car> start(){
+        for(int term=0 ; term<termCount ; term++){
+            goTerm();
         }
         return cars;
     }
 
-    private static void startTerm(Car[] cars) {
+    private void goTerm() {
         for(Car car : cars){
             int value = getRandomValue();
             car.move(value);
         }
     }
 
-    private static Car[] createCar(int carCount) {
-        Car[] cars = new Car[carCount];
+    private void createCar(int carCount) {
+        cars = new ArrayList<>();
         for(int i=0 ; i<carCount ; i++){
-            cars[i] = new Car("car-"+(i+1));
+            cars.add(new Car("car-"+(i+1)));
         }
-        return cars;
+    }
+    private void createCar(String[] names){
+        cars = new ArrayList<>();
+        for(String name : names){
+            cars.add(new Car(name));
+        }
     }
 
-    private static int getRandomValue() {
+    private int getRandomValue() {
         Random random = new Random();
         return random.nextInt(10);
     }
 
-    private static void viewRacingResult(Car[] cars) {
-        for(Car car : cars){
-            System.out.println(car);
-        }
-    }
 }

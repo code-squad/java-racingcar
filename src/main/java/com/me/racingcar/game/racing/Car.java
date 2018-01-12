@@ -1,6 +1,6 @@
-package com.me.racingcar.car;
+package com.me.racingcar.game.racing;
 
-public class Car {
+public class Car{
     private String name;
     private int position = 0;
 
@@ -26,5 +26,13 @@ public class Car {
     @Override
     public String toString() {
         return this.name + "("+this.position+") : "+printPosition();
+    }
+
+    public int getPosition() {
+        return position;
+    }
+
+    public void setPosition(int position) {
+        this.position = position;
     }
 }
