@@ -1,5 +1,7 @@
 package racing;
 
+import java.util.List;
+
 public class RaceGame {
 
     private RaceVO vo;
@@ -21,8 +23,9 @@ public class RaceGame {
         vo = new RaceVO(names, moveCount);
     }
 
-    public void printResult() {
+    public List<RacingCar> getResult() {
         if (vo == null || vo.getCars() == null || vo.getCars().isEmpty()) throw new RuntimeException("initRace 메소드를 실행 후 진행하세요.");
         OutputView.getInstance().printResult(vo.getCars());
+        return vo.getCars();
     }
 }

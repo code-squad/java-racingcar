@@ -9,7 +9,7 @@ public final class InputValidationUtil {
 
     public final static int MIN_COUNT = 1;
     public final static int MAX_COUNT = 100;
-    public final static String SPLIT_SYMBOL = ",";
+    public final static String SPLIT_SYMBOL = " ";
 
     public static boolean isInvalidNameInput(String temp) {
         return isBlank(temp) ||
