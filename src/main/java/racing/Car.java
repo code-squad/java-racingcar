@@ -26,4 +26,12 @@ public class Car {
     public int getDistance() {
         return distance;
     }
+
+    public String getPrintDistance() {
+        String ret ="";
+        for(int i=0; i<distance; i++) {
+            ret += "&nbsp;";
+        }
+        return ret;
+    }
 }

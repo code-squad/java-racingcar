@@ -13,10 +13,10 @@ public class RacingGame {
     private List<Car> carList = new ArrayList<>();
 
 
-    public RacingGame(String carNames) {
-        String[] carName = carNames.split(",");
-        for(int i=0; i<carName.length; i++) {
-            Car car = new Car(carName[i]);
+    public RacingGame(String[] carNames) {
+
+        for(int i=0; i<carNames.length; i++) {
+            Car car = new Car(carNames[i]);
             carList.add(car);
         }
     }
