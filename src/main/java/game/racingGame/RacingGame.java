@@ -78,4 +78,8 @@ public class RacingGame {
         }
         return winnersName;
     }
+
+    public void setTrialTime(Integer trialTime) {
+        this.trialTime = trialTime;
+    }
 }
