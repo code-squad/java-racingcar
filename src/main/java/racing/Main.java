@@ -1,34 +1,53 @@
 package racing;
 
-import java.util.ArrayList;
-import java.util.Random;
-import java.util.Scanner;
+import spark.ModelAndView;
+import spark.template.handlebars.HandlebarsTemplateEngine;
+
+import java.util.*;
+
+import static spark.Spark.*;
 
 /**
  * Created by Joeylee on 2018-01-06.
  */
 public class Main {
 
+    private static String[] carNames;
+
     public static void main(String[] args) {
 
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("경주할 자동차 이름을 입력하세요");
-        String carNames = scanner.nextLine();
-        System.out.println("시도할 회수는 몇 회 인가요?");
-        int tryCount = scanner.nextInt();
+        staticFiles.location("/templates");
 
-        RacingGame racingGame = new RacingGame(carNames);
+        get("/", (req, res) -> {
+            return render(null, "index.html");
+        });
 
-        //경주 시작
-        racingGame.racing(tryCount);
+        post("/name", (req, res) -> {
+            List<Car> cars = new ArrayList<>();
+            carNames = req.queryParams("names").split(" ");
+            
+            Map<String, Object> model = new HashMap<>();
+            for (int i = 0; i < carNames.length; i++) {
+                cars.add(new Car(carNames[i]));
+            }
+            model.put("cars", cars);
+            return render(model, "game.html");
+        });
 
-        //결과 출력
-        System.out.println("실행 결과");
-        racingGame.printCarsDistance();
-        racingGame.printWinner();
+        get("/result", (req, res) -> {
 
+            int tryCount = Integer.parseInt(req.queryParams("turn"));
+            Map<String, Object> model = new HashMap<>();
 
+            RacingGame racingGame = new RacingGame(carNames);
+            racingGame.racing(tryCount);
+            model.put("cars", racingGame.getCarList());
+            return render(model, "result.html");
+        });
 
-        return;
+    }
+
+    public static String render(Map<String, Object> model, String templatePath) {
+        return new HandlebarsTemplateEngine().render(new ModelAndView(model, templatePath));
     }
 }
