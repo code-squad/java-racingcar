@@ -42,11 +42,11 @@ public class Racing {
     public static void loop(int carnumber,int count){
         Random rnd = new Random();
         for (int i = 0; i < carnumber;i++) {
+            Car car = new Car();
             for (int j = 0; j < count; j++) {
-                if (rnd.nextInt(9) >=4){
-                    carPositions[i] += 1;
-                }
+                car.move(rnd.nextInt(10));
             }
+            logger.info("final position is {}", car.getPosition());
         }
         print_result(carPositions);
     }
@@ -63,3 +63,4 @@ public class Racing {
 
     }
 }
+
