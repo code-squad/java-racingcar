@@ -10,7 +10,7 @@ public class CarTest {
 
 	@Before
 	public void setup(){
-		car = new Car();
+		car = new Car("SangwonCho");
 	}
 
 	@Test

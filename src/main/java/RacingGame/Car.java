@@ -5,6 +5,10 @@ public class Car {
     private int carPosition;
     private String carName;
 
+    public Car(String carName){
+        this.carName = carName;
+    }
+
     public int getCarPosition(){
         return this.carPosition;
     }

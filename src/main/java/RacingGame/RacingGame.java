@@ -10,25 +10,17 @@ public class RacingGame {
 	// 메소드 단위로 테스트 코드를 작성하게 되므로 각 메소드 별로 입력과 반환 값을 넣는 것이 좋다.
 
 	private List<Car> cars;
-	private List<String> winners;
-
-	public List<String> getWinners(){
-		return this.winners;
-	}
 
 	public RacingGame(){
 		cars = new ArrayList<Car>();
-		winners = new ArrayList<String>();
 	}
-	
+
 	public RacingGame(String carNames){
 		cars = new ArrayList<Car>();
-		winners = new ArrayList<String>();
 		String[] carNameArray = carNames.split(",");
 
 		for(int i=0;i<carNameArray.length;i++){
-			cars.add(new Car());
-			cars.get(i).setCarName(carNameArray[i]);
+			cars.add(new Car(carNameArray[i]));
 		}
 	}
 
@@ -38,24 +30,56 @@ public class RacingGame {
 	 * @return 이동거리를 가진 자동차 List
 	 */
 	public List<Car> move(int time) {
-		int curCountOfWin = 0;
 		for(Car car : cars){
 			countOfMove(time, car);
-			curCountOfWin = max(car.getCarPosition(), curCountOfWin);
 		}
 
-		for(Car car : cars){
-			setWinners(curCountOfWin, car);
-		}
 		return cars;
 	}
 
-	public void setWinners(int curCountOfWin, Car car) {
-		if(car.getCarPosition() == curCountOfWin){
-            winners.add(car.getCarName());
-        }
+	/**
+	 * 우승자 명단을 생성하는 메소드
+	 * @return 우승자 명단
+	 */
+	public List<String> setWinnerList() {
+		List<String> winners = new ArrayList<String>();
+
+		for(Car car : cars){
+			addWinner(car, winners);
+		}
+
+		return winners;
 	}
 
+	/**
+	 * 해당 자동차의 우승여부를 판단하고 우승자라면 우승자 명단에 추가하는 메소드
+	 * @param car
+	 * @param winners
+	 */
+	public void addWinner(Car car, List<String> winners){
+		if(car.getCarPosition() == checkWinRecord()){
+			winners.add(car.getCarName());
+		}
+	}
+
+	/**
+	 * 우승자의 기록을 생성하는 메소드
+	 * @return 우승자 기록
+	 */
+	public int checkWinRecord(){
+		int positionForWin = 0;
+		for(Car car : cars){
+			positionForWin = max(car.getCarPosition(), positionForWin);
+		}
+		return positionForWin;
+	}
+
+	/**
+	 * 입력된 두 값을 비교하는 메소드
+	 * @param carPosition
+	 * @param curCountOfWin
+	 * @return 최대값
+	 */
 	public int max(int carPosition, int curCountOfWin) {
 		if(curCountOfWin <= carPosition){
 			return carPosition;
@@ -89,8 +113,6 @@ public class RacingGame {
 		int time = InputView.getTimeOfMove(sc);
 
 		RacingGame racingGame = new RacingGame(carNames);
-		List<Car> cars = racingGame.move(time);
-
-		ResultView.printResult(cars, racingGame.getWinners());
+		ResultView.printResult(racingGame.move(time), racingGame.setWinnerList());
 	}
 }
