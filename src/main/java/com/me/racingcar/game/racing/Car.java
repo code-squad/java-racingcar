@@ -16,11 +16,15 @@ public class Car{
     }
 
     public String printPosition(){
-        String rtn = "";
-        for(int i=0 ; i<position ; i++){
-            rtn += "-";
+        StringBuilder builder = new StringBuilder();
+        for(int i=0 ; i<position ; i++) {
+            builder.append("-");
         }
-        return rtn;
+        return builder.toString();
+    }
+
+    public int getPosition() {
+        return position;
     }
 
     @Override
@@ -28,11 +32,5 @@ public class Car{
         return this.name + "("+this.position+") : "+printPosition();
     }
 
-    public int getPosition() {
-        return position;
-    }
 
-    public void setPosition(int position) {
-        this.position = position;
-    }
 }

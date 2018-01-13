@@ -6,15 +6,6 @@ public class RacingGame {
     private List<Car> cars;
     private int termCount;
 
-    public RacingGame(int carCount, int termCount){
-        if(carCount <= 0 || termCount <= 0){
-            throw new IllegalArgumentException("게임 생성정보가 잘못되었습니다.");
-        }
-
-        createCar(carCount);
-        this.termCount = termCount;
-    }
-
     public RacingGame(String carNames, int termCount){
         if(Objects.isNull(carNames) || carNames.isEmpty() || termCount <= 0){
             throw new IllegalArgumentException("게임 생성정보가 잘못되었습니다.");
@@ -29,24 +20,18 @@ public class RacingGame {
         this.termCount = termCount;
     }
 
-    public static List<Car> getWinner(List<Car> cars){
-        int winnerPosition = 0;
-        for(Car car : cars){
-            if(winnerPosition < car.getPosition()){
-                winnerPosition = car.getPosition();
-            }
-        }
-
+    public List<Car> getWinner(){
+        int winnerPosition = getWinnerPosition();
         List<Car> winner = new ArrayList<>();
         for(Car car : cars){
-            if(car.getPosition() == winnerPosition){
+            if(winnerPosition == car.getPosition()){
                 winner.add(car);
             }
         }
         return winner;
     }
 
-    public static void viewResult(List<Car> cars){
+    public void viewResult(){
         for(Car car : cars){
             System.out.println(car);
         }
@@ -59,6 +44,17 @@ public class RacingGame {
         return cars;
     }
 
+    private int getWinnerPosition(){
+        int winnerPosition = 0;
+        for(Car car : cars){
+            if(winnerPosition < car.getPosition()){
+                winnerPosition = car.getPosition();
+            }
+        }
+
+        return winnerPosition;
+    }
+
     private void goTerm() {
         for(Car car : cars){
             int value = getRandomValue();
@@ -66,12 +62,6 @@ public class RacingGame {
         }
     }
 
-    private void createCar(int carCount) {
-        cars = new ArrayList<>();
-        for(int i=0 ; i<carCount ; i++){
-            cars.add(new Car("car-"+(i+1)));
-        }
-    }
     private void createCar(String[] names){
         cars = new ArrayList<>();
         for(String name : names){
