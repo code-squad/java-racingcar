@@ -3,8 +3,11 @@ package com.mrblue.codesquad.javaracingcar;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
-import static com.mrblue.codesquad.testutil.TestUtil.*;
+import java.util.Arrays;
+import java.util.List;
+
+import static org.junit.Assert.*;
+import static com.mrblue.codesquad.helpers.TestHelper.*;
 
 /**
  * Created by kineo2k on 2018. 1. 6..
@@ -30,5 +33,43 @@ public class RacingGameTest {
 	public void test_toInt() {
 		assertEquals(10, invokeMethod(RacingGame.class, "toInt", int.class, String.class, "10").intValue());
 		assertEquals(-1, invokeMethod(RacingGame.class, "toInt", int.class, String.class, "-1").intValue());
+	}
+
+	@Test
+	public void test_parseNamesOfCar_correctAnswer() {
+		final List<String> answer = Arrays.asList("apple", "google", "facebook");
+
+		String inputText = "apple,google,facebook";
+		List   result    = invokeMethod(RacingGame.class, "parseNamesOfCar", List.class, String.class, inputText);
+		assertTrue(answer.equals(result));
+
+		inputText = "apple, google, facebook";
+		result = invokeMethod(RacingGame.class, "parseNamesOfCar", List.class, String.class, inputText);
+		assertTrue(answer.equals(result));
+
+		inputText = ",,,,,,,,apple,,,,,,,google,,,,,,,facebook,,,,,,,,";
+		result = invokeMethod(RacingGame.class, "parseNamesOfCar", List.class, String.class, inputText);
+		assertTrue(answer.equals(result));
+	}
+
+	@Test
+	public void test_parseNamesOfCar_wrongAnswer() {
+		final List<String> answer = Arrays.asList("apple", "google", "facebook");
+
+		String inputText = "apple,google";
+		List   result    = invokeMethod(RacingGame.class, "parseNamesOfCar", List.class, String.class, inputText);
+		assertFalse(answer.equals(result));
+
+		inputText = "apple,google,facebook,microsoft";
+		result = invokeMethod(RacingGame.class, "parseNamesOfCar", List.class, String.class, inputText);
+		assertFalse(answer.equals(result));
+
+		inputText = "apple google facebook";
+		result = invokeMethod(RacingGame.class, "parseNamesOfCar", List.class, String.class, inputText);
+		assertFalse(answer.equals(result));
+
+		inputText = "orange,alphabet,cyworld";
+		result = invokeMethod(RacingGame.class, "parseNamesOfCar", List.class, String.class, inputText);
+		assertFalse(answer.equals(result));
 	}
 }

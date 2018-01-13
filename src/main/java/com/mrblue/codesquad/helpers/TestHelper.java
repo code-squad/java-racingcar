@@ -1,4 +1,4 @@
-package com.mrblue.codesquad.testutil;
+package com.mrblue.codesquad.helpers;
 
 import java.lang.reflect.Method;
 
@@ -11,7 +11,7 @@ import java.lang.reflect.Method;
  * 향후 유지보수를 하면서 적당한 모델로 리팩토링 해야겠습니다.
  */
 // TODO : 너무 바빠서 (이런 마인드 문제네요 ㅠ.ㅜ) TestUtil 클래스는 단위 테스트를 작성하지 못했습니다.
-public class TestUtil {
+public class TestHelper {
 	private static final String MSG_ARGUMENTS_FORMAT_ERROR = "args는 [{타입}, {값}, {타입}, {값}..]의 형태로 짝수 개수여야 합니다.";
 
 	@SuppressWarnings("unchecked")

@@ -9,16 +9,17 @@ import java.util.Scanner;
  * 콘솔 입/출력을 담당
  */
 public class ConsoleIO {
-	private static final String BLANK = "";
-	private static final String WHITE_SPACE = " ";
+	private static final String BLANK          = "";
+	private static final String LINE_SEPERATOR = "\n";
 
-	private ConsoleIO() {}
+	private ConsoleIO() {
+	}
 
 	public static String readLine(final String promptMessage) {
 		if (promptMessage != null) {
 			final String message = new StringBuilder()
 					.append(promptMessage)
-					.append(WHITE_SPACE)
+					.append(LINE_SEPERATOR)
 					.toString();
 
 			print(message);
