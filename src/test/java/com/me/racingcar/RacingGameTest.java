@@ -4,7 +4,6 @@ import com.me.racingcar.game.racing.Car;
 import com.me.racingcar.game.racing.RacingGame;
 import org.junit.Test;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -25,66 +24,30 @@ public class RacingGameTest {
      */
 
     @Test
-    public void game01(){
-        RacingGame game = new RacingGame(8, 100);
-        List<Car> cars = game.start();
-        RacingGame.viewResult(cars);
+    public void game(){
+        RacingGame game = new RacingGame("han,kim,park,jin", 100);
+        game.start();
+        game.viewResult();
     }
 
     @Test
-    public void game02(){
+    public void game_get_winner(){
         RacingGame game = new RacingGame("han,kim,park,jin", 100);
         List<Car> cars = game.start();
-        RacingGame.viewResult(cars);
+
+        List<Car> winner = game.getWinner();
+        assertNotNull(winner);
+
+        int winnerPosition = winner.get(0).getPosition();
+        for(Car car : cars){
+            assertTrue(car.getPosition() <= winnerPosition);
+        }
     }
 
     @Test
-    public void game02_get_winner(){
-        List<Car> cars = new ArrayList<>();
-        Car car01 = new Car("test-01");
-        car01.setPosition(5);
-        cars.add(car01);
-        Car car02 = new Car("test-02");
-        car02.setPosition(10);
-        cars.add(car02);
-
-        List<Car> winner = RacingGame.getWinner(cars);
-        assertTrue(1 == winner.size());
-    }
-
-    @Test
-    public void game02_get_winner_not_one(){
-        List<Car> cars = new ArrayList<>();
-        Car car01 = new Car("test-01");
-        car01.setPosition(5);
-        cars.add(car01);
-        Car car02 = new Car("test-02");
-        car02.setPosition(10);
-        cars.add(car02);
-        Car car03 = new Car("test-03");
-        car03.setPosition(10);
-        cars.add(car03);
-
-        List<Car> winner = RacingGame.getWinner(cars);
-        assertTrue(2 == winner.size());
-
-    }
-
-    @Test
-    public void game02_car_one(){
+    public void game_car_one(){
         RacingGame game = new RacingGame("han", 100);
-        List<Car> cars = game.start();
-        RacingGame.viewResult(cars);
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void game_start_car_under_zero(){
-        new RacingGame(0, 10);
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void game_start_term_under_zero(){
-        new RacingGame(10, 0);
+        game.start();
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -95,8 +58,7 @@ public class RacingGameTest {
     @Test(expected = IllegalArgumentException.class)
     public void game_start_car_only_separator(){
         RacingGame game = new RacingGame(",", 100);
-        List<Car> cars = game.start();
-        RacingGame.viewResult(cars);
+        game.start();
     }
 
 }
