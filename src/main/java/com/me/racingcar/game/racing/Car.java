@@ -1,6 +1,6 @@
-package com.me.racingcar.car;
+package com.me.racingcar.game.racing;
 
-public class Car {
+public class Car{
     private String name;
     private int position = 0;
 
@@ -16,15 +16,21 @@ public class Car {
     }
 
     public String printPosition(){
-        String rtn = "";
-        for(int i=0 ; i<position ; i++){
-            rtn += "-";
+        StringBuilder builder = new StringBuilder();
+        for(int i=0 ; i<position ; i++) {
+            builder.append("-");
         }
-        return rtn;
+        return builder.toString();
+    }
+
+    public int getPosition() {
+        return position;
     }
 
     @Override
     public String toString() {
         return this.name + "("+this.position+") : "+printPosition();
     }
+
+
 }
