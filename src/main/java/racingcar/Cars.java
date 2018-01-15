@@ -1,22 +1,29 @@
 package racingcar;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class Cars {
-	private ArrayList<Car> cars = new ArrayList<>();
+	private static final Logger log = LoggerFactory.getLogger(Cars.class);
+	private List<Car> cars = new ArrayList<>();
 
-	Cars(String[] carNames) {
-		for (int i = 0; i < carNames.length; i++) {
-			cars.add(new Car(carNames[i]));
-		}
+	Cars() {
+	}
+	
+
+	public void setCar(String[] names) {
+		for (String name : names)
+			cars.add(new Car(name));
 	}
 
 	public void add(Car car) {
 		cars.add(car);
 	}
 
-	public ArrayList<Car> getCars() {
+	public List<Car> getCars() {
 		return cars;
 	}
 
@@ -36,9 +43,8 @@ public class Cars {
 	}
 
 	public void setCarStatus() {
-		for (int i = 0; i < cars.size(); i++) {
+		for (int i = 0; i < cars.size(); i++)
 			findCar(i).movePosition(createRanNum());
-		}
 	}
 
 	private Car findCar(int index) {
