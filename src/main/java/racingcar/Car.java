@@ -8,6 +8,9 @@ public class Car {
 		this.name = name;
 	}
 
+	public Car() {
+	}
+
 	public void movePosition(int ranNum) {
 		if (ranNum >= 4)
 			this.position++;
@@ -15,6 +18,10 @@ public class Car {
 
 	public int getPosition() {
 		return this.position;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getName() {

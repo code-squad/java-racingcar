@@ -3,6 +3,7 @@ package racingcar;
 import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.After;
 import org.junit.Before;
@@ -13,8 +14,10 @@ public class CarsTest {
 
 	@Before
 	public void setUp() {
-		String[] carNames = { "차1", "차2" };
+		String carNames[] = {"차1", "차2"};
+	
 		cars = new Cars(carNames);
+	
 
 	}
 
