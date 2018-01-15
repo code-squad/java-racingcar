@@ -16,8 +16,7 @@ public class CarsTest {
 	public void setUp() {
 		String carNames[] = {"차1", "차2"};
 	
-		cars = new Cars();
-		cars.setCar(carNames);
+		cars = new Cars(carNames);
 	
 
 	}

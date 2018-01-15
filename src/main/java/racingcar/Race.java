@@ -16,6 +16,7 @@ import spark.ModelAndView;
 import spark.template.handlebars.HandlebarsTemplateEngine;
 
 public class Race {
+	Cars cars;
 	private void startGame() {
 		port(8080);
 		
@@ -24,9 +25,8 @@ public class Race {
 		});
 		
 		Map<String, Object> model = new HashMap<>();
-		Cars cars = new Cars();
 		post("/name", (req, res) -> {
-			cars.setCar(req.queryParams("names").split(" "));
+			cars = new Cars(req.queryParams("names").split(" "));
 			model.put("cars", cars.getCars());
 
 			return render(model, "game.html");

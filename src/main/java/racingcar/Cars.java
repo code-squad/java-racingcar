@@ -9,15 +9,16 @@ import org.slf4j.LoggerFactory;
 public class Cars {
 	private static final Logger log = LoggerFactory.getLogger(Cars.class);
 	private List<Car> cars = new ArrayList<>();
-
-	Cars() {
-	}
 	
+	public Cars() {
+		
+	}
 
-	public void setCar(String[] names) {
+	Cars(String[] names) {
 		for (String name : names)
 			cars.add(new Car(name));
 	}
+	
 
 	public void add(Car car) {
 		cars.add(car);
