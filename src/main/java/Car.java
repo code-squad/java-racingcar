@@ -1,8 +1,12 @@
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.Random;
 
 public class Car {
     private int position;
     private String name;
+    private static final Logger logger = LoggerFactory.getLogger(Car.class);
 
     public Car(String name){
         this.name = name;
@@ -11,10 +15,11 @@ public class Car {
     public void move(int randomNumber){
         if (randomNumber >= 4) {
             position += 1;
+            //logger.info("{} move", name);
         }
     }
     public int getPosition(){
         return position;
     }
-    //logic
+
 }
