@@ -7,6 +7,7 @@ public class Racing {
     private static final Logger logger = LoggerFactory.getLogger(Racing.class);
     static private int count, carnumber;
     static private Car [] cars;
+    static private String [] names;
 
     public static String repeat (int number) {
         String string = "";
@@ -25,11 +26,18 @@ public class Racing {
     }
 
     public static Car [] carinput(Scanner scanner){
-        logger.info("자동차 대수는 몇 대 인가요? -- 메서드 분리");
-        Car car = new Car();
-        int car_number = scanner.nextInt();
-        cars = new Car[car_number];
-        // carPositions에는 배열의 주소값이 들어가있다.
+        logger.info("경주할 자동차 이름을 입력하세요");
+        String inputName = scanner.nextLine();
+        String[] names = inputName.split(",");
+        //Car car = new Car();
+        // car 객체 생성. 생성자가 있으므로, name인자가 전달이 되어야됨.
+        //int car_number = scanner.nextInt();
+        cars = new Car[names.length];
+        // cars의 길이선언.
+        for (int i = 0; i < cars.length;i++) {
+            cars[i] = new Car(names[i]);
+            //checkMove(i,count);
+        }
         return cars;
     }
 
@@ -39,10 +47,9 @@ public class Racing {
         return count;
     }
 
-    public static void loop(int carnumber){
+    public static void loop(){
         Random rnd = new Random();
-        for (int i = 0; i < carnumber;i++) {
-            cars[i] = new Car();
+        for (int i = 0; i < cars.length;i++) {
             checkMove(i,count);
         }
         printResult(cars);
@@ -59,15 +66,14 @@ public class Racing {
     public static void main (String args[]) {
         Racing racing = new Racing();
         Random rnd = new Random();
-        Car car = new Car();
-        car.move(rnd.nextInt(9));
         Scanner scanner = new Scanner(System.in);
         carinput(scanner);
         count = count(scanner);
-        carnumber = cars.length;
         logger.info("실행 결과");
-        loop(carnumber);
-
+        for(int i = 0; i < cars.length; i++){
+            cars[i].move(rnd.nextInt(9));
+        }
+        loop();
     }
 }
 
