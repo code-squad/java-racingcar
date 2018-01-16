@@ -7,11 +7,10 @@ public class RacingGame {
     private int time;
     private ArrayList<Car> cars;
 
-    public RacingGame(int carCount, int time) {
+    public RacingGame(String[] names, int time) {
         this.random = new Random();
         this.time = time;
-
-        initCars(carCount);
+        initCars(names);
     }
 
     public void start() {
@@ -21,17 +20,42 @@ public class RacingGame {
     }
 
     public void printResult() {
-        System.out.println("========= 결과 =========");
+        System.out.println("\n실행 결과");
         for (Car car : cars) {
             System.out.println(car.toString());
         }
-        System.out.println("========================");
     }
 
-    private void initCars(int carCount) {
+    public void printWinners() {
+        ArrayList<Car> winners = getWinners();
+
+        StringBuilder stringBuilder = new StringBuilder("\n");
+
+        for (Car winner : winners) {
+            stringBuilder.append(winner.getName());
+            stringBuilder.append(", ");
+        }
+
+        stringBuilder.delete(stringBuilder.length() - 2, stringBuilder.length());
+        stringBuilder.append("이(가) 최종 우승했습니다.");
+
+        System.out.println(stringBuilder.toString());
+    }
+
+    private ArrayList<Car> getWinners() {
+        ArrayList<Car> winners = (ArrayList<Car>) cars.clone();
+
+        int maxPosition = getMaxPosition();
+
+        winners.removeIf(car -> car.getPosition() < maxPosition);
+
+        return winners;
+    }
+
+    private void initCars(String[] names) {
         cars = new ArrayList<>();
-        for (int i = 0; i < carCount; i++) {
-            cars.add(new Car());
+        for (String name : names) {
+            cars.add(new Car(name));
         }
     }
 
@@ -49,4 +73,13 @@ public class RacingGame {
         return cars;
     }
 
+    public int getMaxPosition() {
+        int maxPosition = 0;
+
+        for (Car car : cars) {
+            maxPosition = car.getPosition() > maxPosition ? car.getPosition() : maxPosition;
+        }
+
+        return maxPosition;
+    }
 }
