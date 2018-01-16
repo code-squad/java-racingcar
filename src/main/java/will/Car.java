@@ -1,4 +1,6 @@
+package will;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class Car {
@@ -14,12 +16,20 @@ public class Car {
 		this.position = position;
 	}
 	
-	String getName() {
-		return this.name;
+	public String getName() {
+		return name;
 	}
-	
-	int getPosition() {
-		return this.position;
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public int getPosition() {
+		return position;
+	}
+
+	public void setPosition(int position) {
+		this.position = position;
 	}
 	
 	private static int makeRandomNum() {
@@ -27,24 +37,25 @@ public class Car {
 		int randomNum = random.nextInt(10);
 		return randomNum;
 	}
-	
+
 	void run(int randomNum) {
 		if (randomNum >= 4) {
 			this.position++;
 		}
 	}
 	
-	static void runCars(ArrayList<Car> listCar) {
-		for (Car car: listCar) {
+	static void runCars(List<Car> cars) {
+		for (Car car: cars) {
 			int randomNumber = makeRandomNum();
 			car.run(randomNumber);
 		}
 	}
 	
-	static ArrayList<Car> createCars(String[] names) {
+	static List<Car> createCars(String names) {
+		String[] temp = names.split(" ");
 		ArrayList<Car> listCar = new ArrayList<>();
-		for (int i = 0; i < names.length; i++) {
-			listCar.add(new Car(names[i]));
+		for (int i = 0; i < temp.length; i++) {
+			listCar.add(new Car(temp[i]));
 		}
 		return listCar;
 	}

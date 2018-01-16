@@ -1,12 +1,20 @@
+package will;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+
+
 public class Result {
+	private static final Logger log = LoggerFactory.getLogger(Result.class);
+	
 	static void show(ArrayList<Car> listCar) {
 		for (int i = 0; i < listCar.size(); i++) {
-			System.out.println(listCar.get(i).getName() +  " : " + listCar.get(i).makeDash());
+			log.info(listCar.get(i).getName() +  " : " + listCar.get(i).makeDash());
 		}
-		System.out.println("");
+		log.info("");
 	}
 	
 	static void showWinner(ArrayList<Car> listCar) {
@@ -14,10 +22,10 @@ public class Result {
 		for (int i = 0; i < listCar.size(); i++) {
 			positions.add(listCar.get(i).getPosition());
 		}
-		System.out.print("최종 우승자 : ");
+		log.debug("최종 우승자 : ");
 		for (int i = 0; i < listCar.size(); i++) {
 			if(Collections.max(positions) == listCar.get(i).getPosition()) {
-				System.out.print(listCar.get(i).getName() + " ");
+				log.debug(listCar.get(i).getName() + " ");
 			}
 		}
 	}
@@ -45,9 +53,9 @@ public class Result {
 	}
 	
 	static void showWinnerCar(ArrayList<Car> winnerCars) {
-		System.out.print("최종 우승자 : ");
+		log.info("최종 우승자 : ");
 		for (Car car : winnerCars) {
-			System.out.print(car.getName() + " ");
+			log.info("{} ", car.getName());
 		}
 	}
 }

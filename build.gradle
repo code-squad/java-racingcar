@@ -1,16 +1,15 @@
 apply plugin: 'java'
 apply plugin: 'eclipse'
 
-version = '1.0.0'
+group = 'com.will'
+version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
 
 repositories {
-    mavenCentral()
+	mavenCentral()
 }
 
 dependencies {
-    compile('com.sparkjava:spark-core:2.6.0')
-    compile('com.sparkjava:spark-template-handlebars:2.5.5')
-    compile('ch.qos.logback:logback-classic:1.2.3')
-    testCompile('junit:junit:4.12')
+	compile "com.sparkjava:spark-core:2.7.1"
+	compile "com.sparkjava:spark-template-handlebars:2.7.1"
 }
