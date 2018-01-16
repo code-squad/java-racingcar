@@ -2,34 +2,29 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class Racing {
     private static final Logger logger = LoggerFactory.getLogger(Racing.class);
-    static private int count, carnumber;
-    static private Car [] cars;
+    static private int count;
+    //static private Car[] cars;
+    static private ArrayList<Car> cars;
+    //static private String[] names;
 
-    public static String repeat (int number) {
-        String string = "";
-        for (int i = 0; i < number; i++) {
-            string += "-";
-        }
-        return string;
+    public static String[] nameInput(Scanner scanner){
+        logger.info("경주할 자동차 이름을 입력하세요");
+        String inputName = scanner.nextLine();
+        String[] names = inputName.split(",");
+        return names;
     }
 
-    public static void printResult(Car [] carPositions) {
-        for (int i = 0; i < carPositions.length; i++) {
-            int empty = carPositions[i].getPosition();
-            String result = repeat(empty);
-            System.out.println(result);
+    public static ArrayList<Car> carinput(String[] names){
+        cars = new ArrayList<Car>();
+        //cars = new Car[names.length];
+        for (int i = 0; i < names.length;i++) {
+            //cars[i] = new Car(names[i]);
+            cars.add(new Car(names[i]));
         }
-    }
-
-    public static Car [] carinput(Scanner scanner){
-        logger.info("자동차 대수는 몇 대 인가요? -- 메서드 분리");
-        Car car = new Car();
-        int car_number = scanner.nextInt();
-        cars = new Car[car_number];
-        // carPositions에는 배열의 주소값이 들어가있다.
         return cars;
     }
 
@@ -39,35 +34,80 @@ public class Racing {
         return count;
     }
 
-    public static void loop(int carnumber){
-        Random rnd = new Random();
-        for (int i = 0; i < carnumber;i++) {
-            cars[i] = new Car();
-            checkMove(i,count);
+    public static void printResult(ArrayList<Car> carPositions) {
+        for (int i = 0; i < carPositions.size(); i++) {
+            int empty = carPositions.get(i).getPosition();
+            String result = repeat(empty);
+            System.out.print(cars.get(i).getName() + " : ");
+            System.out.println(result);
         }
-        printResult(cars);
+    }
+
+    public static String repeat (int number) {
+        String string = "";
+        for (int i = 0; i < number; i++) {
+            string += "-";
+        }
+        return string;
     }
 
     public static void checkMove (int j,int count) {
         Random rnd = new Random();
         for (int i = 0; i < count; i++) {
-            cars[j].move(rnd.nextInt(10));
+            cars.get(j).move(rnd.nextInt(10));
         }
     }
 
+    public static void loop(){
+        for (int i = 0; i < cars.size();i++) {
+            checkMove(i , count);
+        }
+        printResult(cars);
+    }
+
+    public static int maxValue(ArrayList<Car> cars){
+        int maxPosition = 0;
+        ArrayList<Car> maxArraylist = new ArrayList<Car>();
+        for (Car car : cars) {
+            if (car.getPosition() > maxPosition) {
+                maxPosition = car.getPosition();
+            }
+        }
+        return maxPosition;
+    }
+
+    public static ArrayList<Car> maxList(int maxPosition){
+        ArrayList<Car> maxArraylist = new ArrayList<Car>();
+        for (Car car : cars) {
+            if (car.matchPosition(maxPosition)){
+                maxArraylist.add(car);
+            }
+        }
+        return maxArraylist;
+    }
+
+    public static void printChampion(ArrayList<Car> maxArraylist){
+        String result = "";
+        for(int i = 0; i < maxArraylist.size(); i++) {
+            result += maxArraylist.get(i).getName() + ",";
+        }
+        logger.info("{}가 우승을 했습니다.", result.substring(0, result.length()-1));
+    }
 
     public static void main (String args[]) {
         Racing racing = new Racing();
         Random rnd = new Random();
-        Car car = new Car();
-        car.move(rnd.nextInt(9));
         Scanner scanner = new Scanner(System.in);
-        carinput(scanner);
+        String[] names = nameInput(scanner);
+        // names = nameInput(scanner);
+        // 변수에 직접 저장을 해야 리턴값을 사용할 수 있다.
+        carinput(names);
         count = count(scanner);
-        carnumber = cars.length;
         logger.info("실행 결과");
-        loop(carnumber);
-
+        loop();
+        int position = maxValue(cars);
+        ArrayList<Car> result = maxList(position);
+        printChampion(result);
     }
 }
 
