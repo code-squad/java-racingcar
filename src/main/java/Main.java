@@ -12,7 +12,7 @@ public class Main {
 
         RacingGame racingGame = new RacingGame(racingCount, cars);
         racingGame.runGames();
-        consoleView.printCarPositions(racingGame.getCars());
+        consoleView.printCarPositions(racingGame.getCars(), racingGame.getWinners());
     }
 
     public static List<Car> initCars(String[] carNames) {

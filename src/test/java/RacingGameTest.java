@@ -13,7 +13,7 @@ public class RacingGameTest {
 
     @Before
     public void setup() {
-        List<Car> cars = new ArrayList<>(Arrays.asList(new Car(), new Car(), new Car()));
+        List<Car> cars = new ArrayList<>(Arrays.asList(new Car("a"), new Car("b"), new Car("c")));
         racingGame = new RacingGame(5, cars);
     }
 
