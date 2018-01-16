@@ -4,9 +4,9 @@ import org.slf4j.LoggerFactory;
 import java.util.Random;
 
 public class Car {
+    private static final Logger logger = LoggerFactory.getLogger(Car.class);
     private int position;
     private String name;
-    private static final Logger logger = LoggerFactory.getLogger(Car.class);
 
     public Car(String name){
         this.name = name;

@@ -8,17 +8,17 @@ import java.util.ArrayList;
 public class Racing {
     private static final Logger logger = LoggerFactory.getLogger(Racing.class);
     static private int count;
-    static private Car [] cars;
-    static private String [] names;
+    static private Car[] cars;
+    static private String[] names;
 
-    public static String [] nameInput(Scanner scanner){
+    public static String[] nameInput(Scanner scanner){
         logger.info("경주할 자동차 이름을 입력하세요");
         String inputName = scanner.nextLine();
         String[] names = inputName.split(",");
         return names;
     }
 
-    public static Car [] carinput(String [] names){
+    public static Car[] carinput(String[] names){
         cars = new Car[names.length];
         for (int i = 0; i < cars.length;i++) {
             cars[i] = new Car(names[i]);
@@ -32,7 +32,7 @@ public class Racing {
         return count;
     }
 
-    public static void printResult(Car [] carPositions) {
+    public static void printResult(Car[] carPositions) {
         for (int i = 0; i < carPositions.length; i++) {
             int empty = carPositions[i].getPosition();
             String result = repeat(empty);
@@ -64,7 +64,7 @@ public class Racing {
     }
 
     public static ArrayList<Integer> getPositionArray(){
-        int [] arraysPosition;
+        int[] arraysPosition;
         arraysPosition = new int[cars.length];
         for (int i = 0; i < cars.length; i++){
             arraysPosition[i] = cars[i].getPosition();
