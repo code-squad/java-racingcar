@@ -23,4 +23,8 @@ public class RacingGame {
         }
     }
 
+    public Car[] getCars() {
+        return this.cars;
+    }
+
 }

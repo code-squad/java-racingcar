@@ -4,11 +4,12 @@ public class Main {
 
         int carCount = consoleView.askCarCount();
         int racingCount = consoleView.askRacingCount();
+
         Car[] cars = initCars(carCount);
 
         RacingGame racingGame = new RacingGame(racingCount, cars);
         racingGame.runGames();
-
+        consoleView.printCarPositions(racingGame.getCars());
     }
 
     public static Car[] initCars(int carCount) {

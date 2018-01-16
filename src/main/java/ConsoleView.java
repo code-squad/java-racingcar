@@ -14,5 +14,18 @@ public class ConsoleView {
         return scanner.nextInt();
     }
 
+    public void printCarPositions(Car[] cars) {
+        for(Car car : cars) {
+            System.out.println(getPositionString(car));
+        }
+    }
+
+    private String getPositionString(Car car) {
+        StringBuilder builder = new StringBuilder();
+        for (int i = 0; i < car.getPosition(); i++)
+            builder.append("-");
+
+        return builder.toString();
+    }
 }
 
