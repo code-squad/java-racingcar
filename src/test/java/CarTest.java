@@ -5,9 +5,10 @@ import static org.junit.Assert.assertEquals;
 
 public class CarTest {
     private Car car;
+
     @Before
-    public void setup(){
-        car = new Car();
+    public void setup() {
+        car = new Car("a");
     }
 
     @Test
