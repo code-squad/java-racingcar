@@ -9,8 +9,7 @@ public class Car {
     }
 
     public int move(int rand) {
-        boolean canForward = rand >= 4 ? true : false;
-        if (canForward) {
+        if (rand >= 4) {
             ++position;
         }
 
