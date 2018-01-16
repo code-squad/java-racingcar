@@ -23,4 +23,8 @@ public class Car {
     public String getName(){
         return name;
     }
+
+    public boolean matchPosition(int position){
+        return this.position == position;
+    }
 }

@@ -1,4 +1,3 @@
-import org.apache.commons.lang3.ArrayUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.util.Random;
@@ -66,7 +65,7 @@ public class Racing {
         printResult(cars);
     }
 
-    public static ArrayList<Car> maxValue(ArrayList<Car> cars){
+    public static int maxValue(ArrayList<Car> cars){
         int maxPosition = 0;
         ArrayList<Car> maxArraylist = new ArrayList<Car>();
         for (Car car : cars) {
@@ -74,16 +73,20 @@ public class Racing {
                 maxPosition = car.getPosition();
             }
         }
+        return maxPosition;
+    }
 
+    public static ArrayList<Car> maxList(int maxPosition){
+        ArrayList<Car> maxArraylist = new ArrayList<Car>();
         for (Car car : cars) {
-            if (maxPosition == car.getPosition()){
+            if (car.matchPosition(maxPosition)){
                 maxArraylist.add(car);
             }
         }
         return maxArraylist;
     }
-    // print champion
-    public static void findChampion(ArrayList<Car> maxArraylist){
+
+    public static void printChampion(ArrayList<Car> maxArraylist){
         String result = "";
         for(int i = 0; i < maxArraylist.size(); i++) {
             result += maxArraylist.get(i).getName() + ",";
@@ -102,8 +105,9 @@ public class Racing {
         count = count(scanner);
         logger.info("실행 결과");
         loop();
-        ArrayList<Car> max = maxValue(cars);
-        findChampion(max);
+        int position = maxValue(cars);
+        ArrayList<Car> result = maxList(position);
+        printChampion(result);
     }
 }
 
