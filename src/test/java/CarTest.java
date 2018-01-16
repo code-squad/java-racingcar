@@ -11,7 +11,7 @@ public class CarTest {
 
     @Before
     public void 초기설정() {
-        car = new Car();
+        car = new Car("boobby");
     }
 
     @Test
@@ -31,7 +31,7 @@ public class CarTest {
         car.move(6);
         car.move(4);
         car.move(2);
-        assertEquals("--", car.toString());
+        assertEquals("boobby : --", car.toString());
     }
 
 }
