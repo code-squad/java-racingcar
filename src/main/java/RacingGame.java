@@ -1,11 +1,12 @@
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.stream.*;
 
 public class RacingGame {
     private int racingCount;
-    private Car[] cars;
+    private ArrayList<Car> cars;
 
-    public RacingGame(int racingCount, Car[] cars) {
+    public RacingGame(int racingCount, ArrayList<Car> cars) {
         this.racingCount = racingCount;
         this.cars = cars;
     }
@@ -17,13 +18,13 @@ public class RacingGame {
 
     public void runGames() {
         for (int i = 0; i < racingCount; i++) {
-            Stream.of(cars)
+            cars.stream()
                     .forEach(car->
                             car.tryMove(createRandom()));
         }
     }
 
-    public Car[] getCars() {
+    public ArrayList<Car> getCars() {
         return this.cars;
     }
 
