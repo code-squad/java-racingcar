@@ -21,14 +21,14 @@ public class RacingGame {
     public void runGames() {
         for (int i = 0; i < racingCount; i++) {
             cars.stream()
-                    .forEach(car->
+                    .forEach(car ->
                             car.tryMove(createRandom()));
         }
     }
 
     public int getMax() {
         int max = 0;
-        for (Car car: cars) {
+        for (Car car : cars) {
             max = Integer.max(car.getPosition(), max);
         }
         return max;
@@ -45,8 +45,6 @@ public class RacingGame {
 
         return winners;
     }
-
-
 
     public List<Car> getCars() {
         return this.cars;

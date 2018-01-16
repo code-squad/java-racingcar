@@ -18,7 +18,7 @@ public class ConsoleView {
 
     public void printCarPositions(List<Car> cars, String[] winners) {
         StringBuilder builder;
-        for(Car car : cars) {
+        for (Car car : cars) {
             builder = new StringBuilder();
             builder.append(car.getName())
                     .append(" : ")
@@ -26,6 +26,7 @@ public class ConsoleView {
             System.out.println(builder.toString());
         }
         System.out.println(String.join(", ", winners) + " 최종 우승했습니다.");
+
     }
 
     private String getPositionString(Car car) {

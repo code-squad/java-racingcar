@@ -14,7 +14,6 @@ public class RacingGameTest {
     private RacingGame racingGame;
     List<Car> cars;
 
-
     @Before
     public void setup() {
         cars = new ArrayList<>(Arrays.asList(new Car("a"), new Car("b"), new Car("c")));
@@ -45,5 +44,4 @@ public class RacingGameTest {
         assertArrayEquals(expectedWinner, racingGame.getWinners());
 
     }
-
 }
