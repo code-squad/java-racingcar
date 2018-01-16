@@ -1,15 +1,19 @@
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import static org.junit.Assert.assertTrue;
 
 public class RacingGameTest {
 
-    RacingGame racingGame;
+    private RacingGame racingGame;
 
     @Before
     public void setup() {
-        Car cars[] = {new Car(), new Car(), new Car()};
+        List<Car> cars = new ArrayList<>(Arrays.asList(new Car(), new Car(), new Car()));
         racingGame = new RacingGame(5, cars);
     }
 

@@ -1,12 +1,13 @@
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.stream.*;
 
 public class RacingGame {
     private int racingCount;
-    private ArrayList<Car> cars;
+    private List<Car> cars;
 
-    public RacingGame(int racingCount, ArrayList<Car> cars) {
+    public RacingGame(int racingCount, List<Car> cars) {
         this.racingCount = racingCount;
         this.cars = cars;
     }
@@ -24,7 +25,7 @@ public class RacingGame {
         }
     }
 
-    public ArrayList<Car> getCars() {
+    public List<Car> getCars() {
         return this.cars;
     }
 

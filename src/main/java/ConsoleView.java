@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class ConsoleView {
@@ -15,7 +16,7 @@ public class ConsoleView {
         return scanner.nextInt();
     }
 
-    public void printCarPositions(ArrayList<Car> cars) {
+    public void printCarPositions(List<Car> cars) {
         for(Car car : cars) {
             System.out.println(getPositionString(car));
         }
