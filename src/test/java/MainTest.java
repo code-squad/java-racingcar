@@ -7,8 +7,8 @@ import static org.junit.Assert.assertEquals;
 public class MainTest {
     @Test
     public void initCarsTest() {
-        int carCount = 3;
-        List<Car> cars =  Main.initCars(carCount);
-        assertEquals(carCount, cars.size());
+        String[] carNames = {"a","b","c"};
+        List<Car> cars =  Main.initCars(carNames);
+        assertEquals(carNames.length, cars.size());
     }
 }
