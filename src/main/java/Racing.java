@@ -66,34 +66,29 @@ public class Racing {
         printResult(cars);
     }
 
-    public static ArrayList<Integer> getPositionArray(){
-        int[] arraysPosition;
-        arraysPosition = new int[cars.size()];
-        for (int i = 0; i < cars.size(); i++){
-            arraysPosition[i] = cars.get(i).getPosition();
+    public static ArrayList<Car> maxValue(ArrayList<Car> cars){
+        int maxPosition = 0;
+        ArrayList<Car> maxArraylist = new ArrayList<Car>();
+        for (Car car : cars) {
+            if (car.getPosition() > maxPosition) {
+                maxPosition = car.getPosition();
+            }
         }
 
-        int max = arraysPosition[0];
-        for (int i = 0; i < cars.size(); i++){
-            if (arraysPosition[i] > max){
-                max = arraysPosition[i];
+        for (Car car : cars) {
+            if (maxPosition == car.getPosition()){
+                maxArraylist.add(car);
             }
         }
-        ArrayList<Integer> maxIndex = new ArrayList<Integer>();
-        for (int i = 0; i < cars.size(); i++){
-            if (max == arraysPosition[i]){
-                maxIndex.add(i);
-            }
-        }
-        return maxIndex;
+        return maxArraylist;
     }
-
-    public static void findChampion(ArrayList<Integer> maxIndex){
+    // print champion
+    public static void findChampion(ArrayList<Car> maxArraylist){
         String result = "";
-        for (int i = 0; i < maxIndex.size(); i++){
-            result += cars.get(i).getName() + ",";
+        for(int i = 0; i < maxArraylist.size(); i++) {
+            result += maxArraylist.get(i).getName() + ",";
         }
-        logger.info("{}가 최종 우승했습니다.", result.substring(0, result.length()-1));
+        logger.info("{}가 우승을 했습니다.", result.substring(0, result.length()-1));
     }
 
     public static void main (String args[]) {
@@ -105,13 +100,10 @@ public class Racing {
         // 변수에 직접 저장을 해야 리턴값을 사용할 수 있다.
         carinput(names);
         count = count(scanner);
-        //logger.info("size of names-list {}", names.length);
         logger.info("실행 결과");
         loop();
-        getPositionArray();
-
-        ArrayList<Integer> maxIndex = getPositionArray();
-        findChampion(maxIndex);
+        ArrayList<Car> max = maxValue(cars);
+        findChampion(max);
     }
 }
 
