@@ -23,6 +23,7 @@ public class CarRacing {
 			return render(model, "game.html");
 		});
 		
+		
 		post("/result", (req, res) -> {
 			String turnStr = req.queryParams("turn");
 			int turn = Integer.parseInt(turnStr);
