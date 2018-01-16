@@ -1,11 +1,11 @@
+import java.util.ArrayList;
 import java.util.Random;
-import java.util.Scanner;
 
 public class RacingGame {
 
     private Random random;
     private int time;
-    private Car[] cars;
+    private ArrayList<Car> cars;
 
     public RacingGame(int carCount, int time) {
         this.random = new Random();
@@ -29,9 +29,9 @@ public class RacingGame {
     }
 
     private void initCars(int carCount) {
-        cars = new Car[carCount];
-        for (int i = 0; i < cars.length; i++) {
-            cars[i] = new Car();
+        cars = new ArrayList<>();
+        for (int i = 0; i < carCount; i++) {
+            cars.add(new Car());
         }
     }
 
@@ -45,7 +45,7 @@ public class RacingGame {
         return time;
     }
 
-    public Car[] getCars() {
+    public ArrayList<Car> getCars() {
         return cars;
     }
 

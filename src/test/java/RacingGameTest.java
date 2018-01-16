@@ -15,7 +15,7 @@ public class RacingGameTest {
     @Test
     public void 자동차생성() {
         racingGame.start();
-        assertEquals(5, racingGame.getCars().length);
+        assertEquals(5, racingGame.getCars().size());
     }
 
 }
