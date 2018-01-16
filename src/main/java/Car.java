@@ -1,8 +1,10 @@
 public class Car {
     private int position;
+    private String name;
 
-    public Car() {
+    public Car(String name) {
         position = 0;
+        this.name = name;
     }
 
     public void tryMove(int tryGo) {
@@ -14,4 +16,6 @@ public class Car {
     public int getPosition() {
         return position;
     }
+
+    public String getName() { return this.name; }
 }

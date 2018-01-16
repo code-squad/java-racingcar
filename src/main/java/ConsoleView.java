@@ -6,9 +6,9 @@ public class ConsoleView {
 
     private static Scanner scanner = new Scanner(System.in);
 
-    public int askCarCount() {
-        System.out.println("자동차 대수는 몇 대 인가요?");
-        return scanner.nextInt();
+    public String[] askCarCount() {
+        System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
+        return scanner.nextLine().split(",");
     }
 
     public int askRacingCount() {
@@ -17,8 +17,13 @@ public class ConsoleView {
     }
 
     public void printCarPositions(List<Car> cars) {
+        StringBuilder builder;
         for(Car car : cars) {
-            System.out.println(getPositionString(car));
+            builder = new StringBuilder();
+            builder.append(car.getName())
+                    .append(" : ")
+                    .append(getPositionString(car));
+            System.out.println(builder.toString());
         }
     }
 
