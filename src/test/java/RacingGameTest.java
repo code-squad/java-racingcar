@@ -1,10 +1,11 @@
 import org.junit.Before;
 import org.junit.Test;
 
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class RacingGameTest {
 
@@ -20,67 +21,84 @@ public class RacingGameTest {
     @Test
     public void 자동차생성() {
         racingGame.start();
-        assertEquals(5, racingGame.getCars().size());
+        assertEquals(3, racingGame.getCars().size());
     }
 
     @Test
-    public void 우승자가져오기_포비() {
-        Car pobiCar = racingGame.getCars().get(0);
-        pobiCar.move(8);
-        pobiCar.move(8);
-        pobiCar.move(8);
-        pobiCar.move(8);
-        pobiCar.move(8);
+    public void 한명일때_이름찍기() {
+        List<Car> cars = new ArrayList<>();
+        cars.add(new Car("pobi", 8));
 
-        Car crongCar = racingGame.getCars().get(1);
-        crongCar.move(9);
-        crongCar.move(9);
-        crongCar.move(9);
-
-        Car honuxCar = racingGame.getCars().get(2);
-        honuxCar.move(4);
-        honuxCar.move(4);
-        honuxCar.move(4);
-        honuxCar.move(4);
-
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outputStream));
-
-        racingGame.printWinners();
-
-        assertEquals("\npobi, honux이(가) 최종 우승했습니다.\n", outputStream.toString());
-
-        System.setOut(null);
+        assertEquals("pobi", RacingGame.getCarsName(cars));
     }
 
     @Test
-    public void 우승자가져오기_포비호눅스() {
-        Car pobiCar = racingGame.getCars().get(0);
-        pobiCar.move(8);
-        pobiCar.move(8);
-        pobiCar.move(8);
-        pobiCar.move(8);
-        pobiCar.move(8);
+    public void 두명일때_이름찍기() {
+        List<Car> cars = new ArrayList<>();
+        cars.add(new Car("pobi", 8));
+        cars.add(new Car("honux", 8));
 
-        Car crongCar = racingGame.getCars().get(1);
-        crongCar.move(9);
-        crongCar.move(9);
-        crongCar.move(9);
+        assertEquals("pobi, honux", racingGame.getCarsName(cars));
+    }
 
-        Car honuxCar = racingGame.getCars().get(2);
-        honuxCar.move(4);
-        honuxCar.move(4);
-        honuxCar.move(4);
-        honuxCar.move(4);
-        honuxCar.move(4);
+    @Test
+    public void 인자포지션과_같은_포지션인_자동차리스트_가져오기() {
+        Car pobi = new Car("pobi", 8);
+        Car crong = new Car("crong", 8);
+        Car honux = new Car("honux", 3);
 
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outputStream));
+        List<Car> cars = new ArrayList<>();
+        cars.add(pobi);
+        cars.add(crong);
+        cars.add(honux);
 
-        racingGame.printWinners();
+        List<Car> expected = new ArrayList<>();
+        expected.add(pobi);
+        expected.add(crong);
 
-        assertEquals("\npobi, honux이(가) 최종 우승했습니다.\n", outputStream.toString());
+        assertEquals(expected, RacingGame.getMatchPositionCar(cars, 8));
+    }
 
-        System.setOut(null);
+    @Test
+    public void 차의_포지션과_포지션이같으면_add() {
+        List<Car> cars = new ArrayList<>();
+
+        Car car = new Car("car", 7);
+        int position = 7;
+
+        RacingGame.addMatchCar(position, cars, car);
+
+        assertTrue(cars.contains(car));
+    }
+
+    @Test
+    public void 차의_포지션과_포지션이다르면_add안함() {
+        List<Car> cars = new ArrayList<>();
+
+        Car car = new Car("car", 7);
+        int position = 8;
+
+        RacingGame.addMatchCar(position, cars, car);
+
+        assertTrue(!cars.contains(car));
+    }
+
+    @Test
+    public void 리스트에서_가장_높은_포지션_구하기() {
+        List<Car> cars = new ArrayList<>();
+
+        Car car1 = new Car("끼룩", 28);
+        Car car2 = new Car("Boobby", 27);
+        Car car3 = new Car("세환", 25);
+        Car car4 = new Car("예준", 27);
+        Car car5 = new Car("한나", 27);
+
+        cars.add(car1);
+        cars.add(car2);
+        cars.add(car3);
+        cars.add(car4);
+        cars.add(car5);
+
+        assertEquals(28, RacingGame.getMaxPosition(cars));
     }
 }

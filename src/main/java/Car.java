@@ -4,8 +4,12 @@ public class Car {
     private String name;
 
     public Car(String name) {
-        this.position = 0;
+        this(name, 0);
+    }
+
+    public Car(String name, int position) {
         this.name = name.trim();
+        this.position = position;
     }
 
     public int move(int rand) {

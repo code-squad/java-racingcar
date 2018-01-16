@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class RacingGame {
@@ -27,29 +28,43 @@ public class RacingGame {
     }
 
     public void printWinners() {
-        ArrayList<Car> winners = getWinners();
+        int maxPosition = getMaxPosition(cars);
+        List<Car> winners = getMatchPositionCar(cars, maxPosition);
 
         StringBuilder stringBuilder = new StringBuilder("\n");
-
-        for (Car winner : winners) {
-            stringBuilder.append(winner.getName());
-            stringBuilder.append(", ");
-        }
-
-        stringBuilder.delete(stringBuilder.length() - 2, stringBuilder.length());
+        stringBuilder.append(getCarsName(winners));
         stringBuilder.append("이(가) 최종 우승했습니다.");
 
         System.out.println(stringBuilder.toString());
     }
 
-    private ArrayList<Car> getWinners() {
-        ArrayList<Car> winners = (ArrayList<Car>) cars.clone();
+    public static String getCarsName(List<Car> cars) {
+        StringBuilder stringBuilder = new StringBuilder();
 
-        int maxPosition = getMaxPosition();
+        for (Car winner : cars) {
+            stringBuilder.append(winner.getName());
+            stringBuilder.append(", ");
+        }
 
-        winners.removeIf(car -> car.getPosition() < maxPosition);
+        stringBuilder.delete(stringBuilder.length() - 2, stringBuilder.length());
 
-        return winners;
+        return stringBuilder.toString();
+    }
+
+    public static List<Car> getMatchPositionCar(List<Car> cars, int position) {
+        List<Car> matchCars = new ArrayList<>();
+
+        for (Car car : cars) {
+            addMatchCar(position, matchCars, car);
+        }
+
+        return matchCars;
+    }
+
+    public static void addMatchCar(int position, List<Car> matchCars, Car car) {
+        if (car.getPosition() == position) {
+            matchCars.add(car);
+        }
     }
 
     private void initCars(String[] names) {
@@ -65,15 +80,11 @@ public class RacingGame {
         }
     }
 
-    public int getTime() {
-        return time;
-    }
-
     public ArrayList<Car> getCars() {
         return cars;
     }
 
-    public int getMaxPosition() {
+    public static int getMaxPosition(List<Car> cars) {
         int maxPosition = 0;
 
         for (Car car : cars) {
