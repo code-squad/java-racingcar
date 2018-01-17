@@ -3,12 +3,13 @@ package controller;
 import model.Car;
 import model.RacingGame;
 import view.ConsoleView;
+import view.RacingGameView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class RacingGameController {
-    private ConsoleView consoleView;
+    private RacingGameView consoleView;
     private RacingGame racingGame;
 
     public RacingGameController() {
