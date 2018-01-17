@@ -7,13 +7,10 @@ import java.util.ArrayList;
 public class Racing {
     private static final Logger logger = LoggerFactory.getLogger(Racing.class);
     static private int count;
-    //static private Car[] cars;
     static private ArrayList<Car> cars;
-    //static private String[] names;
 
-    public static String[] nameInput(Scanner scanner){
-        logger.info("경주할 자동차 이름을 입력하세요");
-        String inputName = scanner.nextLine();
+    public static String[] nameInput(String scannerInput){
+        String inputName = scannerInput;//.nextLine();
         String[] names = inputName.split(",");
         return names;
     }
@@ -39,9 +36,9 @@ public class Racing {
             int empty = carPositions.get(i).getPosition();
             String result = repeat(empty);
             System.out.print(cars.get(i).getName() + " : ");
-            System.out.println(result);
-        }
+             System.out.println(result);
     }
+}
 
     public static String repeat (int number) {
         String string = "";
@@ -98,9 +95,9 @@ public class Racing {
         Racing racing = new Racing();
         Random rnd = new Random();
         Scanner scanner = new Scanner(System.in);
-        String[] names = nameInput(scanner);
-        // names = nameInput(scanner);
-        // 변수에 직접 저장을 해야 리턴값을 사용할 수 있다.
+        logger.info("경주할 자동차 이름을 입력하세요");
+        String scannerInput = scanner.nextLine();
+        String[] names = nameInput(scannerInput);
         carinput(names);
         count = count(scanner);
         logger.info("실행 결과");

@@ -8,13 +8,19 @@ public class Car {
 
     public Car(String name){
         this.name = name;
-        // 생성자. 초기화하는거.
     }
-    public void move(int randomNumber){
+
+    public Car(String name,int position){
+        this.name = name;
+        this.position = position;
+    }
+
+    public int move(int randomNumber){
         if (randomNumber >= 4) {
             position += 1;
-            //logger.info("{} move", name);
+
         }
+        return position;
     }
     public int getPosition(){
         return position;
@@ -27,4 +33,5 @@ public class Car {
     public boolean matchPosition(int position){
         return this.position == position;
     }
+
 }
