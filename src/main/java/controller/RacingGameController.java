@@ -8,25 +8,34 @@ import view.RacingGameView;
 import java.util.ArrayList;
 import java.util.List;
 
+import static spark.Spark.get;
+
 public class RacingGameController {
-    private RacingGameView consoleView;
+    private RacingGameView view;
     private RacingGame racingGame;
 
     public RacingGameController() {
-        consoleView = new ConsoleView();
+        view = new ConsoleView();
 
-        String[] carNames = consoleView.askCarCount();
-        int racingCount = consoleView.askRacingCount();
+        String[] carNames = view.askCarCount();
+        int racingCount = view.askRacingCount();
 
         List<Car> cars = initCars(carNames);
 
         racingGame = new RacingGame(racingCount, cars);
+
+        MainRouting mainRouting = new MainRouting(racingGame);
+        mainRouting.onGame();
+        mainRouting.onIndex();
+        mainRouting.onResult(); 
     }
 
     public void run() {
         racingGame.runGames();
-        consoleView.printCarPositions(racingGame.getCars(), racingGame.getWinners());
+        view.printCarPositions(racingGame.getCars(), racingGame.getWinners());
     }
+
+
 
     public List<Car> initCars(String[] carNames) {
         List<Car> cars = new ArrayList<>();
