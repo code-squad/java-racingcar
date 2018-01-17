@@ -1,3 +1,7 @@
+package com.woowahan.racing;
+
+import com.woowahan.racing.Car;
+import com.woowahan.racing.RacingGame;
 import org.junit.Before;
 import org.junit.Test;
 
