@@ -18,8 +18,6 @@ public class Car {
     public int move(int randomNumber){
         if (randomNumber >= 4) {
             position += 1;
-           // logger.info("{} move", name);
-//            logger.info("current position is {}", position);
 
         }
         return position;
@@ -36,7 +34,4 @@ public class Car {
         return this.position == position;
     }
 
-    public void setPosition(int i){
-        position = i;
-    }
 }
