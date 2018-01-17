@@ -19,17 +19,17 @@ import static spark.Spark.staticFiles;
 public class RacingGameController {
     private RacingGameView view;
     private RacingGame racingGame;
-    public Map<String, Object> map;
+    List<Car> cars;
 
     public RacingGameController() {
-        view = new ConsoleView();
-
-        String[] carNames = view.askCarCount();
-        int racingCount = view.askRacingCount();
-
-        List<Car> cars = initCars(carNames);
-
-        racingGame = new RacingGame(racingCount, cars);
+//        view = new ConsoleView();
+//
+//        String[] carNames = view.askCarCount();
+//        int racingCount = view.askRacingCount();
+//
+//        cars = initCars(carNames);
+//
+//        racingGame = new RacingGame(racingCount, cars);
 
         onGame();
         getName();
@@ -51,15 +51,15 @@ public class RacingGameController {
     }
 
     private void onIndex() {
-        get("/index", (req, res) -> {
+        get("/", (req, res) -> {
             return render(new HashMap<>(), "index.html");
         });
     }
 
     private void getName() {
         post("/name", (req, res) -> {
-            map = new HashMap<>();
-            map.put("names", req.queryParams("names").split(" "));
+            cars = initCars(req.queryParams("names").split(" "));
+
             res.redirect("/game");
             return "";
         });
@@ -67,13 +67,21 @@ public class RacingGameController {
 
     private void onGame() {
         get("/game", (req, res) -> {
-            return render(new HashMap<>(), "game.html");
+            Map<String, Object> map = new HashMap<>();
+            map.put("cars", cars);
+            return render(map, "game.html");
         });
     }
 
     private void onResult() {
-        get("/result", (req, res) -> {
-            return render(new HashMap<>(), "result.html");
+        post("/result", (req, res) -> {
+            int racingCount = Integer.parseInt(req.queryParams("turn"));
+            racingGame = new RacingGame(racingCount, cars);
+            racingGame.runGames();
+            Map<String, Object> map = new HashMap<>();
+            map.put("cars", cars);
+            map.put("winners", String.join(",", racingGame.getWinners()));
+            return render(map, "result.html");
         });
     }
 
