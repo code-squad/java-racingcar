@@ -1,3 +1,5 @@
+package model;
+
 public class Car {
     private int position;
     private String name;

@@ -1,8 +1,11 @@
-import java.util.ArrayList;
+package view;
+
+import model.Car;
+
 import java.util.List;
 import java.util.Scanner;
 
-public class ConsoleView {
+public class ConsoleView implements RacingGameView {
 
     private static Scanner scanner = new Scanner(System.in);
 
@@ -29,7 +32,7 @@ public class ConsoleView {
 
     }
 
-    private String getPositionString(Car car) {
+    public String getPositionString(Car car) {
         StringBuilder builder = new StringBuilder();
         for (int i = 0; i < car.getPosition(); i++)
             builder.append("-");

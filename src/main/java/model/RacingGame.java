@@ -1,8 +1,7 @@
-import java.util.ArrayList;
-import java.util.Arrays;
+package model;
+
 import java.util.List;
 import java.util.Random;
-import java.util.stream.*;
 
 public class RacingGame {
     private int racingCount;

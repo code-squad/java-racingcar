@@ -1,3 +1,5 @@
+import model.Car;
+import model.RacingGame;
 import org.junit.Before;
 import org.junit.Test;
 
