@@ -4,8 +4,6 @@ import model.Car;
 import model.RacingGame;
 import spark.ModelAndView;
 import spark.template.handlebars.HandlebarsTemplateEngine;
-import view.ConsoleView;
-import view.RacingGameView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -14,23 +12,12 @@ import java.util.Map;
 
 import static spark.Spark.get;
 import static spark.Spark.post;
-import static spark.Spark.staticFiles;
 
 public class RacingGameController {
-    private RacingGameView view;
     private RacingGame racingGame;
     List<Car> cars;
 
     public RacingGameController() {
-//        view = new ConsoleView();
-//
-//        String[] carNames = view.askCarCount();
-//        int racingCount = view.askRacingCount();
-//
-//        cars = initCars(carNames);
-//
-//        racingGame = new RacingGame(racingCount, cars);
-
         onGame();
         getName();
         onIndex();
@@ -39,7 +26,6 @@ public class RacingGameController {
 
     public void run() {
         racingGame.runGames();
-        view.printCarPositions(racingGame.getCars(), racingGame.getWinners());
     }
 
     public List<Car> initCars(String[] carNames) {
@@ -51,9 +37,7 @@ public class RacingGameController {
     }
 
     private void onIndex() {
-        get("/", (req, res) -> {
-            return render(new HashMap<>(), "index.html");
-        });
+        get("/", (req, res) -> render(new HashMap<>(), "index.html"));
     }
 
     private void getName() {

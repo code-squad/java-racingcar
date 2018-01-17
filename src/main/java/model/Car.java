@@ -15,6 +15,13 @@ public class Car {
         }
     }
 
+    public String getPositionString() {
+        StringBuilder builder = new StringBuilder();
+        for(int i = 0; i < this.position; i++)
+            builder.append("&nbsp;");
+        return builder.toString();
+    }
+
     public int getPosition() {
         return position;
     }
