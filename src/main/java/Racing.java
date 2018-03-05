@@ -1,7 +1,7 @@
 public class Racing {
 	private int numCar;
 	private int times;
-
+	
 	public Racing(int numCar, int times) {
 		this.numCar = numCar;
 		this.times = times;
