@@ -11,7 +11,7 @@ public class Racing {
 		int randomNum = (int) (Math.random() * 9);
 		return randomNum;
 	}
-	
+
 	public boolean isGo() {
 		if (getRandomInt() >= 4) {
 			return true;
@@ -37,5 +37,4 @@ public class Racing {
 			oneCarRunning(times);
 		}
 	}
-
 }
