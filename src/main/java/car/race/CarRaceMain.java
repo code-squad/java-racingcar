@@ -10,8 +10,6 @@ public class CarRaceMain {
 		int numCars = userInput.askNumberofCars();
 		System.out.println("시도할 횟수는 몇 인가요?");
 		int numMoves = userInput.askNumberofMoves();
-		
-		
 
 		for(int car = 0; car < numCars; car++) {
 			System.out.println("");

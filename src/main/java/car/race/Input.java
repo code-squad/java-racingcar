@@ -10,13 +10,10 @@ public class Input {
 		return cars;
 	}
 	
-	
 	public int askNumberofMoves() {
 		Scanner sc = new Scanner(System.in);
 		int moves = sc.nextInt();
 		sc.close();
 		return moves;
-		
 	}
-	
 }
