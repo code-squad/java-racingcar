@@ -12,6 +12,7 @@ import java.util.Scanner;
  */
 
 public class Car {
+	
 	Map<Integer, Integer> input() { // 입력받기
 		Scanner sc = new Scanner(System.in);
 
@@ -22,49 +23,51 @@ public class Car {
 		int runNum = sc.nextInt();
 
 		HashMap<Integer, Integer> input = new HashMap<>();
-		input.put(1, carNum);
-		input.put(2, runNum);
+		input.put(1, carNum);	input.put(2, runNum);
 		return input;
 	}
 
 	int[] run(int[] carPositions, int runNum, int carNum) {
-
 		for (int i = 1; i <= runNum; i++) { // 횟수만큼돌기
-
-			for (int k = 0; k < carNum; k++) { // 차대수만큼돌기
-				carPositions = check(k, carPositions); // 랜덤돌리고 전진유무체크하기
-			}
+			chkCarPosition(carPositions, carNum); //자동차 전진체크및업데이트
 		}
+		return carPositions;
+	}
 
+	int[] chkCarPosition(int[] carPositions, int carNum) {
+		for (int k = 0; k < carNum; k++) { // 차대수만큼돌기
+			carPositions = check(k, carPositions); // 랜덤돌리고 전진유무체크하기
+		}
 		return carPositions;
 	}
 
 	int[] check(int k, int[] carPositions) {
 		Random rand = new Random(); // 랜덤
-
 		int randMove = rand.nextInt(10);
 
 		if (randMove >= 4) { // 랜덤값 4 이상이면 전진 (+1)
 			carPositions[k] += 1;
 		}
-
 		return carPositions;
 	}
 
 	void resultPrint(int carNum, int[] carPositions) {
 		System.out.println("실행 결과");
 		for (int i = 0; i < carNum; i++) {
-			for (int k = 0; k < carPositions[i]; k++) {
-				System.out.print("-");
-			}
+			barPrint(i, carPositions);
 			System.out.println();
+		}
+	}
+
+	void barPrint(int i, int[] carPositions) {
+		for (int k = 0; k < carPositions[i]; k++) {
+			System.out.print("-");
 		}
 	}
 
 	public static void main(String[] args) {
 
 		Car car = new Car();
-
 		Map<Integer, Integer> input = car.input();
 
 		int[] carPositions = new int[input.get(1)]; // 차 위치 배열
