@@ -3,7 +3,7 @@ package car.race;
 public class Output {
 	
 	public static void printMessage(String message) {
-		System.out.println(message);
+		System.out.print(message);
 	}
 	
 	public static void printDash(int position) {

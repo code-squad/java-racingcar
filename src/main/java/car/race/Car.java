@@ -11,8 +11,7 @@ public class Car {
 	public int countPosition(int numMoves) {
 		
 		for(int i = 0; i < numMoves; i++) {
-			int randNum = CarRace.generateRandNum();
-			if(randNum <= 4) {
+			if(CarRace.generateRandNum() <= 4) {
 				position++;
 			}
 		}
