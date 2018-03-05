@@ -2,6 +2,15 @@ import java.util.Scanner;
 
 public class RacingPrompt {
 	Scanner s = new Scanner(System.in);
+	Racing r1;
+	
+	public void setParameter() {
+		System.out.println("자동차 대수는 몇 대 인가요?\n>>");
+		int numCar = s.nextInt();
+		System.out.println("시도할 횟수는 몇 회 인가요?\n>>");
+		int times = s.nextInt();
+		r1 = new Racing(numCar, times);
+	}
 
 	public boolean reStart() {
 		System.out.println("\nrestart? y/n");
@@ -17,15 +26,9 @@ public class RacingPrompt {
 	}
 
 	public void runPrompt() {
-		
 		boolean isLoop = true;
 		while (isLoop) {
-			System.out.println("자동차 대수는 몇 대 인가요?\n>>");
-			int numCar = s.nextInt();
-			System.out.println("시도할 횟수는 몇 회 인가요?\n>>");
-			int times = s.nextInt();
-
-			Racing r1 = new Racing(numCar, times);
+			setParameter();
 			r1.run();
 			isLoop = reStart();
 		}
