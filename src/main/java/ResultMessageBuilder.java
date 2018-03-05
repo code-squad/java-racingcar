@@ -36,7 +36,7 @@ public class ResultMessageBuilder {
                 builder.append(", ");
             }
         }
-        builder.append("가 최종 우승했습니다.");
+        builder.append("(이)가 최종 우승했습니다.");
         return builder.toString();
     }
 

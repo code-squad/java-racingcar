@@ -7,17 +7,15 @@ public class Car implements Comparable<Car>{
         this.carPos = 0;
     }
 
-    public void run(int times){
-        for(int i=0; i<times; i++){
-            int goNum = RacingUtils.getRandomNum();
+    public void run(){
+        int goNum = RacingUtils.getRandomNum();
 
-            if(canGo(goNum)) {
-                this.carPos++;
-            }
+        if(canRun(goNum)) {
+            this.carPos++;
         }
     }
 
-    private boolean canGo(int goNum){
+    private boolean canRun(int goNum){
         return goNum >= 4;
     }
 

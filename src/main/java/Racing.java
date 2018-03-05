@@ -26,9 +26,25 @@ public class Racing {
 
 
     public void run(){
-        for(Car car : carList){
-            car.run(times);
+        int startIdx = 0;
+
+        while(!isFinish(startIdx)){
+            doRunLoop(selectCar(startIdx++));
         }
+    }
+
+    private Car selectCar(int idx){
+        return carList.get(idx);
+    }
+
+    private void doRunLoop(Car car){
+        for(int i=0; i<times; i++){
+            car.run();
+        }
+    }
+
+    private boolean isFinish(int currentIdx){
+        return currentIdx >= carList.size();
     }
 
     public void showResult(){
