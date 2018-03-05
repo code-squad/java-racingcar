@@ -19,17 +19,21 @@ public class Racing {
 		return false;
 	}
 
+	public void runRace() {
+		if (isGo())
+			System.out.print("-");
+	}
+
 	public void oneCarRunning(int times) {
 		for (int j = 0; j < times; j++) {
-			if (isGo())
-				System.out.print("-");
+			runRace();
 		}
 		System.out.println("");
 	}
-	
+
 	public void run() {
 		for (int i = 0; i < numCar; i++) {
-			System.out.printf("Car # :" + (i + 1) + " >> ");
+			System.out.printf("Car #" + (i + 1) + " >> ");
 			oneCarRunning(times);
 		}
 	}
