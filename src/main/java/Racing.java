@@ -1,7 +1,7 @@
 public class Racing {
 	private int numCar;
 	private int times;
-
+	
 	public Racing(int numCar, int times) {
 		this.numCar = numCar;
 		this.times = times;
@@ -33,9 +33,8 @@ public class Racing {
 
 	public void run() {
 		for (int i = 0; i < numCar; i++) {
-			System.out.printf("Car #" + (i + 1) + " >> ");
+			System.out.printf("Car #" + (i + 1) + " >>> ");
 			oneCarRunning(times);
 		}
 	}
-
 }
