@@ -17,4 +17,6 @@ public class Input {
 		String[] names = s.split(",");
 		return names;
 	}
+	
+	
 }

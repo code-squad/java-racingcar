@@ -10,16 +10,9 @@ public class CarRace {
 		return randNum;
 	}
 	
-	public static void startRace(String[] names, int numMoves) {
-		int numCars = names.length;
-		for(int car = 0; car < numCars; car++) {
-			System.out.println("");
-			System.out.print(names[car] + ": ");
-			Output.printResult(numMoves);
-		}
-	}
 	
-	public static void findWinner() {
+	
+	
 		
-	}
+
 }
