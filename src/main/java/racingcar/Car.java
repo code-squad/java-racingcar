@@ -1,39 +1,37 @@
 package racingcar;
 
 import java.util.Random;
-import java.util.Scanner;
-import com.google.common.base.Strings;
-
 
 public class Car {
-	static private int time;
-	static private int[] carPositions = {1,1,1};
 	
-	public static void run() {
-
-		Scanner scanner = new Scanner(System.in);
-		System.out.println("몇 번 시도하시나요?");
-		time = scanner.nextInt();
-		
-		System.out.println("실행 결과");
-		
-		while(time>=0) {
-			Random random = new Random();					
-			time -= 1;
-			System.out.println("");
-			
-			for(int i= 0; i<carPositions.length; i++){
-				int count = random.nextInt(10);
-				if(count>=4) {
-					carPositions[i] += 1;	
-				}
-				System.out.println(Strings.repeat("-",carPositions[i]));
-			}
+	//random number
+	public int makeRandomNumber() {
+		Random random = new Random();
+		return random.nextInt(10);
+	}
+	
+	//print dash
+	public void printDash(int rd) {
+		if(rd>=4) {
+			System.out.print("-");
 		}
-		scanner.close();
 	}
-	public static void main (String[] args){	
-		run();
+	
+	//loop for each cars
+	public void eachCars(int tryNum) {
+		for(int c=0; c< tryNum; c++) {
+			int rd = makeRandomNumber();
+			printDash(rd);
+		}
+		System.out.println("");
 	}
+	
+	//loop as many as user want
+	public void race(int carNum, int tryNum) {
+		for(int i=0; i<carNum; i++) {
+			eachCars(tryNum);
+		}
+	}
+	
 
 }
