@@ -6,21 +6,23 @@ import java.util.Arrays;
 
 public class Carinit {
 
-	public Car[] CarName(String[] names) {// 생성자를 사용하는 메소드
+	private Car[] win;
+    
+	public Carinit(String[] names) {   //Car가 먼저 생성된 후에 Carinit 클래스를 사용할 수 있도록 한다.
 		Car[] tt = new Car[names.length];
 		for (int i = 0; i < names.length; i++) {
 			tt[i] = new Car(names[i]);
 		}
-		return tt;
+		this.win = tt;
 	}
-
-	public void run(int car, int num, Car[] win) {// 모든 차의 주행 거리를 표현
+	
+	public void run(int car, int num) {// 모든 차의 주행 거리를 표현
 		for (int i = 0; i < car; i++) {
 			win[i].oneCar(num);
 		}
 	}
 
-	public void outName(Car[] win) {
+	public void outName() {
 		for (int i = 0; i < win.length; i++) {
 			System.out.print(win[i].getName() + " : ");
 			outPosition(win[i]);
@@ -34,7 +36,7 @@ public class Carinit {
 		System.out.println();
 	}
 
-	public int maxCar(Car[] win) {
+	public int maxCar() {
 		int max;
 		int[] carn = new int[win.length];
 
@@ -47,7 +49,7 @@ public class Carinit {
 		return max;
 	}
 
-	public void winCar(int max, Car[] win) {
+	public void winCar(int max) {
 		for (int i = 0; i < win.length; i++) {
 			if (win[i].matchPosition(max)) {
 				System.out.print(win[i].getName() + " ");
@@ -58,18 +60,18 @@ public class Carinit {
 
 	public static void main(String args[]) {
 		Scanner input = new Scanner(System.in);
-		Carinit pp = new Carinit();
-
+		
 		System.out.println("경주할 자동차의 이름은 무엇 인가요? ex)pobi, riverway");
 		String inputName = input.nextLine();
 		String[] names = inputName.split(",");
 
 		System.out.println("시도할 횟수는 몇 회 인가요?");
 		int num = input.nextInt();
-
-		Car[] win = pp.CarName(names);
-		pp.run(names.length, num, win);
-		pp.outName(win);
-		pp.winCar(pp.maxCar(win), win);
+		
+		Carinit pp = new Carinit(names);
+		
+		pp.run(names.length, num);
+		pp.outName();
+		pp.winCar(pp.maxCar());
 	}
 }
