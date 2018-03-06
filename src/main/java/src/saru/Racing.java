@@ -37,7 +37,7 @@ public class Racing {
 		return randNum;
 	}
 
-	boolean moveAhead(int randNum) {
+	boolean isCanMove(int randNum) {
 		if (getRandNum() >= 4) {
 			return true;
 		}
@@ -48,12 +48,16 @@ public class Racing {
 	void loopList(int index) {
 		for (int i = 0; i < time; i++) {
 			int randNum = getRandNum();
-			if (moveAhead(randNum)) {
-				// 리스트 요소 접근 해서 ++
-				int listValue = carPosition.get(index);
-				listValue++;
-				carPosition.set(index, listValue);
-			}
+			moveAhead(randNum, index);
+		}
+	}
+	
+	void moveAhead(int randNum, int index) {
+		if (isCanMove(randNum)) {
+			// 리스트 요소 접근 해서 ++
+			int listValue = carPosition.get(index);
+			listValue++;
+			carPosition.set(index, listValue);
 		}
 	}
 	
@@ -65,7 +69,7 @@ public class Racing {
 		System.out.println();
 	}
 
-	public void run() {
+	public void run(Racing param) {
 		// TODO 구현
 		carNum = getCarNumber();
 		time = getRunNumber();
@@ -75,14 +79,14 @@ public class Racing {
 		for (int i = 0; i < carPosition.size(); i++) {
 			loopList(i);
 		}
+		
+		for (int i = 0; i < param.carPosition.size(); i++) {
+			param.printCar(param.carPosition.get(i));
+		}
 	}
 
 	public static void main(String[] args) {
 		Racing myRacing = new Racing();
-		myRacing.run();
-
-		for (int i = 0; i < myRacing.carPosition.size(); i++) {
-			myRacing.printCar(myRacing.carPosition.get(i));
-		}
+		myRacing.run(myRacing);
 	}
 }
