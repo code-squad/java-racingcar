@@ -37,7 +37,8 @@ public class Racing {
 
     private void doRunLoop(Car car){
         for(int i=0; i<times; i++){
-            car.run();
+            int goNum = RacingUtils.getRandomNum();
+            car.run(goNum);
         }
     }
 

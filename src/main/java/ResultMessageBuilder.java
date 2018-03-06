@@ -1,10 +1,12 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.stream.Collectors;
 
 public class ResultMessageBuilder {
 
     public static String build(ArrayList<Car> carList){
-        return buildResultMessage(carList) + getWinnerNames(carList);
+        return buildResultMessage(carList) + buildWinnerNameMessage(carList);
     }
 
     private static String buildResultMessage(ArrayList<Car> carList){
@@ -18,16 +20,24 @@ public class ResultMessageBuilder {
         return builder.toString();
     }
 
-    private static String getWinnerNames(ArrayList<Car> carList){
+    private static String buildWinnerNameMessage(ArrayList<Car> carList){
+        String message = "(이)가 최종 우승했습니다.";
+        return getWinnersName(carList) + message;
+    }
+
+    private static String getWinnersName(ArrayList<Car> carList){
         if(!isExistListItem(carList)){
             return "없음";
         }
-
         int winnerRecord = getWinnerRecord(carList);
-        return buildWinnerNames(searchWinner(carList, winnerRecord));
+        Car[] winners = searchWinners(carList, winnerRecord);
+        return Arrays.stream(winners)
+                     .filter(car -> car.getCarPos() == winnerRecord)
+                     .map(Car::getName)
+                     .collect(Collectors.joining(", "));
     }
 
-    private static int getWinnerRecord(ArrayList<Car> carList){
+    public static int getWinnerRecord(ArrayList<Car> carList){
         Car topRecordCar = getTopRecordCar(carList);
         return topRecordCar.getCarPos();
     }
@@ -41,37 +51,10 @@ public class ResultMessageBuilder {
         Collections.sort(carList);
     }
 
-    private static String buildWinnerNames(String[] winnerNameArr){
-        StringBuilder builder = new StringBuilder();
-        for(int i=0; i<winnerNameArr.length; i++){
-            builder.append(winnerNameArr[i]);
-
-            if(isExistArrNext(winnerNameArr, i)){
-                builder.append(", ");
-            }
-        }
-        builder.append("(이)가 최종 우승했습니다.");
-        return builder.toString();
-    }
-
-    private static boolean isExistArrNext(String[] strArr, int currentIdx){
-        return currentIdx < strArr.length-1;
-    }
-
-    private static String[] searchWinner(ArrayList<Car> carList, int winnerRecord){
-        ArrayList<String> winnerNames = new ArrayList<>();
-        for(Car car : carList){
-            if(car.getCarPos() < winnerRecord){
-                break;
-            }
-            winnerNames.add(car.getName());
-        }
-        return convertToArr(winnerNames);
-    }
-
-    private static String[] convertToArr(ArrayList<String> strList){
-        String[] strArr = new String[strList.size()];
-        return strList.toArray(strArr);
+    public static Car[] searchWinners(ArrayList<Car> carList, int winnerRecord){
+        return carList.stream()
+                      .filter(car -> car.getCarPos() == winnerRecord)
+                      .toArray(Car[]::new);
     }
 
     private static boolean isExistListItem(ArrayList<?> list){
