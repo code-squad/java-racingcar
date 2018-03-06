@@ -4,7 +4,7 @@ import java.util.Random;
 public class MainCar {
 	
 	private Car[] car;
-
+	
 	public MainCar(Car[] car) {
 		this.car =  car;
 	}

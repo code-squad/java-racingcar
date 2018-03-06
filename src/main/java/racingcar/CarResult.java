@@ -30,15 +30,6 @@ public class CarResult {
 		System.out.println("가 최종 우승했습니다.");
 	}
 
-	int check(int carNum, int i, int max, int flag) {
-		if (flag == 0) {
-			max = maxCompare(i, max);
-		} else {
-			winnerCheck(i, max);
-		}
-		return max;
-	}
-
 	int maxCompare(int carNum, int max) {
 		for (int i = 0; i < carNum; i++) {
 			max = maxCompareResult(max, i);
