@@ -5,65 +5,69 @@ import java.util.Scanner;
 
 public class Racing {
 	// private int time;
-	private int[] carPosition;
+	private String[] registeredCarNames;
+	private Car[] registeredCar;
 
-	public void start(int challengeCount) {
+	private void makeCar(int carCount) {
+		this.registeredCar = new Car[carCount];
+		for (int i = 0; i < carCount; i++) {
+			this.registeredCar[i] = new Car(this.registeredCarNames[i]);
+		}
+	}
+
+	private void start(int challengeCount) {
 		for (int i = 0; i < challengeCount; i++) {
 			challenge();
 		}
 	}
-	
-	public void challenge() {
-		for (int i = 0; i < this.carPosition.length; i++) {
+
+	private void challenge() {
+		for (int i = 0; i < this.registeredCar.length; i++) {
 			int randomNumber = getRandomNumber();
 			assort(randomNumber, i);
 		}
 	}
 
-	public void go(int index) {
-		this.carPosition[index]++;
+	private void go(int index) {
+		int position = this.registeredCar[index].getPosition();
+		position++;
+		this.registeredCar[index].setPosition(position);
 	}
 
-	public void stop() {
+	private void stop() {
 		// System.out.println("this car stopped");
 	}
 
 	// go인지 stop인지 분류
-	public void assort(int randomNumber, int index) {
+	private void assort(int randomNumber, int index) {
 		if (randomNumber >= 4) {
 			go(index);
 		}
 		stop();
 	}
 
-	public int inputCarCount(Scanner scanner) {
-		System.out.println("자동차 대수는 몇 대 인가요?");
-		int carCount = scanner.nextInt();
-		return carCount;
-	}
-
-	public int inputChallengeCount(Scanner scanner) {
-		System.out.println("시도할 회수는 몇 회 인가요?");
-		int challengeCount = scanner.nextInt();
-		return challengeCount;
-	}
-
-	public int getRandomNumber() {
+	private int getRandomNumber() {
 		Random random = new Random();
 		int randomNumber = random.nextInt(10); // 0~9까지 난수 생성
 		return randomNumber;
 	}
+	
+	private String[] rank() {
+		// TODO position값을 가지고 제일 높은 수(동점자 포함)를 찾아야 한다.
+		return null;
+	}
 
-	public void result() {
-		System.out.println();
-		System.out.println("실행결과");
-		for (int i = 0; i < this.carPosition.length; i++) {
-			output(carPosition[i]);
+	private void output() {
+		System.out.println('\n' + "실행결과");
+		for (int i = 0; i < this.registeredCar.length; i++) {
+			System.out.print(this.registeredCar[i].getName() + " :");
+			int position = this.registeredCar[i].getPosition();
+			result(position);
 			System.out.println();
 		}
 	}
 
-	public void output(int count) {
+	private void result(int count) {
 		for (int i = 0; i < count; i++) {
 			System.out.printf("-");
 		}
@@ -73,15 +77,12 @@ public class Racing {
 		Racing race = new Racing();
 		Scanner scanner = new Scanner(System.in);
 
-		int carCount = race.inputCarCount(scanner);
-		race.carPosition = new int[carCount];
-
-		int challengeCount = race.inputChallengeCount(scanner);
-
+		race.registeredCarNames = InputView.inputCarNames(scanner);
+		int challengeCount = InputView.inputChallengeCount(scanner);
+		int carCount = race.registeredCarNames.length;
+		race.makeCar(carCount); // 자동차 생성(이름 등록)
 		race.start(challengeCount);
-
-		race.result();
-
+		race.output();
 		scanner.close();
 	}
 }
