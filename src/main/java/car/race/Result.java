@@ -3,8 +3,8 @@ package car.race;
 public class Result {
 
 	public static void buildResult(Car e) {
-		Output.printMessage(e.name + ": ");
-		printDash(e.position);
+		Output.printMessage(e.getName() + ": ");
+		printDash(e.getPosition());
 		System.out.println("");
 	}
 	

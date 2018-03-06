@@ -38,7 +38,7 @@ public class CarRace {
 	public int findMaxPosition(List<Car> cars) {
 		List<Integer> carPositions = new ArrayList<>();
 		for(Car e : cars) {
-			carPositions.add(e.position);
+			carPositions.add(e.getPosition());
 		}
 		int maxPosition = Collections.max(carPositions);
 		return maxPosition;
@@ -50,7 +50,7 @@ public class CarRace {
 		int maxPosition = findMaxPosition(cars);
 		
 		for(Car e : cars) {
-			if(e.position == maxPosition) {winner.add(e.name);}
+			if(e.getPosition() == maxPosition) {winner.add(e.getName());}
 		}
 		for(String name : winner) {
 			joiner.add(name);
