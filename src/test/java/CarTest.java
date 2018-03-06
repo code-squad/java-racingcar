@@ -12,14 +12,18 @@ public class CarTest {
     }
 
     @Test
-    public void 이동() {
+    public void 이동한다() {
+        testCar1.run(4);
+        assertEquals(1, testCar1.getCarPos());
+    }
+
+    @Test
+    public void 이동하지않는다() {
+        testCar1.run(3);
+        testCar1.run(1);
         assertEquals(0, testCar1.getCarPos());
 
-        testCar1.run(4); //이동O
-        assertEquals(1, testCar1.getCarPos());
-
-        testCar1.run(3); //이동X
-        testCar1.run(1); //이동X
-        assertEquals(1, testCar1.getCarPos());
+        testCar1.run(-1);
+        assertEquals(0, testCar1.getCarPos());
     }
 }

@@ -30,13 +30,29 @@ public class ResultMessageBuilderTest {
     }
 
     @Test
-    public void 위너위치찾기() {
-        assertEquals(6, ResultMessageBuilder.getWinnerRecord(carList));
+    public void 위치문자열변환() {
+        assertEquals("-----", ResultMessageBuilder.convertMessage(5));
     }
 
     @Test
     public void 위너찾기() {
         int winnerRecord = ResultMessageBuilder.getWinnerRecord(carList);
-        assertEquals(new Car[]{testCar1, testCar3}, ResultMessageBuilder.searchWinners(carList, winnerRecord));
+        assertEquals(new Car[]{testCar1, testCar3}, ResultMessageBuilder.searchWinners(carList));
+    }
+
+    @Test
+    public void 위치기준내림차순정렬() {
+        ResultMessageBuilder.recordSort(carList);
+        assertEquals(testCar1, carList.get(0));
+    }
+
+    @Test
+    public void 위너의위치찾기() {
+        assertEquals(6, ResultMessageBuilder.getWinnerRecord(carList));
+    }
+
+    @Test
+    public void 위너이름출력() {
+        assertEquals("test1, test3", ResultMessageBuilder.getWinnersName(carList));
     }
 }

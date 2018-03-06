@@ -13,9 +13,18 @@ public class ResultMessageBuilder {
         StringBuilder builder = new StringBuilder();
         for(Car car : carList){
             builder.append(car.getName())
-                    .append(" : ")
-                    .append(convertMessage(car.getCarPos()))
-                    .append("\n");
+                   .append(" : ")
+                   .append(convertMessage(car.getCarPos()))
+                   .append("\n");
+        }
+        return builder.toString();
+    }
+
+    static String convertMessage(int carPos){
+        char message = '-';
+        StringBuilder builder = new StringBuilder();
+        for(int i=0; i<carPos; i++){
+            builder.append(message);
         }
         return builder.toString();
     }
@@ -25,48 +34,30 @@ public class ResultMessageBuilder {
         return getWinnersName(carList) + message;
     }
 
-    private static String getWinnersName(ArrayList<Car> carList){
+    static String getWinnersName(ArrayList<Car> carList){
         if(!isExistListItem(carList)){
             return "없음";
         }
-        int winnerRecord = getWinnerRecord(carList);
-        Car[] winners = searchWinners(carList, winnerRecord);
-        return Arrays.stream(winners)
-                     .filter(car -> car.getCarPos() == winnerRecord)
-                     .map(Car::getName)
-                     .collect(Collectors.joining(", "));
+        Car[] winners = searchWinners(carList);
+        return Arrays.stream(winners).map(Car::getName).collect(Collectors.joining(", "));
     }
 
-    public static int getWinnerRecord(ArrayList<Car> carList){
-        Car topRecordCar = getTopRecordCar(carList);
+    static Car[] searchWinners(ArrayList<Car> carList){
+        int winnerRecord = getWinnerRecord(carList);
+        return carList.stream().filter(car -> car.getCarPos() == winnerRecord).toArray(Car[]::new);
+    }
+
+    static int getWinnerRecord(ArrayList<Car> carList){
+        recordSort(carList);
+        Car topRecordCar = carList.get(0);
         return topRecordCar.getCarPos();
     }
 
-    private static Car getTopRecordCar(ArrayList<Car> carList){
-        recordSort(carList);
-        return carList.get(0);
-    }
-
-    private static void recordSort(ArrayList<Car> carList){
+    static void recordSort(ArrayList<Car> carList){
         Collections.sort(carList);
-    }
-
-    public static Car[] searchWinners(ArrayList<Car> carList, int winnerRecord){
-        return carList.stream()
-                      .filter(car -> car.getCarPos() == winnerRecord)
-                      .toArray(Car[]::new);
     }
 
     private static boolean isExistListItem(ArrayList<?> list){
         return list.size() > 0;
-    }
-
-    private static String convertMessage(int carPos){
-        char message = '-';
-        StringBuilder builder = new StringBuilder();
-        for(int i=0; i<carPos; i++){
-            builder.append(message);
-        }
-        return builder.toString();
     }
 }
