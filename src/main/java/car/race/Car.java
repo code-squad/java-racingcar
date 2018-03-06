@@ -1,5 +1,7 @@
 package car.race;
 
+import java.util.Random;
+
 public class Car {
 	String name;
 	int position = 0;
@@ -11,11 +13,16 @@ public class Car {
 	public int countPosition(int numMoves) {
 		
 		for(int i = 0; i < numMoves; i++) {
-			if(CarRace.generateRandNum() <= 4) {
+			if(generateRandNum() <= 4) {
 				position++;
 			}
 		}
 		return position;
 	}
 	
+	public static int generateRandNum() {
+		Random rand = new Random();
+		int randNum = rand.nextInt();
+		return randNum;
+	}
 }	

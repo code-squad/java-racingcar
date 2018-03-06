@@ -1,16 +1,12 @@
 package car.race;
 
-import java.util.List;
-
 public class CarRaceMain {
 
 	public static void main(String[] args) {
-		String[] names = CarRace.askNames();
-		int moves = CarRace.askNumberofMoves();
+		CarRace race = new CarRace();
 		
-		List<Car> cars = CarRace.createCarInstance(names);
-		CarRace.incrementPosition(cars, moves);
-		
-		CarRace.printResult(cars);
-	}
+		race.setRaceParameters();
+		race.startRace();
+		race.printResult();
+	}		
 }
