@@ -1,47 +1,30 @@
 package racingcar;
-import java.util.*;
-
 
 public class Car {
-	public static void main(String[] args) {
-		Scanner scanner = new Scanner(System.in);
-		Random random = new Random();
-		
-		System.out.println("자동차 대수는 몇 대 인가요?");
-		int cars = carNum(scanner);
-		System.out.println("시도할 횟수는 몇 회 인가요?");
-		int tries = tryNum(scanner);
-		run(cars, tries, random);
-		
-		
-		
+	private String name;   // 자동차의 이름
+	private int counter;   // 전진한 횟수를 저장한다.
+	
+	Car(String name) {
+		this.name = name;
 	}
 	
-	static int carNum(Scanner scanner) {   // 자동차 대수 입력메서드
-		int car = scanner.nextInt();
-		return car;
+	public String toString() {   // 인스턴스를 출력하면 인스턴스의 name이 리턴
+		return name;
 	}
 	
-	static int tryNum(Scanner scanner) {   // 시도할 횟수 입력메서드
-		int tries = scanner.nextInt();
-		return tries;
+	void setName(String name) {  
+		this.name = name;
 	}
 	
-	static int rndNum(Random random) {   // 랜덤번호 메서드
-		int rnd = random.nextInt(10);
-		return rnd;
+	String getName() {
+		return name;
 	}
 	
-	static void run(int cars, int tries, Random random) {   // 주행메서드
-		for (int i = 0; i < cars; i++) {
-			for (int j = 0; j < tries; j++) {
-				int rnd = rndNum(random);
-				if (rnd > 3) {
-					System.out.print("-");
-				}
-			}
-			System.out.println();
-		}
-			
+	void setCounter(int counter) {
+		this.counter = counter;
+	}
+	
+	int getCounter() {
+		return counter;
 	}
 }
