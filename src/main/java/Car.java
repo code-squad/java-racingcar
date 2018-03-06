@@ -7,9 +7,7 @@ public class Car implements Comparable<Car>{
         this.carPos = 0;
     }
 
-    public void run(){
-        int goNum = RacingUtils.getRandomNum();
-
+    public void run(int goNum){
         if(canRun(goNum)) {
             this.carPos++;
         }
