@@ -11,17 +11,8 @@ public class CarRace {
 	private List<Car> cars = new ArrayList<>();
 	private String winnerNames = new String();
 
-	public void askNames() {
-		Output.printMessage("경주할 자동차 이름을 입력하세요 (이름은 쉼표(,)를 기준으로 구분): ");
-	}
-	
 	public void setNames(String playerNames) {		
 		this.names = playerNames.split(",");
-	}
-	
-	
-	public void askNumberofMoves() {
-		Output.printMessage("시도할 횟수는 몇 인가요?: ");
 	}
 	
 	public void setNumberofMoves(int numMoves) {
@@ -44,16 +35,6 @@ public class CarRace {
 		for(Car e : this.cars) {
 			e.position = e.countPosition(moves);
 		}
-	}
-	
-	public void printResult() {
-		for(Car e: this.cars) {
-			Output.printMessage(e.name + ": ");
-			Output.printDash(e.position);
-			System.out.println("");
-		}
-		findWinner();
-		printWinner();
 	}
 	
 	public void findWinner() {
@@ -80,7 +61,13 @@ public class CarRace {
 		this.winnerNames = joiner.toString();
 	}
 	
-	public void printWinner() {
-		Output.printMessage("The winner is.. " + this.winnerNames + "!");
+	public String getWinnerNames() {
+		return this.winnerNames;
+	}
+	
+	public void showResult() {
+		for(Car e: this.cars) {
+			Result.buildResult(e);
+		}
 	}
 }

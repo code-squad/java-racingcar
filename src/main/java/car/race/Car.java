@@ -22,7 +22,7 @@ public class Car {
 	
 	public static int generateRandNum() {
 		Random rand = new Random();
-		int randNum = rand.nextInt();
+		int randNum = rand.nextInt(10);
 		return randNum;
 	}
 }	
