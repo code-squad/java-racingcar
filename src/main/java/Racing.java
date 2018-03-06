@@ -1,67 +1,53 @@
-import io.Input;
 import io.Output;
 
+import java.util.ArrayList;
+
 public class Racing {
-    public static void main(String[] args) {
-        Racing racing = new Racing();
-        racing.setGame();
-        racing.run();
-        racing.showResult();
+    private ArrayList<Car> carList = new ArrayList<>();
+    private int times;
+
+    public void setPlayersCar(String playersName){
+        String[] playerNameArr = RacingUtils.parseUsersName(playersName);
+
+        for(String name : playerNameArr){
+            addPlayersCarToList(name);
+        }
     }
 
-    private int[] carPositions;
-    private int time;
-
-    public void setGame(){
-        int carNum = getUserInputNumber("자동차 대수는 몇 대 인가요?");
-        carPositions = new int[carNum];
-        time = getUserInputNumber("시도할 회수는 몇 회 인가요?");
+    private void addPlayersCarToList(String name){
+        carList.add(new Car(name));
     }
+
+    public void setCycleTimes(int num){
+        times = num;
+    }
+
 
     public void run(){
-        int carIdx = 0;
+        int startIdx = 0;
 
-        while(!isFinish(carIdx)){
-            go(carIdx++);
+        while(!isFinish(startIdx)){
+            doRunLoop(selectCar(startIdx++));
         }
+    }
+
+    private Car selectCar(int idx){
+        return carList.get(idx);
+    }
+
+    private void doRunLoop(Car car){
+        for(int i=0; i<times; i++){
+            car.run();
+        }
+    }
+
+    private boolean isFinish(int currentIdx){
+        return currentIdx >= carList.size();
     }
 
     public void showResult(){
         Output.printMessage(
-                "실행 결과\n" + ResultMessageBuilder.build(carPositions)
+                "실행 결과\n" + ResultMessageBuilder.build(carList)
         );
-    }
-
-    private int getUserInputNumber(String message){
-        int userInput = -1;
-
-        while(isInvalidInput(userInput)){
-            Output.printMessage(message);
-            userInput = Input.getInt();
-        }
-
-        return userInput;
-    }
-
-    private boolean isInvalidInput(int num){
-        return num < 0;
-    }
-
-    private void go(int carIdx){
-        for(int i=0; i<time; i++){
-            int goNum = RacingUtils.getRandomNum();
-
-            if(canGo(goNum)){
-                carPositions[carIdx]++;
-            }
-        }
-    }
-
-    private boolean canGo(int goNum){
-        return goNum >= 4;
-    }
-
-    private boolean isFinish(int carIdx){
-        return carIdx == carPositions.length;
     }
 }
