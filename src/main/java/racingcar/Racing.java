@@ -9,14 +9,14 @@ public class Racing {
 
 	public void start(int challengeCount) {
 		for (int i = 0; i < challengeCount; i++) {
-			for (int j = 0; j < this.carPosition.length; j++) {
-				int randomNumber = getRandomNumber();
-				if (assort(randomNumber)) {
-					go(j); // ++
-				}else {
-					stop();
-				}
-			}
+			challenge();
+		}
+	}
+	
+	public void challenge() {
+		for (int i = 0; i < this.carPosition.length; i++) {
+			int randomNumber = getRandomNumber();
+			assort(randomNumber, i);
 		}
 	}
 
@@ -29,12 +29,11 @@ public class Racing {
 	}
 
 	// go인지 stop인지 분류
-	public boolean assort(int randomNumber) {
+	public void assort(int randomNumber, int index) {
 		if (randomNumber >= 4) {
-			return true; // go();
-		} else {
-			return false; // stop();
+			go(index);
 		}
+		stop();
 	}
 
 	public int inputCarCount(Scanner scanner) {
@@ -58,12 +57,12 @@ public class Racing {
 	public void result() {
 		System.out.println();
 		System.out.println("실행결과");
-		for( int i = 0; i<this.carPosition.length; i++) {
+		for (int i = 0; i < this.carPosition.length; i++) {
 			output(carPosition[i]);
 			System.out.println();
 		}
 	}
-	
+
 	public void output(int count) {
 		for (int i = 0; i < count; i++) {
 			System.out.printf("-");
@@ -82,7 +81,7 @@ public class Racing {
 		race.start(challengeCount);
 
 		race.result();
-		
+
 		scanner.close();
 	}
 }
