@@ -1,7 +1,7 @@
 public class CarOutput {
 
 	public static void printRacing(Racing r) {
-		for (Car c : r.carList) {
+		for (Car c : r.getCarList()) {
 			System.out.printf("Car " + c.getName() + " >> ");
 			for (int i = 0; i < c.getPosition(); i++) {
 				System.out.printf("-");
@@ -11,7 +11,7 @@ public class CarOutput {
 	}
 
 	public static void printWinner(Racing r) {
-		System.out.println("우승자는 " + r.winner + "입니다.");
+		System.out.println("우승자는 " + r.getWinner() + "입니다.");
 	}
 
 	public static void printResult(Racing r) {

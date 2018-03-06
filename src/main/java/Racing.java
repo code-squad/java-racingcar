@@ -2,10 +2,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class Racing {
-	public String[] carNames;
-	public int times;
-	public ArrayList<String> winner = new ArrayList<String>();
-	public ArrayList<Car> carList = new ArrayList<Car>();
+	private String[] carNames;
+	private int times;
+	private ArrayList<String> winner = new ArrayList<String>();
+	private ArrayList<Car> carList = new ArrayList<Car>();
 
 	public Racing(String[] carNames, int times) {
 		this.carNames = carNames;
@@ -54,6 +54,13 @@ public class Racing {
 		
 	}
 
+	public ArrayList<String> getWinner(){
+		return winner;
+	}
+	public ArrayList<Car> getCarList(){
+		return carList;
+	}
+	
 	public void run() {
 		makeCarList(carNames);
 		race(carList);
