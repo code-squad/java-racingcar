@@ -1,26 +1,31 @@
 package racingcar;
-
 import java.util.Random;
 
 public class MainCar {
+	
+	private Car[] car;
 
-	void inputTime(int carNum, int time, Car[] car) {
+	public MainCar(Car[] car) {
+		this.car =  car;
+	}
+	
+	void inputTime(int carNum, int time) {
 		for (int k = 0; k < carNum; k++) {
-			randFor(k, time, car);
+			randFor(k, time);
 		}
 	}
 
-	void randFor(int k, int time, Car[] car) {
+	void randFor(int k, int time) {
 		for (int i = 0; i < time; i++) {
-			rand(car, k);
+			rand(k);
 		}
 	}
 
-	void rand(Car[] car, int k) {
+	void rand(int k) {
 		Random rand = new Random();
 		int rNum = rand.nextInt(10);
 		if (rNum >= 4) {
-			car[k].position = (car[k].getPosition() + 1);
+			car[k].updatePosition();
 		}
 	}
 
@@ -30,12 +35,11 @@ public class MainCar {
 		Car[] car = carManager.inputCar();
 		int time = carManager.inputTime();
 
-		MainCar mainCar = new MainCar();
-		mainCar.inputTime(car.length, time, car);
+		MainCar mainCar = new MainCar(car);
+		mainCar.inputTime(car.length, time);
 
-		CarResult carResult = new CarResult();
-		carResult.resultView(car.length, car);
-		carResult.winnerView(car.length, car);
-
+		CarResult carResult = new CarResult(car);
+		carResult.resultView(car.length);
+		carResult.winnerView(car.length);
 	}
 }

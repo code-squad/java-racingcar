@@ -2,53 +2,64 @@ package racingcar;
 
 public class CarResult {
 
-	private int max = 0;
-	private int flag = 0;
+	private Car[] car;
 
-	void resultView(int carNum, Car[] car) {
+	public CarResult(Car[] car) {
+		this.car = car;
+	}
 
+	void resultView(int carNum) {
 		System.out.println("실행 결과");
 		for (int i = 0; i < carNum; i++) {
 			System.out.print(car[i].getName() + " : ");
-			resultBar(car, i);
+			resultBar(i);
 		}
 	}
 
-	void resultBar(Car[] car, int i) {
+	void resultBar(int i) {
 		for (int k = 0; k < car[i].getPosition(); k++) {
 			System.out.print("-");
 		}
 		System.out.println();
 	}
 
-	void winnerView(int carNum, Car[] car) {
-		for (int i = 0; i < 2; i++, flag++) {
-			commonFor(carNum, car);
-		}
+	void winnerView(int carNum) {
+		int max = 0;
+		max = maxCompare(carNum, max);
+		winnerCheck(carNum, max);
 		System.out.println("가 최종 우승했습니다.");
 	}
 
-	void check(int carNum, Car[] car, int i) {
+	int check(int carNum, int i, int max, int flag) {
 		if (flag == 0) {
-			maxCompare(car, i);
+			max = maxCompare(i, max);
 		} else {
-			winnerCheck(car, i);
+			winnerCheck(i, max);
 		}
+		return max;
 	}
 
-	void commonFor(int carNum, Car[] car) {
+	int maxCompare(int carNum, int max) {
 		for (int i = 0; i < carNum; i++) {
-			check(carNum, car, i);
+			max = maxCompareResult(max, i);
 		}
+		return max;
 	}
 
-	void maxCompare(Car[] car, int i) {
+	int maxCompareResult(int max, int i) {
 		if (max < car[i].getPosition()) {
 			max = car[i].getPosition();
 		}
+		return max;
 	}
 
-	void winnerCheck(Car[] car, int i) {
+	void winnerCheck(int carNum, int max) {
+		for (int i = 0; i < carNum; i++) {
+			winnerResult(i, max);
+		}
+	}
+
+	void winnerResult(int i, int max) {
 		if (max == car[i].getPosition()) {
 			System.out.print(car[i].getName() + " ");
 		}
