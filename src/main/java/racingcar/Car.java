@@ -11,18 +11,14 @@ public class Car {
 	public String toString() {   // 인스턴스를 출력하면 인스턴스의 name이 리턴
 		return name;
 	}
-	
-	void setName(String name) {  
-		this.name = name;
-
-	}
+	;
 	
 	String getName() {
 		return name;
 	}
 	
-	void setCounter(int counter) {
-		this.counter = counter;
+	void counterUp() {
+		counter++;
 	}
 	
 	int getCounter() {
