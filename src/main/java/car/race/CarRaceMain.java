@@ -1,19 +1,20 @@
 package car.race;
 
+import java.util.List;
+
 public class CarRaceMain {
 
 	public static void main(String[] args) {
-		CarRace race = new CarRace();
 		
 		String playerNames = getPlayerNames();
 		int numberofMoves = getNumberofMoves();
+		CarRace race = new CarRace(playerNames, numberofMoves);
 		
-		race.setRaceParameters(playerNames, numberofMoves);
-		race.startRace();
-		race.showResult();
-		race.findWinner();
+		List<Car> cars = race.createCarInstances();
+		race.startRace(cars);
+		race.showResult(cars);
 		
-		Result.printWinner(race.getWinnerNames());
+		Result.printWinner(race.findWinner(cars));
 	}	
 	
 	private static String getPlayerNames() {
@@ -21,11 +22,10 @@ public class CarRaceMain {
 		String playerNames = Input.takeNames();
 		return playerNames;
 	}
+	
 	private static int getNumberofMoves() {
 		Output.printMessage("시도할 횟수는 몇 인가요?: ");
 		int numMoves = Input.takeNumberofMoves();
 		return numMoves;
 	}
-	
-
 }

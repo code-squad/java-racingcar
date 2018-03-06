@@ -3,70 +3,64 @@ package car.race;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 import java.util.StringJoiner;
 
 public class CarRace {
 	private int moves;
 	private String[] names;
-	private List<Car> cars = new ArrayList<>();
-	private String winnerNames = new String();
-
-	public void setNames(String playerNames) {		
+	
+	public CarRace(String playerNames, int numMoves) {
 		this.names = playerNames.split(",");
+		this.moves = numMoves;	
 	}
 	
-	public void setNumberofMoves(int numMoves) {
-		this.moves = numMoves;
-	}
-	
-	public void createCarInstances(){
+	public List<Car> createCarInstances(){
+		List<Car> cars = new ArrayList<>();
 		for(int i = 0; i < names.length; i++) {
-			this.cars.add(new Car(names[i]));
+			cars.add(new Car(names[i]));
+		}
+		return cars;
+	}
+	
+	public void startRace(List<Car> cars) {
+		for(Car e : cars) {
+			e.runCar(this.moves);
 		}
 	}
 	
-	public void setRaceParameters(String playerNames, int numMoves) {
-		setNames(playerNames);
-		setNumberofMoves(numMoves);
-		createCarInstances();
-	}
+	public static int generateRandNum() {
+		Random rand = new Random();
+		int randNum = rand.nextInt(10);
+		return randNum;
+	}	
 	
-	public void startRace() {
-		for(Car e : this.cars) {
-			e.position = e.countPosition(moves);
+	public int findMaxPosition(List<Car> cars) {
+		List<Integer> carPositions = new ArrayList<>();
+		for(Car e : cars) {
+			carPositions.add(e.position);
 		}
+		int maxPosition = Collections.max(carPositions);
+		return maxPosition;
 	}
 	
-	public void findWinner() {
-		List<Integer> positions = new ArrayList<>();
-		List<Integer> maxIndex = new ArrayList<>();
-		List<String> cars = new ArrayList<>();
+	public String findWinner(List<Car> cars) {
 		List<String> winner = new ArrayList<>();
 		StringJoiner joiner = new StringJoiner(",");
-	
-		for(Car e : this.cars) {
-			positions.add(e.position); cars.add(e.name);
-		}
-		int maxPosition = Collections.max(positions);
+		int maxPosition = findMaxPosition(cars);
 		
-		for(int i = 0; i < positions.size(); i++) {
-			if(positions.get(i) == maxPosition) {maxIndex.add(i);}
-		}
-		for(int i : maxIndex) {
-			winner.add(cars.get(i));
+		for(Car e : cars) {
+			if(e.position == maxPosition) {winner.add(e.name);}
 		}
 		for(String name : winner) {
 			joiner.add(name);
 		}
-		this.winnerNames = joiner.toString();
+		String winnerNames = joiner.toString();
+		return winnerNames;
 	}
 	
-	public String getWinnerNames() {
-		return this.winnerNames;
-	}
-	
-	public void showResult() {
-		for(Car e: this.cars) {
+	public void showResult(List<Car> cars) {
+		for(Car e: cars) {
 			Result.buildResult(e);
 		}
 	}
