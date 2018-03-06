@@ -8,5 +8,6 @@ public class CarRaceMain {
 		race.setRaceParameters();
 		race.startRace();
 		race.printResult();
+
 	}		
 }

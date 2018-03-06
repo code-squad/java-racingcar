@@ -1,12 +1,16 @@
 package car.race;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.StringJoiner;
 
 public class CarRace {
 	private int moves;
 	private String[] names;
 	private List<Car> cars = new ArrayList<>();
+	private String winnerNames = new String();
+
 	
 	
 	public void askNames() {
@@ -54,14 +58,36 @@ public class CarRace {
 			Output.printDash(e.position);
 			System.out.println("");
 		}
+		findWinner();
+		printWinner();
+	}
+	
+	public void findWinner() {
+		List<Integer> positions = new ArrayList<>();
+		List<Integer> maxIndex = new ArrayList<>();
+		List<String> cars = new ArrayList<>();
+		List<String> winner = new ArrayList<>();
+		StringJoiner joiner = new StringJoiner(",");
+	
+		for(Car e : this.cars) {
+			positions.add(e.position); cars.add(e.name);
+		}
+		int maxPosition = Collections.max(positions);
+		
+		for(int i = 0; i < positions.size(); i++) {
+			if(positions.get(i) == maxPosition) {maxIndex.add(i);}
+		}
+		for(int i : maxIndex) {
+			winner.add(cars.get(i));
+		}
+		for(String name : winner) {
+			joiner.add(name);
+		}
+		this.winnerNames = joiner.toString();
 	}
 	
 	public void printWinner() {
-		int maxPosition = 0; String winnerName = new String();
-		for(Car e : this.cars) {
-			if(e.position > maxPosition) {maxPosition = e.position; winnerName = e.name;}
-		}
-		Output.printMessage("The winner is.. " + winnerName + "!");
+		Output.printMessage("The winner is.. " + this.winnerNames + "!");
 	}
 
 }
