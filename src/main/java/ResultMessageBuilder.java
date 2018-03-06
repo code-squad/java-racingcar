@@ -22,9 +22,23 @@ public class ResultMessageBuilder {
         if(!isExistListItem(carList)){
             return "없음";
         }
-        recordSort(carList);
-        int winnerRecord = carList.get(0).getCarPos();
+
+        int winnerRecord = getWinnerRecord(carList);
         return buildWinnerNames(searchWinner(carList, winnerRecord));
+    }
+
+    private static int getWinnerRecord(ArrayList<Car> carList){
+        Car topRecordCar = getTopRecordCar(carList);
+        return topRecordCar.getCarPos();
+    }
+
+    private static Car getTopRecordCar(ArrayList<Car> carList){
+        recordSort(carList);
+        return carList.get(0);
+    }
+
+    private static void recordSort(ArrayList<Car> carList){
+        Collections.sort(carList);
     }
 
     private static String buildWinnerNames(String[] winnerNameArr){
@@ -58,10 +72,6 @@ public class ResultMessageBuilder {
     private static String[] convertToArr(ArrayList<String> strList){
         String[] strArr = new String[strList.size()];
         return strList.toArray(strArr);
-    }
-
-    private static void recordSort(ArrayList<Car> carList){
-        Collections.sort(carList);
     }
 
     private static boolean isExistListItem(ArrayList<?> list){
