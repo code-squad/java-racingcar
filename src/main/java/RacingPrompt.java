@@ -5,11 +5,13 @@ public class RacingPrompt {
 	Racing r1;
 	
 	public void setParameter() {
-		System.out.println("자동차 대수는 몇 대 인가요?\n>>");
-		int numCar = s.nextInt();
+		System.out.print("자동차 경주 게임 시작!");
+		s.nextLine();
+		System.out.print("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분)\n>>");
+		String carNames = s.nextLine();
 		System.out.println("시도할 횟수는 몇 회 인가요?\n>>");
 		int times = s.nextInt();
-		r1 = new Racing(numCar, times);
+		r1 = new Racing(carNames, times);
 	}
 
 	public boolean reStart() {
@@ -30,6 +32,7 @@ public class RacingPrompt {
 		while (isLoop) {
 			setParameter();
 			r1.run();
+			System.out.println("우승자는 "+r1.getWinner()+"입니다.");
 			isLoop = reStart();
 		}
 	}
