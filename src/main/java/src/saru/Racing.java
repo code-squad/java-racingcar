@@ -5,20 +5,9 @@ import java.util.*;
 public class Racing {
 	private int time = 0;
 	private ArrayList<Car> carList;
-	private Scanner scanner;
-
-	Racing() {
-		scanner = new Scanner(System.in);
-	}
 
 	void listInit() {
 		carList = new ArrayList<Car>();
-	}
-
-	int getRunNumber() {
-		System.out.println("시도할 회수는 몇 회 인가요?\n");
-		int runNum = scanner.nextInt();
-		return runNum;
 	}
 
 	int getRandNum() {
@@ -56,9 +45,9 @@ public class Racing {
 		}
 	}
 
-	ArrayList<Car> cloneList(ArrayList<Car> list) {
+	ArrayList<Car> cloneList(ArrayList<Car> cars) {
 		ArrayList<Car> toReturnList = new ArrayList<Car>();
-		for (Car car : list) {
+		for (Car car : cars) {
 			toReturnList.add(cloneCar(car));
 		}
 
@@ -86,9 +75,18 @@ public class Racing {
 
 	// 특정 조건에 맞는 요소를 지정 리스트에 추
 	void addSpecificList(ArrayList<Car> returnList, int index, int bestPosition) {
-		if (carList.get(index).getPosition() == bestPosition) {
+		if (carList.get(index).isMatchPosition(bestPosition)) {
 			returnList.add(carList.get(index));
 		}
+	}
+	
+	ArrayList<Car> loopResultListProc(int bestPosition) {
+		ArrayList<Car> returnList = new ArrayList<Car>();
+		for (int i = 0; i < carList.size(); i++) {
+			addSpecificList(returnList, i, bestPosition);
+		}
+		
+		return returnList;
 	}
 
 	ArrayList<Car> getResultList() {
@@ -99,12 +97,7 @@ public class Racing {
 		int bestPosition = bestCar.getPosition();
 
 		// 2. 리스트중에서 숫자와 같은것을 ArrayList 로 반환
-		ArrayList<Car> returnList = new ArrayList<Car>();
-		for (int i = 0; i < carList.size(); i++) {
-			addSpecificList(returnList, i, bestPosition);
-		}
-
-		return returnList;
+		return loopResultListProc(bestPosition);
 	}
 
 	void insertCar(String[] names) {
@@ -118,7 +111,7 @@ public class Racing {
 	public void run() {
 		String[] stringArr = Utils.getInputName();
 		insertCar(stringArr);
-		time = getRunNumber();
+		time = Utils.getRunNumber();
 
 		carProc();
 		Utils.printAll(carList);

@@ -17,6 +17,10 @@ public class Car {
 		return this.position;
 	}
 	
+	boolean isMatchPosition(int bestPosition) {
+		return this.position == bestPosition;
+	}
+	
 	String getName() {
 		return this.name;
 	}
