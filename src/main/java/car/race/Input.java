@@ -3,17 +3,18 @@ package car.race;
 import java.util.Scanner;
 
 public class Input {
-	public int askNumberofCars() {
-		Scanner sc = new Scanner(System.in);
-		int cars = sc.nextInt();
-		// sc.close();
-		return cars;
-	}
 	
-	public int askNumberofMoves() {
+	public static int takeNumberofMoves() {
 		Scanner sc = new Scanner(System.in);
 		int moves = sc.nextInt();
-		sc.close();
 		return moves;
 	}
+	
+	public static String takeNames() {
+		Scanner sc = new Scanner(System.in);
+		String s = sc.next();
+		return s;
+	}
+	
+	
 }
