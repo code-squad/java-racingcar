@@ -11,15 +11,12 @@ public class CarRace {
 	private List<Car> cars = new ArrayList<>();
 	private String winnerNames = new String();
 
-	
-	
 	public void askNames() {
 		Output.printMessage("경주할 자동차 이름을 입력하세요 (이름은 쉼표(,)를 기준으로 구분): ");
 	}
 	
-	public void setNames() {		
-		String s = Input.takeNames();
-		this.names = s.split(",");
+	public void setNames(String playerNames) {		
+		this.names = playerNames.split(",");
 	}
 	
 	
@@ -27,9 +24,8 @@ public class CarRace {
 		Output.printMessage("시도할 횟수는 몇 인가요?: ");
 	}
 	
-	public void setNumberofMoves() {
-		int moves = Input.takeNumberofMoves();
-		this.moves = moves;
+	public void setNumberofMoves(int numMoves) {
+		this.moves = numMoves;
 	}
 	
 	public void createCarInstances(){
@@ -38,11 +34,9 @@ public class CarRace {
 		}
 	}
 	
-	public void setRaceParameters() {
-		askNames();
-		setNames();
-		askNumberofMoves();
-		setNumberofMoves();
+	public void setRaceParameters(String playerNames, int numMoves) {
+		setNames(playerNames);
+		setNumberofMoves(numMoves);
 		createCarInstances();
 	}
 	
@@ -89,5 +83,4 @@ public class CarRace {
 	public void printWinner() {
 		Output.printMessage("The winner is.. " + this.winnerNames + "!");
 	}
-
 }
