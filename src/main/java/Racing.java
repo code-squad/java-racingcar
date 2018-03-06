@@ -2,13 +2,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class Racing {
-	private String[] carNames;
-	private int times;
-	private ArrayList<Car> carList = new ArrayList<Car>();
-	private ArrayList<String> winner = new ArrayList<String>();
-
-	public Racing(String carNamesOneString, int times) {
-		carNames = carNamesOneString.split(",");
+	public String[] carNames;
+	public int times;
+	public ArrayList<String> winner = new ArrayList<String>();
+	public ArrayList<Car> carList = new ArrayList<Car>();
+	
+	public Racing(String[] carNames, int times) {
+		this.carNames = carNames;
 		this.times = times;
 	}
 
@@ -27,39 +27,33 @@ public class Racing {
 	public int countRunning(int times) {
 		int runCount = 0;
 		for (int j = 0; j < times; j++) {
-			if (isGo()) runCount++;
+			if (isGo())
+				runCount++;
 		}
 		return runCount;
 	}
 
-	public void oneCarRunning(Car c) {
-		System.out.printf("Car " + c.getName() + " >> ");
-		for (int i = 0; i < c.getPosition(); i++) {
-			System.out.printf("-");
+	public ArrayList<Car> race(String[] carNames) {
+		for (int i = 0; i < carNames.length; i++) {
+			carList.add(new Car(carNames[i]));
+			carList.get(i).position = countRunning(times);
 		}
-		System.out.println("");
+		return carList;
 	}
 
 	private void selectWinner(ArrayList<Car> carList) {
 		Collections.sort(carList);
-		for (int i = 0; i < carList.size(); i++) {
-			if (carList.get(i).getPosition() == (carList.get(carList.size() - 1).getPosition())) {
-				winner.add(carList.get(i).getName());
+		int numCarList = carList.size();
+		int winnerPosition = carList.get(numCarList - 1).position;
+		for (Car c : carList) {
+			if (c.position == winnerPosition) {
+				winner.add(c.name);
 			}
 		}
 	}
-
+	
 	public void run() {
-		for (int i = 0; i < carNames.length; i++) {
-			carList.add(new Car(carNames[i]));
-			carList.get(i).setPosition(countRunning(times));
-			oneCarRunning(carList.get(i));
-		}
-		selectWinner(carList);
+		selectWinner(race(carNames));
 	}
-
-	public ArrayList<String> getWinner() {
-		return winner;
-	}
-
+	
 }

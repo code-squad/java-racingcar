@@ -1,26 +1,14 @@
 public class Car implements Comparable<Car> {
-	private String name;
+	public String name;
 
-	private int position;
+	public int position;
 
 	public Car(String name) {
-		this.setName(name);
-	}
-
-	public void setPosition(int position) {
-		this.position = position;
+		this.name = name;
 	}
 
 	public int getPosition() {
 		return position;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
 	}
 
 	@Override
@@ -28,5 +16,6 @@ public class Car implements Comparable<Car> {
 		if(this.position > c.position) return 1;
 		else if (this.position < c.position) return -1;
 		else return 0;
+		
 	}
 }
