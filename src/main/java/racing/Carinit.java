@@ -15,28 +15,41 @@ public class Carinit {
 	}
 
 	public void run(int car, int num, Car[] win) {// 모든 차의 주행 거리를 표현
-		Random ran = new Random();
 		for (int i = 0; i < car; i++) {
-			win[i].oneCar(ran, num, win);
+			win[i].oneCar(num);
 		}
 	}
-	
+
+	public void outName(Car[] win) {
+		for (int i = 0; i < win.length; i++) {
+			System.out.print(win[i].getName() + " : ");
+			outPosition(win[i]);
+		}
+	}
+
+	public void outPosition(Car win) {
+		for (int i = 0; i < win.getPosition(); i++) {
+			System.out.print("-");
+		}
+		System.out.println();
+	}
+
 	public int maxCar(Car[] win) {
 		int max;
 		int[] carn = new int[win.length];
 
-		for(int i = 0; i < win.length; i++) {
+		for (int i = 0; i < win.length; i++) {
 			carn[i] = win[i].getPosition();
 		}
 		Arrays.sort(carn);
-		max = carn[carn.length-1];     //정렬을 이용하여 큰 수를 max에 넣는다.
-	
+		max = carn[carn.length - 1]; // 정렬을 이용하여 큰 수를 max에 넣는다.
+
 		return max;
 	}
-	
+
 	public void winCar(int max, Car[] win) {
-		for(int i = 0; i < win.length; i++) {
-			if(max == win[i].getPosition()){
+		for (int i = 0; i < win.length; i++) {
+			if (win[i].matchPosition(max)) {
 				System.out.print(win[i].getName() + " ");
 			}
 		}
@@ -53,12 +66,10 @@ public class Carinit {
 
 		System.out.println("시도할 횟수는 몇 회 인가요?");
 		int num = input.nextInt();
-		
+
 		Car[] win = pp.CarName(names);
 		pp.run(names.length, num, win);
+		pp.outName(win);
 		pp.winCar(pp.maxCar(win), win);
-
-		
-
 	}
 }
