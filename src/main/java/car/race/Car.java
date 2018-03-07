@@ -8,17 +8,18 @@ public class Car {
 		this.name = name;
 	}
 	
-	public void runCar(int numMoves) {
-		for(int i = 0; i < numMoves; i++) {
-			if(CarRace.generateRandNum() <= 4) {
-				this.position++;}
+	public void runCar(int[] randNum) {
+		for(int i = 0; i < randNum.length; i++) {
+			if(randNum[i] > 4){
+				this.position++;
+			}
 		}
 	}
 	
-	int getPosition() {
+	public int getPosition() {
 		return this.position;
 	}
-	String getName() {
+	public String getName() {
 		return this.name;
 	}
 	

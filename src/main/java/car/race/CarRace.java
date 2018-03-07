@@ -25,15 +25,19 @@ public class CarRace {
 	
 	public void startRace(List<Car> cars) {
 		for(Car e : cars) {
-			e.runCar(this.moves);
+			e.runCar(generateRandNumArray());
 		}
 	}
 	
-	public static int generateRandNum() {
+	public int[] generateRandNumArray() {
+		int[] randNums = new int[this.moves];
 		Random rand = new Random();
-		int randNum = rand.nextInt(10);
-		return randNum;
-	}	
+		for(int i = 0; i < this.moves; i++){
+			randNums[i] = rand.nextInt(10);
+		}
+		return randNums;
+	}
+
 	
 	public int findMaxPosition(List<Car> cars) {
 		List<Integer> carPositions = new ArrayList<>();

@@ -13,7 +13,9 @@ public class Result {
 			System.out.print("-");
 		}
 	}
-	
+
+
+
 	public static void printWinner(String winnerNames) {
 		Output.printMessage("The winner is.. " + winnerNames + "!");
 	}
