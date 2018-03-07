@@ -12,9 +12,11 @@ public class CarRaceMain {
 		
 		List<Car> cars = race.createCarInstances();
 		race.startRace(cars);
-		race.showResult(cars);
 		
-		Result.printWinner(race.findWinner(cars));
+		Result result = new Result();
+		result.showResult(cars);
+		result.findWinner(cars);
+		result.printWinner();
 	}	
 	
 	private static String getPlayerNames() {

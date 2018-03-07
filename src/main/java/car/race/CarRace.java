@@ -37,35 +37,4 @@ public class CarRace {
 		}
 		return randNums;
 	}
-
-	
-	public int findMaxPosition(List<Car> cars) {
-		List<Integer> carPositions = new ArrayList<>();
-		for(Car e : cars) {
-			carPositions.add(e.getPosition());
-		}
-		int maxPosition = Collections.max(carPositions);
-		return maxPosition;
-	}
-	
-	public String findWinner(List<Car> cars) {
-		List<String> winner = new ArrayList<>();
-		StringJoiner joiner = new StringJoiner(",");
-		int maxPosition = findMaxPosition(cars);
-		
-		for(Car e : cars) {
-			if(e.getPosition() == maxPosition) {winner.add(e.getName());}
-		}
-		for(String name : winner) {
-			joiner.add(name);
-		}
-		String winnerNames = joiner.toString();
-		return winnerNames;
-	}
-	
-	public void showResult(List<Car> cars) {
-		for(Car e: cars) {
-			Result.buildResult(e);
-		}
-	}
 }
