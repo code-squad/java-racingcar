@@ -1,23 +1,25 @@
 package saru;
-
 import java.util.*;
 
 public class Racing {
+	private static final int GO_AHEAD_NUM = 4;
+	private static final int RAND_MAX_NUM = 10;
+	
 	private int time = 0;
 	private ArrayList<Car> carList;
-
-	void listInit() {
+	
+	public Racing() {
 		carList = new ArrayList<Car>();
 	}
 
 	int getRandNum() {
 		Random random = new Random();
-		int randNum = random.nextInt(10);
+		int randNum = random.nextInt(RAND_MAX_NUM);
 		return randNum;
 	}
 
 	boolean isCanMove(int randNum) {
-		if (getRandNum() >= 4) {
+		if (randNum >= GO_AHEAD_NUM) {
 			return true;
 		}
 
@@ -73,7 +75,7 @@ public class Racing {
 		return copyList.get(carList.size() - 1);
 	}
 
-	// 특정 조건에 맞는 요소를 지정 리스트에 추
+	// 특정 조건에 맞는 요소를 지정 리스트에 추가
 	void addSpecificList(ArrayList<Car> returnList, int index, int bestPosition) {
 		if (carList.get(index).isMatchPosition(bestPosition)) {
 			returnList.add(carList.get(index));
@@ -100,24 +102,35 @@ public class Racing {
 		return loopResultListProc(bestPosition);
 	}
 
-	void insertCar(String[] names) {
-		listInit();
-
+	void multiInsertCar(String[] names) {
 		for (String name : names) {
-			carList.add(new Car(name));
+			insertCar(name);
 		}
+	}
+	
+	void insertCar(String name) {
+		carList.add(new Car(name));
+	}
+	
+	boolean checkMove(int toCheckValue, int toCheckIndex) {
+		return carList.get(toCheckIndex).isMatchPosition(toCheckValue);
+	}
+	
+	//TODO 테스트용
+	int getSize() {
+		return carList.size();
 	}
 
 	public void run() {
 		String[] stringArr = Utils.getInputName();
-		insertCar(stringArr);
+		multiInsertCar(stringArr);
 		time = Utils.getRunNumber();
 
 		carProc();
 		Utils.printAll(carList);
 
-		ArrayList<Car> list = getResultList();
-		Utils.printResult(list);
+		ArrayList<Car> cars = getResultList();
+		Utils.printResult(cars);
 	}
 
 	public static void main(String[] args) {

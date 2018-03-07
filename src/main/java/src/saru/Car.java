@@ -1,8 +1,8 @@
 package saru;
 
 public class Car {
-	private String name;
-	private int position = 1;
+	private String name = "";
+	private int position = 0;
 
 	public Car(String name) {
 		this.name = name;
@@ -17,8 +17,8 @@ public class Car {
 		return this.position;
 	}
 	
-	boolean isMatchPosition(int bestPosition) {
-		return this.position == bestPosition;
+	boolean isMatchPosition(int toCheckPosition) {
+		return this.position == toCheckPosition;
 	}
 	
 	String getName() {
