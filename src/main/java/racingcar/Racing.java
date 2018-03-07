@@ -1,5 +1,6 @@
 package racingcar;
 
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -35,8 +36,8 @@ public class Racing {
 	}
 
 	private void stop() {
-		// System.out.println("this car stopped");
-	}
+		// TODO stop된 상태를 log로 표시하기	
+		}
 
 	// go인지 stop인지 분류
 	private void assort(int randomNumber, int index) {
@@ -51,26 +52,26 @@ public class Racing {
 		int randomNumber = random.nextInt(10); // 0~9까지 난수 생성
 		return randomNumber;
 	}
-	
-	private String[] rank() {
-		// TODO position값을 가지고 제일 높은 수(동점자 포함)를 찾아야 한다.
-		return null;
-	}
 
-	private void output() {
-		System.out.println('\n' + "실행결과");
+	private ArrayList<String> rank() {
+		ArrayList<String> winners = new ArrayList<String>();
+
+		int winnerScore = 0;
 		for (int i = 0; i < this.registeredCar.length; i++) {
-			System.out.print(this.registeredCar[i].getName() + " :");
 			int position = this.registeredCar[i].getPosition();
-			result(position);
-			System.out.println();
-		}
-	}
+			String winnerName = this.registeredCar[i].getName();
 
-	private void result(int count) {
-		for (int i = 0; i < count; i++) {
-			System.out.printf("-");
+			if (winnerScore < position) {
+				winnerScore = position;
+				winners.clear(); // ArrayList를 비운다.
+				winners.add(winnerName);
+			} else if (winnerScore == position) {
+				winners.add(winnerName);
+			} else if (winnerScore > position) {
+				continue;
+			}
 		}
+		return winners;
 	}
 
 	public static void main(String[] args) {
@@ -82,7 +83,7 @@ public class Racing {
 		int carCount = race.registeredCarNames.length;
 		race.makeCar(carCount); // 자동차 생성(이름 등록)
 		race.start(challengeCount);
-		race.output();
+		ResultView.output(race.registeredCar, race.rank());
 		scanner.close();
 	}
 }
