@@ -1,8 +1,7 @@
 package racingcar;
 
-import java.util.Random;
-
-public class Car {	
+public class Car {
+	
 	private int position = 0;
 	private String name;
 	
@@ -19,14 +18,8 @@ public class Car {
 	}
 	
 	public void go(int randomNumber) {
-		if (randomNumber > 4) {
+		if (randomNumber >= 4) {
 			position++;
 		}
-	}
-	
-	//random number
-	public int makeRandomNumber() {
-		Random random = new Random();
-		return random.nextInt(10);	
 	}
 }
