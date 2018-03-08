@@ -34,7 +34,7 @@ public class Racing {
 
 	void moveAhead(int randNum, int index) {
 		Car localCar = carList.get(index);
-		if(localCar.isCanMove(randNum)) {
+		if (localCar.isCanMove(randNum)) {
 			localCar.moveCar();
 		}
 	}
@@ -114,7 +114,7 @@ public class Racing {
 	int getListSize() {
 		return carList.size();
 	}
-	
+
 	// TODO get메서드 안쓰고 어떻게?
 	ArrayList<Car> getCarList() {
 		return carList;
@@ -130,10 +130,10 @@ public class Racing {
 	public static void main(String[] args) {
 		String[] stringArr = Utils.getInputName();
 		int runNum = Utils.getRunNumber();
-		
+
 		Racing myRacing = new Racing();
 		myRacing.run(stringArr, runNum);
-		
+
 		Utils.printPositions(myRacing.getCarList());
 		Utils.printResult(myRacing.getResultList());
 	}

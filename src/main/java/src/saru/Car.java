@@ -8,7 +8,7 @@ public class Car {
 	public Car(String name) {
 		this.name = name;
 	}
-	
+
 	public Car(String name, int position) {
 		this.name = name;
 		this.position = position;
@@ -17,11 +17,11 @@ public class Car {
 	int getPosition() {
 		return this.position;
 	}
-	
+
 	boolean isMatchPosition(int toCheckPosition) {
 		return this.position == toCheckPosition;
 	}
-	
+
 	String getName() {
 		return this.name;
 	}
@@ -29,7 +29,7 @@ public class Car {
 	void moveCar() {
 		this.position++;
 	}
-	
+
 	boolean isCanMove(int randNum) {
 		if (randNum >= GO_AHEAD_NUM) {
 			return true;
