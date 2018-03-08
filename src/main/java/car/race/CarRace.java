@@ -13,8 +13,8 @@ public class CarRace {
 
         String[] names = playerNames.split(",");
         cars = new ArrayList<>();
-        for (int i = 0; i < names.length; i++) {
-            cars.add(new Car(names[i]));
+        for (String name : names) {
+            cars.add(new Car(name));
         }
     }
 

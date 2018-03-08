@@ -1,6 +1,7 @@
 package car.race;
 
 public class Car {
+    private static final int PROBABILITY = 4;
     private String name;
     private int position;
 
@@ -9,7 +10,7 @@ public class Car {
     }
 
     public int runOnce(int randNum) {
-        if (randNum > 4) {
+        if (randNum > PROBABILITY) {
             this.position++;
         }
         return this.position;
