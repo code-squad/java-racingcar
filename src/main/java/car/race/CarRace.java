@@ -1,40 +1,43 @@
 package car.race;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Random;
-import java.util.StringJoiner;
 
 public class CarRace {
 	private int moves;
-	private String[] names;
+	private List<Car> cars;
 	
 	public CarRace(String playerNames, int numMoves) {
-		this.names = playerNames.split(",");
-		this.moves = numMoves;	
-	}
-	
-	public List<Car> createCarInstances(){
-		List<Car> cars = new ArrayList<>();
+		this.moves = numMoves;
+
+		String[] names = playerNames.split(",");
+		cars = new ArrayList<>();
 		for(int i = 0; i < names.length; i++) {
 			cars.add(new Car(names[i]));
 		}
-		return cars;
 	}
-	
-	public void startRace(List<Car> cars) {
+
+	public void runCar(Car car, int tryNum) {
+		for(int i = 0; i < tryNum; i++) {
+			car.runOnce(generateRandNum());
+		}
+	}
+
+	public void startRace() {
 		for(Car e : cars) {
-			e.runCar(generateRandNumArray());
+			runCar(e, moves);
 		}
 	}
 	
-	public int[] generateRandNumArray() {
-		int[] randNums = new int[this.moves];
+	public static int generateRandNum() {
 		Random rand = new Random();
-		for(int i = 0; i < this.moves; i++){
-			randNums[i] = rand.nextInt(10);
-		}
-		return randNums;
+			int randNum = rand.nextInt(10);
+
+		return randNum;
+	}
+
+	public List<Car> getCars(){
+		return this.cars;
 	}
 }

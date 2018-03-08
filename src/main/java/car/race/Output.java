@@ -11,4 +11,7 @@ public class Output {
 			System.out.print("-");
 		}
 	}
+	public static void startNewLine(){
+		System.out.println("");
+	}
 }

@@ -1,7 +1,5 @@
 package car.race;
 
-import java.util.List;
-
 public class CarRaceMain {
 
 	public static void main(String[] args) {
@@ -9,13 +7,12 @@ public class CarRaceMain {
 		String playerNames = getPlayerNames();
 		int numberofMoves = getNumberofMoves();
 		CarRace race = new CarRace(playerNames, numberofMoves);
-		
-		List<Car> cars = race.createCarInstances();
-		race.startRace(cars);
-		
+
+		race.startRace();
+
 		Result result = new Result();
-		result.showResult(cars);
-		result.findWinner(cars);
+		result.showResult(race.getCars());
+		result.findWinner(race.getCars());
 		result.printWinner();
 	}	
 	

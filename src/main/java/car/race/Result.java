@@ -6,13 +6,13 @@ import java.util.List;
 import java.util.StringJoiner;
 
 public class Result {
-	public String winnerNames;
-	public int maxPosition;
+	private String winnerNames;
+	private int maxPosition;
 
 	private void buildResult(Car e) {
 		Output.printMessage(e.getName() + ": ");
 		Output.printDash(e.getPosition());
-		System.out.println("");
+		Output.startNewLine();
 	}
 	public void showResult(List<Car> cars) {
 		for(Car e: cars) {
@@ -28,15 +28,21 @@ public class Result {
 		this.maxPosition = Collections.max(carPositions);
 	}
 
-	public void findWinner(List<Car> cars) {
-		List<String> winner = new ArrayList<>();
-		StringJoiner joiner = new StringJoiner(",");
-		findMaxPosition(cars);
+	public List<String> createWinnersList(List<Car> cars){
+		List<String> winners = new ArrayList<>();
 		for(Car e : cars) {
 			if(e.getPosition() == this.maxPosition) {
-				winner.add(e.getName());}
+				winners.add(e.getName());}
 		}
-		for(String name : winner) {
+		return winners;
+	}
+
+	public void findWinner(List<Car> cars) {
+		StringJoiner joiner = new StringJoiner(",");
+
+		findMaxPosition(cars);
+
+		for(String name : createWinnersList(cars)) {
 			joiner.add(name);
 		}
 		this.winnerNames = joiner.toString();
@@ -45,4 +51,13 @@ public class Result {
 	public void printWinner() {
 		Output.printMessage("The winner is.. " + this.winnerNames + "!");
 	}
+
+	public int getMaxPosition(){
+		return this.maxPosition;
+	}
+
+	public String getWinnerNames(){
+		return this.winnerNames;
+	}
+
 }
