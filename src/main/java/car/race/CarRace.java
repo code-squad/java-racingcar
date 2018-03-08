@@ -5,39 +5,39 @@ import java.util.List;
 import java.util.Random;
 
 public class CarRace {
-	private int moves;
-	private List<Car> cars;
-	
-	public CarRace(String playerNames, int numMoves) {
-		this.moves = numMoves;
+    private int moves;
+    private List<Car> cars;
 
-		String[] names = playerNames.split(",");
-		cars = new ArrayList<>();
-		for(int i = 0; i < names.length; i++) {
-			cars.add(new Car(names[i]));
-		}
-	}
+    public CarRace(String playerNames, int numMoves) {
+        this.moves = numMoves;
 
-	public void runCar(Car car, int tryNum) {
-		for(int i = 0; i < tryNum; i++) {
-			car.runOnce(generateRandNum());
-		}
-	}
+        String[] names = playerNames.split(",");
+        cars = new ArrayList<>();
+        for (int i = 0; i < names.length; i++) {
+            cars.add(new Car(names[i]));
+        }
+    }
 
-	public void startRace() {
-		for(Car e : cars) {
-			runCar(e, moves);
-		}
-	}
-	
-	public static int generateRandNum() {
-		Random rand = new Random();
-			int randNum = rand.nextInt(10);
+    public void runCar(Car car, int tryNum) {
+        for (int i = 0; i < tryNum; i++) {
+            car.runOnce(generateRandNum());
+        }
+    }
 
-		return randNum;
-	}
+    public void startRace() {
+        for (Car e : cars) {
+            runCar(e, moves);
+        }
+    }
 
-	public List<Car> getCars(){
-		return this.cars;
-	}
+    public static int generateRandNum() {
+        Random rand = new Random();
+        int randNum = rand.nextInt(10);
+
+        return randNum;
+    }
+
+    public List<Car> getCars() {
+        return this.cars;
+    }
 }

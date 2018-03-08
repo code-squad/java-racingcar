@@ -15,24 +15,26 @@ public class ResultTest {
     static Car car1, car2, car3;
 
     @Before
-    public void setUp(){
+    public void setUp() {
         result = new Result();
         cars = new ArrayList<>();
-        race = new CarRace("A,B,C",10);
+        race = new CarRace("A,B,C", 10);
         car1 = new Car("A");
         car2 = new Car("B");
         car3 = new Car("C");
-        for(int i = 0; i < 10; i++){
+        for (int i = 0; i < 10; i++) {
             car1.runOnce(9); // car1's position = 10 (expected maxPosition, CarName = "A")
         }
-        for(int i = 0; i < 5; i++){
+        for (int i = 0; i < 5; i++) {
             car2.runOnce(9); // car2's position = 5
         }
-        for(int i = 0; i < 10; i++){
+        for (int i = 0; i < 10; i++) {
             car1.runOnce(4); // car1's position = 0
         }
 
-        cars.add(car1); cars.add(car2); cars.add(car3); // add car objects to a list
+        cars.add(car1);
+        cars.add(car2);
+        cars.add(car3); // add car objects to a list
     }
 
     @Test
@@ -46,6 +48,6 @@ public class ResultTest {
     @Test
     public void findWinner() {
         result.findWinner(cars);
-        assertEquals("A",result.getWinnerNames());
+        assertEquals("A", result.getWinnerNames());
     }
 }
