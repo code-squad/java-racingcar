@@ -1,13 +1,14 @@
 package saru;
+
 import java.util.*;
 
 public class Racing {
-	private static final int GO_AHEAD_NUM = 4;
+
 	private static final int RAND_MAX_NUM = 10;
-	
+
 	private int time = 0;
 	private ArrayList<Car> carList;
-	
+
 	public Racing() {
 		carList = new ArrayList<Car>();
 	}
@@ -16,14 +17,6 @@ public class Racing {
 		Random random = new Random();
 		int randNum = random.nextInt(RAND_MAX_NUM);
 		return randNum;
-	}
-
-	boolean isCanMove(int randNum) {
-		if (randNum >= GO_AHEAD_NUM) {
-			return true;
-		}
-
-		return false;
 	}
 
 	void loopCarListProc(int index) {
@@ -40,9 +33,8 @@ public class Racing {
 	}
 
 	void moveAhead(int randNum, int index) {
-		if (isCanMove(randNum)) {
-			// 리스트 요소 접근 해서 ++
-			Car localCar = carList.get(index);
+		Car localCar = carList.get(index);
+		if(localCar.isCanMove(randNum)) {
 			localCar.moveCar();
 		}
 	}
@@ -66,8 +58,10 @@ public class Racing {
 		ArrayList<Car> copyList = cloneList(carList);
 		copyList.sort(new Comparator<Car>() {
 			public int compare(Car car1, Car car2) {
-				if (car1.getPosition() > car2.getPosition()) return 1;
-				else if (car1.getPosition() < car2.getPosition()) return -1;
+				if (car1.getPosition() > car2.getPosition())
+					return 1;
+				else if (car1.getPosition() < car2.getPosition())
+					return -1;
 				return 0;
 			}
 		});
@@ -81,13 +75,13 @@ public class Racing {
 			returnList.add(carList.get(index));
 		}
 	}
-	
+
 	ArrayList<Car> loopResultListProc(int bestPosition) {
 		ArrayList<Car> returnList = new ArrayList<Car>();
 		for (int i = 0; i < carList.size(); i++) {
 			addSpecificList(returnList, i, bestPosition);
 		}
-		
+
 		return returnList;
 	}
 
@@ -107,34 +101,40 @@ public class Racing {
 			insertCar(name);
 		}
 	}
-	
+
 	void insertCar(String name) {
 		carList.add(new Car(name));
 	}
-	
+
 	boolean checkMove(int toCheckValue, int toCheckIndex) {
 		return carList.get(toCheckIndex).isMatchPosition(toCheckValue);
 	}
-	
-	//TODO 테스트용
-	int getSize() {
+
+	// TODO 테스트용
+	int getListSize() {
 		return carList.size();
 	}
+	
+	// TODO get메서드 안쓰고 어떻게?
+	ArrayList<Car> getCarList() {
+		return carList;
+	}
 
-	public void run() {
-		String[] stringArr = Utils.getInputName();
+	public void run(String[] stringArr, int runNum) {
 		multiInsertCar(stringArr);
-		time = Utils.getRunNumber();
+		time = runNum;
 
 		carProc();
-		Utils.printAll(carList);
-
-		ArrayList<Car> cars = getResultList();
-		Utils.printResult(cars);
 	}
 
 	public static void main(String[] args) {
+		String[] stringArr = Utils.getInputName();
+		int runNum = Utils.getRunNumber();
+		
 		Racing myRacing = new Racing();
-		myRacing.run();
+		myRacing.run(stringArr, runNum);
+		
+		Utils.printPositions(myRacing.getCarList());
+		Utils.printResult(myRacing.getResultList());
 	}
 }
