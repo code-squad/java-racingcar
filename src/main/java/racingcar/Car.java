@@ -17,8 +17,10 @@ public class Car {
 		return position;
 	}
 
-	public void updatePosition() {
-		position++;
+	public void updatePosition(int randomValue) {
+		if (randomValue > 4) {
+			position++;
+		}
 	}
 
 	public int maxPosition(int max) {

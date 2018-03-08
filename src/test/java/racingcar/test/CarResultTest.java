@@ -22,8 +22,8 @@ public class CarResultTest {
 	@Before
 	public void setUp() {
 		test1 = new Car("test1");
-		test1.updatePosition();
-		test1.updatePosition();
+		test1.updatePosition(5);
+		test1.updatePosition(5);
 		test2 = new Car("test2");
 		test3 = new Car("test3");
 		car = new Car[] { test1, test2, test3 };
@@ -33,7 +33,7 @@ public class CarResultTest {
 
 	@Test
 	public void testPrintResultView() {
-		carResult.printResultView(car.length);
+		carResult.printResultView();
 		assertThat(outContent.toString(), is("실행 결과\r\ntest1 : --\r\ntest2 : \r\ntest3 : \r\n"));
 	}
 
@@ -46,7 +46,7 @@ public class CarResultTest {
 	@Test
 	public void testMaxCompare() {
 		int max = 0;
-		assertThat(carResult.maxCompare(car.length, max), is(2));
+		assertThat(carResult.maxCompare(max), is(2));
 	}
 
 	@Test
@@ -58,7 +58,7 @@ public class CarResultTest {
 	@Test
 	public void testPrintWinnerCheck() {
 		int max = 2;
-		carResult.winnerCheck(car.length, max);
+		carResult.winnerCheck(max);
 		assertThat(outContent.toString(), is("test1 "));
 	}
 

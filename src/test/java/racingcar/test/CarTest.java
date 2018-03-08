@@ -16,19 +16,13 @@ public class CarTest {
 
 	@Test
 	public void testUpdatePosition() {
-		int rNum = 5;
-		if (rNum > 4) {
-			car.updatePosition();
-		}
+		car.updatePosition(5);
 		assertEquals(1, car.getPosition());
 	}
 
 	@Test
 	public void testUpdatePositionOtherwise() {
-		int rNum = 3;
-		if (rNum > 4) {
-			car.updatePosition();
-		}
+		car.updatePosition(3);
 		assertEquals(0, car.getPosition());
 	}
 }
