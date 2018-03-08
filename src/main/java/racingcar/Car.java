@@ -29,7 +29,5 @@ public class Car {
 		Random random = new Random();
 		return random.nextInt(10);
 	}
-	
-
 
 }
