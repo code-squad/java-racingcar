@@ -2,7 +2,7 @@ package racingcar;
 
 import java.util.Scanner;
 
-public class carMain {
+public class CarMain {
 	
 	//make Car Array
 	public Car[] carArray(String[] name) {
@@ -58,7 +58,7 @@ public class carMain {
 		String Inputname = InputView.inputName(scan);
 		String[] name = InputView.nameSplit(Inputname);
 		
-		carMain carRace = new carMain();
+		CarMain carRace = new CarMain();
 		Car[] car = carRace.carArray(name);
 	
 		int tryNum = InputView.tryingNumber(scan);
