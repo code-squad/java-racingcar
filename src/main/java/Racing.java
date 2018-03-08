@@ -2,14 +2,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Racing {
-    private int times;
+
     private ArrayList<Car> cars = new ArrayList<Car>();
     private static ArrayList<String> winners = new ArrayList<String>();
 
-    public Racing(String names, int times) {
+    public Racing(String names) {
         String[] carNames = names.split(",");
         this.cars = makeCarList(carNames);
-        this.times = times;
     }
 
     public static int getRandomInt() {
@@ -24,15 +23,15 @@ public class Racing {
         return cars;
     }
 
-    public static void doRace(Car c, int times) {
+    public static void doRace(Car car, int times) {
         for (int i = 0; i < times; i++) {
-            c.oneRun(Racing.getRandomInt());
+            car.oneRun(Racing.getRandomInt());
         }
     }
 
-    public void race(ArrayList<Car> carList) {
-        for (Car c : carList) {
-            doRace(c, this.times);
+    public void race(ArrayList<Car> cars, int times) {
+        for (Car car : cars) {
+            doRace(car, times);
         }
     }
 
@@ -42,20 +41,20 @@ public class Racing {
         return max;
     }
 
-    public static int[] makePositions(ArrayList<Car> cars, int times) {
-        int[] positions = new int[times];
+    public static int[] makePositions(ArrayList<Car> cars) {
+        int[] positions = new int[cars.size()];
         for (int i = 0; i < cars.size(); i++) {
             positions[i] = cars.get(i).getPosition();
         }
         return positions;
     }
 
-    public static ArrayList<String> selectWinners(ArrayList<Car> cars, int times) {
+    public static ArrayList<String> selectWinners(ArrayList<Car> cars) {
         ArrayList<String> winner = new ArrayList<String>();
-        int[] positions = makePositions(cars, times);
+        int[] positions = makePositions(cars);
         int winnerPosition = selectMaxPosition(positions);
-        for (Car c : cars) {
-            if (c.isWinnerPosition(winnerPosition)) winner.add(c.getName());
+        for (Car car : cars) {
+            if (car.isWinnerPosition(winnerPosition)) winner.add(car.getName());
         }
         return winner;
     }
@@ -68,9 +67,9 @@ public class Racing {
         return winners;
     }
 
-    public void run() {
-        race(cars);
-        winners = selectWinners(cars, times);
+    public void run(int times) {
+        race(cars, times);
+        winners = selectWinners(cars);
     }
 }
 

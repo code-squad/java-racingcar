@@ -30,7 +30,7 @@ public class CarTest {
 
     @Test
     @DisplayName("최고 포지션 맞추기 테스트-true")
-    public void isWinnerPositionTestTrue(){
+    public void isWinnerPositionTestTrue() {
         // make get.Position == 100
         for (int i = 0; i < 100; i++) {
             car.oneRun(4);
@@ -40,7 +40,7 @@ public class CarTest {
 
     @Test
     @DisplayName("최고 포지션 맞추기 테스트-false")
-    public void isWinnerPositionTestFalse(){
+    public void isWinnerPositionTestFalse() {
         // make get.Position == 100
         for (int i = 0; i < 100; i++) {
             car.oneRun(4);
