@@ -67,16 +67,12 @@ public class Carinit {
 
 	public static void main(String args[]) {
 		Scanner input = new Scanner(System.in);
-
-		System.out.println("경주할 자동차의 이름은 무엇 인가요? ex)pobi, riverway");
-		String inputName = input.nextLine();
-		String[] names = inputName.split(",");
-
-		System.out.println("시도할 횟수는 몇 회 인가요?");
-		int num = input.nextInt();
+	
 		CarName name = new CarName();
+		String[] names = name.setCarName(input);
+		int num = name.setTryNum(input);
+		
 		Carinit pp = new Carinit(name.makeCar(names));
-
 		pp.run(names.length, num);
 		pp.outName();
 		pp.printWinCar(pp.winCar(pp.pushMax(pp.maxCar())));
