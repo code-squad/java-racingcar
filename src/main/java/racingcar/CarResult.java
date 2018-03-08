@@ -8,22 +8,22 @@ public class CarResult {
 		this.car = car;
 	}
 
-	public void resultView(int carNum) {
+	public void printResultView(int carNum) {
 		System.out.println("실행 결과");
 		for (int i = 0; i < carNum; i++) {
 			System.out.print(car[i].getName() + " : ");
-			resultBar(i);
+			printResultBar(i);
 		}
 	}
 
-	public void resultBar(int i) {
+	public void printResultBar(int i) {
 		for (int k = 0; k < car[i].getPosition(); k++) {
 			System.out.print("-");
 		}
 		System.out.println();
 	}
 
-	void winnerView(int carNum) {
+	void printWinnerView(int carNum) {
 		int max = 0;
 		max = maxCompare(carNum, max);
 		winnerCheck(carNum, max);
@@ -38,22 +38,18 @@ public class CarResult {
 	}
 
 	public int maxCompareResult(int max, int i) {
-		if (max < car[i].getPosition()) {
-			max = car[i].getPosition();
-		}
-		return max;
+		return car[i].maxPosition(max);
 	}
 
 	public void winnerCheck(int carNum, int max) {
 		for (int i = 0; i < carNum; i++) {
-			winnerResult(i, max);
+			printWinnerResult(i, max);
 		}
 	}
 
-	public void winnerResult(int i, int max) {
+	public void printWinnerResult(int i, int max) {
 		if (max == car[i].getPosition()) {
 			System.out.print(car[i].getName() + " ");
 		}
 	}
-
 }

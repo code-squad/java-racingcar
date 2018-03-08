@@ -32,14 +32,14 @@ public class CarResultTest {
 	}
 
 	@Test
-	public void testResultView() {
-		carResult.resultView(car.length);
+	public void testPrintResultView() {
+		carResult.printResultView(car.length);
 		assertThat(outContent.toString(), is("실행 결과\r\ntest1 : --\r\ntest2 : \r\ntest3 : \r\n"));
 	}
 
 	@Test
-	public void testResultBar() {
-		carResult.resultBar(0);
+	public void testPrintResultBar() {
+		carResult.printResultBar(0);
 		assertThat(outContent.toString(), is("--\r\n"));
 	}
 
@@ -49,26 +49,23 @@ public class CarResultTest {
 		assertThat(carResult.maxCompare(car.length, max), is(2));
 	}
 
-	// 자동차 목록의 위치 값이 가장 큰 값을 찾는 메소드에 대한 테스트 코드를 추가한다.
 	@Test
 	public void testMaxCompareResult() {
 		int max = 2;
-		assertThat(carResult.maxCompareResult(max, 0), is(2));
+		assertThat(car[0].maxPosition(max), is(2));
 	}
 
 	@Test
-	public void testWinnerCheck() {
-		// 자동차 목록에서 가장 큰 위치 값에 해당하는 자동차 목록을 구하는 메소드에 대한 테스트 코드를 추가한다.
+	public void testPrintWinnerCheck() {
 		int max = 2;
 		carResult.winnerCheck(car.length, max);
 		assertThat(outContent.toString(), is("test1 "));
 	}
 
 	@Test
-	public void testWinnerResult() {
+	public void testPrintWinnerResult() {
 		int max = 2;
-		carResult.winnerResult(0, max);
+		carResult.printWinnerResult(0, max);
 		assertThat(outContent.toString(), is("test1 "));
 	}
-
 }

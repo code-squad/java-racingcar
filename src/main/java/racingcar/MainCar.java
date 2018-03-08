@@ -1,14 +1,15 @@
 package racingcar;
+
 import java.util.Random;
 
 public class MainCar {
-	
+
 	private Car[] car;
-	
+
 	public MainCar(Car[] car) {
-		this.car =  car;
+		this.car = car;
 	}
-	
+
 	void inputTime(int carNum, int time) {
 		for (int k = 0; k < carNum; k++) {
 			randFor(k, time);
@@ -30,16 +31,13 @@ public class MainCar {
 	}
 
 	public static void main(String[] args) {
-
 		CarManager carManager = new CarManager();
-		Car[] car = carManager.inputCar();
-		int time = carManager.inputTime();
-
+		Car[] car = carManager.makeCarArray(carManager.inputCar());
 		MainCar mainCar = new MainCar(car);
-		mainCar.inputTime(car.length, time);
+		mainCar.inputTime(car.length, carManager.inputTime());
 
 		CarResult carResult = new CarResult(car);
-		carResult.resultView(car.length);
-		carResult.winnerView(car.length);
+		carResult.printResultView(car.length);
+		carResult.printWinnerView(car.length);
 	}
 }
