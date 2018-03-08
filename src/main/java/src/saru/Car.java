@@ -1,8 +1,9 @@
 package saru;
 
 public class Car {
+	private static final int GO_AHEAD_NUM = 4;
 	private String name;
-	private int position = 1;
+	private int position = 0;
 
 	public Car(String name) {
 		this.name = name;
@@ -17,8 +18,8 @@ public class Car {
 		return this.position;
 	}
 	
-	boolean isMatchPosition(int bestPosition) {
-		return this.position == bestPosition;
+	boolean isMatchPosition(int toCheckPosition) {
+		return this.position == toCheckPosition;
 	}
 	
 	String getName() {
@@ -28,4 +29,13 @@ public class Car {
 	void moveCar() {
 		this.position++;
 	}
+	
+	boolean isCanMove(int randNum) {
+		if (randNum >= GO_AHEAD_NUM) {
+			return true;
+		}
+
+		return false;
+	}
+
 }
