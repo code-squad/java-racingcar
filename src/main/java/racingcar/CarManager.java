@@ -5,10 +5,11 @@ import java.util.Scanner;
 public class CarManager {
 	Scanner sc = new Scanner(System.in);
 
-	Car[] inputCar() {
+	 Car[] inputCar() {
 		System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
 		String input = sc.nextLine();
 		String[] names = input.split(",");
+				
 		int carNum = names.length;
 
 		Car[] car = new Car[carNum]; // Car객체를 담을 배열생성
