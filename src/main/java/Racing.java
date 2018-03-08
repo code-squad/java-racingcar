@@ -4,7 +4,6 @@ import java.util.Arrays;
 public class Racing {
 
     private ArrayList<Car> cars = new ArrayList<Car>();
-    private static ArrayList<String> winners = new ArrayList<String>();
 
     public Racing(String names) {
         String[] carNames = names.split(",");
@@ -29,7 +28,7 @@ public class Racing {
         }
     }
 
-    public void race(ArrayList<Car> cars, int times) {
+    public void wholeRace(ArrayList<Car> cars, int times) {
         for (Car car : cars) {
             doRace(car, times);
         }
@@ -50,13 +49,13 @@ public class Racing {
     }
 
     public static ArrayList<String> selectWinners(ArrayList<Car> cars) {
-        ArrayList<String> winner = new ArrayList<String>();
+        ArrayList<String> winners = new ArrayList<String>();
         int[] positions = makePositions(cars);
         int winnerPosition = selectMaxPosition(positions);
         for (Car car : cars) {
-            if (car.isWinnerPosition(winnerPosition)) winner.add(car.getName());
+            if (car.isWinnerPosition(winnerPosition)) winners.add(car.getName());
         }
-        return winner;
+        return winners;
     }
 
     public ArrayList<Car> getCars() {
@@ -64,12 +63,11 @@ public class Racing {
     }
 
     public ArrayList<String> getWinnerList() {
-        return winners;
+        return selectWinners(cars);
     }
 
     public void run(int times) {
-        race(cars, times);
-        winners = selectWinners(cars);
+        wholeRace(cars, times);
     }
 }
 

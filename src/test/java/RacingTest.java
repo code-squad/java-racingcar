@@ -30,7 +30,7 @@ public class RacingTest {
         userRandomNum.add(new int[]{1, 1, 1, 1, 5}); // car1
         userRandomNum.add(new int[]{1, 1, 1, 5, 5}); // car2
         userRandomNum.add(new int[]{1, 1, 5, 5, 5}); // car3
-        userRandomNum.add(new int[]{1, 5, 5, 5, 5}); // car4 , winner
+        userRandomNum.add(new int[]{1, 5, 5, 5, 5}); // car4 , winner, position 4
 
         //run
         for (int i = 0; i < cars.size(); i++) {
