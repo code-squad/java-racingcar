@@ -1,32 +1,37 @@
 public class Car implements Comparable<Car> {
-	private String name;
-	private int position;
+    private String name;
+    private int position;
 
-	public Car(String name) {
-		this.name = name;
-	}
+    public Car() {
+    }
 
-	public int getPosition() {
-		return position;
-	}
+    public Car(String name) {
+        this.name = name;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public int getPosition() {
+        return position;
+    }
 
-	public void oneRun(Car c) {
-		int value = Racing.getRandomInt();
-		if (Racing.isGo(value))
-			position++;
-	}
+    public String getName() {
+        return name;
+    }
 
-	@Override
-	public int compareTo(Car c) {
-		if (this.position > c.position)
-			return 1;
-		else if (this.position < c.position)
-			return -1;
-		else
-			return 0;
-	}
+    public void oneRun(int randomValue) {
+        if (randomValue >= 4) this.position++;
+    }
+
+    public boolean isWinnerPosition(int maxPosition) {
+        return this.position == maxPosition;
+    }
+
+    @Override
+    public int compareTo(Car car) {
+        if (this.position > car.position)
+            return 1;
+        else if (this.position < car.position)
+            return -1;
+        else
+            return 0;
+    }
 }

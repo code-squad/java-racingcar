@@ -1,70 +1,76 @@
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Arrays;
 
 public class Racing {
-	private String[] carNames;
-	private int times;
-	private ArrayList<String> winner = new ArrayList<String>();
-	private ArrayList<Car> carList = new ArrayList<Car>();
+    private int times;
+    private ArrayList<Car> cars = new ArrayList<Car>();
+    private static ArrayList<String> winners = new ArrayList<String>();
 
-	public Racing(String[] carNames, int times) {
-		this.carNames = carNames;
-		this.times = times;
-	}
+    public Racing(String names, int times) {
+        String[] carNames = names.split(",");
+        this.cars = makeCarList(carNames);
+        this.times = times;
+    }
 
-	public static int getRandomInt() {
-		int randomNum = (int) (Math.random() * 9);
-		return randomNum;
-	}
+    public static int getRandomInt() {
+        int randomNum = (int) (Math.random() * 9);
+        return randomNum;
+    }
 
-	public static boolean isGo(int randomNum) {
-		if (getRandomInt() >= 4) {
-			return true;
-		}
-		return false;
-	}
+    public ArrayList<Car> makeCarList(String[] carNames) {
+        for (int i = 0; i < carNames.length; i++) {
+            cars.add(new Car(carNames[i]));
+        }
+        return cars;
+    }
 
-	public void makeCarList(String[] carNames) {
-		for (int i = 0; i < carNames.length; i++) {
-			carList.add(new Car(carNames[i]));
-		}
-	}
+    public static void doRace(Car c, int times) {
+        for (int i = 0; i < times; i++) {
+            c.oneRun(Racing.getRandomInt());
+        }
+    }
 
-	public void doRace(Car c, int times) {
-		for (int i = 0; i < times; i++) {
-			c.oneRun(c);
-		}
-	}
+    public void race(ArrayList<Car> carList) {
+        for (Car c : carList) {
+            doRace(c, this.times);
+        }
+    }
 
-	public void race(ArrayList<Car> carList) {
-		for (Car c : carList) {
-			doRace(c, times);
-		}
-	}
+    public static int selectMaxPosition(int[] positions) {
+        Arrays.sort(positions);
+        int max = positions[positions.length - 1];
+        return max;
+    }
 
-	private void selectWinner(ArrayList<Car> carList) {
-		Collections.sort(carList);
-		int numCarList = carList.size();
-		int winnerPosition = carList.get(numCarList - 1).getPosition();
-		for (Car c : carList) {
-			if (c.getPosition() == winnerPosition) {
-				winner.add(c.getName());
-			}
-		}
-		
-	}
+    public static int[] makePositions(ArrayList<Car> cars, int times) {
+        int[] positions = new int[times];
+        for (int i = 0; i < cars.size(); i++) {
+            positions[i] = cars.get(i).getPosition();
+        }
+        return positions;
+    }
 
-	public ArrayList<String> getWinner(){
-		return winner;
-	}
-	public ArrayList<Car> getCarList(){
-		return carList;
-	}
-	
-	public void run() {
-		makeCarList(carNames);
-		race(carList);
-		selectWinner(carList);
-	}
+    public static ArrayList<String> selectWinners(ArrayList<Car> cars, int times) {
+        ArrayList<String> winner = new ArrayList<String>();
+        int[] positions = makePositions(cars, times);
+        int winnerPosition = selectMaxPosition(positions);
+        for (Car c : cars) {
+            if (c.isWinnerPosition(winnerPosition)) winner.add(c.getName());
+        }
+        return winner;
+    }
 
+    public ArrayList<Car> getCars() {
+        return cars;
+    }
+
+    public ArrayList<String> getWinnerList() {
+        return winners;
+    }
+
+    public void run() {
+        race(cars);
+        winners = selectWinners(cars, times);
+    }
 }
+
