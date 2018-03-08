@@ -14,21 +14,26 @@ public class Racing {
 	public Racing(String[] carNames) {
 		this.makeCar(carNames);
 	}
+	
+	public Car[] getCars() {
+		return cars;
+	}
 
-	private void makeCar(String[] carNames) {
+	public void makeCar(String[] carNames) {
 		this.cars = new Car[carNames.length]; // 무조건 공간을 먼저 확보해야 하는가?
 		for (int i = 0; i < cars.length; i++) {
 			this.cars[i] = new Car(carNames[i]);
 		}
 	}
 
-	private void start(int challengeCount) {
-		for (int i = 0; i < challengeCount; i++) {
+	// private -> public
+	public void start(int tryCount) {
+		for (int i = 0; i < tryCount; i++) {
 			challenge();
 		}
 	}
 
-	private void challenge() {
+	public void challenge() {
 		for (int i = 0; i < this.cars.length; i++) {
 			this.cars[i].move(getRandomNumber());
 		}
@@ -43,7 +48,7 @@ public class Racing {
 		return randomNumber;
 	}
 
-	private ArrayList<String> rank() {
+	public ArrayList<String> rank() {
 		ArrayList<String> winners = new ArrayList<String>();
 		int winnerScore = 0;
 
@@ -71,10 +76,10 @@ public class Racing {
 	public static void setupRace() {
 		Scanner scanner = new Scanner(System.in);
 		String[] carNames = InputView.inputCarNames(scanner);
-		int challengeCount = InputView.inputChallengeCount(scanner);
+		int tryCount = InputView.inputTryCount(scanner);
 
 		Racing race = new Racing(carNames); // new 하는 순간 heap에 Racing 객체가 만들어지고, 해당 인스턴스의 멤버변수가 생성된다.
-		race.start(challengeCount);
+		race.start(tryCount);
 		ResultView.output(race.cars, race.rank());
 
 		scanner.close();
