@@ -9,7 +9,7 @@ public class CarOutput {
     }
 
     public static void printRacing(Racing r) {
-        for (Car c : r.getCarList()) {
+        for (Car c : r.getCars()) {
             runningExpression(c);
         }
     }

@@ -1,78 +1,51 @@
 import org.junit.Before;
 import org.junit.Test;
-
-import java.util.ArrayList;
-import java.util.Arrays;
+import org.junit.jupiter.api.DisplayName;
 
 import static org.junit.Assert.assertEquals;
 
 public class CarTest {
-    Car c;
-    Racing r;
-    int position;
+    Car car;
 
     @Before
     public void setUp() {
-        c = new Car();
-        r = new Racing();
+        car = new Car();
     }
 
     @Test
-    public void runTest() {
-        int randomValue = Racing.getRandomInt();
-        System.out.println("randomValue is : "+randomValue);
-        position = c.getPosition();
-        System.out.println("original position is : "+position);
-        c.oneRun(randomValue);
+    @DisplayName("랜덤값 동작 테스트-4이상")
+    public void OneRunTestNumber1() {
+        int originPosition = car.getPosition();
+        car.oneRun(4);
+        assertEquals(originPosition + 1, car.getPosition());
+    }
 
-        if (randomValue >= 4) {
-            assertEquals(position + 1, c.getPosition());
-            System.out.println("later position is : "+c.getPosition());
-        } else {
-            assertEquals(position, c.getPosition());
-            System.out.println("later position is : "+c.getPosition());
+    @Test
+    @DisplayName("랜덤값 동작 테스트-4이하")
+    public void OneRunTestNumber2() {
+        int originPosition = car.getPosition();
+        car.oneRun(3);
+        assertEquals(originPosition, car.getPosition());
+    }
+
+    @Test
+    @DisplayName("최고 포지션 맞추기 테스트-true")
+    public void isWinnerPositionTestTrue(){
+        // make get.Position == 100
+        for (int i = 0; i < 100; i++) {
+            car.oneRun(4);
         }
+        assertEquals(true, car.isWinnerPosition(100));
     }
 
     @Test
-    public void selectWinnerPositionTest(){
-        int[] positions = {12, 1, 21, 8};
-        System.out.println("Positions are : "+ Arrays.toString(positions));
-        System.out.println("Max position is : "+Racing.selectMaxPosition(positions));
-        assertEquals(21, Racing.selectMaxPosition(positions));
-    }
-
-    @Test
-    public void selectWinnerTest(){
-
-        ArrayList<Car> carList = new ArrayList<Car>();
-        carList.add(new Car("a"));
-        carList.add(new Car("b"));
-        carList.add(new Car("c"));
-        carList.add(new Car("d"));
-
-        ArrayList<int[]> usersPosition = new ArrayList<int[]>();
-        usersPosition.add(new int[] {1, 1, 1, 1, 5}); // a
-        usersPosition.add(new int[] {1, 1, 1, 5, 5}); // b
-        usersPosition.add(new int[] {1, 1, 5, 5, 5}); // c
-        usersPosition.add(new int[] {1, 5, 5, 5, 5}); // d , winner
-
-        int times = 5;
-
-        //run
-        for (int i=0; i<carList.size(); i++){
-            int[] pp = (int[]) usersPosition.get(i);
-            for (int j=0; j<pp.length; j++){
-                carList.get(i).oneRun(pp[j]);
-            }
+    @DisplayName("최고 포지션 맞추기 테스트-false")
+    public void isWinnerPositionTestFalse(){
+        // make get.Position == 100
+        for (int i = 0; i < 100; i++) {
+            car.oneRun(4);
         }
-
-        ArrayList<String> winner = new ArrayList<String>();
-        winner.add("d");
-        System.out.println("expected winner are : "+winner);
-        System.out.println("real winner are : "+Racing.selectWinner(carList, 5));
-        assertEquals(winner, Racing.selectWinner(carList, 5));
+        assertEquals(false, car.isWinnerPosition(99));
     }
-
 }
 
