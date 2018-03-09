@@ -30,23 +30,21 @@ public class RacingTest {
         userRandomNum.add(new int[]{1, 1, 1, 1, 5}); // car1
         userRandomNum.add(new int[]{1, 1, 1, 5, 5}); // car2
         userRandomNum.add(new int[]{1, 1, 5, 5, 5}); // car3
-        userRandomNum.add(new int[]{1, 5, 5, 5, 5}); // car4 , winner
-
-        int times = userRandomNum.get(0).length;
+        userRandomNum.add(new int[]{1, 5, 5, 5, 5}); // car4 , winner, position 4
 
         //run
         for (int i = 0; i < cars.size(); i++) {
-            int[] pp = (int[]) userRandomNum.get(i);
-            for (int j = 0; j < pp.length; j++) {
-                cars.get(i).oneRun(pp[j]);
+            int[] times = (int[]) userRandomNum.get(i);
+            for (int j = 0; j < times.length; j++) {
+                cars.get(i).oneRun(times[j]);
             }
         }
 
         ArrayList<String> winner = new ArrayList<String>();
         winner.add("car4");
         System.out.println("expected winner are : " + winner);
-        System.out.println("real winner are : " + Racing.selectWinners(cars, times));
-        assertEquals(winner, Racing.selectWinners(cars, times));
+        System.out.println("real winner are : " + Racing.selectWinners(cars));
+        assertEquals(winner, Racing.selectWinners(cars));
     }
 
 }
