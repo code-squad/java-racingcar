@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.StringJoiner;
 
 public class Result {
-    private String winnerNames;
     private int maxPosition;
+    private String winnerNames;
 
     private void buildResult(Car e) {
         Output.printMessage(e.getName() + ": ");
@@ -15,7 +15,7 @@ public class Result {
         Output.startNewLine();
     }
 
-    public void showResult(List<Car> cars) {
+    public void displayResult(List<Car> cars) {
         for (Car e : cars) {
             buildResult(e);
         }
@@ -29,7 +29,11 @@ public class Result {
         this.maxPosition = Collections.max(carPositions);
     }
 
-    public List<String> createWinnersList(List<Car> cars) {
+    public int getMaxPosition() {
+        return this.maxPosition;
+    }
+
+    private List<String> createWinnersList(List<Car> cars) {
         List<String> winners = new ArrayList<>();
         for (Car e : cars) {
             if (e.getPosition() == this.maxPosition) {
@@ -39,26 +43,28 @@ public class Result {
         return winners;
     }
 
-    public void findWinner(List<Car> cars) {
+    private static String convertListToString(List<String> winners) {
         StringJoiner joiner = new StringJoiner(",");
 
-        findMaxPosition(cars);
-
-        for (String name : createWinnersList(cars)) {
+        for (String name : winners) {
             joiner.add(name);
         }
-        this.winnerNames = joiner.toString();
+        return joiner.toString();
     }
 
-    public void printWinner() {
-        Output.printMessage("The winner is.. " + this.winnerNames + "!");
+    private static void printWinner(String winnerNames) {
+        Output.printMessage("The winner is.. " + winnerNames + "!");
     }
 
-    public int getMaxPosition() {
-        return this.maxPosition;
+    public void findWinner(List<Car> cars){
+        findMaxPosition(cars);
+        List<String> winners = createWinnersList(cars);
+        String winnerNames = convertListToString(winners);
+        printWinner(winnerNames);
+        this.winnerNames = winnerNames;
     }
 
-    public String getWinnerNames() {
+    public String getWinnerNames(){
         return this.winnerNames;
     }
 }
