@@ -58,10 +58,8 @@ public class Racing {
 		ArrayList<Car> copyList = cloneList(carList);
 		copyList.sort(new Comparator<Car>() {
 			public int compare(Car car1, Car car2) {
-				if (car1.getPosition() > car2.getPosition())
-					return 1;
-				else if (car1.getPosition() < car2.getPosition())
-					return -1;
+				if (car1.getPosition() > car2.getPosition()) return 1;
+				else if (car1.getPosition() < car2.getPosition()) return -1;
 				return 0;
 			}
 		});
