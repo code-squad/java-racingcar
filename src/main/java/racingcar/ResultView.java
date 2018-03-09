@@ -3,11 +3,11 @@ package racingcar;
 import java.util.ArrayList;
 
 public class ResultView {
-	public static void output(Car[] registeredCar, ArrayList<String> winners) {
+	public static void output(Car[] cars, ArrayList<String> winners) {
 		System.out.println('\n' + "실행결과");
-		for (int i = 0; i < registeredCar.length; i++) {
-			System.out.print(registeredCar[i].getName() + " :");
-			int position = registeredCar[i].getPosition();
+		for (int i = 0; i < cars.length; i++) {
+			System.out.print(cars[i].getName() + " :");
+			int position = cars[i].getPosition();
 			scoreResult(position);
 			System.out.println();
 		}

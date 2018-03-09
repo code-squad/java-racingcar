@@ -10,25 +10,31 @@ public class Racing {
 	// main내 지역변수로 자동차 이름을 받고, 자동차 객체를 만들 때 자동차 이름을 받은 배열을 인자로 넘긴다.
 	// 굳이 registered를 붙이지 않아도 충분히 구분 가능하므로 줄이는 게 코드 가독성 높이기에 좋다.
 	private Car[] cars;
+	// private ArrayList<String> winners;
 
 	public Racing(String[] carNames) {
 		this.makeCar(carNames);
 	}
+	
+	public Car[] getCars() {
+		return cars;
+	}
 
-	private void makeCar(String[] carNames) {
+	public void makeCar(String[] carNames) {
 		this.cars = new Car[carNames.length]; // 무조건 공간을 먼저 확보해야 하는가?
 		for (int i = 0; i < cars.length; i++) {
 			this.cars[i] = new Car(carNames[i]);
 		}
 	}
 
-	private void start(int challengeCount) {
-		for (int i = 0; i < challengeCount; i++) {
+	// private -> public
+	public void start(int tryCount) {
+		for (int i = 0; i < tryCount; i++) {
 			challenge();
 		}
 	}
 
-	private void challenge() {
+	public void challenge() {
 		for (int i = 0; i < this.cars.length; i++) {
 			this.cars[i].move(getRandomNumber());
 		}
@@ -43,7 +49,7 @@ public class Racing {
 		return randomNumber;
 	}
 
-	private ArrayList<String> rank() {
+	public ArrayList<String> rank() {
 		ArrayList<String> winners = new ArrayList<String>();
 		int winnerScore = 0;
 
@@ -71,10 +77,10 @@ public class Racing {
 	public static void setupRace() {
 		Scanner scanner = new Scanner(System.in);
 		String[] carNames = InputView.inputCarNames(scanner);
-		int challengeCount = InputView.inputChallengeCount(scanner);
+		int tryCount = InputView.inputTryCount(scanner);
 
 		Racing race = new Racing(carNames); // new 하는 순간 heap에 Racing 객체가 만들어지고, 해당 인스턴스의 멤버변수가 생성된다.
-		race.start(challengeCount);
+		race.start(tryCount);
 		ResultView.output(race.cars, race.rank());
 
 		scanner.close();
