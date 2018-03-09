@@ -1,10 +1,10 @@
 package racingcar;
 
 public class Car {
-
+	
+	private static final int REFVAL = 4;
 	private String name;
 	private int position = 0;
-	private static final int refVal = 4;
 
 	public Car(String name) {
 		this.name = name;
@@ -19,7 +19,7 @@ public class Car {
 	}
 
 	public void updatePosition(int randomValue) {
-		if (randomValue > refVal) {
+		if (randomValue > REFVAL) {
 			position++;
 		}
 	}
