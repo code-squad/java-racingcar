@@ -4,15 +4,13 @@ import java.util.Scanner;
 
 public class Input {
 	
-	public static int takeNumberofMoves() {
+	public static int takeNumberOfMoves() {
 		Scanner sc = new Scanner(System.in);
-		int moves = sc.nextInt();
-		return moves;
+		return sc.nextInt();
 	}
 	
 	public static String takeNames() {
 		Scanner sc = new Scanner(System.in);
-		String s = sc.next();
-		return s;
+		return sc.next();
 	}
 }

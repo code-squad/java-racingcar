@@ -8,7 +8,7 @@ public class CarRace {
     private int moves;
     private List<Car> cars;
 
-    public CarRace(String playerNames, int numMoves) {
+    CarRace(String playerNames, int numMoves) {
         this.moves = numMoves;
 
         String[] names = playerNames.split(",");
@@ -18,7 +18,7 @@ public class CarRace {
         }
     }
 
-    public void runCar(Car car, int tryNum) {
+    private void runCar(Car car, int tryNum) {
         for (int i = 0; i < tryNum; i++) {
             car.runOnce(generateRandNum());
         }
@@ -30,11 +30,9 @@ public class CarRace {
         }
     }
 
-    public static int generateRandNum() {
+    private static int generateRandNum() {
         Random rand = new Random();
-        int randNum = rand.nextInt(10);
-
-        return randNum;
+        return rand.nextInt(10);
     }
 
     public List<Car> getCars() {
