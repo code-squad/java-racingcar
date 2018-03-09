@@ -1,5 +1,6 @@
 package racing;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class CarName {
@@ -24,4 +25,11 @@ public class CarName {
 		return cars;
 	}
 
+	public void printWinCar(Carinit car) { // 우승자 출력을 위한 메소드
+		ArrayList<String> winCarName = (car.winCar(car.pushMax(car.maxCar())));
+		for (String win : winCarName) {
+			System.out.print(win + " ");
+		}
+		System.out.print("가 최종 우승했습니다. ");
+	}
 }
