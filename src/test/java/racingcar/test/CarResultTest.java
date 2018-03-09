@@ -22,8 +22,8 @@ public class CarResultTest {
 	@Before
 	public void setUp() {
 		test1 = new Car("test1");
-		test1.updatePosition();
-		test1.updatePosition();
+		test1.updatePosition(5);
+		test1.updatePosition(5);
 		test2 = new Car("test2");
 		test3 = new Car("test3");
 		car = new Car[] { test1, test2, test3 };
@@ -32,43 +32,40 @@ public class CarResultTest {
 	}
 
 	@Test
-	public void testResultView() {
-		carResult.resultView(car.length);
+	public void testPrintResultView() {
+		carResult.printResultView();
 		assertThat(outContent.toString(), is("실행 결과\r\ntest1 : --\r\ntest2 : \r\ntest3 : \r\n"));
 	}
 
 	@Test
-	public void testResultBar() {
-		carResult.resultBar(0);
+	public void testPrintResultBar() {
+		carResult.printResultBar(0);
 		assertThat(outContent.toString(), is("--\r\n"));
 	}
 
 	@Test
 	public void testMaxCompare() {
 		int max = 0;
-		assertThat(carResult.maxCompare(car.length, max), is(2));
+		assertThat(carResult.maxCompare(max), is(2));
 	}
 
-	// 자동차 목록의 위치 값이 가장 큰 값을 찾는 메소드에 대한 테스트 코드를 추가한다.
 	@Test
 	public void testMaxCompareResult() {
 		int max = 2;
-		assertThat(carResult.maxCompareResult(max, 0), is(2));
+		assertThat(car[0].maxPosition(max), is(2));
 	}
 
 	@Test
-	public void testWinnerCheck() {
-		// 자동차 목록에서 가장 큰 위치 값에 해당하는 자동차 목록을 구하는 메소드에 대한 테스트 코드를 추가한다.
+	public void testPrintWinnerCheck() {
 		int max = 2;
-		carResult.winnerCheck(car.length, max);
+		carResult.winnerCheck(max);
 		assertThat(outContent.toString(), is("test1 "));
 	}
 
 	@Test
-	public void testWinnerResult() {
+	public void testPrintWinnerResult() {
 		int max = 2;
-		carResult.winnerResult(0, max);
+		carResult.printWinnerResult(0, max);
 		assertThat(outContent.toString(), is("test1 "));
 	}
-
 }
