@@ -16,14 +16,13 @@ public class Carinit {
 	public void run(int car, int num) {// 모든 차의 주행 거리를 표현
 		for (int i = 0; i < car; i++) {
 			win[i].oneCar(num);
+			outName(i);
 		}
 	}
 
-	public void outName() {
-		for (int i = 0; i < win.length; i++) {
-			System.out.print(win[i].getName() + " : ");
-			outPosition(win[i]);
-		}
+	public void outName(int i) {
+		System.out.print(win[i].getName() + " : ");
+		outPosition(win[i]);
 	}
 
 	public void outPosition(Car win) {
@@ -58,23 +57,15 @@ public class Carinit {
 		return wincar;
 	}
 
-	public void printWinCar(ArrayList<String> wincar) { // 우승자 출력을 위한 메소드
-		for (String win : wincar) {
-			System.out.print(win + " ");
-		}
-		System.out.print("가 최종 우승했습니다. ");
-	}
-
 	public static void main(String args[]) {
 		Scanner input = new Scanner(System.in);
-	
+
 		CarName name = new CarName();
 		String[] names = name.setCarName(input);
 		int num = name.setTryNum(input);
-		
-		Carinit pp = new Carinit(name.makeCar(names));
-		pp.run(names.length, num);
-		pp.outName();
-		pp.printWinCar(pp.winCar(pp.pushMax(pp.maxCar())));
+
+		Carinit racingGame = new Carinit(name.makeCar(names));
+		racingGame.run(names.length, num);
+		name.printWinCar(racingGame);
 	}
 }
