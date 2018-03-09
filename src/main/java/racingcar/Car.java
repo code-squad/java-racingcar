@@ -4,6 +4,7 @@ public class Car {
 
 	private String name;
 	private int position = 0;
+	private static final int refVal = 4;
 
 	public Car(String name) {
 		this.name = name;
@@ -18,7 +19,7 @@ public class Car {
 	}
 
 	public void updatePosition(int randomValue) {
-		if (randomValue > 4) {
+		if (randomValue > refVal) {
 			position++;
 		}
 	}
