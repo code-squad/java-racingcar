@@ -15,8 +15,8 @@ public class CarTest {
 	
 	@Test
 	public void moveSuccess() {
-		car.move(3);
-		assertEquals(0, car.getPosition());
+		car.move(4);
+		assertEquals(1, car.getPosition());
 	}
 	
 	@Test

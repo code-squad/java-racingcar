@@ -10,6 +10,7 @@ public class Racing {
 	// main내 지역변수로 자동차 이름을 받고, 자동차 객체를 만들 때 자동차 이름을 받은 배열을 인자로 넘긴다.
 	// 굳이 registered를 붙이지 않아도 충분히 구분 가능하므로 줄이는 게 코드 가독성 높이기에 좋다.
 	private Car[] cars;
+	// private ArrayList<String> winners;
 
 	public Racing(String[] carNames) {
 		this.makeCar(carNames);
