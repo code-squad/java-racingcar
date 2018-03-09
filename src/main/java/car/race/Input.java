@@ -15,6 +15,4 @@ public class Input {
 		String s = sc.next();
 		return s;
 	}
-	
-	
 }
