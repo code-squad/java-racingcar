@@ -35,7 +35,6 @@ public class RacingGameTest {
 		for (Car car : cars) {
 			winnerScore = racing.findWinners(car, winnerScore);
 		}
-
 		assertEquals(10, winnerScore);
 	}
 	
