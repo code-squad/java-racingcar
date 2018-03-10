@@ -1,8 +1,5 @@
 package racingcar;
 
-import racingcar.Car;
-import racingcar.RacingGame;
-
 public class ResultView {
 	public static void printResult(RacingGame racingGame) {
 		System.out.println('\n' + "실행결과");
