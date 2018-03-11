@@ -33,7 +33,6 @@ public class CarRaceUtill {
 		return random.nextInt(10);	
 	}
 
-	
 	//winner
 	public ArrayList<Car> winner(int topPosition) {
 		ArrayList<Car> winner = new ArrayList<>();
@@ -54,5 +53,9 @@ public class CarRaceUtill {
 			}
 		}
 		return top;
+	}
+	
+	public ArrayList<Car> getCars() {
+		return cars;
 	}
 }
