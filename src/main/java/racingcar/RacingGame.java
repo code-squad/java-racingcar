@@ -18,6 +18,7 @@ public class RacingGame {
 	public RacingGame(String[] carNames) {
 		this.cars = makeCars(carNames);
 		winners = new ArrayList<String>();
+		winners.add("htw");
 	}
 
 	public void racing(int tryCount) {

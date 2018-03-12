@@ -41,8 +41,9 @@ public class RacingGameTest {
 	@Test
 	public void getWinnerNames() {
 		// 다른 테스트 메서드를 호출해도 괜찮은가?
-		getWinnerScore();
-		assertEquals("pobi", racing.getWinners().get(0));
+		// getWinnerScore();
+		// assertEquals("pobi", racing.getWinners().get(0));
+		racing.rank();
+		assertEquals("pobi", racing.getWinners());
 	}
-
 }
