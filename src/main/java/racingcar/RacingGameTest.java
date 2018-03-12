@@ -35,15 +35,15 @@ public class RacingGameTest {
 		for (Car car : cars) {
 			winnerScore = racing.findWinners(car, winnerScore);
 		}
+
 		assertEquals(10, winnerScore);
 	}
 	
 	@Test
 	public void getWinnerNames() {
 		// 다른 테스트 메서드를 호출해도 괜찮은가?
-		// getWinnerScore();
-		// assertEquals("pobi", racing.getWinners().get(0));
-		racing.rank();
-		assertEquals("pobi", racing.getWinners());
+		getWinnerScore();
+		assertEquals("pobi", racing.getWinners().get(0));
 	}
+
 }

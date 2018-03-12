@@ -26,5 +26,3 @@ public class CarTest {
 		assertEquals(0, failCar.getPosition());
 	}
 }
-
-
