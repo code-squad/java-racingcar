@@ -2,14 +2,14 @@ package racingcar;
 
 public class Car {
 
-    private int position = 0;
+    private int position;
     private String name;
 
     public Car(String name) {
         this.name = name;
     }
 
-    public String getName() {
+	public String getName() {
         return name;
     }
 
@@ -17,9 +17,11 @@ public class Car {
         return position;
     }
 
-    public void go(int randomNumber) {
+    public boolean move(int randomNumber) {
         if (randomNumber >= 4) {
-            position++;
+           this.position++;
+           return true;
         }
+        return false;
     }
 }

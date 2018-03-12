@@ -1,13 +1,15 @@
 package racingcar;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class CarRaceUtill {
-    private ArrayList<Car> cars = new ArrayList<>();
+	private static final int RANDOM_ROOT = 10;
+    private List<Car> cars = new ArrayList<>();
 
     //make Car Array
-    public void addCarNames(String[] carNames) {
+    public CarRaceUtill(String[] carNames) {
         for (String names : carNames) {
             cars.add(new Car(names));
         }
@@ -17,31 +19,42 @@ public class CarRaceUtill {
     public void moveCars(int tryNum) {
         for (int i = 0; i < tryNum; i++) {
             makeCarMove();
-            ResultView.printStatus(cars);
         }
     }
 
     private void makeCarMove() {
         for (Car car : cars) {
-            car.go(makeRandomNumber());
+            car.move(makeRandomNumber());
         }
     }
-
+    
     //random number
     public int makeRandomNumber() {
         Random random = new Random();
-        return random.nextInt(10);
+        return random.nextInt(RANDOM_ROOT);
     }
-
+    
+    public void printAllCarDistance() {
+    		for (Car car : cars) {
+    			ResultView.printDashForEachCar(car.getName(), car.getPosition());
+    			System.out.println();
+    		}
+    }
+    
+    public void printWinner() {
+    		ResultView.printWinner(getWinner(topPosition()));
+    }
     //winner
-    public ArrayList<Car> winner(int topPosition) {
-        ArrayList<Car> winner = new ArrayList<>();
-        for (Car car : cars) {
-            if (topPosition == car.getPosition()) {
-                winner.add(car);
+    public String getWinner(int maxDistance) {
+
+        List<String> winnerNames = new ArrayList<>();
+
+        for(Car car : cars) {
+            if(car.getPosition() == maxDistance) {
+                winnerNames.add(car.getName());
             }
         }
-        return winner;
+        return String.join(", ",winnerNames);
     }
 
     //topPosition
@@ -55,7 +68,7 @@ public class CarRaceUtill {
         return top;
     }
 
-    public ArrayList<Car> getCars() {
+    public List<Car> getCars() {
         return cars;
     }
 }

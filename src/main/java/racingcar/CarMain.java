@@ -1,6 +1,5 @@
 package racingcar;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class CarMain {
@@ -11,14 +10,13 @@ public class CarMain {
         String Inputname = InputView.inputName(scan);
         String[] name = InputView.nameSplit(Inputname);
 
-        CarRaceUtill carUtill = new CarRaceUtill();
-        carUtill.addCarNames(name);
+        CarRaceUtill carUtill = new CarRaceUtill(name);
 
         int tryNum = InputView.tryingNumber(scan);
         carUtill.moveCars(tryNum);
-
-        ArrayList<Car> winner = carUtill.winner(carUtill.topPosition());
-        ResultView.printWinner(winner);
+        
+        carUtill.printAllCarDistance();
+        carUtill.printWinner();
     }
 
 
