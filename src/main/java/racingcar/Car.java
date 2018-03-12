@@ -6,21 +6,26 @@ public class Car {
 	private static final int FORWARD_NUM = 4;
 	private String name;
 	private int position;
-	
+
 	public Car(String name) {
-		this.name = name;
+		this(name, 0);
 	}
-	
+
+	public Car(String name, int position) {
+		this.name = name;
+		this.position = position;
+	}
+
 	public int getPosition() {
 		return this.position;
 	}
-	
+
 	public String getName() {
 		return this.name;
 	}
-	
+
 	public boolean move(int randomNo) {
-		if(randomNo >= FORWARD_NUM) {
+		if (randomNo >= FORWARD_NUM) {
 			this.position++;
 			return true;
 		}

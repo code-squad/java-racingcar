@@ -15,15 +15,21 @@ public class RacingGame {
 		return this.winners;
 	}
 
-	public RacingGame(String[] carNames) {
-		this.cars = makeCars(carNames);
+	/* RacingGame 생성자 메서드 목록 */
+	// ArrayList 할당 과정이 중복되는데, 어떻게 리팩토링할지 고민..
+	public RacingGame(String[] carsName) {
+		this.cars = makeCars(carsName);
 		winners = new ArrayList<String>();
-		winners.add("htw");
+	}
+
+	public RacingGame(Car[] cars) {
+		this.cars = cars;
+		winners = new ArrayList<String>();
 	}
 
 	public void racing(int tryCount) {
-		this.start(tryCount);
-		this.rank();
+		this.start(tryCount); // 주어진 회수만큼 자동차 이동 시도.
+		this.rank(); // 자동차가 이동한 총 거리를 가지고 탐색.
 	}
 
 	/* 원래 한 묶음 시작 */
@@ -68,10 +74,10 @@ public class RacingGame {
 	}
 	/* 한 묶음 끝 */
 
-	public Car[] makeCars(String[] carNames) {
-		Car[] cars = new Car[carNames.length];
-		for (int i = 0; i < carNames.length; i++) {
-			cars[i] = new Car(carNames[i]);
+	public Car[] makeCars(String[] carsName) {
+		Car[] cars = new Car[carsName.length];
+		for (int i = 0; i < carsName.length; i++) {
+			cars[i] = new Car(carsName[i]);
 		}
 		return cars;
 	}
