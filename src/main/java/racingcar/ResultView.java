@@ -1,36 +1,24 @@
 package racingcar;
 
-import java.util.ArrayList;
-
 public class ResultView {
-	public static void output(Car[] cars, ArrayList<String> winners) {
+	public static void printResult(RacingGame racingGame) {
 		System.out.println('\n' + "실행결과");
-		for (int i = 0; i < cars.length; i++) {
-			System.out.print(cars[i].getName() + " :");
-			int position = cars[i].getPosition();
-			scoreResult(position);
-			System.out.println();
+		for (Car car : racingGame.getCars()) {
+			printCarsPosition(car);
+		}
+
+		/* printWinners */
+		// 다양한 문자열 처리 편의를 위한 외부 패키지가 존재한다.
+		String winners = String.join(",", racingGame.getWinners());
+		System.out.println(winners + "가 최종 우승했습니다.");
+	}
+
+	public static void printCarsPosition(Car car) {
+		System.out.print(car.getName() + " :");
+		int position = car.getPosition();
+		for (int i = 0; i < position; i++) {
+			System.out.print("-");
 		}
 		System.out.println();
-		rankResult(winners);
-	}
-
-	private static void scoreResult(int count) {
-		for (int i = 0; i < count; i++) {
-			System.out.printf("-");
-		}
-	}
-
-	private static void rankResult(ArrayList<String> winners) {
-		StringBuffer stringBuffer = new StringBuffer();
-
-		String prefix = "";
-		for (String winnerName : winners) {
-			stringBuffer.append(prefix);
-			prefix = ", ";
-			stringBuffer.append(winnerName);
-		}
-		stringBuffer.append("가 최종 우승했습니다.");
-		System.out.println(stringBuffer.toString());
 	}
 }
