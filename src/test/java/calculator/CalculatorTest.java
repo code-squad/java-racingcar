@@ -2,9 +2,6 @@ package calculator;
 
 import org.junit.Test;
 
-import static calculator.StringCalcuator.*;
-import static calculator.StringCalcuator.add;
-
 public class CalculatorTest {
     @Test
     public void 덧셈() {
