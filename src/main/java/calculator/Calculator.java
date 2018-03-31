@@ -26,9 +26,7 @@ public class Calculator {
         int num = Integer.valueOf(arr[0]);
 
         for(int i = 2; i<arr.length+1; i++) {
-            if(i % 2 == 0) {
-                num = cal(arr[i-2], num, Integer.valueOf(arr[i]));
-            }
+
         }
 
         return num;
