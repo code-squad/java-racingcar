@@ -1,4 +1,4 @@
-package calculater;
+package calculater.domain;
 
 import calculater.domain.Calculater;
 import org.junit.Assert;
