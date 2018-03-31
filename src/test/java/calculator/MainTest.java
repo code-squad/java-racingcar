@@ -3,7 +3,6 @@ package calculator;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class MainTest {
     private Main main;

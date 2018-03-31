@@ -1,10 +1,12 @@
 package calculator;
 
+
 import java.security.InvalidParameterException;
 import java.util.List;
 import java.util.Scanner;
 
 public class Main {
+
 
     private Calculator calculator;
     private Parser parser;
@@ -87,6 +89,7 @@ public class Main {
         }
 
         throw new InvalidParameterException();
+
     }
 
 }
