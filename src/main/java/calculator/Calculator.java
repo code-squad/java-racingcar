@@ -7,16 +7,15 @@ import java.util.Scanner;
 class Calculator{
     public double calculate(String inputStr) {
          //일단 스페이스바로 나눠져있다고 보자.
-        String arrInputStr [] = inputStr.split(" " );
 
-        CheckNull(arrInputStr[0]);
+        checkInputStr(inputStr);
+
+        String arrInputStr [] = inputStr.split(" " );
 
         double resultNumber = Double.parseDouble(arrInputStr[0]);
 
         for(int i=1; i<arrInputStr.length; i += 2 ) {
             double inputNumber1 = resultNumber;
-            CheckNull(arrInputStr[i]);
-            CheckNull(arrInputStr[i+1]);
             double inputNumber2 = Double.parseDouble(arrInputStr[i+1]);
             resultNumber = doArithmetic(arrInputStr[i], resultNumber, inputNumber1, inputNumber2);
         }
@@ -24,7 +23,15 @@ class Calculator{
         return resultNumber;
    }
 
-    private void CheckNull(String s) {
+    private void checkInputStr(String inputStr) {
+        checkNull(inputStr);
+        String arrInputStr [] = inputStr.split(" " );
+        for(int i=0; i<arrInputStr.length; i++){
+            checkNull(arrInputStr[i]);
+        }
+    }
+
+    private void checkNull(String s) {
         if(s == null || "".equals(s)){
             throw new IllegalArgumentException();
         }
