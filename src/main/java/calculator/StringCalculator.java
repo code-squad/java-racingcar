@@ -6,10 +6,6 @@ package calculator;
 public class StringCalculator {
 
 
-    public StringCalculator() {
-
-    }
-
     public int init(String str) {
 
         String[] values = split(str);
@@ -18,31 +14,27 @@ public class StringCalculator {
         int result = startNum;
 
         for (int i = 1; i < values.length; i = i + 2) {
-            String operator =  values[i];
-            result = calculate(values, result, i, operator);
+            String operator = values[i];
+            result = calculate(result, Integer.parseInt(values[i+1]), operator);
         }
 
         return result;
 
     }
 
-    private int calculate(String[] values, int result, int i, String operator) {
-        switch (operator) {
-            case "+":
-                result = add(result, Integer.parseInt(values[i+1]));
-                break;
-            case "-":
-                result = sub(result, Integer.parseInt(values[i+1]));
-                break;
-            case "*":
-                result = mul(result, Integer.parseInt(values[i+1]));
-                break;
-            case "/":
-                result = div(result, Integer.parseInt(values[i+1]));
-                break;
+    private int calculate(int result, int num, String operator) {
+        if ("+".equalsIgnoreCase(operator)) {
+            return add(result, num);
         }
-        return result;
+        if ("-".equalsIgnoreCase(operator)) {
+            return sub(result, num);
+        }
+        if ("*".equalsIgnoreCase(operator)) {
+            return mul(result, num);
+        }
+        return div(result, num);
     }
+
 
     private String[] split(String str) {
         return str.split(" ");
