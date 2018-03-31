@@ -1,14 +1,22 @@
 package calculator;
 
+import org.junit.Before;
 import org.junit.Test;
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+
 public class MainTest {
+    private Main main;
+    private String input;
+    @Before
+    public void setUp(){
+        main = new Main("2+3/5");
+        input = "2+3/5";
+    }
+
 
     @Test
-    public void validateTest(){
-        String input = "2*3+1/";
-
-
-
+    public void isValidatedTest(){
+        //assertThat(main.isValidated(3,2)).isTrue();
     }
 }
