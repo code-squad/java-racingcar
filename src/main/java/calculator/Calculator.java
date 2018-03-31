@@ -2,6 +2,7 @@ package calculator;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.HashMap;
 import java.util.Scanner;
 
 class Calculator{
@@ -48,16 +49,17 @@ class Calculator{
    }
 
     private double doArithmetic(String s, double resultNumber, double inputNumber1, double inputNumber2) {
-        switch (s) {
-            case "+":
-                return inputNumber1 + inputNumber2;
-            case "-":
-                return inputNumber1 - inputNumber2;
-            case "*":
-                return inputNumber1 * inputNumber2;
-            case "/":
-                return inputNumber1 / inputNumber2;
-        }
-        return resultNumber;
+        HashMap<String, ArithemeticInterface> calculatorMap = new HashMap<String, ArithemeticInterface>();
+        ArithemeticInterface arithmeticInterface;
+
+        calculatorMap.put("+", new ArithmeticAdd());
+        calculatorMap.put("-", new ArithmeticMinus());
+        calculatorMap.put("*", new ArithmeticMultiple());
+        calculatorMap.put("/", new ArithmeticDivide());
+
+        arithmeticInterface = calculatorMap.get(s);
+
+        return arithmeticInterface.calculate(inputNumber1, inputNumber2);
+
     }
 }
