@@ -27,7 +27,7 @@ public class Calculator {
 
         for(int i = 2; i<arr.length+1; i++) {
             if(i % 2 == 0) {
-                num = cal(arr[i], num, Integer.valueOf(arr[i+1]));
+                num = cal(arr[i-2], num, Integer.valueOf(arr[i]));
             }
         }
 
