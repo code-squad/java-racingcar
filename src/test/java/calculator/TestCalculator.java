@@ -7,7 +7,7 @@ import org.junit.Test;
 
 public class TestCalculator {
 
-    Calculator calculator = null;
+    private Calculator calculator;
 
     @Before
     public void setup() {
@@ -18,6 +18,9 @@ public class TestCalculator {
     public void parseTest() {
         String[] result = calculator.parse("2 + 3 * 4 / 2");
         assertThat(result).isEqualTo(new String[]{"2", "+", "3", "*", "4", "/", "2"});
+
+        result = calculator.parse("");
+        assertThat(result).isEqualTo(new String[]{""});
     }
 
     @Test
@@ -29,39 +32,44 @@ public class TestCalculator {
         assertThat(result).isEqualTo(16);
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void calcIsBlankParamTest() {
+        calculator.calc("");
+    }
+
     @Test
     public void addTest() {
-        int result = calculator.add(1, 2);
+        int result = calculator.operate("+", 1, 2);
         assertThat(result).isEqualTo(3);
 
-        result = calculator.add(2, 4);
+        result = calculator.operate("+",2, 4);
         assertThat(result).isEqualTo(6);
     }
 
     @Test
     public void minusTest() {
-        int result = calculator.minus(2, 1);
+        int result = calculator.operate("-", 2, 1);
         assertThat(result).isEqualTo(1);
 
-        result = calculator.minus(10, 21);
+        result = calculator.operate("-", 10, 21);
         assertThat(result).isEqualTo(-11);
     }
 
     @Test
     public void multiplicationTest() {
-        int result = calculator.multiplication(10, 7);
+        int result = calculator.operate("*",10, 7);
         assertThat(result).isEqualTo(70);
 
-        result = calculator.multiplication(2, 9);
+        result = calculator.operate("*", 2, 9);
         assertThat(result).isEqualTo(18);
     }
 
     @Test
     public void divisionTest() {
-        int result = calculator.division(10, 5);
+        int result = calculator.operate("/", 10, 5);
         assertThat(result).isEqualTo(2);
 
-        result = calculator.division(3, 2);
+        result = calculator.operate("/", 3, 2);
         assertThat(result).isEqualTo(1);
     }
 
