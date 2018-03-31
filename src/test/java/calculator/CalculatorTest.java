@@ -37,4 +37,10 @@ public class CalculatorTest{
         Calculator calculator = new Calculator();
         assertThat(calculator.calculate("2 / 3")).isEqualTo(2d/3d);
     }
+
+    @Test
+    public void runComplexCase() {
+        Calculator calculator = new Calculator();
+        assertThat(calculator.calculate("3 + 5 * 7 / 4 + 16 / 3")).isEqualTo(10d);
+    }
 }
