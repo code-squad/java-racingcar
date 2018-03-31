@@ -1,9 +1,11 @@
 package calculator;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
 
 /**
  * Created by Administrator on 2018-03-31.
@@ -14,13 +16,15 @@ public class CalculatorTest {
 
     @Before
     public void beforeTest(){
-        System.out.println("문자열 계산기 Test");
+        System.out.println("문자열 계산기 Test 시작");
     }
 
     @Test
     public void addTest(){
         int result = cal.add(10, 10);
-        assertEquals(20, result, 0); //예상값, 실제값, 허용오차
+        assertEquals(20, result, 0);
+        //int result = Calculator.add(s:"1+2");
+        //assertThat(result).isEqualTo(3);
     }
 
     @Test
@@ -41,5 +45,8 @@ public class CalculatorTest {
         assertEquals(1, result, 0);
     }
 
-
+    @After
+    public void afterTest(){
+        System.out.println("문자열 계산기 테스트 끝");
+    }
 }
