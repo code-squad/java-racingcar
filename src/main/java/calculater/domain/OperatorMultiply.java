@@ -1,6 +1,6 @@
-package calculater;
+package calculater.domain;
 
-public class MultiplyOperator implements Operator {
+public class OperatorMultiply implements Operator {
 	public double operate(double value1, double value2) {
 		return value1 * value2;
 	}

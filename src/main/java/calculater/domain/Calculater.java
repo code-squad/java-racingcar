@@ -1,4 +1,4 @@
-package calculater;
+package calculater.domain;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -8,10 +8,10 @@ public class Calculater {
 	static private double result = 0;
 	
 	static {
-		operatorMap.put("+", new PlusOperator());
-		operatorMap.put("-", new MinusOperator());
-		operatorMap.put("*", new MultiplyOperator());
-		operatorMap.put("/", new DivisionOperator());
+		operatorMap.put("+", new OperatorPlus());
+		operatorMap.put("-", new OperatorMinus());
+		operatorMap.put("*", new OperatorMultiply());
+		operatorMap.put("/", new OperatorDivision());
 	}
 	
 	static public double calculate(String fomula) {
