@@ -43,4 +43,16 @@ public class CalculatorTest{
         Calculator calculator = new Calculator();
         assertThat(calculator.calculate("3 + 5 * 7 / 4 + 16 / 3")).isEqualTo(10d);
     }
+
+    @Test(expected=IllegalArgumentException.class)
+    public void checkNumberNull() {
+        Calculator calculator = new Calculator();
+        assertThat(calculator.calculate("  +   *   /   +   /  ")).isEqualTo(10d);
+    }
+
+    @Test(expected=IllegalArgumentException.class)
+    public void checkCalculatorNull() {
+        Calculator calculator = new Calculator();
+        assertThat(calculator.calculate("1  2  3")).isEqualTo(10d);
+    }
 }
