@@ -47,7 +47,7 @@ public class Calculator {
             case "/" :
                 return prevValue / nextValue;
         }
-        return 0;
+        return -1;
     }
 
     private static boolean hasOperator(String o) {
