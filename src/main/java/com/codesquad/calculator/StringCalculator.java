@@ -3,9 +3,22 @@ package com.codesquad.calculator;
 import com.codesquad.calculation.*;
 import spark.utils.StringUtils;
 
-public class StringCalculator {
-    public StringCalculator() {
+import java.util.HashMap;
+import java.util.Map;
 
+public class StringCalculator {
+    private Map<String, Calculable> calculables;
+
+    public StringCalculator() {
+        generateCalculation();
+    }
+
+    private void generateCalculation() {
+        calculables = new HashMap<>();
+        calculables.put("+", new Addition());
+        calculables.put("-", new Subtraction());
+        calculables.put("*", new Multiplication());
+        calculables.put("/", new Division());
     }
 
     public int calculate(final String inputExpression) {
@@ -27,8 +40,16 @@ public class StringCalculator {
     }
 
     private int calculate(final String operator, final int leftOperand, final int rightOperand) {
-        final Calculable calculable = getCalculation(operator);
+        if (isNotCalculable(operator)) {
+            throw new IllegalArgumentException("잘못된 연산자입니다.");
+        }
+
+        final Calculable calculable = calculables.get(operator);
         return calculable.calculate(leftOperand, rightOperand);
+    }
+
+    private boolean isNotCalculable(final String operator) {
+        return false == calculables.containsKey(operator);
     }
 
     private String[] splitInputExpr(final String inputExpr) {
@@ -59,25 +80,5 @@ public class StringCalculator {
             throw new IllegalArgumentException(
                     "피연산자 \"" + operand + "\"" + "는 숫자로 변환될 수 없습니다.", e);
         }
-    }
-
-    private Calculable getCalculation(final String operator) {
-        if ("+".equals(operator)) {
-            return new Addition();
-        }
-
-        if ("-".equals(operator)) {
-            return new Subtraction();
-        }
-
-        if ("*".equals(operator)) {
-            return new Multiplication();
-        }
-
-        if ("/".equals(operator)) {
-            return new Division();
-        }
-
-        throw new IllegalArgumentException("잘못된 연산자입니다.");
     }
 }
