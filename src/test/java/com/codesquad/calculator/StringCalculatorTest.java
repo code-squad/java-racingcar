@@ -1,4 +1,4 @@
-package com.calculator;
+package com.codesquad.calculator;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -91,7 +91,7 @@ public class StringCalculatorTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void 숫자0으로_나누기() {
+    public void 나누기_0() {
         calculator.calculate("4 / 0");
     }
 }

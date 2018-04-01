@@ -1,5 +1,6 @@
-package com.calculator;
+package com.codesquad.calculator;
 
+import com.codesquad.calculation.*;
 import spark.utils.StringUtils;
 
 public class StringCalculator {
@@ -26,43 +27,8 @@ public class StringCalculator {
     }
 
     private int calculate(final String operator, final int leftOperand, final int rightOperand) {
-        if ("+".equals(operator)) {
-            return add(leftOperand, rightOperand);
-        }
-
-        if ("-".equals(operator)) {
-            return subtract(leftOperand, rightOperand);
-        }
-
-        if ("*".equals(operator)) {
-            return multiply(leftOperand, rightOperand);
-        }
-
-        if ("/".equals(operator)) {
-            if (rightOperand == 0) {
-                throw new IllegalArgumentException("0으로 나눌 수 없습니다.");
-            }
-
-            return divide(leftOperand, rightOperand);
-        }
-
-        throw new IllegalArgumentException("잘못된 연산자입니다.");
-    }
-
-    private int add(final int first, final int second) {
-        return first + second;
-    }
-
-    private int subtract(final int first, final int second) {
-        return first - second;
-    }
-
-    private int multiply(final int first, final int second) {
-        return first * second;
-    }
-
-    private int divide(final int first, final int second) {
-        return first / second;
+        final Calculable calculable = getCalculation(operator);
+        return calculable.calculate(leftOperand, rightOperand);
     }
 
     private String[] splitInputExpr(final String inputExpr) {
@@ -93,5 +59,25 @@ public class StringCalculator {
             throw new IllegalArgumentException(
                     "피연산자 \"" + operand + "\"" + "는 숫자로 변환될 수 없습니다.", e);
         }
+    }
+
+    private Calculable getCalculation(final String operator) {
+        if ("+".equals(operator)) {
+            return new Addition();
+        }
+
+        if ("-".equals(operator)) {
+            return new Subtraction();
+        }
+
+        if ("*".equals(operator)) {
+            return new Multiplication();
+        }
+
+        if ("/".equals(operator)) {
+            return new Division();
+        }
+
+        throw new IllegalArgumentException("잘못된 연산자입니다.");
     }
 }
