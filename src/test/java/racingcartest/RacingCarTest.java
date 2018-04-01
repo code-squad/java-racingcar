@@ -1,27 +1,19 @@
 package racingcartest;
 
+import org.junit.Before;
 import org.junit.Test;
 import racingcar.RacingCar;
 
 public class RacingCarTest {
 
-    @Test
-    public void 차개수유효값() {
-
+    @Test(expected = IllegalArgumentException.class)
+    public void  차_대수(){
+        RacingCar.racing(0,5);
     }
 
-    @Test
-    public void 랜덤값() {
-
+    @Test(expected = IllegalArgumentException.class)
+    public void  차_이동_횟수(){
+        RacingCar.racing(5,-1);
     }
-
-    @Test
-    public void 전진확인() {
-        RacingCar r = new RacingCar(3,5 );
-
-        r.racing();
-    }
-
-
 
 }
