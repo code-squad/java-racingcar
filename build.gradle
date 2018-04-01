@@ -1,11 +1,12 @@
 apply plugin: 'java'
-apply plugin: 'eclipse'
+apply plugin: 'idea'
 
 version = '1.0.0'
 sourceCompatibility = 1.8
 
 repositories {
     mavenCentral()
+    jcenter()
 }
 
 dependencies {
@@ -14,4 +15,5 @@ dependencies {
     compile('ch.qos.logback:logback-classic:1.2.3')
     testCompile('junit:junit:4.12')
     testCompile('org.assertj:assertj-core:3.9.0')
+    testCompile('org.mockito:mockito-core:1.+')
 }
