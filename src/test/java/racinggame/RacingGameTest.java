@@ -21,18 +21,28 @@ public class RacingGameTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void 레이싱에_참여한_자동차가_null일_경우_예외발생() {
-        new RacingGame(null);
+        RacingGameView racingGameView = new DefaultRacingGameView();
+        new RacingGame(null, racingGameView);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void 레이싱에_참여한_자동차가_0이면_예외발생() {
-        new RacingGame(new ArrayList<>());
+        RacingGameView racingGameView = new DefaultRacingGameView();
+        new RacingGame(new ArrayList<>(), racingGameView);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void 레이싱게임_관전용_View가_null일_경우_예외발생() {
+        List<Car> carList = new ArrayList<>();
+        carList.add(new Car());
+        new RacingGame(carList, null);
     }
 
     private RacingGame getRacingGame() {
         List<Car> carList = new ArrayList<>();
         carList.add(new Car());
+        RacingGameView racingGameView = new DefaultRacingGameView();
 
-        return new RacingGame(carList);
+        return new RacingGame(carList, racingGameView);
     }
 }
