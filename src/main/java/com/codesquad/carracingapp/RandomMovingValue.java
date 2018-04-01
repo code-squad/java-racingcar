@@ -1,4 +1,6 @@
-package com.codesquad.carracing;
+package com.codesquad.carracingapp;
+
+import com.codesquad.carracing.MovingValue;
 
 import java.util.Random;
 
