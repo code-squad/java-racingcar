@@ -58,4 +58,5 @@ public class RacingCar {
     public int nextMoveAndStop(int i) {
          return   i > 4 ? 1 : 0;
     }
+
 }
