@@ -3,6 +3,10 @@ package com.codesquad.carracing;
 public class Car {
     private int position;
 
+    public Car() {
+        this.position = 0;
+    }
+
     public Car(final int position) {
         this.position = position;
     }
