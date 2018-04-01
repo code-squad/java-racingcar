@@ -3,9 +3,10 @@ package com.calculator;
 import java.util.Scanner;
 
 public class StringCalculatorApp {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        String value = scanner.nextLine();
-        System.out.println(value);
+    public static void main(final String[] args) {
+        final Scanner scanner = new Scanner(System.in);
+        final String inputExpression = scanner.nextLine();
+        final StringCalculator calculator = new StringCalculator();
+        System.out.println(calculator.calculate(inputExpression));
     }
 }
