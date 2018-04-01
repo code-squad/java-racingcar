@@ -1,8 +1,10 @@
-package com.codesquad.calculator;
+package com.codesquad.calculatorapp;
+
+import com.codesquad.calculator.StringCalculator;
 
 import java.util.Scanner;
 
-public class StringCalculatorApp {
+public class ConsoleStringCalculatorApp {
     public static void main(final String[] args) {
         final Scanner scanner = new Scanner(System.in);
         final String inputExpression = scanner.nextLine();
