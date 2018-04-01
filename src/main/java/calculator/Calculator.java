@@ -15,13 +15,13 @@ public class Calculator {
 
     public static int calculate(String expression) {
         String[] splitExpression = expression.split(" ");
-        int length = expression.length();
+        int length = splitExpression.length;
         int prevValue = Integer.parseInt(splitExpression[0]);
         int result = 0;
         Stack<String> operator = new Stack<>();
 
         for (int index = 1; index < length; index++) {
-            if (operatorSet.contains(splitExpression[index])) {
+            if (hasOperator(splitExpression[index])) {
                 operator.push(splitExpression[index]);
                 continue;
             }
@@ -29,35 +29,28 @@ public class Calculator {
             int nextValue = Integer.parseInt(splitExpression[index]);
             String currentOperator = operator.pop();
 
-            switch (currentOperator) {
-                case "+" :
-                    result = prevValue + nextValue;
-                    break;
-                case "-" :
-                    result = prevValue - nextValue;
-                    break;
-                case "*" :
-                    result = prevValue * nextValue;
-                    break;
-                case "/" :
-                    result = prevValue / nextValue;
-                    break;
-            }
+            result = getResult(prevValue, nextValue, currentOperator);
             prevValue = result;
         }
 
         return result;
     }
 
-    private boolean validateNumber(char currentCharacter) {
-        return currentCharacter >= '0' && currentCharacter <= '9';
+    private static int getResult(int prevValue, int nextValue, String currentOperator) {
+        switch (currentOperator) {
+            case "+" :
+                return prevValue + nextValue;
+            case "-" :
+                return prevValue - nextValue;
+            case "*" :
+                return prevValue * nextValue;
+            case "/" :
+                return prevValue / nextValue;
+        }
+        return 0;
     }
 
-    private boolean validateOperator(char currentCharacter) {
-        return currentCharacter == '+' || currentCharacter == '-' || currentCharacter == '*' || currentCharacter == '/';
-    }
-
-    private int toInt(char charValue) {
-        return charValue - '0';
+    private static boolean hasOperator(String o) {
+        return operatorSet.contains(o);
     }
 }

@@ -1,6 +1,6 @@
 package racingcar;
 
-public class InputVO {
+public class RacingGameInfoVO {
     private int countOfCar;
     private int testCase;
 
@@ -8,7 +8,7 @@ public class InputVO {
         return countOfCar;
     }
 
-    public InputVO setCountOfCar(int countOfCar) {
+    public RacingGameInfoVO setCountOfCar(int countOfCar) {
         this.countOfCar = countOfCar;
         return this;
     }
@@ -17,7 +17,7 @@ public class InputVO {
         return testCase;
     }
 
-    public InputVO setTestCase(int testCase) {
+    public RacingGameInfoVO setTestCase(int testCase) {
         this.testCase = testCase;
         return this;
     }

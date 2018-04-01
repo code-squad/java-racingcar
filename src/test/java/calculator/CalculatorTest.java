@@ -1,3 +1,5 @@
+package calculator;
+
 import calculator.Calculator;
 import org.junit.Test;
 

@@ -1,30 +1,40 @@
 package racingcar;
 
 import java.util.Random;
-import java.util.Scanner;
 
-public class RacingCar {
+public class RacingGame {
 
-    private int countOfCar;
-    private int countOfTestCase;
-    private static Random random;
+    private RacingGameInfoVO racingGameInfo;
+    private int[] carPositions;
+    private Random random = new Random();
+    private static final int CANNABLE_MOVE_NUMBER = 4;
 
-    static {
-        random = new Random();
+    void startGame () {
+        inputData();
+        carPositions = new int[racingGameInfo.getCountOfCar()];
+        for (int count = 0; count < racingGameInfo.getTestCase(); count++) {
+            moveCar();
+            ResultView.printStatus(carPositions);
+        }
     }
 
-    void initDisplay () {
-        inputData();
-        random.nextInt();
+    private void moveCar() {
+        for (int carNumber = 0; carNumber < racingGameInfo.getCountOfCar(); carNumber++) {
+            if (isMoving(getRandomValue())) {
+                carPositions[carNumber]++;
+            }
+        }
+    }
+
+    boolean isMoving(int number) {
+        return  number >= CANNABLE_MOVE_NUMBER;
     }
 
     private void inputData() {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("자동차 대수는 몇 대 인가요?");
-        countOfCar = sc.nextInt();
-        System.out.println("시도할 회수는 몇 회 인가요?");
-        countOfTestCase = sc.nextInt();
+        racingGameInfo = InputView.inputDataAndView();
     }
 
-
+    public int getRandomValue() {
+        return random.nextInt(10);
+    }
 }
