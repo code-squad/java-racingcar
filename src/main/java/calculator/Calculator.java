@@ -3,7 +3,7 @@ package calculator;
 /**
  * Created by hongjong-wan on 2018. 3. 31..
  */
-public class StringCalculator {
+public class Calculator {
 
 
     public int init(String str) {
