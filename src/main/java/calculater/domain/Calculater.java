@@ -7,8 +7,9 @@ public class Calculater {
 		String[] valueList = fomula.split(" ");
 		result = Integer.parseInt(valueList[0]);
 		
-		for(int i=1; i<valueList.length; i = i+2) {
-			result = OperatorType.findBySymbol(valueList[i]).operate(result, Integer.parseInt(valueList[i+1]));
+		for(int i = 1, length = valueList.length; i < length; i += 2) {
+			result = OperatorType.findBySymbol(valueList[i])
+								.operate(result, Integer.parseInt(valueList[i + 1]));
 		}
 		
 		return result;
