@@ -2,26 +2,31 @@ package race;
 
 import java.util.List;
 
-// FIXME 이름이 적당하지 않음. Drawer 는 사전상 의미로 서랍임.
 interface Drawer {
-    void draw(List<Car> cars);
+    void draw(List<Recorder> recorders);
 }
 
 class LineDrawer implements Drawer {
-    private String format = "-";
+    private static final String FORMAT = "-";
 
     @Override
-    public void draw(List<Car> cars) {
-        for (Car car : cars) {
-            for (int i = 0; i < car.getCurrentLocation(); i++) {
-                System.out.print(format);
+    public void draw(List<Recorder> recorders) {
+        for (Recorder recorder : recorders) {
+            for (int i = 0; i < recorder.size(); i++) {
+                printStraightUntil(recorder.getRecord(i));
+                nextLine();
             }
-            changeLine();
+            nextLine();
         }
-        changeLine();
     }
 
-    private void changeLine() {
+    private void printStraightUntil(int until) {
+        for (int i = 0; i < until; i++) {
+            System.out.print(FORMAT);
+        }
+    }
+
+    private void nextLine() {
         System.out.println();
     }
 }

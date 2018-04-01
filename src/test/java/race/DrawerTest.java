@@ -13,29 +13,38 @@ import java.util.List;
 
 public class DrawerTest {
     private Drawer drawer;
+    private RaceRule rule;
 
     private ByteArrayOutputStream outputCapture;
 
     @Before
     public void setUp() {
+        rule = new TestRule();
         outputCapture = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputCapture));
     }
 
     @Test
-    public void lineDrawer_자동차의_위치만큼_라인을_그린다() {
+    public void lineDrawer_레이스카의_기록을_라인으로_출력한다() {
         //given
         drawer = new LineDrawer();
-        Car car = new Car();
-        car.move();
-        car.move();
-        car.move();
-        List<Car> cars = ImmutableList.of(car);
+        RaceCar car = new RaceCar();
+        car.move(rule);
+        car.move(rule);
+        car.move(rule);
+        List<Recorder> recorders = ImmutableList.of(car.getRecorder());
 
         //when
-        drawer.draw(cars);
-        
+        drawer.draw(recorders);
+
         //then
-        Assert.assertThat(outputCapture.toString(), is("---\n\n"));
+        Assert.assertThat(outputCapture.toString(), is("-\n--\n---\n\n"));
+    }
+
+    private static class TestRule implements RaceRule {
+        @Override
+        public boolean canMove(int randomValue) {
+            return true;
+        }
     }
 }

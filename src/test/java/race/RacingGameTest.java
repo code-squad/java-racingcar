@@ -10,28 +10,26 @@ import java.util.Random;
 
 public class RacingGameTest {
 
-    private MoveRule rule;
-    private Drawer drawer;
-    
+    private RaceRule rule;
+
     @Before
     public void setUp() { 
-        rule = new DefaultMoveRule();
-        drawer = new LineDrawer();
+        rule = new DefaultRaceRule();
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void 레이스에_참여한_자동차가_null이면_예외발생() {
         //when
-        RacingGame game = new RacingGame(null, 0, rule, drawer);
+        RacingGame game = new RacingGame(null, 0);
 
         //then
         Assert.fail("레이스에 참여한 자동차가 없으면 예외가 발생해야 한다");
     }
-    
+
     @Test(expected = IllegalArgumentException.class)
     public void 레이스에_참여한_자동차가_0이면_예외발생() {
         //when
-        RacingGame game = new RacingGame(new ArrayList<>(), 0, rule, drawer);
+        RacingGame game = new RacingGame(new ArrayList<>(), 0);
 
         //then
         Assert.fail("레이스에 참여한 자동차가 없으면 예외가 발생해야 한다");
@@ -40,33 +38,33 @@ public class RacingGameTest {
     @Test
     public void race_를_시작하면_자동차들은_움직이거나_움직이지_않을_수_있다() {
         //given
-        List<Car> cars = getCarsNumberOf(3);
+        List<RaceCar> raceCars = generateCarsNumberOf(3);
         int iteration = 5;
-        RacingGame game = new RacingGame(cars, iteration, rule, drawer);
+        RacingGame game = new RacingGame(raceCars, iteration);
 
         //when
-        game.race();
-        List<Car> raceResult = game.getResult();
+        game.race(rule);
+        List<Recorder> raceResult = game.getRecords();
 
         //then
-        Assert.assertEquals(cars.size(), raceResult.size());
-        cars.forEach(c -> Assert.assertTrue(c.getCurrentLocation() >= 0));
+        Assert.assertEquals(raceCars.size(), raceResult.size());
+        raceCars.forEach(c -> Assert.assertTrue(c.getCurrentLocation() >= 0));
     }
 
     @Test
     public void 반복_주기가_0이면_모든_자동차는_움직이지_않는다() {
         //given
-        List<Car> cars = getCarsNumberOf(10);
+        List<RaceCar> raceCars = generateCarsNumberOf(10);
         int iteration = 0;
-        RacingGame game = new RacingGame(cars, iteration, rule, drawer);
+        RacingGame game = new RacingGame(raceCars, iteration);
 
         //when
-        game.race();
-        List<Car> raceResult = game.getResult();
+        game.race(rule);
+        List<Recorder> raceResult = game.getRecords();
 
         //then
-        Assert.assertEquals(cars.size(), raceResult.size());
-        cars.forEach(x -> Assert.assertEquals(0, x.getCurrentLocation()));
+        Assert.assertEquals(raceCars.size(), raceResult.size());
+        raceCars.forEach(x -> Assert.assertEquals(0, x.getCurrentLocation()));
     }
 
 
@@ -87,13 +85,13 @@ public class RacingGameTest {
         Assert.assertTrue(limit >= result);
     }
 
-    private List<Car> getCarsNumberOf(int number) {
-        List<Car> cars = new ArrayList<>();
+    private List<RaceCar> generateCarsNumberOf(int number) {
+        List<RaceCar> raceCars = new ArrayList<>();
 
         for (int i = 0; i < number; i++) {
-            cars.add(new Car());
+            raceCars.add(new RaceCar());
         }
 
-        return cars;
+        return raceCars;
     }
 }

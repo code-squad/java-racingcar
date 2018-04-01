@@ -1,52 +1,35 @@
 package race;
 
 import java.util.List;
-import java.util.Random;
+import java.util.stream.Collectors;
 
 class RacingGame {
-    private List<Car> cars;
-    private int iteration;
-    private MoveRule rule;
-    private Drawer drawer;
-    
-    private Random random;
+    private List<RaceCar> raceCars;
+    private int labs;
 
-    RacingGame(List<Car> cars, int iteration, MoveRule rule, Drawer drawer) {
-        setCars(cars);
-        this.iteration = iteration;
-        this.rule = rule;
-        this.drawer = drawer;
-        
-        random = new Random();
+    RacingGame(List<RaceCar> raceCars, int labs) {
+        setCars(raceCars);
+        this.labs = labs;
     }
 
-    void race() {
-        for (int i = 0; i < iteration; i++) {
-            cars.forEach(this::move);
-            drawer.draw(cars);
+    void race(RaceRule rule) {
+        for (int i = 0; i < labs; i++) {
+            raceCars.forEach(c -> c.move(rule));
         }
     }
 
-    List<Car> getResult() {
-        return cars;
+    List<Recorder> getRecords() {
+        return raceCars.stream()
+                .map(RaceCar::getRecorder)
+                .collect(Collectors.toList());
     }
 
-    private int getIntEqualsOrUnderOf(int limit) {
-        return random.nextInt(limit);
-    }
-
-    private void move(Car car) {
-        if (rule.canMove(getIntEqualsOrUnderOf(9))) {
-            car.move();
-        }
-    }
-
-    private void setCars(List<Car> cars) {
-        if (cars == null || cars.size() == 0) {
+    private void setCars(List<RaceCar> raceCars) {
+        if (raceCars == null || raceCars.size() == 0) {
             throw new IllegalArgumentException();
         }
         
-        this.cars = cars;
+        this.raceCars = raceCars;
     }
 }
 
