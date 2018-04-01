@@ -1,11 +1,11 @@
 package racingcar;
 
 import org.junit.Test;
+import racingcar.interfaces.Car;
 
+import java.util.Arrays;
 import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThat;
-
+import java.util.Map;
 
 /**
  * @author sangsik.kim
@@ -13,23 +13,16 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class RacingGameTest {
 
     @Test
-    public void createCars() {
-        RacingGame game = new RacingGame();
-        List<Car> result = game.generateCars(10);
-        assertThat(result.size()).isEqualTo(10);
-    }
+    public void 레이스_실행_기록확인() {
+        List<Car> cars = Arrays.asList(new BasicCar(), new BasicCar(), new BasicCar());
 
-    @Test
-    public void convertingPositionNumberToHyphen() {
-        RacingGame game = new RacingGame();
-        String result = game.convertingPositionNumberToHyphen(5);
-        assertThat(result).isEqualTo("-----");
-    }
+        RacingGame racingGame = new RacingGame(cars);
+        racingGame.start(5);
 
-    @Test
-    public void runTest() {
-        RacingGame game = new RacingGame();
-        game.start(3, 5);
-    }
+        Map<Integer, List<Integer>> records = racingGame.getGameRecord().loadAll();
 
+        for (Integer key : records.keySet()) {
+            System.out.println(key + "회차 : " + records.get(key));
+        }
+    }
 }

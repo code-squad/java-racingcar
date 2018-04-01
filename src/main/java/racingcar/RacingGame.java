@@ -1,5 +1,8 @@
 package racingcar;
 
+import racingcar.interfaces.Car;
+import racingcar.interfaces.MoveScoreMaker;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,68 +10,51 @@ import java.util.List;
  * @author sangsik.kim
  */
 public class RacingGame {
-    List<Car> cars;
-    Integer time;
+    private List<Car> cars;
+    private GameRecord gameRecord;
 
-    public void start(Integer numberOfCars, Integer time) {
-        initializeData(numberOfCars, time);
+    public RacingGame(List<Car> cars) {
+        this.cars = cars;
+        this.gameRecord = new GameRecord();
+    }
 
-        while (hasAvailableTime()) {
-            movingAllCars(cars);
-            displayCurrentPositionOfAllCars(cars);
-            spendTime();
+    public void start(Integer numberOfExecutions) {
+        initialize();
+        execution(numberOfExecutions);
+    }
+
+    public GameRecord getGameRecord() {
+        return this.gameRecord;
+    }
+
+    private void execution(Integer numberOfExecutions) {
+        Time time = new Time(numberOfExecutions);
+        while (time.hasLeft()) {
+            time.spend();
+            moveCars(new RandomMoveScoreMaker());
+            saveRecord(time.count());
         }
     }
 
-
-    /******************************************************************************************
-     * 이하 private method                                                                    *
-     ******************************************************************************************/
-
-    public void initializeData(Integer numberOfCars, Integer time) {
-        this.cars = generateCars(numberOfCars);
-        this.time = time;
-    }
-
-    public List<Car> generateCars(Integer numbersOfCar) {
-        List<Car> cars = new ArrayList<>();
-        for (int i = 0; i < numbersOfCar; i++) {
-            cars.add(new Car());
+    private void saveRecord(Integer round) {
+        List<Integer> records = new ArrayList<>();
+        for (Car car : this.cars) {
+            records.add(car.getCurrentPosition());
         }
-        return cars;
+        this.gameRecord.save(round, records);
     }
 
-    public Boolean hasAvailableTime() {
-        return this.time > 0;
-    }
+    private void initialize() {
+        this.gameRecord.initialize();
 
-    public void spendTime() {
-        if (this.time > 0) {
-            this.time--;
-        }
-    }
-
-    public void movingAllCars(List<Car> cars) {
         for (Car car : cars) {
-            car.move();
+            car.initialize();
         }
     }
 
-    public void displayCurrentPositionOfAllCars(List<Car> cars) {
-        for (Car car : cars) {
-            System.out.println(convertingPositionNumberToHyphen(car.getCurrentPosition()));
+    private void moveCars(MoveScoreMaker moveScoreMaker) {
+        for (Car car : this.cars) {
+            car.move(moveScoreMaker);
         }
-        System.out.println("");
     }
-
-
-    public String convertingPositionNumberToHyphen(Integer position) {
-        StringBuilder result = new StringBuilder();
-        for (int i = 0; i < position; i++) {
-            result.append("-");
-        }
-        return result.toString();
-    }
-
-
 }
