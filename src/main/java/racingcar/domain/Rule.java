@@ -1,5 +1,8 @@
 package racingcar.domain;
 
 public interface Rule {
-	RuleParameter apply(RuleParameter ruleParameter);
+	int moveMeterForReward = 1;
+	
+	boolean isValid();
+	int getMoveMeterForReward();
 }
