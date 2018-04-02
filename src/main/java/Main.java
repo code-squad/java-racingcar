@@ -4,8 +4,11 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args){
-        int result = Calculator.run("5 + 1 / 2");
-        System.out.println(result);
+        Racing racing = new Racing();
+        racing.setNumCar(3);
+        racing.setNumCircuit(5);
+        int[] result = racing.move();
+
 
     }
 
