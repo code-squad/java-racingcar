@@ -5,7 +5,7 @@ import static org.assertj.core.api.Assertions.*;
 import org.junit.Before;
 import org.junit.Test;
 
-public class TestCalculator {
+public class CalculatorTest {
 
     private Calculator calculator;
 
@@ -16,25 +16,39 @@ public class TestCalculator {
 
     @Test
     public void parseTest() {
-        String[] result = calculator.parse("2 + 3 * 4 / 2");
+        String[] result = Calculator.parse("2 + 3 * 4 / 2");
         assertThat(result).isEqualTo(new String[]{"2", "+", "3", "*", "4", "/", "2"});
 
-        result = calculator.parse("");
+        result = Calculator.parse("");
         assertThat(result).isEqualTo(new String[]{""});
     }
 
     @Test
+    public void isOperatorTest() {
+        assertThat(Calculator.isOperator("*")).isTrue();
+        assertThat(Calculator.isOperator("=")).isFalse();
+    }
+
+    @Test
+    public void isBlackTest() {
+        assertThat(Calculator.isBlank("")).isTrue();
+        assertThat(Calculator.isBlank("  ")).isTrue();
+        assertThat(Calculator.isBlank(null)).isTrue();
+        assertThat(Calculator.isBlank("A")).isFalse();
+    }
+
+    @Test
     public void calcTest() {
-        int result = calculator.calc("2 + 3 * 4 / 2");
+        int result = calculator.calc(new String[]{"2", "+", "3", "*", "4", "/", "2"});
         assertThat(result).isEqualTo(10);
 
-        result = calculator.calc("5 + 3 * 4 / 2");
+        result = calculator.calc(new String[]{"5", "+", "3", "*", "4", "/", "2"});
         assertThat(result).isEqualTo(16);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void calcIsBlankParamTest() {
-        calculator.calc("");
+        calculator.calc(new String[]{""});
     }
 
     @Test

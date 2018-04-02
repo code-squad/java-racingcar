@@ -6,14 +6,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RacingGame {
+    private static final int BASIC_NUMBER_OF_TIME = 5;
+    private static final int BASIC_NUMBER_OF_CAR = 3;
+
+    private static final int SUFFICIENT_SPEED = 4;
+
     public int time;
     public List<Integer> carPositions;
     public Speed speed;
 
     public RacingGame(Speed speed) {
-        this.speed = speed;
-        time = 5;
-        setCarPositions(3);
+        this(speed, BASIC_NUMBER_OF_TIME, BASIC_NUMBER_OF_CAR);
     }
 
     public RacingGame(Speed speed, int time, int numberOfCar) {
@@ -22,7 +25,7 @@ public class RacingGame {
         setCarPositions(numberOfCar);
     }
 
-    public void setCarPositions(int numberOfCar) {
+    private void setCarPositions(int numberOfCar) {
         this.carPositions = new ArrayList();
         for (; numberOfCar > 0; numberOfCar--) {
             this.carPositions.add(1);
@@ -50,7 +53,7 @@ public class RacingGame {
     }
 
     public boolean canIGo() {
-        return speed.fullAccel() >= 4;
+        return speed.fullAccel() >= SUFFICIENT_SPEED;
     }
 
     public void carPositionSnapshot() {
@@ -62,7 +65,7 @@ public class RacingGame {
         System.out.println(snapshot);
     }
 
-    public String getDistance(int position) {
+    public static String getDistance(int position) {
         String distance = "";
         for (; position > 0; position--) {
             distance = distance.concat("-");

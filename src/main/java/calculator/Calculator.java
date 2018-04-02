@@ -8,35 +8,27 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class Calculator {
-    public int calc(String value) {
-        int result = 0;
-        String operator = null;
+    public int calc(String[] values) {
+        int result = Integer.parseInt(values[0]);
 
-        for (String param : parse(value)) {
-
-            if(isBlank(param)) {
-                throw new IllegalArgumentException();
-            }
-
-            if (isOperator(param)) {
-                operator = param;
-                continue;
-            }
-
-            if (operator == null) {
-                result = Integer.parseInt(param);
-                continue;
-            }
-
-            result = operate(operator, result, Integer.parseInt(param));
-            operator = null;
+        for (int i = 1; i < values.length; i = i + 2) {
+            result = operate(values[i], result, Integer.parseInt(values[i + 1]));
         }
 
         return result;
     }
 
-    public String[] parse(String value) {
+    public static String[] parse(String value) {
         return value.split(" ");
+    }
+
+    public static boolean isOperator(String value) {
+        String[] operators = {"+", "-", "*", "/"};
+        return Arrays.asList(operators).contains(value);
+    }
+
+    public static boolean isBlank(String value) {
+        return value == null || value.trim().equals("");
     }
 
     public int operate(String operator, int a, int b) {
@@ -49,16 +41,6 @@ public class Calculator {
         return map.get(operator).operate(a, b);
     }
 
-    public boolean isOperator(String value) {
-        String[] operators = {"+", "-", "*", "/"};
-        return Arrays.asList(operators).contains(value);
-    }
-
-    private static boolean isBlank(String value) {
-        return value == null || value.equals("");
-    }
-
-
     public static void main(String[] args) {
         System.out.println("= 를 입력하시면 계산됩니다.");
 
@@ -68,14 +50,14 @@ public class Calculator {
         while (true) {
             String value = scanner.nextLine();
 
-            if(isBlank(value)) {
+            if (isBlank(value)) {
                 scanner.close();
                 throw new IllegalArgumentException();
             }
 
-            if(value.equals("=")) {
+            if (value.equals("=")) {
                 Calculator calculator = new Calculator();
-                int result = calculator.calc(inputValue);
+                int result = calculator.calc(Calculator.parse(inputValue));
                 System.out.println(inputValue + " = " + result);
                 break;
             }
