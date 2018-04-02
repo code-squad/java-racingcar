@@ -5,7 +5,7 @@ import racingcar.interfaces.Car;
 /**
  * @author sangsik.kim
  */
-public class UserRecord {
+public class UserRecord implements Comparable<UserRecord> {
     private String name;
     private Integer record;
 
@@ -28,5 +28,10 @@ public class UserRecord {
     @Override
     public String toString() {
         return this.name + " : " + this.record;
+    }
+
+    @Override
+    public int compareTo(UserRecord o) {
+        return Integer.compare(this.record, o.record);
     }
 }

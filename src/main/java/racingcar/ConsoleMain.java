@@ -30,6 +30,19 @@ public class ConsoleMain {
     private static void displayGameResult(GameRecord gameRecord) {
         System.out.println("### 실행결과 ###\n");
         printRecords(gameRecord.loadAll());
+        printWinners(gameRecord.getWinners());
+    }
+
+    private static void printWinners(List<UserRecord> winners) {
+        System.out.println(getJoinedString(winners) + "가 최종 우승했습니다.");
+    }
+
+    private static StringJoiner getJoinedString(List<UserRecord> winners) {
+        StringJoiner joiner = new StringJoiner(",");
+        for (UserRecord userRecord : winners) {
+            joiner.add(userRecord.getName());
+        }
+        return joiner;
     }
 
     private static void printRecords(Map<Integer, List<UserRecord>> allRoundRecords) {

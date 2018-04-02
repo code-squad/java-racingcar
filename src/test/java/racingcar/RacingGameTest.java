@@ -22,5 +22,14 @@ public class RacingGameTest {
         for (Integer key : records.keySet()) {
             System.out.println(key + "회차 : " + records.get(key));
         }
+
+        List<UserRecord> winners = racingGame.getGameRecord().getWinners();
+        System.out.println(winners);
+    }
+
+    @Test(expected = RuntimeException.class)
+    public void 레이스_시작전_결과확인() {
+        RacingGame racingGame = new RacingGame(Arrays.asList("sangsik", "pobi", "crong"));
+        List<UserRecord> winners = racingGame.getGameRecord().getWinners();
     }
 }
