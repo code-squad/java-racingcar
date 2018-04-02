@@ -1,13 +1,8 @@
 package race;
 
-import static org.hamcrest.CoreMatchers.is;
-
-import org.junit.Assert;
+import org.assertj.core.api.Assertions;
 import org.junit.Before;
 import org.junit.Test;
-
-import java.util.Arrays;
-import java.util.List;
 
 public class RecorderTest {
     private Recorder recorder;
@@ -19,16 +14,13 @@ public class RecorderTest {
 
     @Test
     public void int_값을_기록할_수_있다() {
-        //given
-        List<Integer> expected = Arrays.asList(1, 2, 3);
-        
         //when
-        recorder.record(expected.get(0));
-        recorder.record(expected.get(1));
-        recorder.record(expected.get(2));
+        recorder.record(1);
+        recorder.record(2);
+        recorder.record(3);
 
         //then
-        Assert.assertArrayEquals(expected.toArray(), recorder.getRecords().toArray());
+        Assertions.assertThat(recorder.getRecords()).containsExactly(1, 2, 3);
     }
 
     @Test(expected = IndexOutOfBoundsException.class)
@@ -37,11 +29,11 @@ public class RecorderTest {
         recorder.getRecord(10);
 
         //then
-        Assert.fail("존재하지 않는 기록을 참조하면 예외가 발생해야 한다.");
+        Assertions.fail("존재하지 않는 기록을 참조하면 예외가 발생해야 한다.");
     }
 
     @Test
     public void 기록이_없으면_최종_기록은_0이다() {
-        Assert.assertThat(recorder.getLastRecord(), is(0));
+        Assertions.assertThat(recorder.getLastRecord()).isZero();
     }
 }

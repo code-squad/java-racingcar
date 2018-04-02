@@ -16,7 +16,7 @@ class RaceCar {
     void move(RaceRule rule) {
         int currentLocation = recorder.getLastRecord();
         
-        if (rule.canMove(getIntEqualsOrUnderOf(RANDOM_LIMIT))) {
+        if (rule.canMove(getRandomInt())) {
             currentLocation++;
         }
         
@@ -31,8 +31,8 @@ class RaceCar {
         return racer;
     }
 
-    private int getIntEqualsOrUnderOf(int limit) {
+    private int getRandomInt() {
         Random random = new Random();
-        return random.nextInt(limit);
+        return random.nextInt(RANDOM_LIMIT);
     }
 }

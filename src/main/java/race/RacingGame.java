@@ -2,8 +2,6 @@ package race;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 class RacingGame {
@@ -21,15 +19,12 @@ class RacingGame {
         }
     }
 
-    Map<String, Recorder> getRecords() {
-        return raceCars.stream().collect(Collectors.toMap(
-                RaceCar::getRacerName,
-                RaceCar::getRecorder)
-        );
+    public List<RaceCar> getParticipants() {
+        return raceCars;
     }
 
     private List<RaceCar> setStartLine(String[] names) {
-        if (names == null || names.length == 0) {
+        if (isEmpty(names)) {
             throw new IllegalArgumentException("레이스 참여자가 아무도 없습니다.");
         }
 
@@ -38,5 +33,9 @@ class RacingGame {
                 raceCars.add(new RaceCar(names[idx].trim())));
 
         return raceCars;
+    }
+
+    private boolean isEmpty(String[] names) {
+        return names == null || names.length == 0;
     }
 }

@@ -1,4 +1,4 @@
-import org.junit.Assert;
+import org.assertj.core.api.Assertions;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -19,7 +19,7 @@ public class LearningTest {
         String[] split = expression.split(" ");
 
         //then
-        Assert.assertTrue(split.length == 7);
+        Assertions.assertThat(split).hasSize(7);
     }
     
     @Test
@@ -29,13 +29,12 @@ public class LearningTest {
         Random random = new Random();
 
         //when then
-        for (int i = 0; i < 200; i++) {
-            randomAssert(randomLimit, random.nextInt(randomLimit));
-        }
+        IntStream.range(0, 200).forEach(idx -> 
+                randomAssert(randomLimit, random.nextInt(randomLimit)));
     }
     
     private void randomAssert(int limit, int result) {
-        Assert.assertTrue(limit >= result);
+        Assertions.assertThat(limit).isGreaterThan(result);
     }
 
     @Test

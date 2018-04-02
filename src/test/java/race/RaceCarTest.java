@@ -1,9 +1,6 @@
 package race;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.*;
-
-import org.junit.Assert;
+import org.assertj.core.api.Assertions;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -17,16 +14,15 @@ public class RaceCarTest {
     }
 
     @Test
-    public void 레이스_룰이_만족될때만_움직인다() {
+    public void 레이스_룰이_만족하지_않으면_움직이지_않는다() {
         //given
         RaceRule alwaysFalseRule = randomValue -> false;
 
         //when
         raceCar.move(alwaysFalseRule);
-        raceCar.move(alwaysFalseRule);
-        raceCar.move(alwaysFalseRule);
+        Recorder recorder = raceCar.getRecorder();
 
         //then
-        Assert.assertThat(raceCar.getRecorder().getLastRecord(), is(0));
+        Assertions.assertThat(recorder.getLastRecord()).isZero();
     }
 }

@@ -1,15 +1,12 @@
 package race;
 
-import static org.hamcrest.CoreMatchers.is;
-
-import org.junit.Assert;
+import org.assertj.core.api.Assertions;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Arrays;
 
 public class DrawerTest {
     private Drawer drawer;
@@ -32,16 +29,13 @@ public class DrawerTest {
         RaceCar car = new RaceCar(racerName);
         car.move(rule);
         car.move(rule);
-        car.move(rule);
-        Map<String, Recorder> records = new HashMap<>();
-        records.put(racerName, car.getRecorder());
 
         //when
-        drawer.draw(records, 3);
+        drawer.draw(Arrays.asList(car), 2);
 
         //then
-        String expected = "racer1: -\n\nracer1: --\n\nracer1: ---\n\n";
-        Assert.assertThat(outputCapture.toString(), is(expected));
+        String expected = "racer1: -\n\nracer1: --\n\n";
+        Assertions.assertThat(outputCapture.toString()).isEqualTo(expected);
     }
 
     private static class TestRule implements RaceRule {

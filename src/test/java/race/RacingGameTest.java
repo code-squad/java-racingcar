@@ -1,10 +1,11 @@
 package race;
 
-import org.junit.Assert;
+import org.assertj.core.api.Assertions;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.Map;
+import java.util.List;
+import java.util.stream.IntStream;
 
 public class RacingGameTest {
     private RaceRule rule;
@@ -20,7 +21,7 @@ public class RacingGameTest {
         new RacingGame(null, 0);
 
         //then
-        Assert.fail("레이스에 참여한 자동차가 없으면 예외가 발생해야 한다");
+        Assertions.fail("레이스에 참여한 자동차가 없으면 예외가 발생해야 한다");
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -29,24 +30,26 @@ public class RacingGameTest {
         new RacingGame(new String[0], 0);
 
         //then
-        Assert.fail("레이스에 참여한 자동차가 없으면 예외가 발생해야 한다");
+        Assertions.fail("레이스에 참여한 자동차가 없으면 예외가 발생해야 한다");
     }
 
     @Test
-    public void race_를_시작하면_자동차들은_움직이거나_움직이지_않을_수_있다() {
+    public void race_를_시작하면_모든_자동차는_룰에_따라_움직인다() {
         //given
         String[] racers = generateRacerNamesNumberOf(3);
         int iteration = 5;
         RacingGame game = new RacingGame(racers, iteration);
 
         //when
-        game.race(rule);
-        Map<String, Recorder> raceResult = game.getRecords();
+        game.race(randomValue -> true);
+        List<RaceCar> raceCars = game.getParticipants();
 
         //then
-        Assert.assertEquals(racers.length, raceResult.size());
-        game.getRecords().entrySet().stream().forEach(e -> 
-                Assert.assertTrue(e.getValue().getLastRecord() >= 0));
+        Assertions.assertThat(raceCars).hasSize(racers.length);
+        Assertions.assertThat(raceCars.stream())
+                .extracting(RaceCar::getRecorder)
+                .extracting(Recorder::getLastRecord)
+                .containsOnly(5);
     }
 
     @Test
@@ -58,20 +61,22 @@ public class RacingGameTest {
 
         //when
         game.race(rule);
-        Map<String, Recorder> raceResult = game.getRecords();
+        List<RaceCar> raceCars = game.getParticipants();
 
         //then
-        Assert.assertEquals(racers.length, raceResult.size());
-        game.getRecords().entrySet().stream().forEach(e ->
-                Assert.assertTrue(e.getValue().getLastRecord() == 0));
+        Assertions.assertThat(raceCars).hasSize(racers.length);
+        Assertions.assertThat(raceCars.stream())
+                .extracting(RaceCar::getRecorder)
+                .extracting(Recorder::getLastRecord)
+                .containsOnly(0);
     }
     
     private String[] generateRacerNamesNumberOf(int number) {
         String[] racers = new String[number];
-        
-        for (int i = 0; i < racers.length; i++) {
-            racers[i] = String.valueOf(String.format("Racer%d", i));
-        }
+
+        IntStream.range(0, racers.length).forEach(idx ->
+                racers[idx] = String.valueOf(String.format("Racer%d", idx))
+        );
 
         return racers;
     }

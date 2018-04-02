@@ -21,10 +21,10 @@ public class Main {
         game.race(new DefaultRaceRule());
 
         Drawer lineDrawer = new LineDrawer();
-        lineDrawer.draw(game.getRecords(), labs);
+        lineDrawer.draw(game.getParticipants(), labs);
 
-        GameResult result = new GameResult(game.getRecords());
-        view.announceWinner(result.getWinners());
+        GameResult result = new GameResult(game.getParticipants());
+        view.announceWinner(result.getWinnerNames());
     }
 
 
