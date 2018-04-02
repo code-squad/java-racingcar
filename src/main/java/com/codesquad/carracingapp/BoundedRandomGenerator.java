@@ -8,8 +8,8 @@ public class BoundedRandomGenerator implements RandomGenerator {
     private final Random random;
     private final int bound;
 
-    public BoundedRandomGenerator(final int bound) {
-        random = new Random();
+    public BoundedRandomGenerator(final int bound, final Random random) {
+        this.random = random;
         this.bound = bound;
     }
 

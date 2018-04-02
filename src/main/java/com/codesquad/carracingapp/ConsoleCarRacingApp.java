@@ -2,6 +2,7 @@ package com.codesquad.carracingapp;
 
 import com.codesquad.carracing.*;
 
+import java.util.Random;
 import java.util.Scanner;
 
 public class ConsoleCarRacingApp {
@@ -16,8 +17,9 @@ public class ConsoleCarRacingApp {
         final String inputNumberOfTries = scanner.nextLine();
         final int numberOfTries = Integer.parseInt(inputNumberOfTries);
 
-        final RandomGenerator randomGenerator = new BoundedRandomGenerator(10);
-        MoveStrategy strategy = new RandomMoveStrategy(randomGenerator);
+        final Random random = new Random();
+        final RandomGenerator randomGenerator = new BoundedRandomGenerator(10, random);
+        final MoveStrategy strategy = new RandomMoveStrategy(randomGenerator);
 
         final CarRacing carRacing = new CarRacing(numberOfCar, numberOfTries);
 
