@@ -23,4 +23,11 @@ public class OutputView {
 		
 		System.out.println();
 	}
+
+	public static void showWinnerOuput(List<Car> winners) {
+		System.out.print(winners.stream()
+				.map(winner -> winner.getName())
+				.reduce((s, s2) -> s.concat(",").concat(s2))
+				.get() + "이(가) 최종 우승했습니다.");
+	}
 }
