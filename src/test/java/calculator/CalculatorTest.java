@@ -44,16 +44,4 @@ public class CalculatorTest {
         Assert.assertThat(calculator.divide(6, 3), is(2));
         Assert.assertThat(calculator.divide(5, 1), is(5));
     }
-
-    @Test
-    public void splitTest() {
-        //given
-        String expression = "2 + 3 * 4 / 2";
-
-        //when
-        String[] split = expression.split(" ");
-
-        //then
-        Assert.assertTrue(split.length == 7);
-    }
 }

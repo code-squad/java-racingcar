@@ -1,14 +1,17 @@
 package race;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 class RacingGame {
     private List<RaceCar> raceCars;
     private int labs;
 
-    RacingGame(List<RaceCar> raceCars, int labs) {
-        setCars(raceCars);
+    RacingGame(String[] names, int labs) {
+        this.raceCars = setStartLine(names);
         this.labs = labs;
     }
 
@@ -18,18 +21,22 @@ class RacingGame {
         }
     }
 
-    List<Recorder> getRecords() {
-        return raceCars.stream()
-                .map(RaceCar::getRecorder)
-                .collect(Collectors.toList());
+    Map<String, Recorder> getRecords() {
+        return raceCars.stream().collect(Collectors.toMap(
+                RaceCar::getRacerName,
+                RaceCar::getRecorder)
+        );
     }
 
-    private void setCars(List<RaceCar> raceCars) {
-        if (raceCars == null || raceCars.size() == 0) {
-            throw new IllegalArgumentException();
+    private List<RaceCar> setStartLine(String[] names) {
+        if (names == null || names.length == 0) {
+            throw new IllegalArgumentException("레이스 참여자가 아무도 없습니다.");
         }
-        
-        this.raceCars = raceCars;
+
+        List<RaceCar> raceCars = new ArrayList<>(names.length);
+        IntStream.range(0, names.length).forEach(idx ->
+                raceCars.add(new RaceCar(names[idx].trim())));
+
+        return raceCars;
     }
 }
-

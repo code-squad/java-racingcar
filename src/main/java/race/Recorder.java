@@ -14,7 +14,18 @@ class Recorder {
         return results.get(lab);
     }
 
+    int getLastRecord() {
+        if (size() == 0) {
+            return 0;
+        }
+        return getRecord(size() - 1);
+    }
+
     int size() {
         return results.size();
+    }
+
+    List<Integer> getRecords() {
+        return results;
     }
 }
