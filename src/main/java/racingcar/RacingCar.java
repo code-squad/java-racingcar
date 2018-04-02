@@ -23,6 +23,7 @@ public class RacingCar {
         for(int i=0; i<roundCountNumber; i++){
             playRounds.playSingleRounds();
             resultView.printRoundState(playRounds.getPayerCarArrayList());
+            System.out.println();
         }
 
     }
