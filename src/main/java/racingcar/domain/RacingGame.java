@@ -3,6 +3,7 @@ package racingcar.domain;
 import racingcar.view.OutputView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.IntStream;
 
@@ -16,7 +17,13 @@ public class RacingGame {
 	public static void play(int carCount, int roundCount) {
 		List<Car> cars = prepareCars(carCount);
 		IntStream.rangeClosed(1, roundCount)
-				.forEach(roundNum -> OutputView.showRoundOutputView(roundNum, playRound(cars)));
+				.forEach(roundNum -> OutputView.showRoundOutput(roundNum, playRound(cars)));
+	}
+
+	public static void play(String[] carNames, int roundCount) {
+		List<Car> cars = prepareCars(carNames);
+		IntStream.rangeClosed(1, roundCount)
+				.forEach(roundNum -> OutputView.showRoundOutput(roundNum, playRound(cars)));
 	}
 	
 	private static List<Car> playRound(List<Car> cars) {
@@ -40,6 +47,13 @@ public class RacingGame {
 		List<Car> cars = new ArrayList<>();
 		IntStream.range(0, carCount)
 				 .forEach(n -> cars.add(new Car()));
+		return cars;
+	}
+
+	private static List<Car> prepareCars(String[] carNames) {
+		List<Car> cars = new ArrayList<>();
+		Arrays.stream(carNames)
+				.forEach(carName -> cars.add(new Car(carName)));
 		return cars;
 	}
 }

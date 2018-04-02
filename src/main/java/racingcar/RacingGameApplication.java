@@ -6,10 +6,10 @@ import racingcar.view.OutputView;
 
 public class RacingGameApplication {
 	public static void main(String[] args) {
-		int carCount = InputView.showCarCountInputView();
-		int roundCouunt = InputView.showRoundCountInputView();
+		String[] carNames = InputView.getCarNames();
+		int roundCouunt = InputView.getRoundCount();
 		
-		OutputView.showOuputStartView();
-		RacingGame.play(carCount, roundCouunt);
+		OutputView.showGameStart();
+		RacingGame.play(carNames, roundCouunt);
 	}
 }

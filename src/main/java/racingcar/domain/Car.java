@@ -2,11 +2,16 @@ package racingcar.domain;
 
 public class Car {
 	private int tripMeter = 0;
+	private String name;
 	
 	public Car() {}
-	
-	public Car(int tripMeter) {
-		this.tripMeter = tripMeter;
+
+	public Car(String name) {
+		this.name = name;
+	}
+
+	public String getName() {
+		return name;
 	}
 	
 	public int move(Rule rule) {
