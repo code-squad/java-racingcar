@@ -2,94 +2,58 @@ package racingGame;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
-import java.util.Scanner;
+
+import static com.sun.tools.internal.xjc.reader.Ring.add;
 
 /**
  * Created by hongjong-wan on 2018. 3. 31..
  */
 public class RacingGame {
 
-    private static List<Integer> carPosition = new ArrayList<>();
+
+    private static final int MOVE_CONDITION = 4;
+    private List<Car> cars;
 
 
-    public static void racing(int carNum) {
-
-        for (int i = 0; i < carNum; i++) {
-            if (isMove(getRandomNum())) {
-                carPosition.add(i, carPosition.remove(i) + 1);
-                display(carPosition.get(i));
-                continue;
-            }
-            display(carPosition.get(i));
-        }
-
-        System.out.println();
-    }
-
-    public static int getRandomNum() {
-
-        Random random = new Random();
-        return random.nextInt(10);
-
-    }
-
-    public static void display(int carPosition) {
-
-        for (int i = 0; i < carPosition; i++)
-            System.out.print("-");
-
-        System.out.println();
-
-    }
-
-    public static boolean isMove(int val) {
-
-        if (val >= 4) {
-            return true;
-        }
-        return false;
-    }
-
-
-    public static int getCarNum() {
-        System.out.print("자동차 수를 입력하세요: ");
-        Scanner sc = new Scanner(System.in);
-        int carNum = sc.nextInt();
-
+    public RacingGame(int carNum) {
         if (carNum < 0) {
             throw new IllegalArgumentException();
         }
-
-        for (int i = 0; i < carNum; i++) {
-            carPosition.add(0);
-        }
-        return carNum;
+        cars = new ArrayList<>();
+        initCarPosition(carNum);
     }
 
-    public static int getTryCount() {
-        System.out.print("시도 횟수를 입력하세요: ");
+    private void initCarPosition(int carNum) {
+        for (int i = 0; i < carNum; i++) {
+            cars.add(new Car(0));
+        }
+    }
 
-        Scanner sc = new Scanner(System.in);
-        int tryCnt = sc.nextInt();
-        if (tryCnt < 0) {
+
+    public void moveCars(int tryNum) {
+
+        if (tryNum < 0) {
             throw new IllegalArgumentException();
         }
-        return tryCnt;
-    }
 
-    public static void main(String[] args) {
-
-        try {
-            int carNum = getCarNum();
-            int tryCnt = getTryCount();
-
-            for (int i = 0; i < tryCnt; i++) {
-                RacingGame.racing(carNum);
-            }
-        } catch (IllegalArgumentException e) {
-            System.out.println("숫자를 제대로 입력해주세요.");
+        for (int i = 0; i < tryNum; i++) {
+            makeCarMove();
+            printResult();
         }
 
     }
+
+    private void makeCarMove() {
+
+        for (int i = 0; i < cars.size(); i++) {
+            if (MOVE_CONDITION <= RandomGenerator.getRandomNum()) {
+                cars.set(i, cars.get(i).move());
+            }
+        }
+    }
+
+    public void printResult() {
+        ResultView.printResult(cars);
+    }
+
 }

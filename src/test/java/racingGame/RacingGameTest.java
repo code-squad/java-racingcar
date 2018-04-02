@@ -49,8 +49,6 @@ public class RacingGameTest {
 
      */
 
-
-
 //    @Test
 //    public void 자동차수_양수() {
 //        assertEquals(2, RacingGame.getCarNum());
@@ -72,13 +70,5 @@ public class RacingGameTest {
 //    public void 시도횟수_음수() {
 //        assertEquals(-2, RacingGame.getTryCount());
 //    }
-
-    @Test
-    public void 이동여부() {
-        assertEquals(true, RacingGame.isMove(8));
-        assertEquals(false, RacingGame.isMove(2));
-    }
-
-
 
 }
