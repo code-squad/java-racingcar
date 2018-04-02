@@ -9,7 +9,7 @@ public class CarTest {
 		Car car = new Car();
 		RandomRule randomRule = new RandomRule();
 		if(randomRule.isValid()) {
-			Assert.assertEquals(1, car.move(randomRule));
+			Assert.assertEquals(randomRule.getMoveMeterForReward(), car.move(randomRule));
 			return;
 		}
 		Assert.assertEquals(0, car.move(randomRule));

@@ -3,29 +3,40 @@ package racingcar.domain;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class RacingGameTest {
     @Test
-    public void getWinner테스트() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
-        List<Car> cars = new ArrayList<>();
-        cars.add(new Car("jang", 5));
-        cars.add(new Car("so", 3));
-        cars.add(new Car("hyun", 5));
-
+    public void winners_tripMeter값이_같은지_테스트() {
         RacingGame racingGame = new RacingGame();
-        Method initCarsMethod = racingGame.getClass()
-                .getDeclaredMethod("initCars", List.class);
-        initCarsMethod.setAccessible(true);
-        initCarsMethod.invoke(racingGame, cars);
-
+        List<Car> resultCars = racingGame.play(3,5);
         List<Car> winners = racingGame.getWinner();
-        Assert.assertEquals("jang,hyun", winners.stream()
-                                                            .map(winner -> winner.getName())
-                                                            .reduce((s, s2) -> s.concat(",").concat(s2))
-                                                            .get());
+
+        // winners의 tripMeter값이 같은지 확인
+        Assert.assertEquals(1, winners.stream()
+                .map(winner -> winner.getTripMeter())
+                .distinct()
+                .count());
+    }
+
+    @Test
+    public void winners보다_tripMeter_이상인_car없는지_테스트() {
+        RacingGame racingGame = new RacingGame();
+        List<Car> resultCars = racingGame.play(3,5);
+        List<Car> winners = racingGame.getWinner();
+
+        int winnerTripMeter = winners.stream()
+                .map(winner -> winner.getTripMeter())
+                .findAny()
+                .get();
+        Assert.assertEquals(0, resultCars.stream()
+                .filter(car -> !winners.stream()
+                        .filter(winner -> winner.getName() == car.getName())
+                        .findAny()
+                        .isPresent())
+                .filter(car -> car.getTripMeter() >= winnerTripMeter)
+                .collect(Collectors.toList())
+                .size());
     }
 }

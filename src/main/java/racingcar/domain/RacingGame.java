@@ -16,16 +16,18 @@ public class RacingGame {
 		initRules();
 	}
 	
-	public void play(int carCount, int roundCount) {
+	public List<Car> play(int carCount, int roundCount) {
 		initCars(prepareCars(carCount));
 		IntStream.rangeClosed(1, roundCount)
 				.forEach(roundNum -> OutputView.showRoundOutput(roundNum, playRound(cars)));
+		return cars;
 	}
 
-	public void play(String[] carNames, int roundCount) {
+	public List<Car> play(String[] carNames, int roundCount) {
 		initCars(prepareCars(carNames));
 		IntStream.rangeClosed(1, roundCount)
 				.forEach(roundNum -> OutputView.showRoundOutput(roundNum, playRound(cars)));
+		return cars;
 	}
 
 	public List<Car> getWinner() {
