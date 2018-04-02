@@ -2,13 +2,13 @@ package racinggame;
 
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 import static java.util.Objects.isNull;
 
 public class RacingGame {
 
     private final static int MAX_LIMIT = 9;
-    private final static int MOVE_CRITERIA = 4;
     private List<Car> carList;
     private RacingGameView racingGameView;
 
@@ -25,16 +25,12 @@ public class RacingGame {
     }
 
     private void move(Car car) {
-        if (isMoveAble(getRandomInt()))
-            car.move();
-    }
-
-    boolean isMoveAble(int num) {
-        return num >= MOVE_CRITERIA;
+        car.move(getRandomInt());
     }
 
     void printRacingResult() {
-        racingGameView.printAll(carList);
+        List<Integer> carPositions = carList.stream().map(Car::getPosition).collect(Collectors.toList());
+        racingGameView.printView(carPositions);
     }
 
     private int getRandomInt() {

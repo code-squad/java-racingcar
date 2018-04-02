@@ -11,12 +11,28 @@ public class RacingGameTest {
 
     @Test
     public void 자동차가_이동가능한_조건일때_예외발생() {
-        assertTrue(getRacingGame().isMoveAble(4));
+        assertTrue(new Car().isMoveAble(4));
     }
 
     @Test
     public void 자동차가_이동불가능한_조건일때_예외발생() {
-        assertFalse(getRacingGame().isMoveAble(3));
+        assertFalse(new Car().isMoveAble(3));
+    }
+
+    @Test
+    public void 자동차가_정상적으로_이동해야한다() {
+        Car car = new Car();
+        car.move(6);
+
+        assertEquals(1, car.getPosition());
+    }
+
+    @Test
+    public void 자동차가_정상적으로_이동하지_않았어야_한다() {
+        Car car = new Car();
+        car.move(3);
+
+        assertEquals(0, car.getPosition());
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -36,13 +52,5 @@ public class RacingGameTest {
         List<Car> carList = new ArrayList<>();
         carList.add(new Car());
         new RacingGame(carList, null);
-    }
-
-    private RacingGame getRacingGame() {
-        List<Car> carList = new ArrayList<>();
-        carList.add(new Car());
-        RacingGameView racingGameView = new DefaultRacingGameView();
-
-        return new RacingGame(carList, racingGameView);
     }
 }
