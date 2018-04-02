@@ -1,13 +1,18 @@
 package racingcar.domain;
 
 public class Car {
-	private int tripMeter = 0;
 	private String name;
-	
+	private int tripMeter = 0;
+
 	public Car() {}
 
 	public Car(String name) {
 		this.name = name;
+	}
+
+	public Car(String name, int tripMeter) {
+		this.name = name;
+		this.tripMeter = tripMeter;
 	}
 
 	public String getName() {
