@@ -1,7 +1,7 @@
 package racingcar;
 
 import racingcar.interfaces.Car;
-import racingcar.interfaces.MoveScoreMaker;
+import racingcar.interfaces.PointMaker;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,58 +11,26 @@ import java.util.List;
  */
 public class RacingGame {
     private List<Car> cars;
-    private GameRecord gameRecord;
+    private PointMaker pointMaker;
 
     public RacingGame(List<String> names) {
-        this.cars = generateCars(names);
-        this.gameRecord = new GameRecord();
+        this.cars = new ArrayList<>();
+        this.pointMaker = new RandomPointMaker();
+        generateCars(names);
     }
 
-    public void start(Integer numberOfExecutions) {
-        initialize();
-        execution(numberOfExecutions);
-    }
 
-    public GameRecord getGameRecord() {
-        return this.gameRecord;
-    }
-
-    private void execution(Integer numberOfExecutions) {
-        Time time = new Time(numberOfExecutions);
-        while (time.hasLeft()) {
-            time.spend();
-            moveCars(new RandomMoveScoreMaker());
-            saveRecord(time.count());
-        }
-    }
-
-    private void saveRecord(Integer round) {
-        List<UserRecord> records = new ArrayList<>();
+    public GameResult run() {
+        GameResult gameResult = new GameResult();
         for (Car car : this.cars) {
-            records.add(new UserRecord(car));
+            gameResult.add(car.move(this.pointMaker.generate()));
         }
-        this.gameRecord.save(round, records);
+        return gameResult;
     }
 
-    private void initialize() {
-        this.gameRecord.initialize();
-
-        for (Car car : cars) {
-            car.initialize();
-        }
-    }
-
-    private void moveCars(MoveScoreMaker moveScoreMaker) {
-        for (Car car : this.cars) {
-            car.move(moveScoreMaker);
-        }
-    }
-
-    private List<Car> generateCars(List<String> names) {
-        List<Car> cars = new ArrayList<>();
+    private void generateCars(List<String> names) {
         for (String name : names) {
-            cars.add(new BasicCar(name));
+            this.cars.add(new BasicCar(name));
         }
-        return cars;
     }
 }

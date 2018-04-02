@@ -1,7 +1,6 @@
 package racingcar;
 
 import racingcar.interfaces.Car;
-import racingcar.interfaces.MoveScoreMaker;
 
 /**
  * @author sangsik.kim
@@ -14,23 +13,19 @@ public class BasicCar implements Car {
 
     public BasicCar(String name) {
         this.name = name;
-        initialize();
-    }
-
-    @Override
-    public void initialize() {
         this.position = INITIAL_POSITION;
     }
 
     @Override
-    public void move(MoveScoreMaker moveScoreMaker) {
-        if (canMove(moveScoreMaker.generate())) {
-            moveForward();
+    public Record move(Integer point) {
+        if (canMove(point)) {
+            forward();
         }
+        return new Record(this);
     }
 
     @Override
-    public Integer getCurrentPosition() {
+    public Integer getPosition() {
         return this.position;
     }
 
@@ -39,11 +34,11 @@ public class BasicCar implements Car {
         return this.name;
     }
 
-    private Boolean canMove(Integer score) {
-        return score >= MOVE_CRITERIA;
+    private Boolean canMove(Integer point) {
+        return point >= MOVE_CRITERIA;
     }
 
-    private void moveForward() {
+    private void forward() {
         this.position++;
     }
 }

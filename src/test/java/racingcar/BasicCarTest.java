@@ -16,9 +16,9 @@ public class BasicCarTest {
         racingcar.interfaces.Car car = new BasicCar("sangsik");
         Integer lessThanMoveCriteria = new Random().nextInt(4);
 
-        car.move(() -> lessThanMoveCriteria);
+        car.move(lessThanMoveCriteria);
 
-        assertThat(car.getCurrentPosition()).isEqualTo(0);
+        assertThat(car.getPosition()).isEqualTo(0);
     }
 
     @Test
@@ -26,8 +26,8 @@ public class BasicCarTest {
         racingcar.interfaces.Car car = new BasicCar("sangsik");
         Integer overMoveCriteria = new Random().nextInt(4) + 6;
 
-        car.move(() -> overMoveCriteria);
+        car.move(overMoveCriteria);
 
-        assertThat(car.getCurrentPosition()).isEqualTo(1);
+        assertThat(car.getPosition()).isEqualTo(1);
     }
 }

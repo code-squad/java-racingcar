@@ -3,6 +3,6 @@ package racingcar.interfaces;
 /**
  * @author sangsik.kim
  */
-public interface MoveScoreMaker {
+public interface PointMaker {
     Integer generate();
 }
