@@ -9,4 +9,6 @@ public interface Car {
     void move(MoveScoreMaker moveScoreMaker);
 
     Integer getCurrentPosition();
+
+    String getName();
 }

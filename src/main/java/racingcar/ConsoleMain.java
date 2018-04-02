@@ -1,11 +1,6 @@
 package racingcar;
 
-import racingcar.interfaces.Car;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 /**
  * @author sangsik.kim
@@ -15,51 +10,47 @@ public class ConsoleMain {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("자동차 대수는 몇 대 인가요?");
-        Integer numberOfCars = scanner.nextInt();
-
-        System.out.println("시도할 회수는 몇 회 인가요?");
-        Integer numberOfExecutions = scanner.nextInt();
-
-        RacingGame racingGame = new RacingGame(generateCars(numberOfCars));
-        racingGame.start(numberOfExecutions);
+        RacingGame racingGame = new RacingGame(getParticipantsName(scanner));
+        racingGame.start(getTryCount(scanner));
 
         displayGameResult(racingGame.getGameRecord());
     }
 
-    private static List<Car> generateCars(Integer numbersOfCar) {
-        List<Car> cars = new ArrayList<>();
-        for (int i = 0; i < numbersOfCar; i++) {
-            cars.add(new BasicCar());
-        }
-        return cars;
+    private static List<String> getParticipantsName(Scanner scanner) {
+        System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
+        String names = scanner.nextLine();
+        return Arrays.asList(names.split(","));
+    }
+
+    private static Integer getTryCount(Scanner scanner) {
+        System.out.println("시도할 회수는 몇 회 인가요?");
+        return scanner.nextInt();
     }
 
     private static void displayGameResult(GameRecord gameRecord) {
         System.out.println("### 실행결과 ###\n");
-        Map<Integer, List<Integer>> records = gameRecord.loadAll();
-        for (Integer round : records.keySet()) {
-            printRecord(round, records);
+        printRecords(gameRecord.loadAll());
+    }
+
+    private static void printRecords(Map<Integer, List<UserRecord>> allRoundRecords) {
+        for (Integer round : allRoundRecords.keySet()) {
+            System.out.println("[ " + round + "회차 ]");
+            printRecord(allRoundRecords.get(round));
+            System.out.println();
         }
     }
 
-    private static void printRecord(Integer round, Map<Integer, List<Integer>> records) {
-        System.out.println(round + "회차");
-        List<String> result = convertingRecordToHyphen(records.get(round));
-        for (String position : result) {
-            System.out.println(position);
+    private static void printRecord(List<UserRecord> records) {
+        for (UserRecord userRecord : records) {
+            System.out.println(userRecord.getName() + "\t: " + convertNumberToHyphen(userRecord.getRecord()));
         }
     }
 
-    private static List<String> convertingRecordToHyphen(List<Integer> records) {
-        List<String> result = new ArrayList<>();
-        for (Integer record : records) {
-            StringBuilder str = new StringBuilder();
-            for (int i = 0; i < record; i++) {
-                str.append("-");
-            }
-            result.add(str.toString());
+    private static String convertNumberToHyphen(Integer position) {
+        StringBuilder result = new StringBuilder();
+        for (int i = 0; i < position; i++) {
+            result.append("-");
         }
-        return result;
+        return result.toString();
     }
 }

@@ -14,12 +14,10 @@ public class RacingGameTest {
 
     @Test
     public void 레이스_실행_기록확인() {
-        List<Car> cars = Arrays.asList(new BasicCar(), new BasicCar(), new BasicCar());
-
-        RacingGame racingGame = new RacingGame(cars);
+        RacingGame racingGame = new RacingGame(Arrays.asList("sangsik", "pobi", "crong"));
         racingGame.start(5);
 
-        Map<Integer, List<Integer>> records = racingGame.getGameRecord().loadAll();
+        Map<Integer, List<UserRecord>> records = racingGame.getGameRecord().loadAll();
 
         for (Integer key : records.keySet()) {
             System.out.println(key + "회차 : " + records.get(key));

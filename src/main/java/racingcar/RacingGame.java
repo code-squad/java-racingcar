@@ -13,8 +13,8 @@ public class RacingGame {
     private List<Car> cars;
     private GameRecord gameRecord;
 
-    public RacingGame(List<Car> cars) {
-        this.cars = cars;
+    public RacingGame(List<String> names) {
+        this.cars = generateCars(names);
         this.gameRecord = new GameRecord();
     }
 
@@ -37,9 +37,9 @@ public class RacingGame {
     }
 
     private void saveRecord(Integer round) {
-        List<Integer> records = new ArrayList<>();
+        List<UserRecord> records = new ArrayList<>();
         for (Car car : this.cars) {
-            records.add(car.getCurrentPosition());
+            records.add(new UserRecord(car));
         }
         this.gameRecord.save(round, records);
     }
@@ -56,5 +56,13 @@ public class RacingGame {
         for (Car car : this.cars) {
             car.move(moveScoreMaker);
         }
+    }
+
+    private List<Car> generateCars(List<String> names) {
+        List<Car> cars = new ArrayList<>();
+        for (String name : names) {
+            cars.add(new BasicCar(name));
+        }
+        return cars;
     }
 }
