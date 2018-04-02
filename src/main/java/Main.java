@@ -7,8 +7,9 @@ public class Main {
         Racing racing = new Racing();
         racing.setNumCar(3);
         racing.setNumCircuit(5);
-        int[] result = racing.move();
-
+        System.out.println(racing.getNumCar());
+        System.out.println(racing.getNumCircuit());
+        racing.start();
 
     }
 
