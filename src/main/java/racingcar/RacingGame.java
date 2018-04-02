@@ -4,34 +4,31 @@ import java.util.Random;
 
 public class RacingGame {
 
-    private RacingGameInfoVO racingGameInfo;
-    private int[] carPositions;
-    private Random random = new Random();
     private static final int CANNABLE_MOVE_NUMBER = 4;
+    private RacingGameInfoDTO racingGameInfo;
+    private Random random;
+    private int[] carPositions;
 
-    void startGame () {
-        inputData();
-        carPositions = new int[racingGameInfo.getCountOfCar()];
-        for (int count = 0; count < racingGameInfo.getTestCase(); count++) {
-            moveCar();
-            ResultView.printStatus(carPositions);
+    public RacingGame(RacingGameInfoDTO racingGameInfo) {
+        if (racingGameInfo == null || racingGameInfo.getCountOfCar() == 0) {
+            throw new IllegalArgumentException();
         }
+        this.racingGameInfo = racingGameInfo;
+        random = new Random();
+        carPositions = new int[racingGameInfo.getCountOfCar()];
     }
 
-    private void moveCar() {
+    public int[] moveCar() {
         for (int carNumber = 0; carNumber < racingGameInfo.getCountOfCar(); carNumber++) {
             if (isMoving(getRandomValue())) {
                 carPositions[carNumber]++;
             }
         }
+        return carPositions;
     }
 
-    boolean isMoving(int number) {
+    static boolean isMoving(int number) {
         return  number >= CANNABLE_MOVE_NUMBER;
-    }
-
-    private void inputData() {
-        racingGameInfo = InputView.inputDataAndView();
     }
 
     public int getRandomValue() {
