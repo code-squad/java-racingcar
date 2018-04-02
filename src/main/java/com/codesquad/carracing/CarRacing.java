@@ -26,9 +26,9 @@ public class CarRacing {
         return cars;
     }
 
-    public void nextTry(final MovingValue movingValue) {
+    public void nextTry(final MoveStrategy strategy) {
         for (final Car car : cars) {
-            car.move(movingValue);
+            car.move(strategy);
         }
     }
 }

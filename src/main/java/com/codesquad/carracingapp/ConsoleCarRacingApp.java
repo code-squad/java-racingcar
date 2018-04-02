@@ -1,8 +1,6 @@
 package com.codesquad.carracingapp;
 
-import com.codesquad.carracing.Car;
-import com.codesquad.carracing.CarRacing;
-import com.codesquad.carracing.MovingValue;
+import com.codesquad.carracing.*;
 
 import java.util.Scanner;
 
@@ -18,7 +16,9 @@ public class ConsoleCarRacingApp {
         final String inputNumberOfTries = scanner.nextLine();
         final int numberOfTries = Integer.parseInt(inputNumberOfTries);
 
-        final MovingValue movingValue = new RandomMovingValue();
+        final RandomGenerator randomGenerator = new BoundedRandomGenerator(10);
+        MoveStrategy strategy = new RandomMoveStrategy(randomGenerator);
+
         final CarRacing carRacing = new CarRacing(numberOfCar, numberOfTries);
 
         Car[] cars;
@@ -26,7 +26,7 @@ public class ConsoleCarRacingApp {
         for (int i = 0; i < numberOfTries; i++) {
             cars = carRacing.getCars();
             ConsoleCarRacingApp.printCars(cars);
-            carRacing.nextTry(movingValue);
+            carRacing.nextTry(strategy);
         }
     }
 

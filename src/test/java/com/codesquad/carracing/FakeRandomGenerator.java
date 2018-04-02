@@ -1,14 +1,14 @@
 package com.codesquad.carracing;
 
-public class FakeMovingValue implements MovingValue {
+public class FakeRandomGenerator implements RandomGenerator {
     private final int value;
 
-    public FakeMovingValue(final int value) {
+    public FakeRandomGenerator(final int value) {
         this.value = value;
     }
 
     @Override
-    public int getValue() {
+    public int generate() {
         return this.value;
     }
 }

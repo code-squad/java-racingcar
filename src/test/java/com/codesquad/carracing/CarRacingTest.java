@@ -53,8 +53,9 @@ public class CarRacingTest {
     @Test
     public void 첫번째_자동차_이동1회() {
         final CarRacing carRacing = new CarRacing(1, 1);
-        final MovingValue movingValue = new FakeMovingValue(4);
-        carRacing.nextTry(movingValue);
+        final RandomGenerator generator = new FakeRandomGenerator(4);
+        final MoveStrategy strategy = new RandomMoveStrategy(generator);
+        carRacing.nextTry(strategy);
         final Car[] cars = carRacing.getCars();
         assertThat(cars[0].getPosition()).isEqualTo(1);
     }
@@ -62,8 +63,9 @@ public class CarRacingTest {
     @Test
     public void 첫번째_자동차_이동_실패() {
         final CarRacing carRacing = new CarRacing(1, 1);
-        final MovingValue movingValue = new FakeMovingValue(3);
-        carRacing.nextTry(movingValue);
+        final RandomGenerator generator = new FakeRandomGenerator(3);
+        final MoveStrategy strategy = new RandomMoveStrategy(generator);
+        carRacing.nextTry(strategy);
         final Car[] cars = carRacing.getCars();
         assertThat(cars[0].getPosition()).isEqualTo(0);
     }
@@ -71,9 +73,10 @@ public class CarRacingTest {
     @Test
     public void 두번째_자동차_이동2회() {
         final CarRacing carRacing = new CarRacing(2, 2);
-        final MovingValue movingValue = new FakeMovingValue(4);
-        carRacing.nextTry(movingValue);
-        carRacing.nextTry(movingValue);
+        final RandomGenerator generator = new FakeRandomGenerator(4);
+        final MoveStrategy strategy = new RandomMoveStrategy(generator);
+        carRacing.nextTry(strategy);
+        carRacing.nextTry(strategy);
         final Car[] cars = carRacing.getCars();
         assertThat(cars[1].getPosition()).isEqualTo(2);
     }
