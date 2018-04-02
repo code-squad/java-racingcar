@@ -1,103 +1,87 @@
 package calculator;
 
 import java.util.*;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 import static java.util.Objects.isNull;
 
 public class Calculator {
 
-    private List<String> parsedString;
+    private String input;
+    private Queue<Integer> operands;
+    private Queue<String> operators;
+    private Map<String, Operator> operatorMap;
+    private final static String SPLIT_REGEX = " ";
+    private final static String ADD = "+";
+    private final static String SUB = "-";
+    private final static String MUL = "*";
+    private final static String DIV = "/";
 
-    private ListIterator<String> iterator;
+    Calculator(String input) {
+        checkArgumentException(input);
 
-    public Calculator(String input) {
-        this.parsedString = parse(input);
-        this.iterator = parsedString.listIterator();
+        this.input = input;
+        this.operands = parseOperand();
+        this.operators = parseOperator();
+        this.operatorMap = new HashMap<>();
+        this.operatorMap.put(ADD, new Operator.Add());
+        this.operatorMap.put(SUB, new Operator.Sub());
+        this.operatorMap.put(MUL, new Operator.Mul());
+        this.operatorMap.put(DIV, new Operator.Div());
     }
 
-    int calculate() {
-        return analysis();
+    public int calculate() {
+        int calculateResult = 0;
+        int operand_x = operands.poll();
+
+        while (!operators.isEmpty() && !operands.isEmpty()) {
+            int operand_y = operands.poll();
+            String operator = operators.poll();
+
+            calculateResult += getOperator(operator).execute(operand_x, operand_y);
+            operand_x = calculateResult;
+        }
+
+        return calculateResult;
     }
 
-    private int analysis() {
-        while (iterator.hasNext()) {
-            execute(iterator.next());
-        }
-        return Integer.parseInt(parsedString.get(0));
-    }
+    private Operator getOperator(String operator) {
+        if (operatorMap.containsKey(operator))
+            return operatorMap.get(operator);
 
-    private void execute(String string) {
-        if (string.equals("+")) {
-            add(getPrevious(), getNext());
-        }
-        if (string.equals("-")) {
-            sub(getPrevious(), getNext());
-        }
-        if (string.equals("*")) {
-            mul(getPrevious(), getNext());
-        }
-        if (string.equals("/")) {
-            div(getPrevious(), getNext());
-        }
-    }
-
-    private String getPrevious() {
-        if (iterator.hasPrevious()) {
-            iterator.previous();
-            String previous = iterator.previous();
-            iterator.remove();
-            return previous;
-        }
         throw new IllegalArgumentException();
     }
 
-    private String getNext() {
-        if (iterator.hasNext()) {
-            iterator.next();
-            String next = iterator.next();
-            iterator.remove();
-            return next;
-        }
-        throw new IllegalArgumentException();
+    private Queue<Integer> parseOperand() {
+        return Arrays.stream(input.split(SPLIT_REGEX))
+                .filter(getParseOperandPredicate(ADD)
+                        .and(getParseOperandPredicate(SUB))
+                        .and(getParseOperandPredicate(MUL))
+                        .and(getParseOperandPredicate(DIV)))
+                .map(Integer::parseInt)
+                .collect(Collectors.toCollection(LinkedList::new));
     }
 
-    private void add(String previous, String next) {
-        Integer result = Integer.parseInt(previous) + Integer.parseInt(next);
-        clearList();
-        addCalculatedReulst(result);
+    private Queue<String> parseOperator() {
+        return Arrays.stream(input.split(SPLIT_REGEX))
+                .filter(getParseOperatorPredicate(ADD)
+                        .or(getParseOperatorPredicate(SUB))
+                        .or(getParseOperatorPredicate(MUL))
+                        .or(getParseOperatorPredicate(DIV)))
+                .collect(Collectors.toCollection(LinkedList::new));
     }
 
-    private void sub(String previous, String next) {
-        Integer result = Integer.parseInt(previous) - Integer.parseInt(next);
-        clearList();
-        addCalculatedReulst(result);
+    private Predicate<String> getParseOperandPredicate(String operator) {
+        return o -> !o.equals(operator);
     }
 
-    private void mul(String previous, String next) {
-        Integer result = Integer.parseInt(previous) * Integer.parseInt(next);
-        clearList();
-        addCalculatedReulst(result);
+    private Predicate<String> getParseOperatorPredicate(String operator) {
+        return o -> o.equals(operator);
     }
 
-    private void div(String previous, String next) {
-        Integer result = Integer.parseInt(previous) / Integer.parseInt(next);
-        clearList();
-        addCalculatedReulst(result);
-    }
-
-    private void clearList() {
-        iterator.previous();
-        iterator.remove();
-    }
-
-    private void addCalculatedReulst(Integer result) {
-        iterator.add(String.valueOf(result));
-    }
-
-    private List<String> parse(String input) {
+    private void checkArgumentException(String input) {
         if (isNull(input) || input.equals(""))
             throw new IllegalArgumentException();
-
-        return new LinkedList<>(Arrays.asList(input.split(" ")));
     }
 }
