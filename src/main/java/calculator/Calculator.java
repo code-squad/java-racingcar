@@ -1,7 +1,5 @@
 package calculator;
 
-import org.junit.jupiter.api.Test;
-
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -14,7 +12,6 @@ class Calculator{
         String arrInputStr [] = inputStr.split(" " );
 
         double resultNumber = Double.parseDouble(arrInputStr[0]);
-
         for(int i=1; i<arrInputStr.length; i += 2 ) {
             double inputNumber1 = resultNumber;
             double inputNumber2 = Double.parseDouble(arrInputStr[i+1]);
@@ -33,7 +30,7 @@ class Calculator{
     }
 
     private void checkNull(String s) {
-        if(s == null || "".equals(s)){
+        if(s == null || "".equals(s) || s.isEmpty()){
             throw new IllegalArgumentException();
         }
     }
@@ -48,18 +45,22 @@ class Calculator{
        }
    }
 
-    private double doArithmetic(String s, double resultNumber, double inputNumber1, double inputNumber2) {
-        HashMap<String, ArithemeticInterface> calculatorMap = new HashMap<String, ArithemeticInterface>();
+    private double doArithmetic(String operator, double resultNumber, double inputNumber1, double inputNumber2) {
+        HashMap<String, ArithemeticInterface> calculatorMap = getArithemeticInterfaceHashMap();
+
         ArithemeticInterface arithmeticInterface;
+        arithmeticInterface = calculatorMap.get(operator);
+        return arithmeticInterface.calculate(inputNumber1, inputNumber2);
+
+    }
+
+    private HashMap<String, ArithemeticInterface> getArithemeticInterfaceHashMap() {
+        HashMap<String, ArithemeticInterface> calculatorMap = new HashMap<String, ArithemeticInterface>();
 
         calculatorMap.put("+", new ArithmeticAdd());
         calculatorMap.put("-", new ArithmeticMinus());
         calculatorMap.put("*", new ArithmeticMultiple());
         calculatorMap.put("/", new ArithmeticDivide());
-
-        arithmeticInterface = calculatorMap.get(s);
-
-        return arithmeticInterface.calculate(inputNumber1, inputNumber2);
-
+        return calculatorMap;
     }
 }
