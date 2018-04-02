@@ -23,6 +23,10 @@ public class Racing {
         return this.numCircuit;
     }
 
+    public int[] getCarPositions(){
+        return this.carPositions;
+    }
+
     public void start(){
         for (int i =0; i<this.numCircuit; i++){
             update(move());
@@ -57,7 +61,7 @@ public class Racing {
         for (int i =0; i<this.numCar; i++){
             System.out.println(convertToBar(this.carPositions[i], 1));
         }
-        System.out.println("\n");
+        System.out.print("\n");
     }
 
     public String convertToBar(int num, int offset){
