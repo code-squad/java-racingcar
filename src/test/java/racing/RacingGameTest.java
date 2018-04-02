@@ -92,6 +92,7 @@ public class RacingGameTest {
     public void getDistanceTest() {
         assertThat(racingGame.getDistance(1)).isEqualTo("-");
         assertThat(racingGame.getDistance(4)).isEqualTo("----");
+        assertThat(racingGame.getDistance(6)).isEqualTo("------");
     }
 }
 
