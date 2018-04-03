@@ -54,10 +54,10 @@ public class RacingGameTest {
 
     @Test
     public void forwardTest() {
-        racingGame.forward(0);
+        racingGame.moveFoward(0);
         assertThat(racingGame.carPositions.get(0)).isEqualTo(1);
 
-        racingGame.forward(0);
+        racingGame.moveFoward(0);
         assertThat(racingGame.carPositions.get(0)).isEqualTo(2);
     }
 
