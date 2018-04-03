@@ -18,31 +18,31 @@ public class Calculator {
 
     private static int calculateExpression(String[] expressionValue) {
         int result = Integer.valueOf(expressionValue[0]);
-        for(int i = 1; i<expressionValue.length; i+=2) {
-             result = selectOperation(expressionValue[i], result, Integer.valueOf(expressionValue[i+1]));
+        for (int i = 1; i < expressionValue.length; i += 2) {
+            result = selectOperation(expressionValue[i], result, Integer.valueOf(expressionValue[i + 1]));
         }
         return result;
     }
 
     private static int selectOperation(String operator, int a, int b) {
-        return operator.equals("+") ? add(a,b) : operator.equals("-")
-                ? sub(a,b) : operator.equals("*")
-                ? multiply(a,b) : divide(a,b) ;
+        return operator.equals("+") ? add(a, b) : operator.equals("-")
+                ? sub(a, b) : operator.equals("*")
+                ? multiply(a, b) : divide(a, b);
     }
 
     private static int add(int a, int b) {
-        return a+b;
+        return a + b;
     }
 
     private static int sub(int a, int b) {
-        return a-b;
+        return a - b;
     }
 
     private static int multiply(int a, int b) {
-        return a*b;
+        return a * b;
     }
 
     private static int divide(int a, int b) {
-        return a/b;
+        return a / b;
     }
 }

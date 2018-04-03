@@ -1,12 +1,8 @@
 package calculatortest;
 
 import calculator.Calculator;
-
-import org.junit.Before;
 import org.junit.Test;
-
 import static org.assertj.core.api.Assertions.assertThat;
-
 
 public class CalculatorTest {
 
@@ -44,8 +40,5 @@ public class CalculatorTest {
     public void 빈문자열() {
         Calculator.calculate("");
     }
-
-
-
 
 }

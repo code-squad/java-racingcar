@@ -1,43 +1,28 @@
 package racingcar;
 
+import java.util.Random;
+
 public class RacingCar {
 
-    private static int[] carPosition;
+    private int[] carPositions;
 
-    public static void racing(int car, int move) {
-        if(car <= 0 || move <= 0) {
-            throw new IllegalArgumentException();
+    public RacingCar(int car) {
+        this.carPositions = new int[car];
+    }
+
+    public int[] carPositionMove() {
+        for (int j = 0; j < carPositions.length; j++) {
+            carPositions[j] = moveCar(carPositions[j]);
         }
-
-        carPosition = new int[car];
-
-        for(int i = 0 ; i<move; i++){
-            carPositionMove();
-            nextLinePrint();
-        }
+        return carPositions;
     }
 
-    private static void carPositionMove() {
-        for(int j = 0; j<carPosition.length; j++) {
-            if(moveCar()) {
-                ++carPosition[j];
-            }
-            moveCarPrint(carPosition[j]);
-            nextLinePrint();
-        }
+    private int moveCar(int carPosition) {
+        return returnRandom() >= 4 ? ++carPosition : carPosition;
     }
 
-    private static boolean moveCar() {
-        return (((int) (Math.random() * 9) >= 4) ? true : false);
+    public int returnRandom() {
+        return (new Random().nextInt(9));
     }
 
-    private static void moveCarPrint(int printCount) {
-        for(int i = 0; i<printCount; i++) {
-            System.out.print("-");
-        }
-    }
-
-    private static void nextLinePrint() {
-        System.out.println();
-    }
 }
