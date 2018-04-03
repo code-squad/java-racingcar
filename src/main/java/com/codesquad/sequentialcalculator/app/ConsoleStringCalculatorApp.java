@@ -1,4 +1,4 @@
-package com.codesquad.sequentialcalculator.consoleapp;
+package com.codesquad.sequentialcalculator.app;
 
 import com.codesquad.sequentialcalculator.calculator.StringCalculator;
 
