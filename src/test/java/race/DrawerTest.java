@@ -1,15 +1,12 @@
 package race;
 
-import static org.hamcrest.CoreMatchers.is;
-
-import com.google.common.collect.ImmutableList;
-import org.junit.Assert;
+import org.assertj.core.api.Assertions;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
-import java.util.List;
+import java.util.Arrays;
 
 public class DrawerTest {
     private Drawer drawer;
@@ -27,18 +24,18 @@ public class DrawerTest {
     @Test
     public void lineDrawer_레이스카의_기록을_라인으로_출력한다() {
         //given
+        String racerName = "racer1";
         drawer = new LineDrawer();
-        RaceCar car = new RaceCar();
+        RaceCar car = new RaceCar(racerName);
         car.move(rule);
         car.move(rule);
-        car.move(rule);
-        List<Recorder> recorders = ImmutableList.of(car.getRecorder());
 
         //when
-        drawer.draw(recorders);
+        drawer.draw(Arrays.asList(car), 2);
 
         //then
-        Assert.assertThat(outputCapture.toString(), is("-\n--\n---\n\n"));
+        String expected = "racer1: -\n\nracer1: --\n\n";
+        Assertions.assertThat(outputCapture.toString()).isEqualTo(expected);
     }
 
     private static class TestRule implements RaceRule {

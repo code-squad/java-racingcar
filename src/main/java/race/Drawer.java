@@ -1,23 +1,32 @@
 package race;
 
 import java.util.List;
+import java.util.stream.IntStream;
 
 interface Drawer {
-    void draw(List<Recorder> recorders);
+    void draw(List<RaceCar> records, int labs);
 }
 
 class LineDrawer implements Drawer {
     private static final String FORMAT = "-";
+    private static final String NAME_PRINT_FORMAT = "%s: ";
 
-    @Override
-    public void draw(List<Recorder> recorders) {
-        for (Recorder recorder : recorders) {
-            for (int i = 0; i < recorder.size(); i++) {
-                printStraightUntil(recorder.getRecord(i));
-                nextLine();
-            }
+    public void draw(List<RaceCar> cars, int labs) {
+        IntStream.range(0, labs).forEach(idx -> 
+                drawEachRecordsAt(cars, idx));
+    }
+
+    private void drawEachRecordsAt(List<RaceCar> raceCars, int idx) {
+        raceCars.forEach(c -> {
+            printName(c.getRacerName());
+            printStraightUntil(c.getRecorder().getRecord(idx));
             nextLine();
-        }
+        });
+        nextLine();
+    }
+
+    private void printName(String name) {
+        System.out.print(String.format(NAME_PRINT_FORMAT, name));
     }
 
     private void printStraightUntil(int until) {

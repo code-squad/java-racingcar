@@ -5,35 +5,34 @@ import java.util.Random;
 class RaceCar {
     private static final int RANDOM_LIMIT = 9;
 
+    private String racer;
     private Recorder recorder;
-    private int distance;
 
-    RaceCar() {
+    RaceCar(String racer) {
+        this.racer = racer;
         recorder = new Recorder();
-        initDistance();
     }
 
     void move(RaceRule rule) {
-        if (rule.canMove(getIntEqualsOrUnderOf(RANDOM_LIMIT))) {
-            this.distance++;
+        int currentLocation = recorder.getLastRecord();
+        
+        if (rule.canMove(getRandomInt())) {
+            currentLocation++;
         }
-        recorder.record(getCurrentLocation());
+        
+        recorder.record(currentLocation);
     }
 
     Recorder getRecorder() {
         return recorder;
     }
 
-    int getCurrentLocation() {
-        return distance;
+    String getRacerName() {
+        return racer;
     }
 
-    private void initDistance() {
-        this.distance = 0;
-    }
-
-    private int getIntEqualsOrUnderOf(int limit) {
+    private int getRandomInt() {
         Random random = new Random();
-        return random.nextInt(limit);
+        return random.nextInt(RANDOM_LIMIT);
     }
 }
