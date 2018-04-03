@@ -1,10 +1,9 @@
 package racingcar.domain;
 
-import org.junit.Assert;
 import org.junit.Test;
-
 import java.util.List;
-import java.util.stream.Collectors;
+import static org.junit.Assert.*;
+import static java.util.stream.Collectors.*;
 
 public class RacingGameTest {
     @Test
@@ -14,8 +13,8 @@ public class RacingGameTest {
         List<Car> winners = racingGame.getWinner();
 
         // winners의 tripMeter값이 같은지 확인
-        Assert.assertEquals(1, winners.stream()
-                .map(winner -> winner.getTripMeter())
+        assertEquals(1, winners.stream()
+                .map(Car::getTripMeter)
                 .distinct()
                 .count());
     }
@@ -27,16 +26,17 @@ public class RacingGameTest {
         List<Car> winners = racingGame.getWinner();
 
         int winnerTripMeter = winners.stream()
-                .map(winner -> winner.getTripMeter())
+                .map(Car::getTripMeter)
                 .findAny()
                 .get();
-        Assert.assertEquals(0, resultCars.stream()
+        
+        assertEquals(0, resultCars.stream()
                 .filter(car -> !winners.stream()
                         .filter(winner -> winner.getName() == car.getName())
                         .findAny()
                         .isPresent())
                 .filter(car -> car.getTripMeter() >= winnerTripMeter)
-                .collect(Collectors.toList())
+                .collect(toList())
                 .size());
     }
 }

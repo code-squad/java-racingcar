@@ -3,7 +3,7 @@ package racingcar.domain;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
+import static java.util.stream.Collectors.*;
 
 public class RacingGame {
 	private Rule rule = new RandomRule();
@@ -16,18 +16,18 @@ public class RacingGame {
 	public List<Car> play() {
 		cars = cars.stream()
 				.map(car -> playByRule(car))
-				.collect(Collectors.toList());
+				.collect(toList());
 		return cars;
 	}
 	
 	public List<Car> getWinner() {
 		int maxTripMeter = cars.stream()
-				.mapToInt(car -> car.getTripMeter())
+				.mapToInt(Car::getTripMeter)
 				.max()
 				.getAsInt();
 		return cars.stream()
 				.filter(car -> maxTripMeter == car.getTripMeter())
-				.collect(Collectors.toList());
+				.collect(toList());
 	}
 
 	private Car playByRule(Car car) {
@@ -42,7 +42,6 @@ public class RacingGame {
 		return Arrays.stream(carNames)
 				.map(carName -> cars.add(new Car(carName)))
 				.reduce((aBoolean, aBoolean2) -> aBoolean && aBoolean2)
-				.get()
-				;
+				.get();
 	}
 }
