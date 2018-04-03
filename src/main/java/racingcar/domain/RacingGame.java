@@ -9,7 +9,7 @@ public class RacingGame {
 	private Rule rule = new RandomRule();
 	private List<Car> cars = new ArrayList<>();
 	
-	public RacingGame(String[] carNames) {
+	public RacingGame(String... carNames) {
 		initCars(carNames);
 	}
 
@@ -26,7 +26,7 @@ public class RacingGame {
 				.max()
 				.getAsInt();
 		return cars.stream()
-				.filter(car -> maxTripMeter == car.getTripMeter())
+				.filter(car -> car.isTripMeter(maxTripMeter))
 				.collect(toList());
 	}
 
