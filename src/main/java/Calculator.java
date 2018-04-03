@@ -10,16 +10,16 @@ public class Calculator {
         }
 
         if(operator.equals("+")){
-            return left + right;
+            return (left + right);
         }
         if(operator.equals("-")){
-            return left - right;
+            return (left - right);
         }
         if(operator.equals("*")){
-            return left*right;
+            return (left * right);
         }
         if(operator.equals("/")){
-            return left/right;
+            return (left / right);
         }
 
 
