@@ -4,95 +4,38 @@ import static org.assertj.core.api.Assertions.*;
 
 import org.junit.Before;
 import org.junit.Test;
-import racing.speed.Speed;
-import racing.speed.SpeedImpl;
 
 import java.util.Arrays;
 import java.util.List;
 
 public class RacingGameTest {
     RacingGame racingGame = null;
-    Speed speedMock;
 
     @Before
-    public void setUp() throws Exception {
-        racingGame = new RacingGame(new SpeedImpl() {
-            private int count = 0;
-            @Override
-            public int fullAccel() {
-                return ((count++) % 2) == 0 ? 3 : 4;
-            }
-        });
+    public void setUp() {
+        racingGame = new RacingGame(3);
     }
 
     @Test
-    public void 기본_생성자_테스트() {
+    public void constructorTest() {
         List<Integer> carPositions = Arrays.asList(1, 1, 1);
-
-        assertThat(racingGame.time).isEqualTo(5);
         assertThat(racingGame.carPositions).isEqualTo(carPositions);
     }
 
+    // 테스트시 테스트용 고정 데이터를 반환하는 테스트용 fullAccel로 치환후 테스트
     @Test
-    public void 차량수_횟수_지정_생성자_테스트() {
-        racingGame = new RacingGame(speedMock, 5, 3);
-
-        List<Integer> carPositions = Arrays.asList(1, 1, 1);
-
-        assertThat(racingGame.time).isEqualTo(5);
+    public void moveTest() {
+        racingGame.move();
+        List<Integer> carPositions = Arrays.asList(1, 2, 1);
         assertThat(racingGame.carPositions).isEqualTo(carPositions);
-    }
 
-    @Test
-    public void canIGo() {
-        assertThat(racingGame.canIGo()).isFalse();
-        assertThat(racingGame.canIGo()).isTrue();
-        assertThat(racingGame.canIGo()).isFalse();
-        assertThat(racingGame.canIGo()).isTrue();
-        assertThat(racingGame.canIGo()).isFalse();
-    }
+        racingGame.move();
+        carPositions = Arrays.asList(1, 3, 2);
+        assertThat(racingGame.carPositions).isEqualTo(carPositions);
 
-    @Test
-    public void forwardTest() {
-        racingGame.moveFoward(0);
-        assertThat(racingGame.carPositions.get(0)).isEqualTo(1);
-
-        racingGame.moveFoward(0);
-        assertThat(racingGame.carPositions.get(0)).isEqualTo(2);
-    }
-
-    @Test
-    public void racingTest() {
-        racingGame = new RacingGame(new SpeedImpl() {
-            private int count = 0;
-            @Override
-            public int fullAccel() {
-                return ((count++) % 2) == 0 ? 3 : 4;
-            }
-        }, 3, 2);
-
-        racingGame.racing();
-        assertThat(racingGame.carPositions.get(0)).isEqualTo(1);
-        assertThat(racingGame.carPositions.get(1)).isEqualTo(2);
-
-        racingGame.racing();
-        assertThat(racingGame.carPositions.get(0)).isEqualTo(1);
-        assertThat(racingGame.carPositions.get(1)).isEqualTo(3);
-    }
-
-    @Test
-    public void bbangTest() {
-        racingGame.bbang();
-        assertThat(racingGame.carPositions.get(0)).isEqualTo(3);
-        assertThat(racingGame.carPositions.get(1)).isEqualTo(4);
-        assertThat(racingGame.carPositions.get(2)).isEqualTo(3);
-    }
-
-    @Test
-    public void getDistanceTest() {
-        assertThat(racingGame.getDistance(1)).isEqualTo("-");
-        assertThat(racingGame.getDistance(4)).isEqualTo("----");
-        assertThat(racingGame.getDistance(6)).isEqualTo("------");
+        racingGame.move();
+        carPositions = Arrays.asList(2, 4, 2);
+        assertThat(racingGame.carPositions).isEqualTo(carPositions);
     }
 }
 
