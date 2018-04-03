@@ -1,4 +1,4 @@
-package com.codesquad.carracing;
+package com.codesquad.carracing.domain;
 
 import java.util.ArrayList;
 import java.util.List;

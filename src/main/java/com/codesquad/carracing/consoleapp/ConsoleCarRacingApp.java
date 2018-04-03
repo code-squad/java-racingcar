@@ -1,4 +1,4 @@
-package com.codesquad.carracingapp;
+package com.codesquad.carracing.consoleapp;
 
 public class ConsoleCarRacingApp {
     public static void main(final String[] args) {

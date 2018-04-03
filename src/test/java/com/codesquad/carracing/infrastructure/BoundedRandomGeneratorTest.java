@@ -1,6 +1,6 @@
-package com.codesquad.carracing;
+package com.codesquad.carracing.infrastructure;
 
-import com.codesquad.carracingapp.BoundedRandomGenerator;
+import com.codesquad.carracing.domain.RandomGenerator;
 import org.junit.Test;
 
 import java.util.Random;

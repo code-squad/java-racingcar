@@ -1,4 +1,4 @@
-package com.codesquad.carracing;
+package com.codesquad.carracing.domain;
 
 public class FakeRandomGenerator implements RandomGenerator {
     private final int value;
