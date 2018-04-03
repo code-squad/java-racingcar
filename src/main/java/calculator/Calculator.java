@@ -1,76 +1,69 @@
 package calculator;
 
+import calculator.operator.*;
+
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
 
 public class Calculator {
+    public int calc(String[] values) {
+        int result = Integer.parseInt(values[0]);
 
-    public String[] parse(String value) {
-        return value.split(" ");
-    }
-
-    public int calc(String value) {
-        int result = 0;
-        String operator = null;
-
-        String[] params = parse(value);
-
-        for (String param : params) {
-            if (isOperator(param)) {
-                operator = param;
-                continue;
-            }
-
-            if(operator == null) {
-                result = Integer.parseInt(param);
-                continue;
-            }
-
-            if(operator.equals("+")) {
-                result = add(result, Integer.parseInt(param));
-                operator = null;
-                continue;
-            }
-
-            if(operator.equals("-")) {
-                result = minus(result, Integer.parseInt(param));
-                operator = null;
-                continue;
-            }
-
-            if(operator.equals("*")) {
-                result =  multiplication(result, Integer.parseInt(param));
-                operator = null;
-                continue;
-            }
-
-            if(operator.equals("/")) {
-                result = division(result, Integer.parseInt(param));
-                operator = null;
-                continue;
-            }
+        for (int i = 1; i < values.length; i = i + 2) {
+            result = operate(values[i], result, Integer.parseInt(values[i + 1]));
         }
 
         return result;
     }
 
-    public boolean isOperator(String value) {
+    public static String[] parse(String value) {
+        return value.split(" ");
+    }
+
+    public static boolean isOperator(String value) {
         String[] operators = {"+", "-", "*", "/"};
         return Arrays.asList(operators).contains(value);
     }
 
-    public int add(int a, int b) {
-        return a + b;
+    public static boolean isBlank(String value) {
+        return value == null || value.trim().equals("");
     }
 
-    public int minus(int a, int b) {
-        return a - b;
+    public int operate(String operator, int a, int b) {
+        Map<String, Operator> map = new HashMap();
+        map.put("+", new Add());
+        map.put("-", new Minus());
+        map.put("*", new Multiplication());
+        map.put("/", new Division());
+
+        return map.get(operator).operate(a, b);
     }
 
-    public int multiplication(int a, int b) {
-        return a * b;
-    }
+    public static void main(String[] args) {
+        System.out.println("= 를 입력하시면 계산됩니다.");
 
-    public int division(int a, int b) {
-        return a / b;
+        String inputValue = "";
+
+        Scanner scanner = new Scanner(System.in);
+        while (true) {
+            String value = scanner.nextLine();
+
+            if (isBlank(value)) {
+                scanner.close();
+                throw new IllegalArgumentException();
+            }
+
+            if (value.equals("=")) {
+                Calculator calculator = new Calculator();
+                int result = calculator.calc(Calculator.parse(inputValue));
+                System.out.println(inputValue + " = " + result);
+                break;
+            }
+
+            inputValue = inputValue.concat(" ").concat(value);
+            System.out.println(inputValue);
+        }
     }
 }
