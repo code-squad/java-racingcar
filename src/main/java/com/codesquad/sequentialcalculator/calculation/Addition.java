@@ -1,4 +1,4 @@
-package com.codesquad.calculation;
+package com.codesquad.sequentialcalculator.calculation;
 
 public class Addition implements Calculable {
     @Override

@@ -1,6 +1,6 @@
-package com.codesquad.calculator;
+package com.codesquad.sequentialcalculator.calculator;
 
-import com.codesquad.calculation.*;
+import com.codesquad.sequentialcalculator.calculation.*;
 import spark.utils.StringUtils;
 
 import java.util.HashMap;

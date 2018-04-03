@@ -1,4 +1,4 @@
-package com.codesquad.calculation;
+package com.codesquad.sequentialcalculator.calculation;
 
 import org.junit.Before;
 import org.junit.Test;

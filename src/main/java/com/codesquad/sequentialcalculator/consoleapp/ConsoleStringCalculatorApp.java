@@ -1,6 +1,6 @@
-package com.codesquad.calculatorapp;
+package com.codesquad.sequentialcalculator.consoleapp;
 
-import com.codesquad.calculator.StringCalculator;
+import com.codesquad.sequentialcalculator.calculator.StringCalculator;
 
 import java.util.Scanner;
 
