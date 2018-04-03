@@ -7,15 +7,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class RacingGameTest {
 
     @Test(expected = IllegalArgumentException.class)
-    public void 생성자_파라미터_null체크_확인() {
-        RacingGameInfoDTO info = null;
-        RacingGame racingGame = new RacingGame(info);
-    }
-
-    @Test(expected = IllegalArgumentException.class)
     public void 생성자_파라미터_차갯수0체크_확인() {
-        RacingGameInfoDTO info = new RacingGameInfoDTO().setCountOfCar(0);
-        RacingGame racingGame = new RacingGame(info);
+        int countOfCar = 0;
+        RacingGame racingGame = new RacingGame(countOfCar);
     }
 
     @Test

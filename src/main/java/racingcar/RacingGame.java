@@ -5,21 +5,21 @@ import java.util.Random;
 public class RacingGame {
 
     private static final int CANNABLE_MOVE_NUMBER = 4;
-    private RacingGameInfoDTO racingGameInfo;
     private Random random;
     private int[] carPositions;
+    private int countOfCar;
 
-    public RacingGame(RacingGameInfoDTO racingGameInfo) {
-        if (racingGameInfo == null || racingGameInfo.getCountOfCar() == 0) {
+    public RacingGame(int countOfCar) {
+        if (countOfCar == 0) {
             throw new IllegalArgumentException();
         }
-        this.racingGameInfo = racingGameInfo;
+        this.countOfCar = countOfCar;
         random = new Random();
-        carPositions = new int[racingGameInfo.getCountOfCar()];
+        carPositions = new int[countOfCar];
     }
 
     public int[] moveCar() {
-        for (int carNumber = 0; carNumber < racingGameInfo.getCountOfCar(); carNumber++) {
+        for (int carNumber = 0; carNumber < countOfCar; carNumber++) {
             if (isMoving(getRandomValue())) {
                 carPositions[carNumber]++;
             }
