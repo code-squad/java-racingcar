@@ -10,16 +10,14 @@ public class OutputView {
 		System.out.println("\n실행결과");
 	}
 	
-	public static void showRoundOutput(int currentRoundNum, List<Car> cars) {
-		System.out.println("Round " + currentRoundNum);
-		
+	public static void showPlayOutput(List<Car> cars) {
 		cars.stream()
-			.forEach(car -> {
-						System.out.print(car.getName() + " : ");
-						IntStream.range(0, car.getTripMeter())
-								.forEach(t -> System.out.print("-"));
-						System.out.println();
-					});
+				.forEach(car -> {
+							System.out.print(car.getName() + " : ");
+							IntStream.range(0, car.getTripMeter())
+									.forEach(t -> System.out.print("-"));
+							System.out.println();
+						});
 		
 		System.out.println();
 	}

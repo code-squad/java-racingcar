@@ -9,8 +9,8 @@ import java.util.stream.Collectors;
 public class RacingGameTest {
     @Test
     public void winners_tripMeter값이_같은지_테스트() {
-        RacingGame racingGame = new RacingGame();
-        List<Car> resultCars = racingGame.play(3,5);
+        RacingGame racingGame = new RacingGame(new String[]{"test1", "test2", "test3"});
+        racingGame.play();
         List<Car> winners = racingGame.getWinner();
 
         // winners의 tripMeter값이 같은지 확인
@@ -22,8 +22,8 @@ public class RacingGameTest {
 
     @Test
     public void winners보다_tripMeter_이상인_car없는지_테스트() {
-        RacingGame racingGame = new RacingGame();
-        List<Car> resultCars = racingGame.play(3,5);
+        RacingGame racingGame = new RacingGame(new String[]{"test1", "test2", "test3"});
+        List<Car> resultCars = racingGame.play();
         List<Car> winners = racingGame.getWinner();
 
         int winnerTripMeter = winners.stream()
