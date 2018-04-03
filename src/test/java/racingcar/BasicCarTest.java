@@ -1,6 +1,7 @@
 package racingcar;
 
 import org.junit.Test;
+import racingcar.interfaces.Car;
 
 import java.util.Random;
 
@@ -13,21 +14,21 @@ public class BasicCarTest {
 
     @Test
     public void 기준점수_미만일때_이동() {
-        racingcar.interfaces.Car car = new BasicCar("sangsik");
+        Car car = new BasicCar("sangsik");
         Integer lessThanMoveCriteria = new Random().nextInt(4);
 
-        car.move(lessThanMoveCriteria);
+        Record record = car.move(lessThanMoveCriteria);
 
-        assertThat(car.getPosition()).isEqualTo(0);
+        assertThat(record.getPosition()).isEqualTo(0);
     }
 
     @Test
     public void 기준점수_이상일때_이동() {
-        racingcar.interfaces.Car car = new BasicCar("sangsik");
+        Car car = new BasicCar("sangsik");
         Integer overMoveCriteria = new Random().nextInt(4) + 6;
 
-        car.move(overMoveCriteria);
+        Record record = car.move(overMoveCriteria);
 
-        assertThat(car.getPosition()).isEqualTo(1);
+        assertThat(record.getPosition()).isEqualTo(1);
     }
 }

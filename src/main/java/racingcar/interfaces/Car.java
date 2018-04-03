@@ -7,8 +7,4 @@ import racingcar.Record;
  */
 public interface Car {
     Record move(Integer point);
-
-    Integer getPosition();
-
-    String getName();
 }

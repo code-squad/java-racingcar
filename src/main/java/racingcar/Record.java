@@ -9,12 +9,9 @@ public class Record implements Comparable<Record> {
     private String name;
     private Integer position;
 
-    public Record(Car car) {
-        if (car == null) {
-            throw new IllegalArgumentException("자동차 정보가 올바르지 않습니다.");
-        }
-        this.name = car.getName();
-        this.position = car.getPosition();
+    public Record(String name, Integer position) {
+        this.name = name;
+        this.position = position;
     }
 
     public String getName() {
@@ -25,12 +22,12 @@ public class Record implements Comparable<Record> {
         return this.position;
     }
 
-    public boolean is(String name) {
-        return this.name.equals(name);
+    public Boolean matchPosition(Record record) {
+        return this.position.equals(record.getPosition());
     }
 
     @Override
-    public int compareTo(Record o) {
-        return Integer.compare(this.position, o.position);
+    public int compareTo(Record record) {
+        return Integer.compare(this.position, record.position);
     }
 }

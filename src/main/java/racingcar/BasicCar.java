@@ -21,17 +21,7 @@ public class BasicCar implements Car {
         if (canMove(point)) {
             forward();
         }
-        return new Record(this);
-    }
-
-    @Override
-    public Integer getPosition() {
-        return this.position;
-    }
-
-    @Override
-    public String getName() {
-        return this.name;
+        return new Record(this.name, this.position);
     }
 
     private Boolean canMove(Integer point) {

@@ -2,6 +2,7 @@ package racingcar;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author sangsik.kim
@@ -26,16 +27,16 @@ public class GameResult {
     }
 
     public List<Record> getWinners() {
-        if (this.records == null) {
-            throw new RuntimeException("게임 기록이 존재하지 않습니다.");
-        }
-        Record maxRecord = this.records.stream().max(Record::compareTo).get();
-        List<Record> winners = new ArrayList<>();
-        for (Record record : records) {
-            if (record.getPosition() == maxRecord.getPosition()) {
-                winners.add(record);
-            }
-        }
-        return winners;
+        return this.records
+                .stream()
+                .filter(record -> record.matchPosition(getHighestRecord()))
+                .collect(Collectors.toList());
+    }
+
+    private Record getHighestRecord() {
+        return this.records
+                .stream()
+                .max(Record::compareTo)
+                .get();
     }
 }
