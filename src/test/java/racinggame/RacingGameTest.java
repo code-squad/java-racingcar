@@ -1,6 +1,10 @@
 package racinggame;
 
 import org.junit.Test;
+import racinggame.domain.Car;
+import racinggame.domain.RacingGame;
+import racinggame.view.DefaultRacingGameView;
+import racinggame.view.RacingGameView;
 
 import java.util.ArrayList;
 import java.util.List;

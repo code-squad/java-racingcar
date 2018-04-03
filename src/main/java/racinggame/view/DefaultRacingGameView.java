@@ -1,16 +1,17 @@
-package racinggame;
+package racinggame.view;
 
 import java.util.List;
 
 public class DefaultRacingGameView implements RacingGameView {
 
     private final static String OUTPUT_FORMAT = "-";
+    private final static String BLANK_FORMAT = " : ";
 
     @Override
-    public void printView(List<Integer> positions, List<String> names) {
-        for (Integer position : positions) {
-
-            printOne(position);
+    public void printView(List<String> names, List<Integer> positions) {
+        for (int i=0; i<names.size(); i++) {
+            printName(names.get(i));
+            printPositionByOne(positions.get(i));
         }
         nextLine();
     }
@@ -19,10 +20,15 @@ public class DefaultRacingGameView implements RacingGameView {
         System.out.print(name);
     }
 
-    private void printOne(Integer position) {
+    private void printPositionByOne(Integer position) {
+        printBlank();
         for (int i=0; i<position; i++)
             System.out.print(OUTPUT_FORMAT);
         nextLine();
+    }
+
+    private void printBlank() {
+        System.out.print(BLANK_FORMAT);
     }
 
     private void nextLine() {
