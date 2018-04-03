@@ -1,9 +1,15 @@
 package race;
 
+import race.domain.DefaultRaceRule;
+import race.domain.GameResult;
+import race.domain.RacingGame;
+import race.view.Drawer;
+import race.view.LineDrawer;
+
 import java.util.List;
 import java.util.Scanner;
 
-public class Main {
+public class ConsoleMain {
     public static void main(String[] args) {
         final String RACER_NAME_DELIMITER = ",";
         

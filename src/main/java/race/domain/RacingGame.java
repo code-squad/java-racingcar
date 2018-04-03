@@ -1,19 +1,19 @@
-package race;
+package race.domain;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
 
-class RacingGame {
+public class RacingGame {
     private List<RaceCar> raceCars;
     private int labs;
 
-    RacingGame(String[] names, int labs) {
+    public RacingGame(String[] names, int labs) {
         this.raceCars = setStartLine(names);
         this.labs = labs;
     }
 
-    void race(RaceRule rule) {
+    public void race(RaceRule rule) {
         for (int i = 0; i < labs; i++) {
             raceCars.forEach(c -> c.move(rule));
         }
