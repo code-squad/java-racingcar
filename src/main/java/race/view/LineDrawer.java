@@ -16,7 +16,7 @@ public class LineDrawer implements Drawer {
 
     private void drawEachRecordsAt(List<RaceCar> raceCars, int idx) {
         raceCars.forEach(c -> {
-            printName(c.getRacerName());
+            printName(c.getRacer());
             printStraightUntil(c.getRecorder().getRecord(idx));
             nextLine();
         });

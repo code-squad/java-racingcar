@@ -13,10 +13,10 @@ public class GameResult {
 
     public List<String> getWinnerNames() {
         return getWinners().stream()
-                .map(RaceCar::getRacerName)
+                .map(RaceCar::getRacer)
                 .collect(Collectors.toList());
     }
-
+    
     private List<RaceCar> getWinners() {
         return getNamesByResult(getBestResult());
     }

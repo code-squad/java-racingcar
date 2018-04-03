@@ -27,7 +27,7 @@ public class RaceCar {
         return recorder;
     }
 
-    public String getRacerName() {
+    public String getRacer() {
         return racer;
     }
 
