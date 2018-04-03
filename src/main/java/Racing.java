@@ -17,7 +17,6 @@ public class Racing {
     public void start(){
         for (int i =0; i<this.numCircuit; i++){
             update(move());
-            printStatus();
         }
     }
     public int[] move() {
@@ -36,6 +35,7 @@ public class Racing {
         }
         return 0;
     }
+    //TODO: 누적 결과도 저장
     public void update(int[] currentCircuit){
         int numCar = this.carPositions.length;
         for (int i=0; i<numCar; i++){
