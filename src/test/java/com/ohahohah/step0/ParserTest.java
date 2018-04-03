@@ -13,16 +13,12 @@ public class ParserTest {
   Parser parser;
 
   @Before
-  public void setUp() throws Exception {
+  public void setUp() {
     this.parser = new Parser();
   }
 
   @After
-  public void tearDown() throws Exception {
-  }
-
-  @Test
-  public void parseStr() {
+  public void tearDown() {
   }
 
   @Test
@@ -62,7 +58,7 @@ public class ParserTest {
   @Test(expected = IllegalArgumentException.class)
   public void 입력값이_정해진_형식이_아닐_경우_IllegalArgument_exception_던짐() {
     //정해진 형식 : 문자열의 처음과 끝은 숫자여야함. e.g.  3 * 3 / 2 - 5
-    parser.checkParamsOrder("3 * 3 - - ");
+    parser.checkParamsOrder("3 * 3 - 5 6 ");
 
   }
 }
