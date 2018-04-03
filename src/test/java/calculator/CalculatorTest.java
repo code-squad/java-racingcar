@@ -23,8 +23,6 @@ public class CalculatorTest {
     public void addTest(){
         int result = cal.add(10, 10);
         assertEquals(20, result, 0);
-        //int result = Calculator.add(s:"1+2");
-        //assertThat(result).isEqualTo(3);
     }
 
     @Test
