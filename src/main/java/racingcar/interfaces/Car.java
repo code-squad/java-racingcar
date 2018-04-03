@@ -1,12 +1,10 @@
 package racingcar.interfaces;
 
+import racingcar.Record;
+
 /**
  * @author sangsik.kim
  */
 public interface Car {
-    void initialize();
-
-    void move(MoveScoreMaker moveScoreMaker);
-
-    Integer getCurrentPosition();
+    Record move(Integer point);
 }

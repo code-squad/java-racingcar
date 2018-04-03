@@ -1,13 +1,13 @@
 package racingcar;
 
-import racingcar.interfaces.MoveScoreMaker;
+import racingcar.interfaces.PointMaker;
 
 import java.util.Random;
 
 /**
  * @author sangsik.kim
  */
-public class RandomMoveScoreMaker implements MoveScoreMaker {
+public class RandomPointMaker implements PointMaker {
     private final static Integer LIMIT_SCORE = 10;
 
     @Override

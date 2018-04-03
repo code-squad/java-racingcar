@@ -1,28 +1,21 @@
 package racingcar;
 
 import org.junit.Test;
-import racingcar.interfaces.Car;
 
 import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * @author sangsik.kim
  */
 public class RacingGameTest {
-
     @Test
-    public void 레이스_실행_기록확인() {
-        List<Car> cars = Arrays.asList(new BasicCar(), new BasicCar(), new BasicCar());
+    public void 실행후_게임결과_반환확인() {
+        RacingGame racingGame = new RacingGame(Arrays.asList("sangsik, sion, pobi"));
 
-        RacingGame racingGame = new RacingGame(cars);
-        racingGame.start(5);
+        GameResult gameResult = racingGame.run();
 
-        Map<Integer, List<Integer>> records = racingGame.getGameRecord().loadAll();
-
-        for (Integer key : records.keySet()) {
-            System.out.println(key + "회차 : " + records.get(key));
-        }
+        assertThat(gameResult).isNotNull();
     }
 }
