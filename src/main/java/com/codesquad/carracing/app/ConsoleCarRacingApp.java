@@ -1,7 +1,12 @@
 package com.codesquad.carracing.app;
 
+import com.codesquad.carracing.ui.ConsoleWriter;
+import com.codesquad.carracing.ui.InputView;
+
 public class ConsoleCarRacingApp {
     public static void main(final String[] args) {
+        final InputView input = ConsoleCarRacingApp.createInputView();
+        input.inputNumberOfCars("자동차 대수는 몇 대 인가요?");
 //        final Scanner scanner = new Scanner(System.in);
 //
 //        System.out.println("자동차 대수는 몇 대 인가요?");
@@ -25,6 +30,11 @@ public class ConsoleCarRacingApp {
 //            ConsoleCarRacingApp.printCars(cars);
 //            carRacing.nextTry(strategy);
 //        }
+    }
+
+    public static InputView createInputView() {
+        final ConsoleWriter writer = new ConsoleWriter();
+        return new InputView(writer);
     }
 
 //    private static void printCars(final List<Car> cars) {
