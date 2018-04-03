@@ -7,10 +7,16 @@ public class DefaultRacingGameView implements RacingGameView {
     private final static String OUTPUT_FORMAT = "-";
 
     @Override
-    public void printView(List<Integer> positions) {
-        for (Integer position : positions)
+    public void printView(List<Integer> positions, List<String> names) {
+        for (Integer position : positions) {
+
             printOne(position);
+        }
         nextLine();
+    }
+
+    private void printName(String name) {
+        System.out.print(name);
     }
 
     private void printOne(Integer position) {

@@ -4,6 +4,6 @@ import java.util.List;
 
 public interface RacingGameView {
 
-    void printView(List<Integer> positions);
+    void printView(List<Integer> positions, List<String> names);
 
 }
