@@ -2,6 +2,8 @@ package com.codesquad.carracing;
 
 import org.junit.Test;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class CarRacingTest {
@@ -22,17 +24,17 @@ public class CarRacingTest {
     }
 
     @Test
-    public void 레이싱_자동차_1대_조회() {
+    public void 레이싱_자동차_1대_생성_() {
         final CarRacing carRacing = new CarRacing(1, 1);
-        final Car[] cars = carRacing.getCars();
-        assertThat(cars.length).isEqualTo(1);
+        final List<Car> cars = carRacing.getCars();
+        assertThat(cars.size()).isEqualTo(1);
     }
 
     @Test
-    public void 레이싱_자동차_10대_조회() {
+    public void 레이싱_자동차_10대_생성() {
         final CarRacing carRacing = new CarRacing(10, 1);
-        final Car[] cars = carRacing.getCars();
-        assertThat(cars.length).isEqualTo(10);
+        final List<Car> cars = carRacing.getCars();
+        assertThat(cars.size()).isEqualTo(10);
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -56,8 +58,8 @@ public class CarRacingTest {
         final RandomGenerator generator = new FakeRandomGenerator(4);
         final MoveStrategy strategy = new RandomMoveStrategy(generator);
         carRacing.nextTry(strategy);
-        final Car[] cars = carRacing.getCars();
-        assertThat(cars[0].getPosition()).isEqualTo(1);
+        final List<Car> cars = carRacing.getCars();
+        assertThat(cars.get(0).getPosition()).isEqualTo(1);
     }
 
     @Test
@@ -66,8 +68,8 @@ public class CarRacingTest {
         final RandomGenerator generator = new FakeRandomGenerator(3);
         final MoveStrategy strategy = new RandomMoveStrategy(generator);
         carRacing.nextTry(strategy);
-        final Car[] cars = carRacing.getCars();
-        assertThat(cars[0].getPosition()).isEqualTo(0);
+        final List<Car> cars = carRacing.getCars();
+        assertThat(cars.get(0).getPosition()).isEqualTo(0);
     }
 
     @Test
@@ -77,7 +79,7 @@ public class CarRacingTest {
         final MoveStrategy strategy = new RandomMoveStrategy(generator);
         carRacing.nextTry(strategy);
         carRacing.nextTry(strategy);
-        final Car[] cars = carRacing.getCars();
-        assertThat(cars[1].getPosition()).isEqualTo(2);
+        final List<Car> cars = carRacing.getCars();
+        assertThat(cars.get(1).getPosition()).isEqualTo(2);
     }
 }

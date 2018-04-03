@@ -1,8 +1,11 @@
 package com.codesquad.carracing;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class CarRacing {
 
-    final Car[] cars;
+    final List<Car> cars;
     final int numberOfTries;
 
     public CarRacing(final int numberOfCars, final int numberOfTries) {
@@ -14,15 +17,15 @@ public class CarRacing {
             throw new IllegalArgumentException("1번 이상의 시도 횟수가 필요합니다.");
         }
 
-        cars = new Car[numberOfCars];
+        cars = new ArrayList<>();
         for (int i = 0; i < numberOfCars; i++) {
-            cars[i] = new Car();
+            cars.add(new Car());
         }
 
         this.numberOfTries = numberOfTries;
     }
 
-    public Car[] getCars() {
+    public List<Car> getCars() {
         return cars;
     }
 
