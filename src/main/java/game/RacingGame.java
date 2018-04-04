@@ -6,60 +6,37 @@ import java.util.Random;
 
 public class RacingGame {
 
-    private int time;
     private List<Car> cars;
-    private GameRule gameRule;
-    private View view;
 
-    public static RacingGame newInstance() {
-        RacingGame racingGame = new RacingGame();
-        racingGame.view = View.newInstance();
-        racingGame.time = racingGame.view.inputTime();
-        racingGame.cars = racingGame.initCars(racingGame.view.inputCarCount());
-        racingGame.gameRule = new GameRule();
-        return racingGame;
-    }
-
-    public static RacingGame of(int time, int carCount) {
-        RacingGame racingGame = new RacingGame();
-        racingGame.view = View.newInstance();
-        racingGame.time = time;
-        racingGame.cars = racingGame.initCars(carCount);
-        racingGame.gameRule = new GameRule();
-        return racingGame;
+    public RacingGame(int carNo) {
+        this.cars = initCars(carNo);
     }
 
     List<Car> initCars(int carCount) {
         List<Car> cars = new ArrayList<>();
         for (int i = 0; i < carCount; i++) {
-            cars.add(Car.of(GameRule.START_POSITION));
+            cars.add(new Car(GameRule.START_POSITION));
         }
         return cars;
     }
 
-    public void start() {
-        System.out.println("\n실행 결과");
-        play();
-    }
-
-    private void play() {
-        for (int i = 0; i < time; i++) {
-            round();
-            view.print(cars);
-        }
-    }
-
-    private void round() {
+    public GameResult move(int tryNo) {
         final Random random = new Random();
+        List<List<Car>> histories = new ArrayList<>();
 
-        cars.forEach(car -> {
-            int randomValue = random.nextInt(GameRule.MAX_RANDOM_VALUE);
+        for (int i = 0; i < tryNo; i++) {
+            List<Car> history = new ArrayList<>();
 
-            if (gameRule.canMove(randomValue)) {
-                car.move();
-            }
-        });
+            cars.forEach(car -> {
+                int randomValue = random.nextInt(GameRule.MAX_RANDOM_VALUE);
+
+                car.move(randomValue);
+
+                history.add(new Car(car));
+            });
+
+            histories.add(history);
+        }
+        return new GameResult(histories);
     }
-
-    private RacingGame() {}
 }

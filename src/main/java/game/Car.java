@@ -6,20 +6,22 @@ public class Car {
 
     private Integer position;
 
-    public static Car newInstance() {
-        Car car = new Car();
-        car.position = 0;
-        return car;
+    public Car() {
+        this.position = 0;
     }
 
-    public static Car of(int position) {
-        Car car = new Car();
-        car.position = position;
-        return car;
+    public Car(int position) {
+        this.position = position;
     }
 
-    public void move() {
-        this.position++;
+    public Car(Car car) {
+        this.position = car.getPosition();
+    }
+
+    public void move(int randomValue) {
+        if (GameRule.canMove(randomValue)) {
+            this.position++;
+        }
     }
 
     public Integer getPosition() {
@@ -33,6 +35,4 @@ public class Car {
         Car car = (Car) o;
         return Objects.equals(position, car.position);
     }
-
-    private Car() {}
 }

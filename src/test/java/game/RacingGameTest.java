@@ -13,20 +13,18 @@ public class RacingGameTest {
 
     @Before
     public void setUp() {
-        final int time = 3;
-        final int carCount = 5;
-
-        racingGame = RacingGame.of(time, carCount);
+        final int carNo = 5;
+        racingGame = new RacingGame(carNo);
     }
 
     @Test
     public void 자동차_배열_초기화() {
         List<Car> actual = racingGame.initCars(5);
 
-        assertThat(actual).contains(Car.newInstance(),
-                                    Car.newInstance(),
-                                    Car.newInstance(),
-                                    Car.newInstance(),
-                                    Car.newInstance());
+        assertThat(actual).contains(new Car(),
+                                    new Car(),
+                                    new Car(),
+                                    new Car(),
+                                    new Car());
     }
 }

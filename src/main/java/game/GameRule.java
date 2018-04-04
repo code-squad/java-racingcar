@@ -7,7 +7,7 @@ public class GameRule {
 
     private static final int MOVE_CONDITION = 4;
 
-    public boolean canMove(int randomValue) {
+    public static boolean canMove(int randomValue) {
         return MOVE_CONDITION <= randomValue && randomValue < MAX_RANDOM_VALUE;
     }
 }
