@@ -19,7 +19,7 @@ public class PrinterTest {
     public void 한대출력() {
         Car car = new Car();
         car.setPosition(4);
-        assertThat(Printer.print(car) == 4);
+        assertThat(Printer.printCar(car) == 4);
     }
 
     @Test
@@ -31,8 +31,17 @@ public class PrinterTest {
         assertThat(Printer.printAll(cars) == 8);
     }
 
+    @Test
+    public void 우승자출력() {
+        ArrayList<Car> winnerCars = new ArrayList<>();
+        winnerCars.add(new Car("choi"));
+        winnerCars.add(new Car("kim"));
+        assertThat(Printer.printWinner(winnerCars) == 2);
+    }
+
     @After
     public void tearDown() throws Exception {
         System.out.println("tearDown");
     }
 }
+
