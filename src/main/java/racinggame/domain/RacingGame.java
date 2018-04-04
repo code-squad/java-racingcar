@@ -1,7 +1,5 @@
 package racinggame.domain;
 
-import racinggame.view.RacingGameView;
-
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -10,48 +8,25 @@ import static java.util.Objects.isNull;
 public class RacingGame {
 
     private final static int MAX_LIMIT = 9;
-    private List<Car> carList;
-    private RacingGameView racingGameView;
+    private List<Car> cars;
 
-    public RacingGame(List<Car> carList, RacingGameView racingGameView) {
-        if (isNull(carList) || carList.isEmpty() || isNull(racingGameView))
+    public RacingGame(List<String> carNames) {
+        if (isNull(carNames) || carNames.isEmpty())
             throw new IllegalArgumentException();
 
-        this.carList = carList;
-        this.racingGameView = racingGameView;
+        this.cars = carNames.stream().map(Car::new).collect(Collectors.toList());
     }
 
     public void start() {
-        carList.forEach(this::move);
-        printRacingResult();
+        cars.forEach(this::move);
     }
 
     private void move(Car car) {
         car.move(getRandomInt());
     }
 
-    public List<String> getWinnerNames() {
-        int maxValue = carList.stream()
-                .max(Comparator.comparing(Car::getPosition))
-                .get()
-                .getPosition();
-
-        return carList.stream()
-                .filter(car -> car.getPosition() == maxValue)
-                .map(Car::getName)
-                .collect(Collectors.toList());
-    }
-
-    private void printRacingResult() {
-        List<String> carNames = new ArrayList<>();
-        List<Integer> carPositions = new ArrayList<>();
-
-        carList.forEach(car-> {
-            carNames.add(car.getName());
-            carPositions.add(car.getPosition());
-        });
-
-        racingGameView.printView(carNames, carPositions);
+    public List<Car> getCars() {
+        return this.cars;
     }
 
     private int getRandomInt() {

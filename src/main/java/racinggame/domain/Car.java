@@ -20,9 +20,9 @@ public class Car {
         return position >= MOVE_CRITERIA;
     }
 
-    int getPosition() {
+    public int getPosition() {
         return this.position;
     }
 
-    String getName() { return this.name; }
+    public String getName() { return this.name; }
 }
