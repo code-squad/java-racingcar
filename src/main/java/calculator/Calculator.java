@@ -1,85 +1,48 @@
 package calculator;
 
-import java.util.List;
-
 public class Calculator {
 
-    public int calculate(String value) {
-        String[] sepArr = null;
-        try {
-            sepArr = splitValue(checkIllegalValue(value));
-
-        } catch(IllegalArgumentException ie) {
-            ie.printStackTrace();
-            return 0;
+    public static int calculate(String value) {
+        if (value == null || "".equals(value)) {
+            throw new IllegalArgumentException();
         }
 
-        return cal2(sepArr);
+        String[] expressionValue = splitExpressionValue(value);
+
+        return calculateExpression(expressionValue);
     }
 
-    private String[] splitValue(String value) {
+    private static String[] splitExpressionValue(String value) {
         return value.split(" ");
     }
 
-    private int cal2(String[] arr) {
-
-        int num = Integer.valueOf(arr[0]);
-
-        for(int i = 2; i<arr.length+1; i++) {
-
+    private static int calculateExpression(String[] expressionValue) {
+        int result = Integer.valueOf(expressionValue[0]);
+        for (int i = 1; i < expressionValue.length; i += 2) {
+            result = selectOperation(expressionValue[i], result, Integer.valueOf(expressionValue[i + 1]));
         }
-
-        return num;
+        return result;
     }
 
-    private int cal(String op, int a, int b) {
-        if(op == "+") {
-            return add(a,b);
-        }
-        if(op == "-") {
-            return sub(a,b);
-        }
-        if(op == "*") {
-            return multiply(a,b);
-        }
-        if(op == "/") {
-            return divide(a,b);
-        }
-
-        return 0;
+    private static int selectOperation(String operator, int a, int b) {
+        return operator.equals("+") ? add(a, b) : operator.equals("-")
+                ? sub(a, b) : operator.equals("*")
+                ? multiply(a, b) : divide(a, b);
     }
 
-    private String checkIllegalValue(String value) throws IllegalArgumentException{
-        checkIsNull(value);
-        checkIsEmptyString(value);
-        return value;
+    private static int add(int a, int b) {
+        return a + b;
     }
 
-    private void checkIsNull(String value) throws IllegalArgumentException {
-        if (value == null) {
-            new IllegalArgumentException();
-        }
+    private static int sub(int a, int b) {
+        return a - b;
     }
 
-    private void checkIsEmptyString(String value) throws IllegalArgumentException {
-        if(value.trim() == "") {
-            new IllegalArgumentException();
-        }
+    private static int multiply(int a, int b) {
+        return a * b;
     }
 
-    private int add(int a, int b) {
-        return a+b;
-    }
-
-    private int sub(int a, int b) {
-        return a+b;
-    }
-
-    private int multiply(int a, int b) {
-        return a+b;
-    }
-
-    private int divide(int a, int b) {
-        return a+b;
+    private static int divide(int a, int b) {
+        return a / b;
     }
 }
