@@ -1,33 +1,66 @@
 package calculator;
 
-import org.junit.jupiter.api.Test;
+import java.util.HashMap;
+import java.util.Scanner;
 
 class Calculator{
-    public double calculate(String inputStr){
+    public double calculate(String inputStr) {
          //일단 스페이스바로 나눠져있다고 보자.
-        String arrInputstr [] = inputStr.split(" " );
-        double resultNumber = Double.parseDouble(arrInputstr[0]);
 
-        for(int i=1; i<arrInputstr.length; i += 2 ) {
+        checkInputStr(inputStr);
 
+        String arrInputStr [] = inputStr.split(" " );
+
+        double resultNumber = Double.parseDouble(arrInputStr[0]);
+        for(int i=1; i<arrInputStr.length; i += 2 ) {
             double inputNumber1 = resultNumber;
-            double inputNumber2 = Double.parseDouble(arrInputstr[i+1]);
-            switch (arrInputstr[i]) {
-                case "+":
-                    resultNumber = inputNumber1 + inputNumber2;
-                    break;
-                case "-":
-                    resultNumber = inputNumber1 - inputNumber2;
-                    break;
-                case "*":
-                    resultNumber = inputNumber1 * inputNumber2;
-                    break;
-                case "/":
-                    resultNumber = inputNumber1 / inputNumber2;
-                    break;
-            }
+            double inputNumber2 = Double.parseDouble(arrInputStr[i+1]);
+            resultNumber = doArithmetic(arrInputStr[i], resultNumber, inputNumber1, inputNumber2);
         }
 
         return resultNumber;
    }
+
+    private void checkInputStr(String inputStr) {
+        checkNull(inputStr);
+        String arrInputStr [] = inputStr.split(" " );
+        for(int i=0; i<arrInputStr.length; i++){
+            checkNull(arrInputStr[i]);
+        }
+    }
+
+    private void checkNull(String s) {
+        if(s == null || "".equals(s) || s.isEmpty()){
+            throw new IllegalArgumentException();
+        }
+    }
+
+
+    public static void main(String args[]){
+       Scanner scanner = new Scanner(System.in);
+       while(true) {
+           String value = scanner.nextLine();
+           Calculator calculator = new Calculator();
+           System.out.println( "result : " + calculator.calculate(value) );
+       }
+   }
+
+    private double doArithmetic(String operator, double resultNumber, double inputNumber1, double inputNumber2) {
+        HashMap<String, ArithemeticInterface> calculatorMap = getArithemeticInterfaceHashMap();
+
+        ArithemeticInterface arithmeticInterface;
+        arithmeticInterface = calculatorMap.get(operator);
+        return arithmeticInterface.calculate(inputNumber1, inputNumber2);
+
+    }
+
+    private HashMap<String, ArithemeticInterface> getArithemeticInterfaceHashMap() {
+        HashMap<String, ArithemeticInterface> calculatorMap = new HashMap<String, ArithemeticInterface>();
+
+        calculatorMap.put("+", new ArithmeticAdd());
+        calculatorMap.put("-", new ArithmeticMinus());
+        calculatorMap.put("*", new ArithmeticMultiple());
+        calculatorMap.put("/", new ArithmeticDivide());
+        return calculatorMap;
+    }
 }
