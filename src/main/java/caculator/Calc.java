@@ -46,11 +46,11 @@ public class Calc {
             int temp_num = Integer.parseInt(temp.get(0));
             temp.remove(0);
             return calc(temp, assertSymbol(symbol, acc, temp_num) , "");
-        } else {
-            String temp_symbol = temp.get(0);
-            temp.remove(0);
-            return calc(temp, acc, temp_symbol);
         }
+
+        String temp_symbol = temp.get(0);
+        temp.remove(0);
+        return calc(temp, acc, temp_symbol);
     }
 
     public static int input(String input) {

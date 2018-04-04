@@ -1,8 +1,10 @@
 package racing;
 
 
-import java.util.HashMap;
+
+import java.util.*;
 import java.util.Random;
+import java.util.Scanner;
 
 /**
  * 기능 요구사항
@@ -21,10 +23,12 @@ import java.util.Random;
 
 public class Racing {
 
-    public static void main(String[] args) {
-        //input();
+    static long start, end;
 
-        genDash(3);
+    public static void main(String[] args) {
+
+        input();
+
     }
 
     public static void input() {
@@ -33,18 +37,22 @@ public class Racing {
         String howMuchTimes;
 
         System.out.println("자동차 대수는 몇 대 인가요?");
-        howManyCars = System.console().readLine();
+        Scanner scanner = new Scanner(System.in);
+        howManyCars = scanner.nextLine();
 
         System.out.println("시도할 회수는 몇 회 인가요?");
-        howMuchTimes = System.console().readLine();
+        scanner = new Scanner(System.in);
+        howMuchTimes = scanner.nextLine();
+
+        System.out.println("");
+        System.out.println("");
 
         try {
-            if (Integer.parseInt(howManyCars) > 0 && Integer.parseInt(howMuchTimes) > 0) {
+            if (Integer.parseInt(howManyCars) > 0 && Integer.parseInt(howMuchTimes) > 0)
                 startRace(Integer.parseInt(howManyCars), Integer.parseInt(howMuchTimes));
-            }
         } catch (NumberFormatException e) {
             System.out.println("숫자만 입력해 주세요!");
-            return;
+            input();
         }
 
     }
@@ -55,48 +63,50 @@ public class Racing {
 
     }
 
-    private static void drawCars(int cars, int times, HashMap<Integer, Integer> acc) {
+    private static void drawCars(int cars, int times, ArrayList<Integer> acc) {
+
+        if (times == 0) {
+            return;
+        }
 
         if (acc == null) {
-            acc = new HashMap<>();
-            for (int i = 0; i < cars; i++) {
-                acc.put(i, 1);
-            }
+            acc = new ArrayList<>();
+
+            for (int i = 0; i < cars; i++)
+                acc.add(i, 0);
         }
 
-        if (times != 0) {
-            System.out.println("");
-            System.out.println("");
+        for (int i=0; i<acc.size(); i++) {
+            if (assertCanGo())
+                acc.set(i, acc.get(i) + 1);
 
-
-            for (int i = 0; i < cars; i++) {
-                drawSingleCar(acc.get(i));
-            }
-
-        }
-    }
-
-    private static void drawSingleCar(int position) {
-        System.out.println(genDash(position));
-    }
-
-    public static String genDash(int position) {
-
-        StringBuilder dash = new StringBuilder();
-        while (position-- == 0) {
-            dash.append("-");
+            drawDash(acc.get(i));
         }
 
-        return dash.toString();
-        //return genRandNum() >= 4 ? dash += "-" : dash;
+        System.out.println("");
+        System.out.println("");
+
+        drawCars(cars, --times, acc);
 
     }
 
 
-    public static int genRandNum() {
-        return new Random().nextInt(9);
+    public static boolean assertCanGo() {
+        return generateRandomNumber(9) >= 4;
     }
 
+    public static void drawDash(int howMany) {
+        System.out.println(generateDash(howMany, new StringBuilder()));
+    }
 
+    public static String generateDash(int howMany, StringBuilder builder) {
+        if (howMany == 0) return builder.toString();
+        builder.append("-");
+        return generateDash(--howMany, builder);
+    }
+
+    public static int generateRandomNumber(int bound) {
+        return new Random().nextInt(bound);
+    }
 
 }
