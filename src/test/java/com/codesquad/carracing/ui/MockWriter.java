@@ -2,14 +2,14 @@ package com.codesquad.carracing.ui;
 
 public class MockWriter implements Writer {
 
-    private String willOutMessage;
+    private String willOut;
 
     @Override
-    public void writeLine(final String message) {
-        this.willOutMessage = message;
+    public void writeLine(final String out) {
+        this.willOut = out;
     }
 
-    public String getWillOutMessage() {
-        return this.willOutMessage;
+    public String getWillOut() {
+        return this.willOut;
     }
 }

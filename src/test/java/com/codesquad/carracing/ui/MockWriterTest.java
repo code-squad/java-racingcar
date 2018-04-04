@@ -6,24 +6,24 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class MockWriterTest {
     @Test
-    public void 메시지_출력_목_기능() {
+    public void 문자열_출력_목_기능() {
         final MockWriter writer = new MockWriter();
-        final String someMessage = "안녕";
+        final String expected = "안녕";
 
-        writer.writeLine(someMessage);
+        writer.writeLine(expected);
 
-        final String willOutMessage = writer.getWillOutMessage();
-        assertThat(willOutMessage).isEqualTo(someMessage);
+        final String willOut = writer.getWillOut();
+        assertThat(willOut).isEqualTo(expected);
     }
 
     @Test
-    public void 다른메시지_출력_목_기능() {
+    public void 다른문자열_출력_목_기능() {
         final MockWriter writer = new MockWriter();
-        final String otherMessage = "바이";
+        final String expected = "바이";
 
-        writer.writeLine(otherMessage);
+        writer.writeLine(expected);
 
-        final String willOutMessage = writer.getWillOutMessage();
-        assertThat(willOutMessage).isEqualTo(otherMessage);
+        final String willOut = writer.getWillOut();
+        assertThat(willOut).isEqualTo(expected);
     }
 }

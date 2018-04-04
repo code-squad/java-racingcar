@@ -1,7 +1,6 @@
 package com.codesquad.carracing.app;
 
-import com.codesquad.carracing.ui.ConsoleWriter;
-import com.codesquad.carracing.ui.InputView;
+import com.codesquad.carracing.ui.*;
 
 public class ConsoleCarRacingApp {
     public static void main(final String[] args) {
@@ -33,8 +32,9 @@ public class ConsoleCarRacingApp {
     }
 
     public static InputView createInputView() {
-        final ConsoleWriter writer = new ConsoleWriter();
-        return new InputView(writer);
+        final Writer writer = new ConsoleWriter();
+        final Reader reader = new ConsoleReader();
+        return new InputView(writer, reader);
     }
 
 //    private static void printCars(final List<Car> cars) {
