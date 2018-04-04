@@ -4,7 +4,6 @@ package racing;
 
 import java.util.*;
 import java.util.Random;
-import java.util.Scanner;
 
 /**
  * 기능 요구사항
@@ -23,86 +22,43 @@ import java.util.Scanner;
 
 public class Racing {
 
-    static long start, end;
+    public static List<List<Integer>> startRace(int cars, int times) {
 
-    public static void main(String[] args) {
-
-        input();
+        return getGameResult(cars, times, null, null);
 
     }
 
-    public static void input() {
-
-        String howManyCars;
-        String howMuchTimes;
-
-        System.out.println("자동차 대수는 몇 대 인가요?");
-        Scanner scanner = new Scanner(System.in);
-        howManyCars = scanner.nextLine();
-
-        System.out.println("시도할 회수는 몇 회 인가요?");
-        scanner = new Scanner(System.in);
-        howMuchTimes = scanner.nextLine();
-
-        System.out.println("");
-        System.out.println("");
-
-        try {
-            if (Integer.parseInt(howManyCars) > 0 && Integer.parseInt(howMuchTimes) > 0)
-                startRace(Integer.parseInt(howManyCars), Integer.parseInt(howMuchTimes));
-        } catch (NumberFormatException e) {
-            System.out.println("숫자만 입력해 주세요!");
-            input();
-        }
-
-    }
-
-    private static void startRace(int cars, int times) {
-
-        drawCars(cars, times, null);
-
-    }
-
-    private static void drawCars(int cars, int times, ArrayList<Integer> acc) {
+    private static List<List<Integer>> getGameResult(int cars, int times, List<Integer> acc, List<List<Integer>> result) {
 
         if (times == 0) {
-            return;
+            return result;
         }
+
+        if (result == null)
+            result = new ArrayList<>();
 
         if (acc == null) {
             acc = new ArrayList<>();
 
             for (int i = 0; i < cars; i++)
                 acc.add(i, 0);
+
         }
 
         for (int i=0; i<acc.size(); i++) {
             if (assertCanGo())
                 acc.set(i, acc.get(i) + 1);
-
-            drawDash(acc.get(i));
         }
 
-        System.out.println("");
-        System.out.println("");
+        result.add(new ArrayList<>(acc));
 
-        drawCars(cars, --times, acc);
+        return getGameResult(cars, --times, acc, result);
 
     }
 
 
     public static boolean assertCanGo() {
         return generateRandomNumber(9) >= 4;
-    }
-
-    public static void drawDash(int howMany) {
-        System.out.println(generateDash(howMany, new StringBuilder()));
-    }
-
-    public static String generateDash(int howMany, StringBuilder builder) {
-        if (howMany == 0) return builder.toString();
-        builder.append("-");
-        return generateDash(--howMany, builder);
     }
 
     public static int generateRandomNumber(int bound) {
