@@ -1,26 +1,27 @@
 package racingcar;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class PlayRounds {
-    private ArrayList<PlayerCar> payerCarArrayList;
+    private List<PlayerCar> playerCars;
 
     PlayRounds(int carCount){
-        payerCarArrayList = new ArrayList<PlayerCar>();
+        playerCars = new ArrayList<>();
         for(int i=0; i < carCount; i++){
-            payerCarArrayList.add(new PlayerCar());
+            playerCars.add(new PlayerCar());
         }
     }
 
     public void playSingleRounds() {
         Random random = new Random();
-        for (int i = 0; i < payerCarArrayList.size(); i++) {
-            payerCarArrayList.get(i).moveCar(random.nextInt(10));
+        for (PlayerCar playerCar : playerCars) {
+            playerCar.moveCar(random.nextInt(10));
         }
     }
 
-    public ArrayList<PlayerCar> getPayerCarArrayList() {
-        return payerCarArrayList;
+    public List<PlayerCar> getPlayerCars() {
+        return playerCars;
     }
 }

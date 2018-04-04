@@ -1,11 +1,11 @@
 package racingcar;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class ResultView {
-    public void printRoundState(ArrayList<PlayerCar> payerCarArrayList){
-        for(int i=0; i<payerCarArrayList.size(); i++){
-            payerCarArrayList.get(i).printCarPosition();
+    public void printRoundState(List<PlayerCar> playerCars){
+        for(PlayerCar playerCar : playerCars){
+            System.out.println( playerCar.getCarPosition() );
         }
     }
 
