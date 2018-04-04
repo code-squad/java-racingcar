@@ -1,38 +1,49 @@
 package racing;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import racing.player.Car;
+import racing.result.GameResult;
+import racing.result.MoveResult;
+
+import java.util.*;
 
 public class RacingGame {
     private static final int SUFFICIENT_SPEED = 4;
 
-    protected List<Integer> carPositions;
+    protected List<Car> cars;
 
-    public RacingGame(int numberOfCar) {
-        ready(numberOfCar);
+    public RacingGame(String carNames) {
+        ready(carNames);
     }
 
-    private void ready(int numberOfCar) {
-        this.carPositions = new ArrayList<>();
-        for (; numberOfCar > 0; numberOfCar--) {
-            this.carPositions.add(1);
+    private void ready(String carNames) {
+        cars = new ArrayList<>();
+        for(String name: carNames.split(",")) {
+            cars.add(new Car(name));
         }
     }
 
     public MoveResult move() {
-        for (int i = 0; i < carPositions.size(); i++) {
-            moveFoward(i);
+        for(Car car: cars) {
+            moveFoward(car);
         }
+
         MoveResult result = new MoveResult();
-        result.setMoveResult(this.carPositions);
+        result.setMoveResult(this.cars);
         return result;
     }
 
-    private void moveFoward(int idx) {
+    private void moveFoward(Car car) {
         if (isSufficientSpeed()) {
-            carPositions.set(idx, carPositions.get(idx) + 1);
+            car.setPosition(++car.position);
         }
+    }
+
+    public GameResult finish() {
+        GameResult gameResult = new GameResult();
+        for(Car car: cars) {
+            gameResult.ranking(car);
+        }
+        return gameResult;
     }
 
     protected static boolean isSufficientSpeed() {
@@ -49,6 +60,4 @@ public class RacingGame {
 //    protected static int fullAccel() {
 //        return random[count++];
 //    }
-
-
 }

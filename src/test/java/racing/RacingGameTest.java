@@ -4,8 +4,8 @@ import static org.assertj.core.api.Assertions.*;
 
 import org.junit.Before;
 import org.junit.Test;
+import racing.player.Car;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class RacingGameTest {
@@ -13,29 +13,67 @@ public class RacingGameTest {
 
     @Before
     public void setUp() {
-        racingGame = new RacingGame(3);
+        String carNames = "galic,paprika,cobrabi";
+        racingGame = new RacingGame(carNames);
     }
 
     @Test
     public void constructorTest() {
-        List<Integer> carPositions = Arrays.asList(1, 1, 1);
-        assertThat(racingGame.carPositions).isEqualTo(carPositions);
+
+        assertThat(racingGame.cars).isNotEmpty().hasSize(3);
+
+        assertThat(racingGame.cars).extracting("name", "position", "distance")
+                .contains(tuple("galic", 0, ""))
+                .contains(tuple("paprika", 0, ""))
+                .contains(tuple("cobrabi", 0, ""));
     }
 
-    // 테스트시 테스트용 고정 데이터를 반환하는 테스트용 fullAccel로 치환후 테스트
     @Test
     public void moveTest() {
         racingGame.move();
-        List<Integer> carPositions = Arrays.asList(1, 2, 1);
-        assertThat(racingGame.carPositions).isEqualTo(carPositions);
+        assertThat(racingGame.cars).extracting("name", "position", "distance")
+                .contains(tuple("galic", 0, ""))
+                .contains(tuple("paprika", 1, "-"))
+                .contains(tuple("cobrabi", 0, ""));
 
         racingGame.move();
-        carPositions = Arrays.asList(1, 3, 2);
-        assertThat(racingGame.carPositions).isEqualTo(carPositions);
+        assertThat(racingGame.cars).extracting("name", "position", "distance")
+                .contains(tuple("galic", 0, ""))
+                .contains(tuple("paprika", 2, "--"))
+                .contains(tuple("cobrabi", 1, "-"));
 
         racingGame.move();
-        carPositions = Arrays.asList(2, 4, 2);
-        assertThat(racingGame.carPositions).isEqualTo(carPositions);
+        assertThat(racingGame.cars).extracting("name", "position", "distance")
+                .contains(tuple("galic", 1, "-"))
+                .contains(tuple("paprika", 3, "---"))
+                .contains(tuple("cobrabi", 1, "-"));
+    }
+
+    @Test
+    public void finishTest() {
+        racingGame.move();
+        assertThat(racingGame.cars).extracting("name", "position", "distance")
+                .contains(tuple("galic", 0, ""))
+                .contains(tuple("paprika", 1, "-"))
+                .contains(tuple("cobrabi", 0, ""));
+
+        racingGame.move();
+        assertThat(racingGame.cars).extracting("name", "position", "distance")
+                .contains(tuple("galic", 0, ""))
+                .contains(tuple("paprika", 2, "--"))
+                .contains(tuple("cobrabi", 1, "-"));
+
+        racingGame.move();
+        assertThat(racingGame.cars).extracting("name", "position", "distance")
+                .contains(tuple("galic", 1, "-"))
+                .contains(tuple("paprika", 3, "---"))
+                .contains(tuple("cobrabi", 1, "-"));
+
+        List<Car> cars = racingGame.finish().getWinner();
+        assertThat(cars).isNotEmpty().hasSize(1);
+        assertThat(cars).extracting("name", "position", "distance")
+                .contains(tuple("paprika", 3, "---"));
+
     }
 }
 
