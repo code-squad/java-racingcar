@@ -1,11 +1,13 @@
-package racinggame;
+package racinggame.domain;
 
 public class Car {
 
     private final static int MOVE_CRITERIA = 4;
+    private String name;
     private int position;
 
-    Car() {
+    public Car(String name) {
+        this.name = name;
         this.position = 0;
     }
 
@@ -18,7 +20,9 @@ public class Car {
         return position >= MOVE_CRITERIA;
     }
 
-    int getPosition() {
+    public int getPosition() {
         return this.position;
     }
+
+    public String getName() { return this.name; }
 }
