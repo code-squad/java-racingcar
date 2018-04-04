@@ -1,6 +1,6 @@
 package racingcar;
 
-public class CarInfo {
+public class Car {
     private String carName;
     private int moveDistance;
 
@@ -8,7 +8,7 @@ public class CarInfo {
         return carName;
     }
 
-    public CarInfo setCarName(String carName) {
+    public Car setCarName(String carName) {
         this.carName = carName;
         return this;
     }
@@ -17,7 +17,7 @@ public class CarInfo {
         return moveDistance;
     }
 
-    public CarInfo setMoveDistance(int moveDistance) {
+    public Car setMoveDistance(int moveDistance) {
         this.moveDistance = moveDistance;
         return this;
     }

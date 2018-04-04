@@ -9,7 +9,7 @@ public class RacingGameTest {
     @Test(expected = IllegalArgumentException.class)
     public void 생성자_파라미터_차갯수0체크_확인() {
         int countOfCar = 0;
-        RacingGame racingGame = new RacingGame(countOfCar);
+        //RacingGame racingGame = new RacingGame(countOfCar);
     }
 
     @Test

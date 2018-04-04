@@ -1,30 +1,32 @@
 package racingcar;
 
+import java.util.List;
 import java.util.Random;
 
 public class RacingGame {
 
     private static final int CANNABLE_MOVE_NUMBER = 4;
     private Random random;
-    private int[] carPositions;
+    private GameResult gameResult;
     private int countOfCar;
 
-    public RacingGame(int countOfCar) {
-        if (countOfCar == 0) {
+    public RacingGame(List<Car> carList) {
+        if (carList == null || carList.size() == 0) {
             throw new IllegalArgumentException();
         }
-        this.countOfCar = countOfCar;
         random = new Random();
-        carPositions = new int[countOfCar];
+        gameResult = new GameResult();
+        gameResult.setCarList(carList);
+        countOfCar = carList.size();
     }
 
-    public int[] moveCar() {
+    public GameResult moveCar() {
         for (int carNumber = 0; carNumber < countOfCar; carNumber++) {
             if (isMoving(getRandomValue())) {
-                carPositions[carNumber]++;
+                gameResult.moveCar(carNumber);
             }
         }
-        return carPositions;
+        return gameResult;
     }
 
     static boolean isMoving(int number) {
