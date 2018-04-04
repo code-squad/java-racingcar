@@ -2,14 +2,21 @@ package com.codesquad.carracing.ui;
 
 public class FakeReader implements Reader {
 
-    private String in;
+    private final String in;
+    private boolean isRead;
 
-    public FakeReader(String in) {
+    public FakeReader(final String in) {
+        isRead = false;
         this.in = in;
     }
 
     @Override
     public String readLine() {
+        this.isRead = true;
         return in;
+    }
+
+    public boolean isRead() {
+        return isRead;
     }
 }

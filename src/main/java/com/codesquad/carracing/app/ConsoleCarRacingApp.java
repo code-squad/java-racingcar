@@ -5,7 +5,11 @@ import com.codesquad.carracing.ui.*;
 public class ConsoleCarRacingApp {
     public static void main(final String[] args) {
         final InputView input = ConsoleCarRacingApp.createInputView();
+
         input.inputNumberOfCars("자동차 대수는 몇 대 인가요?");
+        input.inputNumberOfTries("시도 횟수는 몇 회 인가요?");
+
+
 //        final Scanner scanner = new Scanner(System.in);
 //
 //        System.out.println("자동차 대수는 몇 대 인가요?");
