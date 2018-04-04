@@ -6,13 +6,13 @@ import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class RacingCarTest {
+public class RacingGameTest {
 
-  RacingCar rc;
+  RacingGame rc;
 
     @Before
     public void setUp() {
-      this.rc = new RacingCar();
+      this.rc = new RacingGame();
     }
 
     @After
@@ -68,13 +68,6 @@ public class RacingCarTest {
   public void 입력받은_자동차수대로_자동차_인스턴스_생성() {
       assertThat(rc.createCars(3).size()).isEqualTo(3);
   }
-
-
-  //즉시 출력할 경우, 이동횟수가 필요없어서 삭제함
-//  @Test
-//  public void 입력한_회차만큼_게임이_진행되었을때_게임이_종료되는지_확인() {
-//  }
-
 
 
 }

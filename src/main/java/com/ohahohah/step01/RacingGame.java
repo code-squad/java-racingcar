@@ -5,8 +5,9 @@ import static com.ohahohah.step01.Parser.changeInt;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.concurrent.ThreadLocalRandom;
 
-public class RacingCar {
+public class RacingGame {
 
 
   public static void main(String[] args) {
@@ -39,8 +40,8 @@ public class RacingCar {
   }
 
   private static void doSmallRace(Car player) {
-    player.stopOrGo();
-    player.printRaceStatus();
+    player.moveForward(player.stopOrGo(ThreadLocalRandom.current().nextInt(0, 9 + 1)));
+    System.out.println(player.coordinateToStr());
   }
 
 }
