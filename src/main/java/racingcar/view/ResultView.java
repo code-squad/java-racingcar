@@ -1,4 +1,6 @@
-package racingcar;
+package racingcar.view;
+
+import racingcar.domain.GameResult;
 
 public class ResultView {
 
@@ -7,11 +9,9 @@ public class ResultView {
 
     public static void printCarRoutes(GameResult result) {
         initialCarRoute(result.getCarPostionLength());
-
         for(int i = 0; i < result.getCarPostionLength(); i++) {
-            drawSingleCarRoute(result.getSingleCarPosition(i), i);
+            drawSingleCarRoute(result.getSingleCarPosition(i), i, result.getSingleCarName(i));
         }
-
         systemOutprintCarRoute();
     }
 
@@ -22,14 +22,15 @@ public class ResultView {
         }
     }
 
-    private static void drawSingleCarRoute(int carRouteCnt, int carNum) {
+    private static void drawSingleCarRoute(int carRouteCnt, int carNum, String carName) {
+        carRoutes[carNum].append(carName).append(" : ");
         for(int j = 0; j < carRouteCnt; j++) {
             carRoutes[carNum].append(ROUTE);
         }
     }
 
     private static void systemOutprintCarRoute() {
-        for(StringBuilder singleCarRoute: carRoutes) {
+        for(StringBuilder singleCarRoute:carRoutes) {
             System.out.println(singleCarRoute.toString());
         }
         System.out.println();
