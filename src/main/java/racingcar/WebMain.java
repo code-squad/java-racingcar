@@ -23,8 +23,12 @@ public class WebMain {
                render(null,"/index.html"));
 
         post("/name", (request, response) -> {
-            racingGame = new RacingGame(request.queryParams("names").split(" "));
-            return render(null, "/game.html");
+            String [] carNames = request.queryParams("names").split(" ");
+            racingGame = new RacingGame(carNames);
+
+            Map<String, Object> model = new HashMap<>();
+            model.put("carNames", carNames);
+            return render(model, "/game.html");
         });
 
         get("/result", (request, response) -> {
