@@ -1,23 +1,17 @@
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args){
-        Scanner scanner = new Scanner(System.in);
-        String value = scanner.nextLine();
+        int numCar = RacingInput.readNumCar();
+        int numCircuit = RacingInput.readNumCircuit();
 
-        String[] tokens = value.split(" ");
-        ArrayList<Integer> numbers =  new ArrayList<Integer>();
-
-//        for (String token : tokens) {
-//
-//
-//        }
-
-
+        RandomRule rule = new RandomRule(true);
+        Racing racing = new Racing(numCar,numCircuit);
+        for(int i=0; i<numCircuit; i++){
+            RacingView.printStatus(racing.move(rule));
+        }
     }
-
-
-
 }
