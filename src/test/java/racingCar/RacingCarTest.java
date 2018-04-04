@@ -6,7 +6,7 @@ import org.junit.Test;
 import static org.assertj.core.api.Java6Assertions.assertThat;
 
 public class RacingCarTest {
-    private RacingCar racingCar;
+    private Racing racingCar;
 
     /*
     *   기능 요구사항
@@ -20,48 +20,23 @@ public class RacingCarTest {
 
     @Before
     public void setUp() throws Exception {
-        racingCar = new RacingCar();
+        racingCar = new Racing();
 
     }
 
     @Test
-    public void 낫띵(){
+    public void 랜덤만들기() {
+        int value = racingCar.makeRandomNumber();
+        assertThat(value).isBetween(0, 9);
 
-    }
 
-
-    @Test
-    public void 랜덤만들기(){
-        int[] value = racingCar.move(3);
-        assertThat(value).isEqualTo(null);
-    }
-    @Test
-    public void 랜덤만들기_4이상전진(){
-        int value = racingCar.nextMoveAndStop(5);
-        assertThat(value).isEqualTo(1);
     }
 
     @Test
-    public void 랜덤만들기_4이하멈춤(){
-        int value = racingCar.nextMoveAndStop(2);
-        assertThat(value).isEqualTo(0);
+    public void 숫자에따른이동_0또는1() {
+        int value = racingCar.nextMoveAndStop();
+        assertThat(value).isBetween(0, 1);
+
+
     }
-
-    @Test
-    public void bar표현하기(){
-        String value = racingCar.makeBar(3);
-        assertThat(value).isEqualTo("---");
-    }
-
-
-
-
-
-
-
-
-
-
-
-
 }

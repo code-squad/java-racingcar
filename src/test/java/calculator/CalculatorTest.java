@@ -20,8 +20,6 @@ public class CalculatorTest {
     public void nothing() throws Exception{
 
     }
-
-
     @Test
     public void 스트링더하기()throws Exception{
         int input=   calculator.input("3 + 5");
@@ -38,13 +36,11 @@ public class CalculatorTest {
     public void 스트링나누기()throws Exception{
         int input=  calculator.input("6 / 6");
         assertThat(input).isEqualTo(1);
-
     }
     @Test
     public void 스트링곱하기()throws Exception{
        int input=   calculator.input("2 * 2");
         assertThat(input).isEqualTo(4);
-
     }
 
     @Test
@@ -62,7 +58,6 @@ public class CalculatorTest {
     @Test (expected=IllegalArgumentException.class)
     public void 공백체크()throws Exception{
          calculator.input(" ");
-
     }
 
     @Test (expected=NullPointerException.class)

@@ -1,6 +1,8 @@
 package calculator;
 
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Calculator {
@@ -42,7 +44,7 @@ public static void main(String[] args) {
     private int forCalculator(String[] splitValues, String expression, int returnValue) {
         for (int arrayCounter = 0; arrayCounter < splitValues.length ; arrayCounter++) {
 
-            expression = checkExpression(splitValues, expression, arrayCounter);
+            expression = nextExpression(splitValues, expression, arrayCounter);
             returnValue = checkNumber(splitValues, expression, returnValue, arrayCounter);
 
         }
@@ -52,12 +54,12 @@ public static void main(String[] args) {
     private int checkNumber(String[] splitValues, String expression, int returnValue, int arrayCounter) {
         if(isNumber(arrayCounter)){
             //System.out.println("숫자["+arrayCounter+"] :" + splitValues[arrayCounter]);
-            returnValue = checkExpression(splitValues, expression, returnValue, arrayCounter);
+            returnValue = nextExpression(splitValues, expression, returnValue, arrayCounter);
         }
         return returnValue;
     }
 
-    private String checkExpression(String[] splitValues, String expression, int arrayCounter) {
+    private String nextExpression(String[] splitValues, String expression, int arrayCounter) {
         if(isExpression(arrayCounter)){
              //System.out.println("연산자" + splitValues[arrayCounter]);
              expression = splitValues[arrayCounter];
@@ -77,10 +79,10 @@ public static void main(String[] args) {
         return splitValue == null || splitValue.isEmpty();
     }
 
-    private int checkExpression(String[] splitValues, String expression, int returnValue, int arrayCount) {
+    private int nextExpression(String[] splitValues, String expression, int returnValue, int arrayCount) {
 
 
-        if(expression.equals("+")){
+       if(expression.equals("+")){
             returnValue += nextNumber(splitValues, arrayCount);
             //System.out.println("returnValue+"+ returnValue);
         }
