@@ -17,9 +17,9 @@ public class RacingGame {
 
     public GameResult choiceMovingCar() {
         for(int j = 0; j < carList.size(); j++) {
-          if(isGetMoreThanFiveNum()) {
-            moveCar(j);
-          }
+            if(isGetMoreThanFiveNum()) {
+                moveCar(j);
+            }
         }
         return new GameResult(this.carList);
     }
@@ -36,13 +36,18 @@ public class RacingGame {
 
         Collections.sort(carList);
         int maxCarPosition = carList.get(0).getCarPostion();
+
         for(Car car:carList) {
-            if(maxCarPosition == car.getCarPostion()) {
-                result.addWinner(car);
-            }
+            addMaxCarPostion(result, maxCarPosition, car);
         }
 
         return result;
+    }
+
+    private void addMaxCarPostion(GameResult result, int maxCarPosition, Car car) {
+        if(maxCarPosition == car.getCarPostion()) {
+            result.addWinner(car);
+        }
     }
 
     //단위테스트를 위한 임시 Method
@@ -51,7 +56,7 @@ public class RacingGame {
     }
 
     //단위테스트를 위한 임시 Method
-    public static int getRulenum() {
+    public static int getRuleNum() {
         return RULENUM;
     }
 

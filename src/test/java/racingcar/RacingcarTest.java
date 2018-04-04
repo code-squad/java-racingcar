@@ -50,6 +50,6 @@ public class RacingcarTest {
 
     @Test
     public void 룰넘버확인하기() {
-        assertThat(RacingGame.getRulenum()).isEqualTo(4);
+        assertThat(RacingGame.getRuleNum()).isEqualTo(4);
     }
 }

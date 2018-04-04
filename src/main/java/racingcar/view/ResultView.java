@@ -17,6 +17,15 @@ public class ResultView {
     }
 
     public static void printWinnerCarRacing(GameResult result) {
+        StringBuilder sb = makeWinerStringBuilder(result);
+        systemOutPrintWinner(sb);
+    }
+
+    private static void systemOutPrintWinner(StringBuilder sb) {
+        System.out.println(sb.toString());
+    }
+
+    private static StringBuilder makeWinerStringBuilder(GameResult result) {
         StringBuilder sb = new StringBuilder();
         boolean isFirst = true;
 
@@ -26,12 +35,10 @@ public class ResultView {
                 isFirst = false;
                 continue;
             }
-
             sb.append(", ").append(car.getCarName());
         }
         sb.append("가 최종 우승했습니다.");
-
-        System.out.println(sb.toString());
+        return sb;
     }
 
     private static void initialCarRoute(int carNumber) {
