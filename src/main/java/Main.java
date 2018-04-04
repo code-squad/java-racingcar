@@ -8,13 +8,10 @@ public class Main {
         int numCar = RacingInput.readNumCar();
         int numCircuit = RacingInput.readNumCircuit();
 
-
+        RandomRule rule = new RandomRule(true);
         Racing racing = new Racing(numCar,numCircuit);
-        racing.start();
-        //TODO: 구현
-        //RacingView.replay(racing.getRecords());
+        for(int i=0; i<numCircuit; i++){
+            RacingView.printStatus(racing.move(rule));
+        }
     }
-
-
-
 }
