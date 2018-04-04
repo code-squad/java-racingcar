@@ -1,17 +1,24 @@
 package racingcar.domain;
 
-import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
+import static org.junit.Assert.*;
+
 
 public class CarTest {
+	private Car car = new Car("test");
+	
+	@Before
+	public void setUp() {
+		Rule rule = new RandomRule();
+		car.move(rule);
+	}
+	
 	@Test
-	public void move테스트() {
-		Car car = new Car();
-		RandomRule randomRule = new RandomRule();
-		if(randomRule.isValid()) {
-			Assert.assertEquals(1, car.move(randomRule));
-			return;
+	public void isTripMeter테스트() {
+		if(car.getTripMeter() == 1) {
+			assertEquals(true, car.isTripMeter(1));
 		}
-		Assert.assertEquals(0, car.move(randomRule));
+		assertEquals(false, car.isTripMeter(0));
 	}
 }

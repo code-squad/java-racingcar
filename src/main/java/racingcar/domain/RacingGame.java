@@ -1,45 +1,42 @@
 package racingcar.domain;
 
-import racingcar.view.OutputView;
-
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-import java.util.stream.IntStream;
+import static java.util.stream.Collectors.*;
 
 public class RacingGame {
-	private static List<Rule> rules = new ArrayList<>();
+	private Rule rule = new RandomRule();
+	private List<Car> cars = new ArrayList<>();
 	
-	static {
-		initRules();
+	public RacingGame(String... carNames) {
+		initCars(carNames);
 	}
-	
-	public static void play(int carCount, int roundCount) {
-		List<Car> cars = prepareCars(carCount);
-		IntStream.rangeClosed(1, roundCount)
-				.forEach(roundNum -> OutputView.showRoundOutputView(roundNum, playRound(cars)));
-	}
-	
-	private static List<Car> playRound(List<Car> cars) {
-		for(Car car : cars) {
-			allowCarToPlayByRules(car);
-		}
+
+	public List<Car> play() {
+		cars.forEach(car -> car.move(rule));
 		return cars;
 	}
 	
-	private static void allowCarToPlayByRules(Car car) {
-		for(Rule rule : rules) {
-			car.move(rule);
-		}
+	public List<Car> getWinner() {
+		int bestTripMeter = getBestTripMeter();
+		return cars.stream()
+				.filter(car -> car.isTripMeter(bestTripMeter))
+				.collect(toList());
 	}
 	
-	private static boolean initRules() {
-		return rules.add(new RandomRule());
+	public int getBestTripMeter() {
+		return cars.stream()
+				.map(Car::getTripMeter)
+				.max(Integer::compareTo)
+				.get();
 	}
-	
-	private static List<Car> prepareCars(int carCount) {
-		List<Car> cars = new ArrayList<>();
-		IntStream.range(0, carCount)
-				 .forEach(n -> cars.add(new Car()));
-		return cars;
+
+	private boolean initCars(String[] carNames) {
+		this.cars.clear();
+		return Arrays.stream(carNames)
+				.map(carName -> cars.add(new Car(carName)))
+				.reduce((aBoolean, aBoolean2) -> aBoolean && aBoolean2)
+				.get();
 	}
 }

@@ -4,12 +4,18 @@ import racingcar.domain.RacingGame;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
+import java.util.stream.IntStream;
+
 public class RacingGameApplication {
 	public static void main(String[] args) {
-		int carCount = InputView.showCarCountInputView();
-		int roundCouunt = InputView.showRoundCountInputView();
+		RacingGame racingGame = new RacingGame(InputView.getCarNames());
 		
-		OutputView.showOuputStartView();
-		RacingGame.play(carCount, roundCouunt);
+		int playCount = InputView.getPlayCount();
+		
+		OutputView.showGameStart();
+		IntStream.range(0, playCount)
+				.forEach(n -> OutputView.showPlayOutput(racingGame.play()));
+		
+		OutputView.showWinnerOuput(racingGame.getWinner());
 	}
 }
