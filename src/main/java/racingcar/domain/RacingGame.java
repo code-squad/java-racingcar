@@ -3,8 +3,7 @@ package racingcar.domain;
 import racingcar.view.InputView;
 import racingcar.view.ResultView;
 
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class RacingGame {
 
@@ -33,6 +32,19 @@ public class RacingGame {
         carList.get(moveNum).addCarPostion();//디미터에 어긋나긴 하는데 이렇게 List라서 이렇게 썼습니다.
     }
 
+    public GameResult getWinner(GameResult result) {
+
+        Collections.sort(carList);
+        int maxCarPosition = carList.get(0).getCarPostion();
+        for(Car car:carList) {
+            if(maxCarPosition == car.getCarPostion()) {
+                result.addWinner(car);
+            }
+        }
+
+        return result;
+    }
+
     //단위테스트를 위한 임시 Method
     public List<Car> getCarPosition() {
         return carList;
@@ -47,10 +59,13 @@ public class RacingGame {
 
         RacingGame racingGame = new RacingGame(InputView.getCarList());
         int tryNo = InputView.getTryNo();
+        GameResult result = null;
 
         for(int i = 0; i < tryNo; i++) {
-            GameResult result = racingGame.choiceMovingCar();
+            result = racingGame.choiceMovingCar();
             ResultView.printCarRoutes(result);
         }
+
+        ResultView.printWinnerCarRacing(racingGame.getWinner(result));
     }
 }
