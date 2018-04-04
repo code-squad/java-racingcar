@@ -11,8 +11,7 @@ public class OutputView {
 	}
 	
 	public static void showPlayOutput(List<Car> cars) {
-		cars.stream()
-				.forEach(car -> {
+		cars.forEach(car -> {
 							System.out.print(car.getName() + " : ");
 							IntStream.range(0, car.getTripMeter())
 									.forEach(t -> System.out.print("-"));

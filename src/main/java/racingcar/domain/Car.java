@@ -12,19 +12,18 @@ public class Car {
 		return name;
 	}
 	
-	public int move(int meter) {
-		return tripMeter += meter;
+	public int getTripMeter() {
+		return tripMeter;
+	}
+	
+	public int move(Rule rule) {
+		if(rule.isValid()) {
+			tripMeter += rule.getMoveMeterForReward();
+		}
+		return tripMeter;
 	}
 	
 	public boolean isTripMeter(int tripMeter) {
 		return  this.tripMeter == tripMeter;
-	}
-
-	public boolean isTripMeterGreaterThan(Car car) {
-		return !car.isTripMeterGreaterThan(tripMeter);
-	}
-
-	public boolean isTripMeterGreaterThan(int tripMeter) {
-		return this.tripMeter >= tripMeter;
 	}
 }

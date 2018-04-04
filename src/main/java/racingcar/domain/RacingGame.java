@@ -14,29 +14,24 @@ public class RacingGame {
 	}
 
 	public List<Car> play() {
-		cars = cars.stream()
-				.map(car -> playByRule(car))
-				.collect(toList());
+		cars.forEach(car -> car.move(rule));
 		return cars;
 	}
 	
 	public List<Car> getWinner() {
-		int maxTripMeter = cars.stream()
-				.mapToInt(Car::getTripMeter)
-				.max()
-				.getAsInt();
+		int bestTripMeter = getBestTripMeter();
 		return cars.stream()
-				.filter(car -> car.isTripMeter(maxTripMeter))
+				.filter(car -> car.isTripMeter(bestTripMeter))
 				.collect(toList());
 	}
-
-	private Car playByRule(Car car) {
-		if(rule.isValid()) {
-			car.move(rule.getMoveMeterForReward());
-		}
-		return car;
-	}
 	
+	public int getBestTripMeter() {
+		return cars.stream()
+				.map(Car::getTripMeter)
+				.max(Integer::compareTo)
+				.get();
+	}
+
 	private boolean initCars(String[] carNames) {
 		this.cars.clear();
 		return Arrays.stream(carNames)
