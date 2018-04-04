@@ -17,71 +17,54 @@ public class CalculatorTest {
     }
 
     @Test
-    public void nothing(){
+    public void nothing() throws Exception{
 
     }
-
-
-/*    @Test
-    public void 입력기능(){
-       String input=  calculator.input("3");
-        assertThat(input).isEqualTo(3);
-    }*/
-
-/*    @Test
-    public void 입력기능_숫자로변경(){
-        int input=  calculator.input("3");
-        assertThat(input).isEqualTo(3);
-    }*/
     @Test
-    public void 더하기(){
-        int input=  calculator.sum(1,2);
-        assertThat(input).isEqualTo(3);
+    public void 스트링더하기()throws Exception{
+        int input=   calculator.input("3 + 5");
+        assertThat(input).isEqualTo(8);
+
     }
-
     @Test
-    public void 빼기(){
-        int input=  calculator.minus(5,2);
-        assertThat(input).isEqualTo(3);
+    public void 스트링빼기()throws Exception{
+        int input=   calculator.input("3 - 5");
+        assertThat(input).isEqualTo(-2);
+
     }
-
     @Test
-    public void 나누기(){
-        int input=  calculator.divide(6,6);
+    public void 스트링나누기()throws Exception{
+        int input=  calculator.input("6 / 6");
         assertThat(input).isEqualTo(1);
     }
-
     @Test
-    public void 곱하기(){
-        int input=  calculator.multi(2,2);
+    public void 스트링곱하기()throws Exception{
+       int input=   calculator.input("2 * 2");
         assertThat(input).isEqualTo(4);
     }
 
+    @Test
+    public void 스트링_여러개입력_곱하기()throws Exception{
+        int input=  calculator.input("2 * 2 * 2 * 2 * 2");
+        assertThat(input).isEqualTo(32);
+    }
 
     @Test
-    public void 스트링더하기(){
-        String input=  calculator.input("3 + 5");
-        assertThat(input).isEqualTo("8");
-
+    public void 스트링_여러개입력() throws Exception {
+        int input=  calculator.input("2 + 2 * 2 - 2 / 2");
+        assertThat(input).isEqualTo(3);
     }
-    @Test
-    public void 스트링빼기(){
-        String input=  calculator.input("3 - 5");
-        assertThat(input).isEqualTo("-2");
 
+    @Test (expected=IllegalArgumentException.class)
+    public void 공백체크()throws Exception{
+         calculator.input(" ");
     }
-    @Test
-    public void 스트링나누기(){
-        String input=  calculator.input("6 / 6");
-        assertThat(input).isEqualTo("1");
 
+    @Test (expected=NullPointerException.class)
+    public void 널체크()throws Exception{
+        calculator.input(null);
     }
-    @Test
-    public void 스트링곱하기(){
-        String input=  calculator.input("2 * 2");
-        assertThat(input).isEqualTo("4");
 
-    }
 
 
 
