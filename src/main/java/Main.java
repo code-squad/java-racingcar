@@ -5,13 +5,16 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args){
-        int numCar = RacingInput.readNumCar();
+        String[] carNames = RacingInput.setCarNames();
         int numCircuit = RacingInput.readNumCircuit();
 
+        Racing race = new Racing(carNames, numCircuit);
+
         RandomRule rule = new RandomRule(true);
-        Racing racing = new Racing(numCar,numCircuit);
         for(int i=0; i<numCircuit; i++){
-            RacingView.printStatus(racing.move(rule));
+            RacingView.printStatus(race.move(rule));
         }
+
+        RacingView.printWinner(race.getWinner());
     }
 }

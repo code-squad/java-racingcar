@@ -1,11 +1,12 @@
 import java.util.Scanner;
 
 public class RacingInput {
-    public static int readNumCar(){
-        System.out.print("몇 대가 출전하나요?:");
+    public static String[] setCarNames(){
+        System.out.print("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
         Scanner scanner = new Scanner(System.in);
-        int value = scanner.nextInt();
-        return value;
+        String inputName = scanner.nextLine();
+        String[] names = inputName.split(",");
+        return names;
     }
 
     public static int readNumCircuit(){
