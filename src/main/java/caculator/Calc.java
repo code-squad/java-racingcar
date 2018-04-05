@@ -14,7 +14,7 @@ import java.util.*;
 public class Calc {
 
     public static void main(String[] args) {
-        //System.out.println(Calc.input("2 + 3 * 4 / 2"));
+        System.out.println(Calc.input("2 + 3 * 4 / 2"));
         System.out.println(Calc.input("2 + 3"));
     }
 
@@ -42,21 +42,15 @@ public class Calc {
             return acc;
         }
 
-        for (int i = 0; i < temp.size(); i++) {
-
-            if (isNumeric(temp.get(i))) {
-                int temp_num = Integer.parseInt(temp.get(i));
-                temp.remove(i);
-                calc(temp, assertSymbol(symbol, acc, temp_num) , "");
-            } else {
-                String temp_symbol = temp.get(i);
-                temp.remove(i);
-                calc(temp, acc, temp_symbol);
-            }
-
+        if (isNumeric(temp.get(0))) {
+            int temp_num = Integer.parseInt(temp.get(0));
+            temp.remove(0);
+            return calc(temp, assertSymbol(symbol, acc, temp_num) , "");
         }
 
-        return acc;
+        String temp_symbol = temp.get(0);
+        temp.remove(0);
+        return calc(temp, acc, temp_symbol);
     }
 
     public static int input(String input) {
@@ -82,8 +76,7 @@ public class Calc {
         }
     }
 
-    public static boolean isNumeric(String str)
-    {
+    public static boolean isNumeric(String str) {
         return str.matches("-?\\d+(\\.\\d+)?");  //match a number with optional '-' and decimal.
     }
 
