@@ -1,8 +1,6 @@
 package racingCar;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class Racing {
 
@@ -25,32 +23,35 @@ public class Racing {
     }
 
     /*
-    * TODO
-    * 1.공백제거
-    * 2.main메소드 분리
-    * 3.핵심로직과 view 로직 분리 - 힌트 주신 것 들을 조합해서 시도해보았습니다. --> 이런식으로 진행하는게 맞을까요?
-    * 4.클래스 구현순서 (상수,인스턴스 변수 , 생성자, 메소드) 정리
-    * 5.테스트 값은 경계값으로 변경 --->경계값이란게 정확히 무엇일까요?
+    * TODO Step2
+        각 자동차에 이름을 부여할 수 있다. 전진하는 자동차를 출력할 때 자동차 이름을 같이 출력한다.
+        자동차 이름은 쉼표(,)를 기준으로 구분한다.
+        자동차 경주 게임을 완료한 후 누가 우승했는지를 알려준다. 우승자는 한명 이상일 수 있다
     * */
 
-    public List<Car> race() {
+    public List<Car> race(List names) {
         for (int carCount = 0; carCount < this.carNumbers; carCount++) {
-            Car car = new Car();
+            Car car = new Car(setCarName(names, carCount));
             moveAndStop(car);
             carList.add(car);
         }
         return carList;
     }
 
+    private String setCarName(List names, int carCount) {
+        return names.get(carCount).toString();
+    }
+
     private void moveAndStop(Car car) {
         for (int tryCount = 0; tryCount < this.time; tryCount++) {
-            int random = nextMoveAndStop();
-    /* * TODO
-     * if문제거
-     */
-            if (random == 1) car.go();
-            if (random == 0) car.stop();
-
+             switch (nextMoveAndStop()){
+                case 1:
+                    car.go();
+                    break;
+                case 0:
+                    car.stop();
+                    break;
+            }
         }
     }
 
@@ -62,4 +63,5 @@ public class Racing {
     public int nextMoveAndStop() {
         return makeRandomNumber() > STANDARD_VALUE ? GO : STOP;
     }
+
 }

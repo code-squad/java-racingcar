@@ -9,9 +9,9 @@ public class RacingCarMain {
         inputView.setup();
 
         Racing racingCar = new Racing(inputView.getCarNumbers(), inputView.getTimes());
-        List<Car> result = racingCar.race();
+        List<Car> result = racingCar.race(inputView.getCarNames());
 
-        ResultView resultView = new ResultView();
-        resultView.result(result);
+        ResultView resultView = new ResultView(result);
+        resultView.result();
     }
 }
