@@ -8,52 +8,45 @@ public class RacingGame {
     private final static int MIN_NUM = 4;
     private List<Car> racingCars;
     private Random random;
-
     private int size;
-    private int trials;
 
     public RacingGame(){
-        this(5,5);
+        this(5);
     }
 
-    public RacingGame(int size, int trials){
+    public RacingGame(int size){
         this.size = size;
-        this.trials = trials;
         this.racingCars = new ArrayList<>(size);
         this.random = new Random();
     }
 
-    public void startRacing(){
-        if(size < 2 || trials < 2){
-            throw new IllegalArgumentException("size가 2 이상이며 trial 횟가 2회 이상 필요함");
-        }
-
+    private void createCars() {
         for(int i = 0; i < this.size; i++){
             this.racingCars.add(new Car());
         }
+    }
 
-        for(int i = 0; i < this.trials; i++){
-            goStopAll();
+    public void readyRacing(){
+        checkMinSize();
+        createCars();
+    }
 
-            this.racingCars.forEach(System.out::println);
-
-            System.out.println();
-            System.out.println();
+    private void checkMinSize() {
+        if(size < 2 ){
+            throw new IllegalArgumentException("size가 2 이상 필요함");
         }
-
     }
 
-    private void goStopAll() {
+    public List<Car> moveAll() {
         this.racingCars.forEach( car ->
-            goStop(car, random.nextInt())
+            move(car, random.nextInt())
         );
+        return this.racingCars;
     }
 
-    public void goStop(Car car, int num){
+    public void move(Car car, int num){
         if(num % 10 > MIN_NUM){
             car.go();
         }
     }
-
-
 }
