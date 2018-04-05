@@ -1,26 +1,37 @@
 package game;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class GameResult {
 
-    private List<List<Car>> histories;
+    private List<List<Car>> records;
 
-    public GameResult(List<List<Car>> histories) {
-        this.histories = histories;
+    public GameResult() {
+        records = new ArrayList<>();
+    }
+
+    public GameResult(List<List<Car>> records) {
+        this.records = records;
+    }
+
+    public void record(List<Car> cars) {
+        records.add(cars);
     }
 
     public String draw() {
-        if(histories == null) {
+        if(records == null) {
             throw new IllegalArgumentException();
         }
 
         StringBuilder result = new StringBuilder();
-        histories.forEach(cars -> {
+        records.forEach(cars -> {
             cars.forEach(car -> {
-                for (int i = 0; i <= car.getPosition(); i++) {
-                    result.append("-");
-                }
+                result.append(car.getName() + " : ");
+                IntStream.rangeClosed(0, car.getPosition())
+                        .forEach(i -> result.append("-"));
+
                 result.append("\n");
             });
             result.append("\n");

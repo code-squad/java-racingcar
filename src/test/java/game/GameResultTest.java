@@ -27,6 +27,8 @@ public class GameResultTest {
     public void draw_테스트() {
         String actual = gameResult.draw();
 
-        assertThat(actual).isEqualTo("-\n-\n-\n\n");
+        assertThat(actual).isEqualTo(Car.DEFAULT_NAME + " : -\n" +
+                                     Car.DEFAULT_NAME + " : -\n" +
+                                     Car.DEFAULT_NAME + " : -\n\n");
     }
 }

@@ -10,21 +10,19 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class RacingGameTest {
 
     private RacingGame racingGame;
+    private final String carName = "pobi,crong,honux";
 
     @Before
     public void setUp() {
-        final int carNo = 5;
-        racingGame = new RacingGame(carNo);
+        racingGame = new RacingGame(carName);
     }
 
     @Test
     public void 자동차_배열_초기화() {
-        List<Car> actual = racingGame.initCars(5);
+        List<Car> actual = racingGame.initCars(carName);
 
-        assertThat(actual).contains(new Car(),
-                                    new Car(),
-                                    new Car(),
-                                    new Car(),
-                                    new Car());
+        assertThat(actual).contains(new Car(0, "pobi"),
+                                    new Car(0, "crong"),
+                                    new Car(0, "honux"));
     }
 }
