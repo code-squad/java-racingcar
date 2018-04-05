@@ -9,14 +9,14 @@ import java.util.stream.IntStream;
 
 public class ConsoleMain {
 	public static void main(String[] args) {
-		RacingGame racingGame = new RacingGame(new RandomRule(), InputView.getCarNames());
+		RacingGame racingGame = new RacingGame(new RandomRule(), InputView.showGetCarNamesView());
 		
-		int playCount = InputView.getPlayCount();
+		int playCount = InputView.showGetPlayCountView();
 		
-		OutputView.showGameStart();
+		OutputView.showGameStartView();
 		IntStream.range(0, playCount)
-				.forEach(n -> OutputView.showPlayOutput(racingGame.play()));
+				.forEach(n -> OutputView.showPlayView(racingGame.play()));
 		
-		OutputView.showWinnerOuput(racingGame.getWinner());
+		OutputView.showWinnerView(racingGame.getWinner());
 	}
 }

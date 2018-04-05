@@ -1,14 +1,14 @@
 package racingcar;
 
+import com.google.common.collect.Maps;
 import racingcar.domain.Car;
 import racingcar.domain.RacingGame;
 import racingcar.domain.RandomRule;
+import racingcar.view.OutputView;
 import spark.ModelAndView;
 import spark.template.handlebars.HandlebarsTemplateEngine;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.IntStream;
 import static java.util.stream.Collectors.*;
 
@@ -38,6 +38,14 @@ public class WebMain {
             Map<String, Object> model = new HashMap<>();
             model.put("turnResults", IntStream.range(0, Integer.parseInt(request.queryParams("turn")))
                     .mapToObj(turn -> racingGame.play())
+                    .map(cars -> cars.stream()
+                            .map(car -> {
+                                Map<String, Object> carMap = new HashMap<>();
+                                carMap.put("car", car);
+                                carMap.put("tripView", OutputView.getCarTripView(car));
+                                return carMap;
+                            })
+                            .toArray())
                     .collect(toList()));
             model.put("winners", racingGame.getWinner());
             return render(model, "/result.html");
