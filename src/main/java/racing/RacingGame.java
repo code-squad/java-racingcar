@@ -1,54 +1,40 @@
 package racing;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import racing.player.Car;
+import racing.result.GameResult;
+
+import java.util.*;
 
 public class RacingGame {
-    private static final int SUFFICIENT_SPEED = 4;
+    public List<Car> cars;
 
-    protected List<Integer> carPositions;
-
-    public RacingGame(int numberOfCar) {
-        ready(numberOfCar);
+    public RacingGame(String carNames) {
+        ready(carNames);
     }
 
-    private void ready(int numberOfCar) {
-        this.carPositions = new ArrayList<>();
-        for (; numberOfCar > 0; numberOfCar--) {
-            this.carPositions.add(1);
+    private void ready(String carNames) {
+        cars = new ArrayList<>();
+        for(String name: carNames.split(",")) {
+            cars.add(new Car(name));
         }
     }
 
-    public MoveResult move() {
-        for (int i = 0; i < carPositions.size(); i++) {
-            moveFoward(i);
+    public GameResult nextTurn() {
+        for(Car car: cars) {
+            car.move(getRandomValue());
         }
-        MoveResult result = new MoveResult();
-        result.setMoveResult(this.carPositions);
-        return result;
+        return new GameResult(cars);
     }
 
-    private void moveFoward(int idx) {
-        if (isSufficientSpeed()) {
-            carPositions.set(idx, carPositions.get(idx) + 1);
-        }
-    }
-
-    protected static boolean isSufficientSpeed() {
-        return fullAccel() >= SUFFICIENT_SPEED;
-    }
-
-    private static int fullAccel() {
-        return new Random().nextInt(10);
-    }
-
-    // 테스트용 공정 데이터 테스트 후 주석처리
-//    private static int[] random = {2, 4, 1, 1, 8, 9, 4, 9, 3, 6, 3, 4, 3, 9, 0, 6, 1, 8, 6, 6, 3, 1, 1, 7, 7, 8, 7, 7, 1, 2, 4, 4};
-//    private static int count = 0 ;
-//    protected static int fullAccel() {
-//        return random[count++];
+//    private static int getRandomValue() {
+//        return new Random().nextInt(10);
 //    }
 
-
+    // 테스트용 공정 데이터 테스트 후 주석처리
+    private static int[] random = {2, 4, 1, 1, 8, 9, 4, 9, 3, 6, 3, 4, 3, 9, 0, 6, 1, 8, 6, 6, 3, 1, 1, 7, 7, 8, 7, 7, 1, 2, 4, 4};
+    private static int count = 0 ;
+    @SuppressWarnings("WeakerAccess")
+    protected static int getRandomValue() {
+        return random[count++];
+    }
 }
