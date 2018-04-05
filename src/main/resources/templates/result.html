@@ -61,13 +61,13 @@ body {
         <div class="form-show-div" class="form-group">
           <h3>결과입니다</h3>
           (이름마다 띄어쓰기로 구분해 주세요.)
-            {{#each turnResults}}
-                {{#each this}}
-                    <div id="standings">{{this.name}} : &#128652;</div>
-                {{/each}}
+            {{#turnResults}}
+                {{#this}}
+                    <div id="standings">{{name}} : {{tripMeter}}</div>
+                {{/this}}
                 <br />
-            {{/each}}
-          <div>{{#each winners}}{{name}} {{/each}}이 우승했습니다.</div>
+            {{/turnResults}}
+          <div>{{#winners}}{{name}} {{/winners}}이 우승했습니다.</div>
         </div>
       </div>
     </div>
