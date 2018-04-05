@@ -17,17 +17,19 @@ public class CarTest {
 
     @Test
     public void constructorTest() {
-        assertThat(car).isEqualToComparingFieldByField(new Car("paprika"));
+        assertThat(car).isEqualToComparingFieldByField(new Car("paprika", 0));
     }
 
     @Test
-    public void setPositionTest() {
-        car.setPosition(1);
-        assertThat(car.position).isEqualTo(1);
-        assertThat(car.distance).isEqualTo("-");
+    public void moveTest() {
+        Car garlic = new Car("garlic", 2);
+        garlic.move(4);
+        assertThat(garlic.position).isEqualTo(3);
 
-        car.setPosition(3);
-        assertThat(car.position).isEqualTo(3);
-        assertThat(car.distance).isEqualTo("---");
+        garlic.move(3);
+        assertThat(garlic.position).isEqualTo(3);
+
+        garlic.move(7);
+        assertThat(garlic.position).isEqualTo(4);
     }
 }

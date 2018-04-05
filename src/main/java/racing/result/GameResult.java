@@ -5,49 +5,46 @@ import racing.player.Car;
 import java.util.*;
 
 public class GameResult {
-    private int bestScore = 0;
-    protected Map<Integer, List<Car>> score;
+    public List<Car> cars;
 
-    public GameResult() {
-        score = new HashMap<>();
+    public GameResult(List<Car> cars) {
+        this.cars = cars;
     }
 
-    public void ranking(Car car) {
-        resetBestScore(car);
+    public static String getWinnerNames(List<Car> cars) {
+        List<String> names = new ArrayList<>();
+        for (Car car : getWinners(cars)) {
+            names.add(car.name);
+        }
 
-        updateScore(car);
+        return String.join(", ", names);
     }
 
-    private void updateScore(Car car) {
-        List<Car> cars = initCars(car);
-        cars.add(car);
-        score.put(car.position, cars);
+    public static List<Car> getWinners(List<Car> cars) {
+        int bestPosition = 0;
+        Map<Integer, List<Car>> ranking = new HashMap<>();
+
+        for (Car car : cars) {
+            bestPosition = getBestPosition(bestPosition, car.position);
+
+            List<Car> rankers = getRankers(ranking.get(car.position), car);
+            ranking.put(car.position, rankers);
+        }
+
+        return ranking.get(bestPosition);
     }
 
-    private List<Car> initCars(Car car) {
-        List<Car> cars = score.get(car.position);
+    protected static List<Car> getRankers(List<Car> cars, Car car) {
         if(cars == null) {
             cars = new ArrayList<>();
         }
+
+        cars.add(car);
         return cars;
     }
 
-    private void resetBestScore(Car car) {
-        bestScore = bestScore > car.position ? bestScore : car.position;
-    }
 
-    public List<Car> getWinner() {
-        return score.get(bestScore);
-    }
-
-    public String getWinnerName() {
-        List<Car> cars = getWinner();
-
-        String[] names = new String[cars.size()];
-        for(int i = 0; i < names.length; i++) {
-            names[i] = cars.get(i).name;
-        }
-
-        return String.join(", ", names );
+    protected static int getBestPosition(int bestPosition, int position) {
+        return Math.max(bestPosition, position);
     }
 }

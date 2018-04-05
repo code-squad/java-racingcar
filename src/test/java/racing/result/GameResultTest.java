@@ -5,7 +5,9 @@ import static org.assertj.core.api.Assertions.*;
 import org.junit.Before;
 import org.junit.Test;
 import racing.player.Car;
-import racing.result.GameResult;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class GameResultTest {
 
@@ -13,33 +15,50 @@ public class GameResultTest {
 
     @Before
     public void setUp() throws Exception {
-        Car galic = new Car("galic");
-        galic.setPosition(7);
+        Car galic = new Car("galic", 7);
+        Car paprika = new Car("paprika", 10);
+        Car cobrabi = new Car("cobrabi", 10);
 
-        Car paprika = new Car("paprika");
-        paprika.setPosition(10);
-
-        Car cobrabi = new Car("cobrabi");
-        cobrabi.setPosition(10);
-
-        result = new GameResult();
-        result.ranking(galic);
-        result.ranking(paprika);
-        result.ranking(cobrabi);
+        result = new GameResult(Arrays.asList(galic, paprika, cobrabi));
     }
 
     @Test
-    public void rankingTest() {
+    public void isBestPositionTest() {
+        assertThat(GameResult.getBestPosition(10, 9)).isEqualTo(10);
+        assertThat(GameResult.getBestPosition(3, 4)).isEqualTo(4);
+    }
 
-        assertThat(result.getWinner()).isNotEmpty().hasSize(2);
-        assertThat(result.getWinner()).extracting("name", "position", "distance")
-                .contains(tuple("paprika", 10, "----------"))
-                .contains(tuple("cobrabi", 10, "----------"));
+    @Test
+    public void getWinnersTest() {
+
+        Car garlic = new Car("garlic", 1);
+        Car paprika = new Car("paprika", 3);
+        Car coblabi = new Car("coblabi", 3);
+
+        List<Car> winners = GameResult.getWinners(Arrays.asList(garlic, paprika, coblabi));
+
+        assertThat(winners).isNotEmpty().hasSize(1);
+        assertThat(winners).extracting("name", "position")
+                .contains(tuple("paprika", 3))
+                .contains(tuple("coblabi", 3));
 
     }
 
     @Test
-    public void getWinnerNameTest() {
-        assertThat(result.getWinnerName()).isEqualTo("paprika, cobrabi");
+    public void getWinnerNamesTest() {
+
+        Car garlic = new Car("garlic", 1);
+        Car paprika = new Car("paprika", 3);
+        Car coblabi = new Car("coblabi", 3);
+
+        List<Car> winners = GameResult.getWinners(Arrays.asList(garlic, paprika, coblabi));
+
+        String winnerNames = GameResult.getWinnerNames(winners);
+        assertThat(winnerNames).isEqualTo("paprika, coblabi");
+    }
+
+    @Test
+    public void initRanking() {
+
     }
 }
