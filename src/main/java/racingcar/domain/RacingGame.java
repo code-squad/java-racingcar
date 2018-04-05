@@ -6,10 +6,11 @@ import java.util.List;
 import static java.util.stream.Collectors.*;
 
 public class RacingGame {
-	private Rule rule = new RandomRule();
+	private Rule rule;
 	private List<Car> cars = new ArrayList<>();
 	
-	public RacingGame(String... carNames) {
+	public RacingGame(Rule rule, String... carNames) {
+		this.rule = rule;
 		initCars(carNames);
 	}
 

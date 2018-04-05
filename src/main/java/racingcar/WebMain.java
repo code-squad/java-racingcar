@@ -2,6 +2,7 @@ package racingcar;
 
 import racingcar.domain.Car;
 import racingcar.domain.RacingGame;
+import racingcar.domain.RandomRule;
 import spark.ModelAndView;
 import spark.template.handlebars.HandlebarsTemplateEngine;
 
@@ -24,7 +25,7 @@ public class WebMain {
 
         post("/name", (request, response) -> {
             String [] carNames = request.queryParams("names").split(" ");
-            racingGame = new RacingGame(carNames);
+            racingGame = new RacingGame(new RandomRule(), carNames);
 
             Map<String, Object> model = new HashMap<>();
             model.put("carNames", carNames);

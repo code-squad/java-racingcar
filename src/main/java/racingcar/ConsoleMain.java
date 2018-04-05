@@ -1,6 +1,7 @@
 package racingcar;
 
 import racingcar.domain.RacingGame;
+import racingcar.domain.RandomRule;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -8,7 +9,7 @@ import java.util.stream.IntStream;
 
 public class ConsoleMain {
 	public static void main(String[] args) {
-		RacingGame racingGame = new RacingGame(InputView.getCarNames());
+		RacingGame racingGame = new RacingGame(new RandomRule(), InputView.getCarNames());
 		
 		int playCount = InputView.getPlayCount();
 		

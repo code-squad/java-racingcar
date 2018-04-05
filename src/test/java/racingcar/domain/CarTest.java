@@ -2,7 +2,7 @@ package racingcar.domain;
 
 import org.junit.Before;
 import org.junit.Test;
-import static org.junit.Assert.*;
+import static org.assertj.core.api.Assertions.*;
 
 
 public class CarTest {
@@ -17,8 +17,8 @@ public class CarTest {
 	@Test
 	public void isTripMeter테스트() {
 		if(car.getTripMeter() == 1) {
-			assertEquals(true, car.isTripMeter(1));
-			assertEquals(false, car.isTripMeter(0));
+			assertThat(car.isTripMeter(1)).isEqualTo(true);
+			assertThat(car.isTripMeter(0)).isEqualTo(false);
 		}
 	}
 }
