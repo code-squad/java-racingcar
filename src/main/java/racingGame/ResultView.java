@@ -8,7 +8,7 @@ import java.util.List;
 public class ResultView {
 
     public static void printTrace(List<Car> cars) {
-        for(Car car : cars) {
+        for (Car car : cars) {
             printCarPosition(car);
         }
         printNewLine();
@@ -27,16 +27,16 @@ public class ResultView {
         System.out.println(sb);
     }
 
-    public static void printWinner(List<Car> winnerCars) {
+    public static void printWinner(List<Car> cars) {
         StringBuilder sb = new StringBuilder();
-        int cnt = 1;
-        for(Car car : winnerCars) {
-            if(cnt++ > 1) {
-                sb.append(", ");
+        for (Car car : cars) {
+            if (car.isWinner()) {
+                sb.append(car.getName());
+                sb.append(",");
             }
-            sb.append(car.getName());
         }
-        System.out.println(sb + "가 최종 우승했습니다.");
+
+        System.out.println(sb.substring(0, sb.length()-1) + "가 최종 우승했습니다.");
     }
 
     private static void printNewLine() {

@@ -3,6 +3,9 @@ package racingGame;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
@@ -11,18 +14,26 @@ import static org.junit.Assert.assertNull;
  */
 public class RacingGameTest {
 
-    private RacingGame racingGame;
 
-    /*
-        테스트코드 짜기가 너무 어렵습니다
-        제가 구현한 코드가 테스트하기 어려운걸까요?
-        아니면 아직 익숙하지 않아서일까요?
-        그리고 테스트하기 좋게 코드짜는 법이 있나요? ㅠ
-     */
+    @Test
+    public void 우승자발견로직 () {
 
-    @Before
-    public void setUp() {
-        racingGame = new RacingGame("aaa,bbb,ccc");
+        List<Car> cars = new ArrayList<>();
+        Car car1 = new Car("aaa");
+        car1.move(1);
+        Car car2 = new Car("bbb");
+        car2.move(5);
+        car2.setWinner(true);
+        cars.add(car1);
+        cars.add(car2);
+
+        // 교수님, 해당 테스트를 위해 RacingGame 클래스에서 List를 받는 생성자를 생성했습니다.
+        // 왜냐하면 직접 설정한 Car 리스트여야만 결과를 예측할 수 있으니까 이정도는 괜찮겠죠?
+        // 테스트를 위해 만들었지만 List를 받는 생성자도 필요할수도 있구요
+        RacingGame racingGame = new RacingGame(cars);
+
+        assertEquals(true, racingGame.findWinners().get(1).isWinner());
+
     }
 
 

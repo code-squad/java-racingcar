@@ -11,62 +11,50 @@ import java.util.List;
 public class RacingGame {
 
 
-    private static final int MOVE_CONDITION = 4;
-    private List<Car> cars = new ArrayList<>();
-    private List<Car> winnerCars = new ArrayList<>();
+    private List<Car> cars;
+
+    public RacingGame(List<Car> cars) {
+        this.cars = cars;
+    }
 
     public RacingGame(String carNames) {
         if (StringUtils.isBlank(carNames)) {
             throw new IllegalArgumentException();
         }
-        addCar(carNames);
+        cars = addCar(carNames);
     }
 
-    private void addCar(String carNames) {
+    private List<Car> addCar(String carNames) {
+        if (StringUtils.isBlank(carNames)) {
+            throw new IllegalArgumentException();
+        }
+
+        cars = new ArrayList<>();
         String[] carName = carNames.split(",");
         for (int i = 0; i < carName.length; i++) {
             cars.add(new Car(carName[i]));
         }
+        return cars;
     }
 
 
-    public void moveCars(int tryNum) {
-        if (tryNum < 0) {
-            throw new IllegalArgumentException();
+    public List<Car> moveCars() {
+        for(Car car : cars) {
+            car.move(RandomGenerator.getRandomNum());
         }
-
-        for (int i = 0; i < tryNum; i++) {
-            makeCarMove();
-            // 하나의 메소드는 하나의 일만해야 한다고 배웠는데
-            // moveCars()는 아래의 printResult() 메소드 때문에 2가지 역할(이동, 출력)을 하고 있는데
-            // printResult() 메소드를 이렇게 두는것이 맞는 걸까요?
-            // 시도 회수마다 이동 흔적을 출력해야해서 이렇게 구현하긴했는데 찝찝합니다
-            printTrace();
-        }
+        return cars;
     }
 
-    private void makeCarMove() {
-        for (int i = 0; i < cars.size(); i++) {
-            moveCarPosition(i);
-        }
-    }
 
-    private void moveCarPosition(int i) {
-        if (MOVE_CONDITION <= RandomGenerator.getRandomNum()) {
-            cars.set(i, cars.get(i).move());
-        }
-    }
 
-    public List<Car> findWinnerCars() {
+    public List<Car> findWinners() {
+        int farthestPosition = findFarthestPosition();
         for (Car car : cars) {
-            int farthestPosition = findFarthestPosition();
-            int carPosition = car.getPosition();
-
-            if (farthestPosition == carPosition) {
-                winnerCars.add(car);
+            if(car.matchFarthestPosition(farthestPosition)) {
+                car.setWinner(true);
             }
         }
-        return winnerCars;
+        return cars;
     }
 
     public int findFarthestPosition() {
@@ -79,10 +67,5 @@ public class RacingGame {
         }
         return farthestPosition;
     }
-
-    public void printTrace() {
-        ResultView.printTrace(cars);
-    }
-
 
 }

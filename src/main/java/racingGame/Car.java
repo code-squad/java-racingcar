@@ -6,14 +6,18 @@ package racingGame;
 public class Car {
     private String name;
     private int position;
+    private boolean winner;
+    private static final int MOVE_CONDITION = 4;
+
 
     public Car(String name) {
         this.name = name;
     }
 
-    public Car move() {
-        position += 1;
-        return this;
+    public void move(int val) {
+        if (MOVE_CONDITION <= val) {
+            this.position += 1;
+        }
     }
 
     public String getName() {
@@ -24,5 +28,17 @@ public class Car {
         return position;
     }
 
+
+    public boolean isWinner() {
+        return winner;
+    }
+
+    public void setWinner(boolean winner) {
+        this.winner = winner;
+    }
+
+    public boolean matchFarthestPosition(int farthestPosition) {
+        return this.position == farthestPosition;
+    }
 
 }
