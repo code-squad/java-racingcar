@@ -3,30 +3,26 @@ package racingGame;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Printer {
-    static int printAll(List<Car> cars) {
-        int result=0;
+public class ResultView {
+    static void print(GameResult result) {
+        ArrayList<Car> cars = result.getCars();
         for(Car car : cars) {
-            result += printCar(car);
+            printOneCar(car);
         }
         System.out.println("");
-        return result;
     }
 
-    static int printCar(Car car) {
+    static void printOneCar(Car car) {
         int carPosition = car.getPosition();
-        int result = 0;
-        System.out.print(car.getName() + " : ");
+        System.out.print(car.toString() + " : ");
         for(int i=0; i<carPosition; ++i) {
             System.out.print("-");
-            result++;
         }
         System.out.println("");
-        return result;
     }
 
-    static int printWinner(ArrayList<Car> winnerCars) {
+    static void printWinner(GameResult result) {
+        ArrayList<Car> winnerCars = GameResult.getWinnerCars(result);
         System.out.println(winnerCars.toString() + "가 최종 우승했습니다.");
-        return winnerCars.size();
     }
 }
