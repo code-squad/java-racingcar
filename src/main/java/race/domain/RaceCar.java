@@ -1,19 +1,19 @@
-package race;
+package race.domain;
 
 import java.util.Random;
 
-class RaceCar {
+public class RaceCar {
     private static final int RANDOM_LIMIT = 9;
 
     private String racer;
     private Recorder recorder;
 
-    RaceCar(String racer) {
+    public RaceCar(String racer) {
         this.racer = racer;
         recorder = new Recorder();
     }
 
-    void move(RaceRule rule) {
+    public void move(RaceRule rule) {
         int currentLocation = recorder.getLastRecord();
         
         if (rule.canMove(getRandomInt())) {
@@ -23,11 +23,11 @@ class RaceCar {
         recorder.record(currentLocation);
     }
 
-    Recorder getRecorder() {
+    public Recorder getRecorder() {
         return recorder;
     }
 
-    String getRacerName() {
+    public String getRacer() {
         return racer;
     }
 

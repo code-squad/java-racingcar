@@ -1,13 +1,11 @@
-package race;
+package race.view;
+
+import race.domain.RaceCar;
 
 import java.util.List;
 import java.util.stream.IntStream;
 
-interface Drawer {
-    void draw(List<RaceCar> records, int labs);
-}
-
-class LineDrawer implements Drawer {
+public class LineDrawer implements Drawer {
     private static final String FORMAT = "-";
     private static final String NAME_PRINT_FORMAT = "%s: ";
 
@@ -18,7 +16,7 @@ class LineDrawer implements Drawer {
 
     private void drawEachRecordsAt(List<RaceCar> raceCars, int idx) {
         raceCars.forEach(c -> {
-            printName(c.getRacerName());
+            printName(c.getRacer());
             printStraightUntil(c.getRecorder().getRecord(idx));
             nextLine();
         });

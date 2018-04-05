@@ -1,10 +1,6 @@
-package race;
+package race.domain;
 
-interface RaceRule {
-    boolean canMove(int randomValue);
-}
-
-class DefaultRaceRule implements RaceRule {
+public class DefaultRaceRule implements RaceRule {
     private static final int LIMIT_VALUE = 4;
 
     @Override

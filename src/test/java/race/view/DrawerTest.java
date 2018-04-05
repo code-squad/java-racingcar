@@ -1,8 +1,12 @@
-package race;
+package race.view;
 
 import org.assertj.core.api.Assertions;
 import org.junit.Before;
 import org.junit.Test;
+import race.domain.RaceCar;
+import race.domain.RaceRule;
+import race.view.Drawer;
+import race.view.LineDrawer;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
