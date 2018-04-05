@@ -3,6 +3,7 @@ package com.ohahohah.step01;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class CarTest {
@@ -27,16 +28,10 @@ public class CarTest {
 
   @Test
   public void 입력값에_따라_자동차_위치가_변화하는지_확인() {
-    int originCoor = car.getCoordinate();
-    car.moveForward(1);
-    assertThat(car.getCoordinate()).isEqualTo(originCoor+1);
+    int originCoor = car.getCoords();
+    car.move(1);
+    assertThat(car.getCoords()).isEqualTo(originCoor + 1);
   }
 
-  @Test
-  public void 자동차_현재_위치를_String형태로_리턴하는지_확인() {
-    Car testCar = new Car(0,5);
-    assertThat(testCar.coordinateToStr()).isEqualTo("-----");
-
-  }
 }
 

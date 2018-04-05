@@ -1,33 +1,24 @@
 package com.ohahohah.step01;
 
-import static com.ohahohah.step01.Parser.changeInt;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 import java.util.concurrent.ThreadLocalRandom;
 
+/**
+ *  초간단 자동차 경주게임
+ */
 public class RacingGame {
-
 
   public static void main(String[] args) {
 
-    Scanner scanner = new Scanner(System.in);
-    System.out.println("자동차 대수는 몇 대 인가요?");
+    int carNum = InputView.getCarNum();
+    int raceNum = InputView.getRaceNum();
 
-    List<Car> players = createCars(changeInt(scanner.nextLine()));
-    System.out.println("시도할 회수는 몇 회 인가요?");
+    List<Car> players = createCars(carNum);
 
-    doRace(changeInt(scanner.nextLine()), players);
-
-  }
-
-  public static void doRace(int raceNum, List<Car> players) throws IllegalArgumentException {
-    for (int i = 1; i <= raceNum; i++) {
-      System.out.println(i + " 회차");
-      for (Car player : players) {
-        doSmallRace(player);
-      }
+    for (int i = 0; i < raceNum; i++) {
+      raceSinglePeriod(players);
+      ResultView.printStatus(players);
     }
   }
 
@@ -39,9 +30,10 @@ public class RacingGame {
     return players;
   }
 
-  private static void doSmallRace(Car player) {
-    player.moveForward(player.stopOrGo(ThreadLocalRandom.current().nextInt(0, 9 + 1)));
-    System.out.println(player.coordinateToStr());
+  private static void raceSinglePeriod(List<Car> players) {
+    for (Car player : players) {
+      int randomVal = ThreadLocalRandom.current().nextInt(0, 9 + 1);
+      player.move(player.stopOrGo(randomVal));
+    }
   }
-
 }

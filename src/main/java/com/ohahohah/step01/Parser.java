@@ -1,5 +1,8 @@
 package com.ohahohah.step01;
 
+/**
+ * String 입력을 parsing하는 class
+ */
 public class Parser {
 
   public static int changeInt(String s) {

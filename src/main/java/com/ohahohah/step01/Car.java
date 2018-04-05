@@ -1,38 +1,51 @@
 package com.ohahohah.step01;
 
-import java.util.stream.Stream;
+import java.util.ArrayList;
+import java.util.List;
 
+/**
+ * 자동차 경주게임을 위한 자동차 class
+ */
 public class Car {
 
   private int playerNum;
-  private int coordinate;
+  private int coords;
+  private List<Integer> coordsLog;
 
-  public Car(int playerNum, int coordinate) {
-    this.playerNum = playerNum;
-    this.coordinate = coordinate;
+  public Car() {
   }
 
-  public int getCoordinate() {
-    return coordinate;
+  public Car(int coords) {
+    this.coords = coords;
+  }
+
+  public Car(int playerNum, int coords) {
+    this.playerNum = playerNum;
+    this.coords = coords;
+    this.coordsLog = new ArrayList<>();
+  }
+
+  public int getPlayerNum() {
+    return playerNum;
+  }
+
+  public int getCoords() {
+    return coords;
   }
 
   public int stopOrGo(int randomValue) {
-    if(randomValue >= 4){
+    if (randomValue >= 4) {
       return 1;
     }
     return 0;
   }
 
-  public void moveForward(int i) {
-    coordinate +=i;
+  public void move(int i) {
+    coords += i;
   }
 
-  //TODO go to view
-  public String coordinateToStr() {
-    StringBuilder sb = new StringBuilder();
-    for (int i = 0; i < coordinate; i++) {
-      sb.append("-");
-    }
-    return sb.toString();
+  public void saveCoordiate(int coordinate) {
+    coordsLog.add(coords + coordinate);
   }
+
 }
