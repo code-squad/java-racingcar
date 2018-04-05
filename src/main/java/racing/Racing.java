@@ -90,7 +90,6 @@ public class Racing {
 
     }
 
-
     public static boolean assertCanGo() {
         return generateRandomNumber(9) >= 4;
     }
