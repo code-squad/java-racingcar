@@ -18,7 +18,7 @@ public class CarTest {
 	public void isTripMeter테스트() {
 		if(car.getTripMeter() == 1) {
 			assertEquals(true, car.isTripMeter(1));
+			assertEquals(false, car.isTripMeter(0));
 		}
-		assertEquals(false, car.isTripMeter(0));
 	}
 }

@@ -6,7 +6,7 @@ import racingcar.view.OutputView;
 
 import java.util.stream.IntStream;
 
-public class RacingGameApplication {
+public class ConsoleMain {
 	public static void main(String[] args) {
 		RacingGame racingGame = new RacingGame(InputView.getCarNames());
 		

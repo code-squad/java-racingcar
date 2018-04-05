@@ -56,18 +56,13 @@ body {
     <div class="row">
 
       <div class="col-md-12">
-
         <div class="form-show-div" class="form-group">
           <table>
-            <tr>
-              <td>박재성</td>
-            </tr>
-            <tr>
-              <td>윤지수</td>
-            </tr>
-            <tr>
-              <td>정호영</td>
-            </tr>
+              {{#each carNames}}
+                <tr>
+                  <td>{{this}}</td>
+                </tr>
+              {{/each}}
           </table>
 
         </div>
