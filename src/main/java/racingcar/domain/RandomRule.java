@@ -3,14 +3,14 @@ package racingcar.domain;
 import java.util.Random;
 
 public class RandomRule implements Rule {
-	private int minRandmonValue = 4;
+	private static final int MIN_RANDOM_VALUE = 4;
 	
 	public boolean isValid() {
-		return minRandmonValue <= getCarMoveRandomValue();
+		return getCarMoveRandomValue() >= MIN_RANDOM_VALUE;
 	}
 	
 	public int getMoveMeterForReward() {
-		return moveMeterForReward;
+		return MOVE_METER_FOR_REWARD;
 	}
 	
 	private int getCarMoveRandomValue() {
