@@ -1,16 +1,16 @@
 package racingcar.domain;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import static java.util.stream.Collectors.*;
 
 public class RacingGame {
-	private Rule rule = new RandomRule();
-	private List<Car> cars = new ArrayList<>();
+	private Rule rule;
+	private List<Car> cars;
 	
-	public RacingGame(String... carNames) {
-		initCars(carNames);
+	public RacingGame(Rule rule, String... carNames) {
+		this.rule = rule;
+		cars = initCars(carNames);
 	}
 
 	public List<Car> play() {
@@ -32,11 +32,9 @@ public class RacingGame {
 				.get();
 	}
 
-	private boolean initCars(String[] carNames) {
-		this.cars.clear();
+	private List<Car> initCars(String[] carNames) {
 		return Arrays.stream(carNames)
-				.map(carName -> cars.add(new Car(carName)))
-				.reduce((aBoolean, aBoolean2) -> aBoolean && aBoolean2)
-				.get();
+				.map(carName -> new Car(carName))
+				.collect(toList());
 	}
 }
