@@ -2,7 +2,6 @@ package racing;
 
 import java.util.*;
 
-
 public class DrawCars {
 
     public static void drawCars(List<List<Integer>> arr) {

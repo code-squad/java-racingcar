@@ -3,6 +3,7 @@ package racing;
 import static racing.DrawCars.*;
 import static racing.Racing.startRaceWithName;
 
+
 public class Game {
 
     public static void main(String[] args) {
@@ -24,6 +25,5 @@ public class Game {
         if (result != null)
             result.showWinners();
     }
-
 
 }
