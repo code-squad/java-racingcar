@@ -11,10 +11,8 @@ public class Car {
 
   private String playerName;
   private int coords;
-  private List<Integer> coordsLog;
 
-  public Car() {
-  }
+  private static final int MIN_GO_VALUE = 4;
 
   public Car(String playerName, int coords) {
     this.playerName = playerName;
@@ -30,7 +28,7 @@ public class Car {
   }
 
   public int stopOrGo(int randomValue) {
-    if (randomValue >= 4) {
+    if (randomValue >= MIN_GO_VALUE) {
       return 1;
     }
     return 0;
@@ -38,10 +36,6 @@ public class Car {
 
   public void move(int i) {
     coords += i;
-  }
-
-  public void saveCoordiate(int coordinate) {
-    coordsLog.add(coords + coordinate);
   }
 
   public static Comparator<Car> carCoordsComparator = new Comparator<Car>() {
@@ -61,14 +55,13 @@ public class Car {
     }
     Car car = (Car) o;
     return coords == car.coords &&
-        Objects.equals(playerName, car.playerName) &&
-        Objects.equals(coordsLog, car.coordsLog);
+        Objects.equals(playerName, car.playerName);
   }
 
   @Override
   public int hashCode() {
 
-    return Objects.hash(playerName, coords, coordsLog);
+    return Objects.hash(playerName, coords);
   }
 
   @Override
@@ -76,7 +69,6 @@ public class Car {
     return "Car{" +
         "playerName='" + playerName + '\'' +
         ", coords=" + coords +
-        ", coordsLog=" + coordsLog +
         '}';
   }
 }
