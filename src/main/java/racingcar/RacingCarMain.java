@@ -2,12 +2,12 @@ package racingcar;
 
 public class RacingCarMain {
     public static void main(String[] args) {
-
-        int car = InputRacingCarView.inputCarNumber();
+        String[] cars = InputRacingCarView.inputCarNames();
         int move = InputRacingCarView.inputCarMove();
 
-        RacingCar racingCar = new RacingCar(car);
+        RacingCar racingCar = new RacingCar(cars);
 
         OutputRacingCarView.printRacing(racingCar, move);
+        OutputRacingCarView.printWinner(racingCar);
     }
 }

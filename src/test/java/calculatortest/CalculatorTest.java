@@ -2,6 +2,7 @@ package calculatortest;
 
 import calculator.Calculator;
 import org.junit.Test;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class CalculatorTest {

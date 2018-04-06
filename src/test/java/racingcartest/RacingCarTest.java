@@ -30,20 +30,43 @@ public class RacingCarTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void 입력_유효값() {
-        InputRacingCarView.checkInputValue(-1);
+    public void 입력_이동_유효값() {
+        InputRacingCarView.checkInputMoveValue(-1);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void 입력_이름_유효값_null() {
+        InputRacingCarView.checkInputCarNamesValue(null);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void 입력_이름_유효값_빈문자열() {
+        InputRacingCarView.checkInputCarNamesValue("");
     }
 
     @Test
     public void 랜덤() {
-        RacingCar racingCar = new RacingCar(1);
+        RacingCar racingCar = new RacingCar(new String[]{"testCar1"});
         assertThat(racingCar.returnRandom()).isBetween(0, 9);
     }
 
     @Test
     public void 자동차_위치_출력() {
-        OutputRacingCarView.printCarMove(3);
-        assertEquals("---", byteArrayOutputStream.toString());
+        assertEquals("testCar : ---", OutputRacingCarView.printCarMove("testCar", 3));
+    }
+
+    @Test
+    public void 우승자_확인() {
+        String[] testWinner = new String[]{"testCar1", "testCar2", "testCar3"};
+        RacingCar racingCar = new RacingCar(new String[]{"testCar1", "testCar2", "testCar3"});
+        boolean winnerChecker = true;
+
+        for (int i = 0; i < testWinner.length; i++) {
+            if (!racingCar.returnWinner().contains(testWinner[i])) {
+                winnerChecker = false;
+            }
+        }
+        assertEquals(winnerChecker, true);
     }
 
 }
