@@ -1,17 +1,11 @@
 package racing;
 
 public class Car {
-    private static int RACING_NUM_DETERMINE = 1;
     private StringBuilder location;
-    private final int number; // 추후에 필요할 수 있을 것 같아 임시로 만들어둠
+    private String name;
 
-
-    public Car(){
-        this(RACING_NUM_DETERMINE++);
-    }
-
-    private Car(int number){
-        this.number = number;
+    public Car(String name){
+        this.name= name;
         location = new StringBuilder();
     }
 
@@ -25,6 +19,15 @@ public class Car {
 
     @Override
     public String toString() {
-        return this.location.toString();
+        return this.name + ": "+ this.location.toString();
     }
+
+    public int getDistance(){
+        return this.location.length();
+    }
+
+    public String getName(){
+        return this.name;
+    }
+
 }
