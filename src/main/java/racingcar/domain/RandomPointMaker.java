@@ -1,6 +1,6 @@
-package racingcar;
+package racingcar.domain;
 
-import racingcar.interfaces.PointMaker;
+import racingcar.domain.interfaces.PointMaker;
 
 import java.util.Random;
 

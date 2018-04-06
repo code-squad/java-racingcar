@@ -1,6 +1,6 @@
-package racingcar;
+package racingcar.domain;
 
-import racingcar.interfaces.Car;
+import racingcar.domain.interfaces.Car;
 
 /**
  * @author sangsik.kim

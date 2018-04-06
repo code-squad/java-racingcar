@@ -1,7 +1,7 @@
-package racingcar;
+package racingcar.domain;
 
-import racingcar.interfaces.Car;
-import racingcar.interfaces.PointMaker;
+import racingcar.domain.interfaces.Car;
+import racingcar.domain.interfaces.PointMaker;
 
 import java.util.ArrayList;
 import java.util.List;
