@@ -1,30 +1,33 @@
 package game;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.IntStream;
 
 public class RacingGame {
 
     private List<Car> cars;
 
-    public RacingGame(int carNo) {
-        this.cars = initCars(carNo);
+    public RacingGame(String carName) {
+        this.cars = initCars(carName);
     }
 
-    List<Car> initCars(int carCount) {
+    static List<Car> initCars(String carNameWithComma) {
+        List<String> carNames = Arrays.asList(carNameWithComma.split(","));
         List<Car> cars = new ArrayList<>();
-        for (int i = 0; i < carCount; i++) {
-            cars.add(new Car(GameRule.START_POSITION));
-        }
+
+        carNames.forEach(carName -> cars.add(new Car(GameRule.START_POSITION, carName)));
         return cars;
     }
 
     public GameResult move(int tryNo) {
         final Random random = new Random();
-        List<List<Car>> histories = new ArrayList<>();
+        GameResult gameResult = new GameResult();
 
-        for (int i = 0; i < tryNo; i++) {
+        IntStream.range(0, tryNo)
+                .forEach(i -> {
             List<Car> history = new ArrayList<>();
 
             cars.forEach(car -> {
@@ -32,11 +35,12 @@ public class RacingGame {
 
                 car.move(randomValue);
 
-                history.add(new Car(car));
+                history.add(new Car(car.getPosition(), car.getName()));
             });
 
-            histories.add(history);
-        }
-        return new GameResult(histories);
+            gameResult.record(history);
+        });
+
+        return gameResult;
     }
 }
