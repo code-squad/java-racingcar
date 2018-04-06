@@ -1,11 +1,10 @@
 package racingCar;
 
-import org.omg.CORBA.PRIVATE_MEMBER;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class Car {
+    private final int STAND_VALUE =  4;
     private List<Integer> barHistory = new ArrayList<>();
     private int bar = 0;
     private String name;
@@ -14,12 +13,10 @@ public class Car {
         this.name = name;
     }
 
-    void go() {
-        bar++;
-        barHistory.add(bar);
-    }
-
-    void stop() {
+    public void move(int randomValue) {
+        if(randomValue > STAND_VALUE){
+            bar++;
+        }
         barHistory.add(bar);
     }
 

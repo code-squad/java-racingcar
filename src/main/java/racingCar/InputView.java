@@ -5,10 +5,9 @@ import java.util.List;
 import java.util.Scanner;
 
 public class InputView {
-    private int carNumbers;
-    private int times;
-    private List<String> carNames = new ArrayList<>();
     private Scanner scanner = new Scanner(System.in);
+    private List<String> carsName = new ArrayList<>();
+    private int times;
 
     public void setup() {
         settingCarsName();
@@ -23,27 +22,21 @@ public class InputView {
 
     private void settingTime() {
         System.out.println("시도할 횟수는 몇회입니까?.");
-        this.times = scanner.nextInt();
+        times = scanner.nextInt();
     }
 
     private void carInfoMapping(String inputString) {
-
-        String[] carNames = inputString.split(",");
-        for (String carName:carNames) {
-            this.carNames.add(carName);
+        String[] inputCarsName = inputString.split(",");
+        for (String carName:inputCarsName) {
+            carsName.add(carName);
         }
-        carNumbers = this.carNames.size();
    }
-
-    public int getCarNumbers() {
-        return carNumbers;
-    }
 
     public int getTimes() {
         return times;
     }
 
-    public List<String> getCarNames() {
-        return carNames;
+    public List<String> getCarsName() {
+        return carsName;
     }
 }
