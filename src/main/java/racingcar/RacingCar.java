@@ -1,5 +1,7 @@
 package racingcar;
 
+import java.util.List;
+
 public class RacingCar {
 
     PlayRounds playRounds;
@@ -12,10 +14,10 @@ public class RacingCar {
         inputView = new InputView();
         UserInput userInput = inputView.getUserInput();
 
-        int carCount = userInput.getCarCount();
+        String[] players = userInput.getPlayers();
         int roundCount = userInput.getRoundCount();
 
-        PlayRounds playRounds = new PlayRounds(carCount);
+        PlayRounds playRounds = new PlayRounds(players);
         resultView = new ResultView();
 
         for(int i=0; i<roundCount; i++){
@@ -23,6 +25,7 @@ public class RacingCar {
             resultView.printRoundState(playRounds.getPlayerCars());
             System.out.println();
         }
+        resultView.printWinners(playRounds.getWinners());
 
     }
 
