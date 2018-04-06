@@ -15,7 +15,7 @@ public class RacingCar {
 
     public List<Car> carPositionMove() {
         for (int i = 0; i < carInfo.size(); i++) {
-            carInfo.get(i).move = moveCar(carInfo.get(i).move);
+            carInfo.get(i).carMove(moveCar(carInfo.get(i).returnCarMove()));
         }
         return carInfo;
     }
@@ -26,42 +26,6 @@ public class RacingCar {
 
     public int returnRandom() {
         return (new Random().nextInt(9));
-    }
-
-    public String returnWinner() {
-        return returnWinnerString(searchWinnerValue());
-    }
-
-    private String returnWinnerString(int winnerValue) {
-        String winner = "";
-        for (int i = 0; i < carInfo.size(); i++) {
-            winner += makeWinnerString(winnerValue, carInfo.get(i).move, carInfo.get(i).carName);
-        }
-        return removeLastComma(winner);
-    }
-
-    private String removeLastComma(String winner) {
-        return winner.substring(0, winner.length() - 2);
-    }
-
-    private String makeWinnerString(int winnerValue, int compareValue, String winnerName) {
-        return winnerValue == compareValue ? appendComma(winnerName) : "";
-    }
-
-    private String appendComma(String winnerName) {
-        return winnerName + ", ";
-    }
-
-    private int searchWinnerValue() {
-        int winnerValue = 0;
-        for (int i = 0; i < carInfo.size(); i++) {
-            winnerValue = compareWinnerCarPosition(winnerValue, carInfo.get(i).move);
-        }
-        return winnerValue;
-    }
-
-    private int compareWinnerCarPosition(int winnerValue, int compareValue) {
-        return winnerValue < compareValue ? compareValue : winnerValue;
     }
 
 }

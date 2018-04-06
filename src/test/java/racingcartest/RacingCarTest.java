@@ -3,14 +3,15 @@ package racingcartest;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import racingcar.Car;
 import racingcar.InputRacingCarView;
 import racingcar.OutputRacingCarView;
 import racingcar.RacingCar;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
-import java.lang.annotation.Repeatable;
-import java.lang.annotation.Retention;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertEquals;
@@ -57,8 +58,12 @@ public class RacingCarTest {
 
     @Test
     public void 우승자_확인() {
-        RacingCar racingCar = new RacingCar(new String[]{"testCar1", "testCar2", "testCar3"});
-        assertEquals("testCar1, testCar2, testCar3", racingCar.returnWinner());
+        List<Car> carInfo = new ArrayList<>();
+        carInfo.add(new Car("testCar1",0));
+        carInfo.add(new Car("testCar2",0));
+        carInfo.add(new Car("testCar3",0));
+
+        assertEquals("testCar1, testCar2, testCar3", OutputRacingCarView.returnWinner(carInfo));
     }
 
 }
