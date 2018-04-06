@@ -11,6 +11,4 @@ import static org.junit.Assert.assertEquals;
 public class RaceTest {
     //MEMO: UI는 테스트하지 않아도 됨
     //view 와 logic을 나누면서 바뀐 구조에 테스트를 못 만들겠습니다ㅠ
-
-    
 }
