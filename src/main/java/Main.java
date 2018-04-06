@@ -1,20 +1,13 @@
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-
 public class Main {
 
     public static void main(String[] args){
-        String[] carNames = RacingInput.setCarNames();
-        int numCircuit = RacingInput.readNumCircuit();
+        String[] carNames = RaceInput.setCarNames();
+        int numCircuit = RaceInput.readNumCircuit();
 
-        Racing race = new Racing(carNames, numCircuit);
-
-        RandomRule rule = new RandomRule(true);
+        Race race = new Race(carNames);
         for(int i=0; i<numCircuit; i++){
-            RacingView.printStatus(race.move(rule));
+            RaceView.printStatus(race.move());
         }
-
-        RacingView.printWinner(race.getWinner());
+        RaceView.printWinner(race.getWinner());
     }
 }
