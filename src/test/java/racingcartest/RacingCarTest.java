@@ -57,16 +57,8 @@ public class RacingCarTest {
 
     @Test
     public void 우승자_확인() {
-        String[] testWinner = new String[]{"testCar1", "testCar2", "testCar3"};
         RacingCar racingCar = new RacingCar(new String[]{"testCar1", "testCar2", "testCar3"});
-        boolean winnerChecker = true;
-
-        for (int i = 0; i < testWinner.length; i++) {
-            if (!racingCar.returnWinner().contains(testWinner[i])) {
-                winnerChecker = false;
-            }
-        }
-        assertEquals(winnerChecker, true);
+        assertEquals("testCar1, testCar2, testCar3", racingCar.returnWinner());
     }
 
 }

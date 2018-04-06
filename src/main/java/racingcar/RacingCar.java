@@ -55,12 +55,12 @@ public class RacingCar {
     private int searchWinnerValue() {
         int winnerValue = 0;
         for (int i = 0; i < carInfo.size(); i++) {
-            winnerValue = compareWInnerCarPosition(winnerValue, carInfo.get(i).move);
+            winnerValue = compareWinnerCarPosition(winnerValue, carInfo.get(i).move);
         }
         return winnerValue;
     }
 
-    private int compareWInnerCarPosition(int winnerValue, int compareValue) {
+    private int compareWinnerCarPosition(int winnerValue, int compareValue) {
         return winnerValue < compareValue ? compareValue : winnerValue;
     }
 
