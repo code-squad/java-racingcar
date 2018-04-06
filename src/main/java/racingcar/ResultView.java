@@ -3,15 +3,14 @@ package racingcar;
 import java.util.List;
 
 public class ResultView {
-    public static void printStatus(GameResult gameResult) {
+    public static void printStatus(List<Car> cars) {
         StringBuilder sb = new StringBuilder();
-        List<Car> carList = gameResult.getCarList();
-        int countOfCar = carList.size();
+        int countOfCar = cars.size();
 
         for (int carNumber = 0; carNumber < countOfCar; carNumber++) {
-            sb.append(carList.get(carNumber).getCarName())
+            sb.append(cars.get(carNumber).getCarName())
               .append(" : ")
-              .append(printMove(carList.get(carNumber).getMoveDistance()))
+              .append(printMove(cars.get(carNumber).getMoveDistance()))
               .append("\n");
         }
         System.out.println(sb.toString());

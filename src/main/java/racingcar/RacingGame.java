@@ -1,5 +1,6 @@
 package racingcar;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -7,26 +8,26 @@ public class RacingGame {
 
     private static final int CANNABLE_MOVE_NUMBER = 4;
     private Random random;
-    private GameResult gameResult;
     private int countOfCar;
+    private List<Car> cars;
 
-    public RacingGame(List<Car> carList) {
-        if (carList == null || carList.size() == 0) {
+    public RacingGame(List<Car> cars) {
+        if (cars == null || cars.size() == 0) {
             throw new IllegalArgumentException();
         }
         random = new Random();
-        gameResult = new GameResult();
-        gameResult.setCarList(carList);
-        countOfCar = carList.size();
+        this.cars = cars;
+        countOfCar = cars.size();
     }
 
-    public GameResult moveCar() {
+    public List<Car> moveCar() {
         for (int carNumber = 0; carNumber < countOfCar; carNumber++) {
             if (isMoving(getRandomValue())) {
-                gameResult.moveCar(carNumber);
+                Car currentCar = cars.get(carNumber);
+                currentCar.moveCar();
             }
         }
-        return gameResult;
+        return cars;
     }
 
     static boolean isMoving(int number) {
@@ -35,5 +36,30 @@ public class RacingGame {
 
     public int getRandomValue() {
         return random.nextInt(10);
+    }
+
+    public void moveCar(int carIndex) {
+        Car currentCar = cars.get(carIndex);
+        currentCar.moveCar();
+    }
+
+    public List<String> getCarRacingWinner() {
+        List<String> winners = new ArrayList<String>();
+        int topDistance = getTopDistnace();
+
+        for (Car car : cars) {
+            if (car.matchDistance(topDistance)) {
+                winners.add(car.getCarName());
+            }
+        }
+        return winners;
+    }
+
+    public int getTopDistnace() {
+        int result = 0;
+        for (Car car : cars) {
+            result = Math.max(result, car.getMoveDistance());
+        }
+        return result;
     }
 }

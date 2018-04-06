@@ -21,7 +21,7 @@ public class InputView {
         int countOfCar = carNames.length;
         List<Car> list = new ArrayList<Car>();
         for (int index = 0; index < countOfCar; index++) {
-            list.add(new Car().setCarName(carNames[index]));
+            list.add(new Car(carNames[index]));
         }
         return list;
     }
