@@ -13,15 +13,16 @@ public class RacingGame {
   public static void main(String[] args) {
 
     List<String> carNames = InputView.getCarsName();
-    int raceNum = InputView.getRaceNum();
+    int tryNum = InputView.getTryNum();
 
+    GameResult gameResult = null;
     List<Car> players = createCars(carNames);
 
-    for (int i = 0; i < raceNum; i++) {
-      raceSinglePeriod(players);
-      ResultView.printStatus(players);
+    for (int i = 0; i < tryNum; i++) {
+      gameResult = raceSinglePeriod(players);
+      ResultView.printStatus(gameResult.getPlayers());
     }
-    ResultView.printResult(pickWinner(players));
+    ResultView.printResult(gameResult.getWinnerNames());
   }
 
   public static List<Car> createCars(List<String> carNames) {
@@ -32,25 +33,11 @@ public class RacingGame {
     return players;
   }
 
-  private static void raceSinglePeriod(List<Car> players) {
+  private static GameResult raceSinglePeriod(List<Car> players) {
     for (Car player : players) {
       int randomVal = ThreadLocalRandom.current().nextInt(0, 9 + 1);
       player.move(player.stopOrGo(randomVal));
     }
-  }
-
-  public static List<String> pickWinner(List<Car> players) {
-    Collections.sort(players, Car.carCoordsComparator);
-
-    int maxCoords = players.get(0).getCoords();
-    List<String> winnerNames = new ArrayList<>();
-
-    for (Car player : players) {
-      if (player.getCoords() < maxCoords) {
-        break;
-      }
-      winnerNames.add(player.getPlayerName());
-    }
-    return winnerNames;
+    return new GameResult(players);
   }
 }
