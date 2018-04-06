@@ -14,7 +14,7 @@ public class RacingGame {
         this.cars = initCars(carName);
     }
 
-    List<Car> initCars(String carNameWithComma) {
+    static List<Car> initCars(String carNameWithComma) {
         List<String> carNames = Arrays.asList(carNameWithComma.split(","));
         List<Car> cars = new ArrayList<>();
 
@@ -35,7 +35,7 @@ public class RacingGame {
 
                 car.move(randomValue);
 
-                history.add(new Car(car));
+                history.add(new Car(car.getPosition(), car.getName()));
             });
 
             gameResult.record(history);

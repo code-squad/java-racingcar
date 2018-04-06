@@ -20,16 +20,12 @@ public class GameResult {
     }
 
     public void record(List<Car> cars) {
-        records.add(cars);
+        getRecords().add(cars);
     }
 
     public String draw() {
-        if(records == null) {
-            throw new IllegalArgumentException();
-        }
-
         StringBuilder result = new StringBuilder();
-        records.forEach(cars -> {
+        getRecords().forEach(cars -> {
             cars.forEach(car -> {
                 result.append(car.getName() + " : ");
                 IntStream.rangeClosed(0, car.getPosition())
@@ -43,14 +39,23 @@ public class GameResult {
     }
 
     public List<Car> winner() {
-        List<Car> last = new ArrayList<>(records.get(records.size() - 1));
-        Integer top = last.stream()
-                        .max(Comparator.comparing(Car::getPosition))
-                        .get()
-                        .getPosition();
-
-        return last.stream()
-                .filter(car -> Objects.equals(car.getPosition(), top))
+        return last().stream()
+                .filter(car -> Objects.equals(car.getPosition(), top()))
                 .collect(Collectors.toList());
+    }
+
+    private List<Car> last() {
+        return new ArrayList<>(getRecords().get(getRecords().size() - 1));
+    }
+
+    private Integer top() {
+        return last().stream()
+                .max(Comparator.comparing(Car::getPosition))
+                .get()
+                .getPosition();
+    }
+
+    public List<List<Car>> getRecords() {
+        return new ArrayList<>(records);
     }
 }

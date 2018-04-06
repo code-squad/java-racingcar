@@ -16,9 +16,9 @@ public class GameResultTest {
     @Before
     public void setUp() throws Exception {
         List<List<Car>> histories = new ArrayList<>();
-        histories.add(Arrays.asList(new Car(),
-                                    new Car(),
-                                    new Car()));
+        histories.add(Arrays.asList(new Car(0),
+                                    new Car(0),
+                                    new Car(0)));
 
         gameResult = new GameResult(histories);
     }

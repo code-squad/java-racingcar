@@ -4,15 +4,10 @@ import java.util.Objects;
 
 public class Car {
 
-    private Integer position;
-    private String name;
-
     public final static String DEFAULT_NAME = "default car";
 
-    public Car() {
-        this.position = 0;
-        this.name = DEFAULT_NAME;
-    }
+    private Integer position;
+    private String name;
 
     public Car(Integer position) {
         this.position = position;
@@ -22,11 +17,6 @@ public class Car {
     public Car(Integer position, String name) {
         this.position = position;
         this.name = name;
-    }
-
-    public Car(Car car) {
-        this.position = car.getPosition();
-        this.name = car.getName();
     }
 
     public void move(int randomValue) {

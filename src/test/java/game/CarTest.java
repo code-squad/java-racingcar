@@ -11,7 +11,7 @@ public class CarTest {
 
     @Before
     public void setUp() throws Exception {
-        car = new Car();
+        car = new Car(0);
     }
 
     @Test
