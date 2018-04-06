@@ -14,7 +14,7 @@ public class InputView {
     return Parser.changeInt(scanner.nextLine());
   }
 
-  public static int getRaceNum() {
+  public static int getTryNum() {
     Scanner scanner = new Scanner(System.in);
     System.out.println("시도할 회수는 몇 회 인가요?");
     return Parser.changeInt(scanner.nextLine());
