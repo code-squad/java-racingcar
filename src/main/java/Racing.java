@@ -5,11 +5,7 @@ import java.util.Random;
 public class Racing {
     private int numCircuit;
     List<Car> cars;
-
     public Racing(String[] carNames, int numCircuit){
-//        for (int i =0; i<carNames.length; i++){
-//            cars.add(new Car(car));
-//        }
         this.cars = new ArrayList<>();
         for( String carName : carNames){
             this.cars.add(new Car(carName));
