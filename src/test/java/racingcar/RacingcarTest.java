@@ -49,7 +49,7 @@ public class RacingcarTest {
     }
 
     @Test
-    public void 룰넘버확인하기() {
+    public void 렌덤숫자넘버확인하기() {
         assertThat(RacingGame.RULENUM).isEqualTo(4);
     }
 
@@ -67,5 +67,26 @@ public class RacingcarTest {
 
         assertThat(winnerCar.getCarName()).isEqualTo("pobi");
         assertThat(winnerCar.getCarPostion()).isEqualTo(1);
+    }
+
+    @Test
+    public void 자동차레이스복수승자선택하기() {
+
+        Car pobiCar = carList.get(0);
+        pobiCar.addCarPostion();
+
+        Car crongCar = carList.get(1);
+        crongCar.addCarPostion();
+
+        GameResult result = new GameResult(this.carList);
+        RacingGame racingGame = new RacingGame(this.carList);
+        racingGame.choiceWinner(result);
+        List<Car> winnerList = result.getWinnerList();
+        Car winnerCar = winnerList.get(0);
+        Car winnerCar2 = winnerList.get(1);
+
+        assertThat(winnerList.size()).isEqualTo(2);
+        assertThat(winnerCar.getCarPostion()).isEqualTo(1);
+        assertThat(winnerCar2.getCarPostion()).isEqualTo(1);
     }
 }
