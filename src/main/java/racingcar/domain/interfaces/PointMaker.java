@@ -1,4 +1,4 @@
-package racingcar.interfaces;
+package racingcar.domain.interfaces;
 
 /**
  * @author sangsik.kim

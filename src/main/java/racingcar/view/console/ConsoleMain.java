@@ -1,11 +1,14 @@
-package racingcar;
+package racingcar.view.console;
+
+import racingcar.domain.GameResult;
+import racingcar.domain.RacingGame;
 
 import java.util.List;
 
 /**
  * @author sangsik.kim
  */
-public class Main {
+public class ConsoleMain {
 
     public static void main(String[] args) {
         List<String> names = InputView.getNames();
@@ -16,7 +19,7 @@ public class Main {
 
         for (int i = 0; i < runCount; i++) {
             gameResult = racingGame.run();
-            PrintView.print(gameResult);
+            PrintView.printProgress(gameResult);
         }
         PrintView.printWinners(gameResult);
     }

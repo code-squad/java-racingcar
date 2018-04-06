@@ -1,4 +1,4 @@
-package racingcar;
+package racingcar.domain;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +22,7 @@ public class GameResult {
         this.records.add(userRecord);
     }
 
-    public List<Record> get() {
+    public List<Record> getRecords() {
         return this.records;
     }
 

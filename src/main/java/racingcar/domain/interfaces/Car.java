@@ -1,6 +1,6 @@
-package racingcar.interfaces;
+package racingcar.domain.interfaces;
 
-import racingcar.Record;
+import racingcar.domain.Record;
 
 /**
  * @author sangsik.kim

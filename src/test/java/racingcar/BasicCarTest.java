@@ -1,7 +1,9 @@
 package racingcar;
 
 import org.junit.Test;
-import racingcar.interfaces.Car;
+import racingcar.domain.BasicCar;
+import racingcar.domain.Record;
+import racingcar.domain.interfaces.Car;
 
 import java.util.Random;
 
