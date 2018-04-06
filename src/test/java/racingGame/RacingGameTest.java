@@ -23,7 +23,6 @@ public class RacingGameTest {
         car1.move(1);
         Car car2 = new Car("bbb");
         car2.move(5);
-        car2.setWinner(true);
         cars.add(car1);
         cars.add(car2);
 
@@ -32,7 +31,7 @@ public class RacingGameTest {
         // 테스트를 위해 만들었지만 List를 받는 생성자도 필요할수도 있구요
         RacingGame racingGame = new RacingGame(cars);
 
-        assertEquals(true, racingGame.findWinners().get(1).isWinner());
+        assertEquals(car2, racingGame.findWinners().get(0));
 
     }
 

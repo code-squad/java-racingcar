@@ -49,12 +49,13 @@ public class RacingGame {
 
     public List<Car> findWinners() {
         int farthestPosition = findFarthestPosition();
+        List<Car> winnerCars = new ArrayList<>();
         for (Car car : cars) {
             if(car.matchFarthestPosition(farthestPosition)) {
-                car.setWinner(true);
+                winnerCars.add(car);
             }
         }
-        return cars;
+        return winnerCars;
     }
 
     public int findFarthestPosition() {

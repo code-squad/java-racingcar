@@ -4,10 +4,10 @@ package racingGame;
  * Created by hongjong-wan on 2018. 4. 3..
  */
 public class Car {
+
+    private static final int MOVE_CONDITION = 4;
     private String name;
     private int position;
-    private boolean winner;
-    private static final int MOVE_CONDITION = 4;
 
 
     public Car(String name) {
@@ -28,14 +28,6 @@ public class Car {
         return position;
     }
 
-
-    public boolean isWinner() {
-        return winner;
-    }
-
-    public void setWinner(boolean winner) {
-        this.winner = winner;
-    }
 
     public boolean matchFarthestPosition(int farthestPosition) {
         return this.position == farthestPosition;

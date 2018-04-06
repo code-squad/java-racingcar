@@ -30,10 +30,8 @@ public class ResultView {
     public static void printWinner(List<Car> cars) {
         StringBuilder sb = new StringBuilder();
         for (Car car : cars) {
-            if (car.isWinner()) {
-                sb.append(car.getName());
-                sb.append(",");
-            }
+            sb.append(car.getName());
+            sb.append(",");
         }
 
         System.out.println(sb.substring(0, sb.length()-1) + "가 최종 우승했습니다.");
