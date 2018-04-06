@@ -7,11 +7,6 @@ import java.util.List;
 
 public class GameResult {
 
-    //단위테스트를 위한 SetMethod
-    public void setCarList(List<Car> carList) {
-        this.carList = carList;
-    }
-
     private List<Car> carList;
     private List<Car> winnerList = new ArrayList<>();
 

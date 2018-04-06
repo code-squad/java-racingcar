@@ -9,6 +9,7 @@ public class ResultView {
     private static final String ROUTE = "-";
 
     public static void printCarRoutes(GameResult result) {
+
         initialCarRoute(result.getCarPostionLength());
         for(int i = 0; i < result.getCarPostionLength(); i++) {
             drawSingleCarRoute(result.getSingleCarPosition(i), i, result.getSingleCarName(i));

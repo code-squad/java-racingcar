@@ -36,7 +36,7 @@ public class RacingcarTest {
         racingGame.moveCar(1);
         racingGame.moveCar(1);
         racingGame.moveCar(0);
-        List<Car> carList = racingGame.getCarPosition();
+        List<Car> carList = racingGame.carList;
         assertThat(carList.get(0).getCarPostion()).isEqualTo(1);
         assertThat(carList.get(1).getCarPostion()).isEqualTo(2);
     }
@@ -50,6 +50,22 @@ public class RacingcarTest {
 
     @Test
     public void 룰넘버확인하기() {
-        assertThat(RacingGame.getRuleNum()).isEqualTo(4);
+        assertThat(RacingGame.RULENUM).isEqualTo(4);
+    }
+
+    @Test
+    public void 자동차레이스승자선택하기() {
+
+        Car pobiCar = carList.get(0);
+        pobiCar.addCarPostion();
+
+        GameResult result = new GameResult(this.carList);
+        RacingGame racingGame = new RacingGame(this.carList);
+        racingGame.choiceWinner(result);
+        List<Car> winnerList = result.getWinnerList();
+        Car winnerCar = winnerList.get(0);
+
+        assertThat(winnerCar.getCarName()).isEqualTo("pobi");
+        assertThat(winnerCar.getCarPostion()).isEqualTo(1);
     }
 }

@@ -8,8 +8,8 @@ import java.util.*;
 public class RacingGame {
 
     private static Random random = new Random();
-    private List<Car> carList;
-    private static final int RULENUM = 4;
+    public List<Car> carList;
+    public static final int RULENUM = 4;
 
     public RacingGame(List<Car> carList) {
         this.carList = carList;
@@ -29,10 +29,10 @@ public class RacingGame {
     }
 
     public void moveCar(int moveNum) {
-        carList.get(moveNum).addCarPostion();//디미터에 어긋나긴 하는데 이렇게 List라서 이렇게 썼습니다.
+        carList.get(moveNum).addCarPostion();
     }
 
-    public GameResult getWinner(GameResult result) {
+    public GameResult choiceWinner(GameResult result) {
 
         Collections.sort(carList);
         int maxCarPosition = carList.get(0).getCarPostion();
@@ -50,16 +50,6 @@ public class RacingGame {
         }
     }
 
-    //단위테스트를 위한 임시 Method
-    public List<Car> getCarPosition() {
-        return carList;
-    }
-
-    //단위테스트를 위한 임시 Method
-    public static int getRuleNum() {
-        return RULENUM;
-    }
-
     public static void main(String[] args) {
 
         RacingGame racingGame = new RacingGame(InputView.getCarList());
@@ -71,6 +61,6 @@ public class RacingGame {
             ResultView.printCarRoutes(result);
         }
 
-        ResultView.printWinnerCarRacing(racingGame.getWinner(result));
+        ResultView.printWinnerCarRacing(racingGame.choiceWinner(result));
     }
 }
