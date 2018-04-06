@@ -1,9 +1,9 @@
 package racingGame;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import static com.sun.tools.internal.xjc.reader.Ring.add;
 
 /**
  * Created by hongjong-wan on 2018. 3. 31..
@@ -11,49 +11,62 @@ import static com.sun.tools.internal.xjc.reader.Ring.add;
 public class RacingGame {
 
 
-    private static final int MOVE_CONDITION = 4;
     private List<Car> cars;
 
+    public RacingGame(List<Car> cars) {
+        this.cars = cars;
+    }
 
-    public RacingGame(int carNum) {
-        if (carNum < 0) {
+    public RacingGame(String carNames) {
+        if (StringUtils.isBlank(carNames)) {
             throw new IllegalArgumentException();
         }
+        cars = addCar(carNames);
+    }
+
+    private List<Car> addCar(String carNames) {
+        if (StringUtils.isBlank(carNames)) {
+            throw new IllegalArgumentException();
+        }
+
         cars = new ArrayList<>();
-        initCarPosition(carNum);
+        String[] carName = carNames.split(",");
+        for (int i = 0; i < carName.length; i++) {
+            cars.add(new Car(carName[i]));
+        }
+        return cars;
     }
 
-    private void initCarPosition(int carNum) {
-        for (int i = 0; i < carNum; i++) {
-            cars.add(new Car(0));
+
+    public List<Car> moveCars() {
+        for(Car car : cars) {
+            car.move(RandomGenerator.getRandomNum());
         }
+        return cars;
     }
 
 
-    public void moveCars(int tryNum) {
 
-        if (tryNum < 0) {
-            throw new IllegalArgumentException();
-        }
-
-        for (int i = 0; i < tryNum; i++) {
-            makeCarMove();
-            printResult();
-        }
-
-    }
-
-    private void makeCarMove() {
-
-        for (int i = 0; i < cars.size(); i++) {
-            if (MOVE_CONDITION <= RandomGenerator.getRandomNum()) {
-                cars.set(i, cars.get(i).move());
+    public List<Car> findWinners() {
+        int farthestPosition = findFarthestPosition();
+        List<Car> winnerCars = new ArrayList<>();
+        for (Car car : cars) {
+            if(car.matchFarthestPosition(farthestPosition)) {
+                winnerCars.add(car);
             }
         }
+        return winnerCars;
     }
 
-    public void printResult() {
-        ResultView.printResult(cars);
+    public int findFarthestPosition() {
+        int farthestPosition = 0;
+        for (Car car : cars) {
+            int carPosition = car.getPosition();
+            if (farthestPosition < carPosition) {
+                farthestPosition = carPosition;
+            }
+        }
+        return farthestPosition;
     }
 
 }

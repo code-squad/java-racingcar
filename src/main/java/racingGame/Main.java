@@ -10,11 +10,16 @@ public class Main {
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
-        int carNum = InputView.getCarNum(sc);
+        String carNames = InputView.getCarNames(sc);
         int tryNum = InputView.getTryNum(sc);
 
-        RacingGame racingGame = new RacingGame(carNum);
-        racingGame.moveCars(tryNum);
 
+        RacingGame racingGame = new RacingGame(carNames);
+
+        for (int i = 0; i < tryNum; i++) {
+            ResultView.printTrace(racingGame.moveCars());
+        }
+
+        ResultView.printWinner(racingGame.findWinners());
     }
 }

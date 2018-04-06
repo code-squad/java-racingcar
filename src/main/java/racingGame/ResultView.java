@@ -7,25 +7,37 @@ import java.util.List;
  */
 public class ResultView {
 
-    public static void printResult(List<Car> cars) {
-
-        for (int i = 0; i < cars.size(); i++) {
-            printCarPosition(cars.get(i));
-            newLineAdd();
+    public static void printTrace(List<Car> cars) {
+        for (Car car : cars) {
+            printCarPosition(car);
         }
-        newLineAdd();
+        printNewLine();
     }
 
     private static void printCarPosition(Car car) {
 
+        String carName = car.getName();
+        System.out.print(carName + " : ");
+
+        StringBuilder sb = new StringBuilder();
         int position = car.getPosition();
         for (int i = 0; i < position; i++) {
-            System.out.print("-");
+            sb.append("-");
         }
+        System.out.println(sb);
     }
 
-    private static void newLineAdd() {
+    public static void printWinner(List<Car> cars) {
+        StringBuilder sb = new StringBuilder();
+        for (Car car : cars) {
+            sb.append(car.getName());
+            sb.append(",");
+        }
+
+        System.out.println(sb.substring(0, sb.length()-1) + "가 최종 우승했습니다.");
+    }
+
+    private static void printNewLine() {
         System.out.println();
     }
-
 }
