@@ -18,44 +18,56 @@ import java.util.Random;
  * 규칙 2: else 예약어를 쓰지 않는다.
  * 모든 로직에 단위 테스트를 구현한다. 단, UI(System.out, System.in) 로직은 제외
  * naming convention을 지키면서 프로그래밍한다.
+ *
+ * 2단계 기능 요구사항
+ * 각 자동차에 이름을 부여할 수 있다. 전진하는 자동차를 출력할 때 자동차 이름을 같이 출력한다.
+ * 자동차 이름은 쉼표(,)를 기준으로 구분한다.
+ * 자동차 경주 게임을 완료한 후 누가 우승했는지를 알려준다. 우승자는 한명 이상일 수 있다.
  */
 
 public class Racing {
 
-    public static List<List<Integer>> startRace(int cars, int times) {
+    public static List<Map<String, Integer>> startRaceWithName(String[] names, int times) {
+        return getGameResultWithName(names, times, null);
+    }
 
-        return getGameResult(cars, times, null, null);
+    private static List<Map<String, Integer>> getGameResultWithName(String[] names, int times, List<Map<String, Integer>> result) {
+
+        if (times == 0)
+            return result;
+
+        result = firstInit(names, result);
+
+        Map<String, Integer> temp = addSingleResult(names, result);
+
+        result.add(temp);
+
+        return getGameResultWithName(names, --times, result);
 
     }
 
-    private static List<List<Integer>> getGameResult(int cars, int times, List<Integer> acc, List<List<Integer>> result) {
-
-        if (times == 0) {
-            return result;
+    private static Map<String, Integer> addSingleResult(String[] names, List<Map<String, Integer>> result) {
+        Map<String, Integer> temp = new HashMap<>(result.get(result.size() - 1));
+        for (int i = 0; i < names.length; i++) {
+            if (assertCanGo())
+                temp.put(names[i], temp.get(names[i]) + 1);
         }
+        return temp;
+    }
 
-        if (result == null)
+    private static List<Map<String, Integer>> firstInit(String[] names, List<Map<String, Integer>> result) {
+        if (result == null) {
             result = new ArrayList<>();
 
-        if (acc == null) {
-            acc = new ArrayList<>();
+            Map<String, Integer> temp = new HashMap<>();
 
-            for (int i = 0; i < cars; i++)
-                acc.add(i, 0);
+            for (int i = 0; i < names.length; i++)
+                temp.put(names[i], 0);
 
+            result.add(temp);
         }
-
-        for (int i=0; i<acc.size(); i++) {
-            if (assertCanGo())
-                acc.set(i, acc.get(i) + 1);
-        }
-
-        result.add(new ArrayList<>(acc));
-
-        return getGameResult(cars, --times, acc, result);
-
+        return result;
     }
-
 
     public static boolean assertCanGo() {
         return generateRandomNumber(9) >= 4;
