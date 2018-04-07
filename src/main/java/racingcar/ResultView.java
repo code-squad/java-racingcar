@@ -1,10 +1,16 @@
 package racingcar;
 
+import java.util.List;
+
 public class ResultView {
-    public static void printStatus(int[] carPositions) {
+    public static void printStatus(List<Car> cars) {
         StringBuilder sb = new StringBuilder();
-        for (int carNumber = 0; carNumber < carPositions.length; carNumber++) {
-            sb.append(printMove(carPositions[carNumber]))
+        int countOfCar = cars.size();
+
+        for (int carNumber = 0; carNumber < countOfCar; carNumber++) {
+            sb.append(cars.get(carNumber).getCarName())
+              .append(" : ")
+              .append(printMove(cars.get(carNumber).getMoveDistance()))
               .append("\n");
         }
         System.out.println(sb.toString());
@@ -16,5 +22,12 @@ public class ResultView {
             sb.append("-");
         }
         return sb.toString();
+    }
+
+    static void printWinner(String winnerNames) {
+        StringBuilder sb = new StringBuilder(winnerNames);
+
+        sb.append("가 최종 우승했습니다.");
+        System.out.println(sb.toString());
     }
 }

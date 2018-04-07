@@ -1,37 +1,54 @@
 package racingcar;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class RacingGame {
 
-    private static final int CANNABLE_MOVE_NUMBER = 4;
-    private RacingGameInfoDTO racingGameInfo;
-    private Random random;
-    private int[] carPositions;
+    private int countOfCar;
+    private List<Car> cars;
 
-    public RacingGame(RacingGameInfoDTO racingGameInfo) {
-        if (racingGameInfo == null || racingGameInfo.getCountOfCar() == 0) {
+    public RacingGame(List<Car> cars) {
+        if (cars == null || cars.size() == 0) {
             throw new IllegalArgumentException();
         }
-        this.racingGameInfo = racingGameInfo;
-        random = new Random();
-        carPositions = new int[racingGameInfo.getCountOfCar()];
+        this.cars = cars;
+        countOfCar = cars.size();
     }
 
-    public int[] moveCar() {
-        for (int carNumber = 0; carNumber < racingGameInfo.getCountOfCar(); carNumber++) {
-            if (isMoving(getRandomValue())) {
-                carPositions[carNumber]++;
+    public List<Car> moveCar() {
+        for (int carNumber = 0; carNumber < countOfCar; carNumber++) {
+            cars.get(carNumber).moveCar();
+        }
+        return cars;
+    }
+
+    public String getCarRacingWinner() {
+        return joinString(findWinnersNames(cars, getTopDistnace()));
+    }
+
+    private List<String> findWinnersNames(List<Car> cars, int topDistance) {
+        List<String> winners = new ArrayList<>();
+
+        for (Car car : cars) {
+            if (car.matchDistance(topDistance)) {
+                winners.add(car.getCarName());
             }
         }
-        return carPositions;
+
+        return winners;
     }
 
-    static boolean isMoving(int number) {
-        return  number >= CANNABLE_MOVE_NUMBER;
+    private String joinString(List<String> winnerNames) {
+        return String.join(",", winnerNames);
     }
 
-    public int getRandomValue() {
-        return random.nextInt(10);
+    public int getTopDistnace() {
+        int result = 0;
+        for (Car car : cars) {
+            result = Math.max(result, car.getMoveDistance());
+        }
+        return result;
     }
 }
