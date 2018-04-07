@@ -2,7 +2,6 @@ package racing;
 
 import java.util.*;
 
-
 public class DrawCars {
 
     public static Map<String, Integer> drawCarsWithName(List<Map<String, Integer>> arr) {

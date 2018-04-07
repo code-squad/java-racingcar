@@ -4,6 +4,7 @@ import static racing.DrawCars.*;
 import static racing.GameResult.*;
 import static racing.Racing.startRaceWithName;
 
+
 public class Game {
 
     public static void main(String[] args) {
