@@ -24,16 +24,8 @@ public class ResultView {
         return sb.toString();
     }
 
-    static void printWinner(List<String> winnerList) {
-        int winnerListLength = winnerList.size();
-        StringBuilder sb = new StringBuilder();
-
-        for (int index = 0; index < winnerListLength; index++) {
-            sb.append(winnerList.get(index));
-            if (index != winnerListLength - 1) {
-                sb.append(", ");
-            }
-        }
+    static void printWinner(String winnerNames) {
+        StringBuilder sb = new StringBuilder(winnerNames);
 
         sb.append("가 최종 우승했습니다.");
         System.out.println(sb.toString());

@@ -6,8 +6,6 @@ import java.util.Random;
 
 public class RacingGame {
 
-    private static final int CANNABLE_MOVE_NUMBER = 4;
-    private Random random;
     private int countOfCar;
     private List<Car> cars;
 
@@ -15,44 +13,35 @@ public class RacingGame {
         if (cars == null || cars.size() == 0) {
             throw new IllegalArgumentException();
         }
-        random = new Random();
         this.cars = cars;
         countOfCar = cars.size();
     }
 
     public List<Car> moveCar() {
         for (int carNumber = 0; carNumber < countOfCar; carNumber++) {
-            if (isMoving(getRandomValue())) {
-                Car currentCar = cars.get(carNumber);
-                currentCar.moveCar();
-            }
+            cars.get(carNumber).moveCar();
         }
         return cars;
     }
 
-    static boolean isMoving(int number) {
-        return  number >= CANNABLE_MOVE_NUMBER;
+    public String getCarRacingWinner() {
+        return joinString(findWinnersNames(cars, getTopDistnace()));
     }
 
-    public int getRandomValue() {
-        return random.nextInt(10);
-    }
-
-    public void moveCar(int carIndex) {
-        Car currentCar = cars.get(carIndex);
-        currentCar.moveCar();
-    }
-
-    public List<String> getCarRacingWinner() {
-        List<String> winners = new ArrayList<String>();
-        int topDistance = getTopDistnace();
+    private List<String> findWinnersNames(List<Car> cars, int topDistance) {
+        List<String> winners = new ArrayList<>();
 
         for (Car car : cars) {
             if (car.matchDistance(topDistance)) {
                 winners.add(car.getCarName());
             }
         }
+
         return winners;
+    }
+
+    private String joinString(List<String> winnerNames) {
+        return String.join(",", winnerNames);
     }
 
     public int getTopDistnace() {

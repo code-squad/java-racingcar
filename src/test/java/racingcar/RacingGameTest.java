@@ -28,53 +28,42 @@ public class RacingGameTest {
 
     @Test
     public void 숫자4_미만_이동_불가능_확인() {
-        boolean result = RacingGame.isMoving(3);
+        boolean result = Car.isMoving(3);
         assertThat(result).isEqualTo(false);
     }
 
     @Test
     public void 숫자4_이상_이동_가능_확인() {
-        boolean result = RacingGame.isMoving(4);
+        boolean result = Car.isMoving(4);
         assertThat(result).isEqualTo(true);
     }
 
     @Test
     public void 승자1명_테스트() {
         List<Car> cars = new ArrayList<>();
-        cars.add(new Car("test1"));
-        cars.add(new Car("test2"));
-        cars.add(new Car("test3"));
+        cars.add(new Car("test1", 3));
+        cars.add(new Car("test2", 2));
+        cars.add(new Car("test3", 1));
 
         RacingGame rc = new RacingGame(cars);
 
-        rc.moveCar(0);
-        rc.moveCar(0);
-        rc.moveCar(0);
-        rc.moveCar(1);
-        rc.moveCar(1);
-        rc.moveCar(2);
+        String result = rc.getCarRacingWinner();
 
-        List<String> result = rc.getCarRacingWinner();
-
-        assertThat(printWinner(result)).isEqualTo("test1");
+        assertThat(result).isEqualTo("test1");
     }
 
     @Test
     public void 승자n명_테스트() {
         List<Car> cars = new ArrayList<>();
-        cars.add(new Car("test1"));
-        cars.add(new Car("test2"));
-        cars.add(new Car("test3"));
+        cars.add(new Car("test1", 1));
+        cars.add(new Car("test2", 1));
+        cars.add(new Car("test3", 1));
 
         RacingGame rc = new RacingGame(cars);
 
-        rc.moveCar(0);
-        rc.moveCar(1);
-        rc.moveCar(2);
+        String result = rc.getCarRacingWinner();
 
-        List<String> result = rc.getCarRacingWinner();
-
-        assertThat(printWinner(result)).isEqualTo("test1, test2, test3");
+        assertThat(result).isEqualTo("test1,test2,test3");
     }
 
     private String printWinner(List<String> winners) {
