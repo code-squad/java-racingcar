@@ -19,10 +19,6 @@ public class ResultView {
         System.out.println(GameResult.getWinnerNames(result.cars) + "가 최종 우승했습니다.");
     }
 
-//    private static void print(GameResult result) {
-//        System.out.println(result.getWinnerName() + "가 최종 우승했습니다.");
-//    }
-
     public static void main(String[] args) {
         String carNames = InputView.carNames();
         int tryNo = InputView.getTryNo();
