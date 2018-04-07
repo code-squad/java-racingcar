@@ -1,22 +1,22 @@
 package racingcar;
 
 public class UserInput {
-    private int carCount;
+    private String[] players;
     private int roundCount;
 
     public UserInput(){
 
     }
 
-    public UserInput(String carCount, String roundCount){
-        isValidParameter(carCount, roundCount);
+    public UserInput(String players, String roundCount){
+        isValidParameter(players, roundCount);
 
-        this.carCount = Integer.parseInt(carCount);
+        this.players = players.split(",");
         this.roundCount = Integer.parseInt(roundCount);
     }
 
-    public void isValidParameter(String carCount, String roundCount){
-        if(carCount == null || carCount.trim().isEmpty() || Integer.parseInt(carCount) < 1) {
+    public void isValidParameter(String payers, String roundCount){
+        if(payers == null || payers.isEmpty()) {
             throw new IllegalArgumentException();
         }
 
@@ -26,12 +26,12 @@ public class UserInput {
     }
 
 
-    public int getCarCount() {
-        return carCount;
+    public String[] getPlayers() {
+        return players;
     }
 
-    public void setCarCount(int carCount) {
-        this.carCount = carCount;
+    public void setPlayers(String[] payers) {
+        this.players = payers;
     }
 
     public int getRoundCount() {
