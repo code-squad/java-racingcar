@@ -8,7 +8,7 @@ public class PlayerCarTest {
 
     @Test
     public void moveBiggerThenOrEqual4() {
-        PlayerCar playerCar = new PlayerCar();
+        PlayerCar playerCar = new PlayerCar("test");
         playerCar.moveCar(4);
 
         assertThat(playerCar.getCarPosition()).isEqualTo("--");
@@ -16,7 +16,7 @@ public class PlayerCarTest {
 
     @Test
     public void stopSmallerThen4() {
-        PlayerCar playerCar = new PlayerCar();
+        PlayerCar playerCar = new PlayerCar("test");
         playerCar.moveCar(3);
 
         assertThat(playerCar.getCarPosition()).isEqualTo("-");

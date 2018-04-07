@@ -7,11 +7,10 @@ import java.util.Random;
 public class PlayRounds {
     private List<PlayerCar> playerCars;
 
-    PlayRounds(){}
     PlayRounds(String[] players){
         playerCars = new ArrayList<>();
-        for(int i=0; i < players.length; i++){
-            playerCars.add(new PlayerCar(players[i]));
+        for(String player : players){
+            playerCars.add(new PlayerCar(player) );
         }
     }
 
@@ -30,26 +29,34 @@ public class PlayRounds {
         List<PlayerCar> winners = new ArrayList<>();
         int maxLength = -1;
         for (PlayerCar playerCar : playerCars) {
-            winners = checkWinnerOrNot(maxLength, playerCar, winners);
+            winners = makeWinnerList(maxLength, playerCar, winners);
             maxLength = winners.get(0).getCarPosition().length();
         }
 
         return winners;
     }
 
-    List<PlayerCar> checkWinnerOrNot(int maxLength, PlayerCar playerCar, List<PlayerCar> winners ){
-        if(maxLength < playerCar.getCarPosition().length()){
-            winners = new ArrayList<>();
-            winners.add(playerCar);
-            playerCar.getCarPosition().length();
-            return winners;
+    List<PlayerCar> makeWinnerList(int maxLength, PlayerCar playerCar, List<PlayerCar> winners ){
+        if(playerCar.isBiggerThenPosition(maxLength)){
+            return makeNewWinnerList(playerCar);
         }
 
-        if(maxLength == playerCar.getCarPosition().length()){
-            winners.add(playerCar);
-            return winners;
+        if(playerCar.isEqualThenPosition(maxLength)){
+            return addExistWinnerList(playerCar, winners);
         }
 
+        return winners;
+    }
+
+    List<PlayerCar> addExistWinnerList(PlayerCar playerCar, List<PlayerCar> winners) {
+        winners.add(playerCar);
+        return winners;
+    }
+
+    List<PlayerCar> makeNewWinnerList(PlayerCar playerCar) {
+        List<PlayerCar> winners;
+        winners = new ArrayList<>();
+        winners.add(playerCar);
         return winners;
     }
 }

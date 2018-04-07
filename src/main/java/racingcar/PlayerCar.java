@@ -1,11 +1,10 @@
 package racingcar;
 
 public class PlayerCar {
-    private String carName = "";
-    private String position = "-";
     static final int MOVE_MIN_VALUE = 4;
 
-    public PlayerCar(){};
+    private String carName = "";
+    private String position = "-";
 
     public PlayerCar(String carName){
         this.carName = carName;
@@ -20,8 +19,20 @@ public class PlayerCar {
         return position;
     }
     public String getCarName() { return carName;}
+    public boolean isBiggerThenPosition(int otherPosition){
+        if(position.length() > otherPosition) {
+            return true;
+        }
+        return false;
+    }
 
-    public void setCarPosition(String carPosition){ this.position = carPosition;}
-    public void setCarName(String carName){this.carName = carName;}
+    public boolean isEqualThenPosition(int otherPosition){
+        if(position.length() == otherPosition) {
+            return true;
+        }
+        return false;
+    }
+
+    void setCarPosition(String carPosition){ this.position = carPosition;}
 
 }
