@@ -5,45 +5,46 @@ public class InputView {
     private static final int NUMBER_OF_TRIES_MIN = 1;
     private final Writer writer;
     private final Reader reader;
-    private int numberOfCars;
-    private int numberOfTries;
+    //private int numberOfCars;
+    //private int numberOfTries;
 
     public InputView(final Writer writer, final Reader reader) {
         this.writer = writer;
         this.reader = reader;
     }
 
-    public void inputNumberOfCars(final String messageForNumberOfCars) {
+    public int inputNumberOfCars(final String messageForNumberOfCars) {
         writer.writeLine(messageForNumberOfCars);
         final int numberOfCars = parseNumber(reader.readLine());
 
         validateLessThanMinNumberOfCars(numberOfCars);
 
-        this.numberOfCars = numberOfCars;
+        return numberOfCars;
     }
 
-    public int getNumberOfCars() {
-        return this.numberOfCars;
-    }
+//    public int getNumberOfCars() {
+//        return this.numberOfCars;
+//    }
 
     private void validateLessThanMinNumberOfCars(final int number) {
         if (number < InputView.NUMBER_OF_CARS_MIN) {
-            throw new IllegalArgumentException("자동차는 " + Integer.toString(NUMBER_OF_CARS_MIN) + " 이상이 입력되어야 합니다.");
+            throw new IllegalArgumentException("자동차는 " + Integer.toString(InputView.NUMBER_OF_CARS_MIN) + " 이상이 입력되어야 합니다.");
         }
     }
 
-    public void inputNumberOfTries(final String messageForNumberOfTries) {
+    public int inputNumberOfTries(final String messageForNumberOfTries) {
         writer.writeLine(messageForNumberOfTries);
         final int numberOfTries = parseNumber(reader.readLine());
 
         validateLessThanMinNumberOfTries(numberOfTries);
 
-        this.numberOfTries = numberOfTries;
+        //this.numberOfTries = numberOfTries;
+        return numberOfTries;
     }
 
-    public int getNumberOfTries() {
-        return this.numberOfTries;
-    }
+//    public int getNumberOfTries() {
+//        return this.numberOfTries;
+//    }
 
     private int parseNumber(final String in) {
         try {
@@ -54,9 +55,9 @@ public class InputView {
         }
     }
 
-    private void validateLessThanMinNumberOfTries(int number) {
+    private void validateLessThanMinNumberOfTries(final int number) {
         if (number < InputView.NUMBER_OF_TRIES_MIN) {
-            throw new IllegalArgumentException("시도횟수는 " + Integer.toString(NUMBER_OF_TRIES_MIN) + " 이상이 입력되어야 합니다.");
+            throw new IllegalArgumentException("시도횟수는 " + Integer.toString(InputView.NUMBER_OF_TRIES_MIN) + " 이상이 입력되어야 합니다.");
         }
     }
 }

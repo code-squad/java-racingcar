@@ -38,9 +38,8 @@ public class InputViewTest {
         final Writer writer = new MockWriter();
         final FakeReader reader = new FakeReader(inputNumberOfCars);
         final InputView view = new InputView(writer, reader);
-        view.inputNumberOfCars("");
 
-        final int numberOfCars = view.getNumberOfCars();
+        final int numberOfCars = view.inputNumberOfCars("");
 
         final String readLine = reader.readLine();
         final int expected = Integer.parseInt(readLine);
@@ -53,9 +52,8 @@ public class InputViewTest {
         final Writer writer = new MockWriter();
         final Reader reader = new FakeReader(inputNumberOfCars);
         final InputView view = new InputView(writer, reader);
-        view.inputNumberOfCars("");
 
-        final int numberOfCars = view.getNumberOfCars();
+        final int numberOfCars = view.inputNumberOfCars("");
 
         final int expected = Integer.parseInt(inputNumberOfCars);
         assertThat(numberOfCars).isEqualTo(expected);
@@ -67,9 +65,8 @@ public class InputViewTest {
         final Writer writer = new MockWriter();
         final Reader reader = new FakeReader(inputNumberOfCars);
         final InputView view = new InputView(writer, reader);
-        view.inputNumberOfCars("");
 
-        final int numberOfCars = view.getNumberOfCars();
+        final int numberOfCars = view.inputNumberOfCars("");
 
         final int expected = Integer.parseInt(inputNumberOfCars);
         assertThat(numberOfCars).isEqualTo(expected);
@@ -127,9 +124,8 @@ public class InputViewTest {
         final Writer writer = new MockWriter();
         final FakeReader reader = new FakeReader(inputNumberOfTries);
         final InputView view = new InputView(writer, reader);
-        view.inputNumberOfTries("");
 
-        final int numberOfTries = view.getNumberOfTries();
+        final int numberOfTries = view.inputNumberOfTries("");
 
         final String readLine = reader.readLine();
         final int expected = Integer.parseInt(readLine);
@@ -142,9 +138,8 @@ public class InputViewTest {
         final Writer writer = new MockWriter();
         final Reader reader = new FakeReader(inputNumberOfTries);
         final InputView view = new InputView(writer, reader);
-        view.inputNumberOfTries("");
 
-        final int numberOfTries = view.getNumberOfTries();
+        final int numberOfTries = view.inputNumberOfTries("");
 
         final int expected = Integer.parseInt(inputNumberOfTries);
         assertThat(numberOfTries).isEqualTo(expected);
@@ -156,9 +151,8 @@ public class InputViewTest {
         final Writer writer = new MockWriter();
         final Reader reader = new FakeReader(inputNumberOfTries);
         final InputView view = new InputView(writer, reader);
-        view.inputNumberOfTries("");
 
-        final int numberOfTries = view.getNumberOfTries();
+        final int numberOfTries = view.inputNumberOfTries("");
 
         final int expected = Integer.parseInt(inputNumberOfTries);
         assertThat(numberOfTries).isEqualTo(expected);

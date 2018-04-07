@@ -1,13 +1,27 @@
 package com.codesquad.carracing.app;
 
+import com.codesquad.carracing.domain.CarRacing;
+import com.codesquad.carracing.domain.MoveStrategy;
+import com.codesquad.carracing.domain.RandomGenerator;
+import com.codesquad.carracing.domain.RandomMoveStrategy;
+import com.codesquad.carracing.infrastructure.BoundedRandomGenerator;
 import com.codesquad.carracing.ui.*;
+
+import java.util.Random;
 
 public class ConsoleCarRacingApp {
     public static void main(final String[] args) {
         final InputView input = ConsoleCarRacingApp.createInputView();
 
-        input.inputNumberOfCars("자동차 대수는 몇 대 인가요?");
-        input.inputNumberOfTries("시도 횟수는 몇 회 인가요?");
+        final int numberOfCars = input.inputNumberOfCars("자동차 대수는 몇 대 인가요?");
+        final int numberOfTries = input.inputNumberOfTries("시도 횟수는 몇 회 인가요?");
+
+        final RandomGenerator generator = new BoundedRandomGenerator(10, new Random());
+        final MoveStrategy strategy = new RandomMoveStrategy(generator);
+
+        final CarRacing racing = new CarRacing(numberOfCars);
+
+        //for(int i=0; i)
 
 
 //        final Scanner scanner = new Scanner(System.in);
