@@ -4,18 +4,6 @@ import java.util.Scanner;
 
 public class InputView {
 
-    public static int getCarNumber() {
-
-        try {
-            return Integer.parseInt(inputCarNumber());
-        } catch (NumberFormatException e) {
-            System.out.println("숫자만 입력해 주세요!");
-            inputCarNumber();
-        }
-
-        return -1;
-    }
-
     public static int getTimesNumber() {
 
         try {
@@ -26,12 +14,6 @@ public class InputView {
         }
 
         return -1;
-    }
-
-    private static String inputCarNumber() {
-        System.out.println("자동차 대수는 몇 대 인가요?");
-        Scanner scanner = new Scanner(System.in);
-        return scanner.nextLine();
     }
 
     private static String inputTimesNumber() {
@@ -49,6 +31,5 @@ public class InputView {
         Scanner scanner = new Scanner(System.in);
         return scanner.nextLine();
     }
-
 
 }

@@ -1,14 +1,12 @@
 package racing;
 
 import static racing.DrawCars.*;
+import static racing.GameResult.*;
 import static racing.Racing.startRaceWithName;
 
 public class Game {
 
     public static void main(String[] args) {
-
-//        int howManyCars = InputView.getCarNumber();
-//        int howMuchTimes = InputView.getTimesNumber();
 
         String[] carNames = InputView.getCarNames();
         int howMuchTimes = InputView.getTimesNumber();
@@ -16,14 +14,8 @@ public class Game {
         System.out.println("");
         System.out.println("");
 
-        GameResult result = null;
-
         if (carNames.length > 0 && howMuchTimes > 0)
-            result = drawCarsWithName(startRaceWithName(carNames, howMuchTimes));
-
-        if (result != null)
-            result.showWinners();
+            showWinners(drawCarsWithName(startRaceWithName(carNames, howMuchTimes)));
     }
-
 
 }
