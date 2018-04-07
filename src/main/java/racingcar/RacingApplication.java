@@ -7,6 +7,7 @@ public class RacingApplication {
         RacingGame rc = new RacingGame(countOfCar);
 
         for (int count = 0; count < testCase; count++) {
+
             int[] carPosition = rc.moveCar();
             ResultView.printStatus(carPosition);
         }
