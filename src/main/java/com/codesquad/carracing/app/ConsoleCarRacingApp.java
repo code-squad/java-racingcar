@@ -45,6 +45,8 @@ public class ConsoleCarRacingApp {
             racingResult = racing.nextTry(moveStrategy);
             ResultView.renderResult(racingResult);
         }
+
+        ResultView.renderWinners(racingResult);
     }
 
     private static InputView createInputView() {

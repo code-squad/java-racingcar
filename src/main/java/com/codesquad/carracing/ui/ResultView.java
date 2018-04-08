@@ -32,4 +32,10 @@ public class ResultView {
             System.out.print(LETTER);
         }
     }
+
+    public static void renderWinners(final RacingResult result) {
+        final List<String> winners = result.getWinners();
+        final String winnerNames = String.join(", ", winners);
+        System.out.format("%s가 최종 우승했습니다.", winnerNames);
+    }
 }
