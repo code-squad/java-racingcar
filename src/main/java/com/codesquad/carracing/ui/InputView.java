@@ -5,8 +5,6 @@ public class InputView {
     private static final int NUMBER_OF_TRIES_MIN = 1;
     private final Writer writer;
     private final Reader reader;
-    //private int numberOfCars;
-    //private int numberOfTries;
 
     public InputView(final Writer writer, final Reader reader) {
         this.writer = writer;
@@ -22,10 +20,6 @@ public class InputView {
         return numberOfCars;
     }
 
-//    public int getNumberOfCars() {
-//        return this.numberOfCars;
-//    }
-
     private void validateLessThanMinNumberOfCars(final int number) {
         if (number < InputView.NUMBER_OF_CARS_MIN) {
             throw new IllegalArgumentException("자동차는 " + Integer.toString(InputView.NUMBER_OF_CARS_MIN) + " 이상이 입력되어야 합니다.");
@@ -38,13 +32,8 @@ public class InputView {
 
         validateLessThanMinNumberOfTries(numberOfTries);
 
-        //this.numberOfTries = numberOfTries;
         return numberOfTries;
     }
-
-//    public int getNumberOfTries() {
-//        return this.numberOfTries;
-//    }
 
     private int parseNumber(final String in) {
         try {
