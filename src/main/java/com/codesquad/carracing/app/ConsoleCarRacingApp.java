@@ -2,7 +2,7 @@ package com.codesquad.carracing.app;
 
 import com.codesquad.carracing.domain.*;
 import com.codesquad.carracing.infrastructure.BoundedRandomGenerator;
-import com.codesquad.carracing.ui.*;
+import com.codesquad.carracing.view.*;
 
 import java.util.Random;
 
@@ -25,11 +25,11 @@ public class ConsoleCarRacingApp {
     private static void step2() {
         final InputView input = createInputView();
 
-        final String[] carNames = input.inputCarNames();
+        final String carNames = input.inputCarNames();
 
         final int numberOfTries = input.inputNumberOfTries("시도 횟수는 몇 회 인가요?");
 
-        final CarRacing racing = new CarRacing(carNames);
+        final CarRacing racing = new CarRacing(carNames, ",");
 
         run(numberOfTries, racing);
     }

@@ -1,4 +1,4 @@
-package com.codesquad.carracing.ui;
+package com.codesquad.carracing.view;
 
 import org.junit.Test;
 

@@ -7,7 +7,6 @@ import java.util.stream.Collectors;
 public class CarRacing {
 
     public static final int NUMBER_OF_CARS_MIN = 1;
-    public static final int NUMBER_OF_TRIES_MIN = 1;
 
     private final List<Car> cars;
 
@@ -20,13 +19,22 @@ public class CarRacing {
         }
     }
 
-    public CarRacing(final String[] carNames) {
+    public CarRacing(final String names, final String delimiter) {
+        if (names == null || names.isEmpty()) {
+            throw new IllegalArgumentException("하나 이상의 자동차 이름이 입력되어야 합니다.");
+        }
+
+        final String[] carNames = CarRacing.split(names, delimiter);
         validateLessThanMinNumberOfCars(carNames.length);
 
         cars = new ArrayList<>();
         for (final String carName : carNames) {
             cars.add(new Car(carName, 1));
         }
+    }
+
+    public static String[] split(final String names, final String delimiter) {
+        return names.split(delimiter);
     }
 
     private static List<Car> makeClone(final List<Car> srcCars) {

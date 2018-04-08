@@ -1,4 +1,4 @@
-package com.codesquad.carracing.ui;
+package com.codesquad.carracing.view;
 
 import java.util.Scanner;
 
