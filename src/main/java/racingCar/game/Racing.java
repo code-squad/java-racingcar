@@ -1,9 +1,8 @@
-package racingCar;
+package racingCar.game;
 
 import java.util.*;
 
 public class Racing {
-
     private List<String> names = new ArrayList<>();
     private List<Car> gameResult;
     private int time;
@@ -24,7 +23,6 @@ public class Racing {
     }
 
     private void moveAndStop(Car car) {
-
         for (int tryCount = 0; tryCount < time; tryCount++) {
             car.move(makeRandomNumber());
         }

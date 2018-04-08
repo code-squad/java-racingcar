@@ -1,7 +1,6 @@
 package racingCar;
 
-import org.junit.Before;
-import org.junit.Test;
+import racingCar.game.Racing;
 
 import static org.assertj.core.api.Java6Assertions.assertThat;
 

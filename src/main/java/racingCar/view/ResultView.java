@@ -1,11 +1,11 @@
-package racingCar;
+package racingCar.view;
+
+import racingCar.game.Car;
 
 import java.util.*;
 
 public class ResultView {
-    private final String BLANK = "";
     private final String BAR = "-";
-    private final String WINNING_MESSAGE = "가 최종 우승했습니다.";
     private List<Car> results;
 
     public ResultView(List<Car> results) {
@@ -21,7 +21,7 @@ public class ResultView {
     }
 
     private void winnerPrint(List<String> winner) {
-        System.out.println(winner + WINNING_MESSAGE);
+        System.out.println(winner + "가 최종 우승했습니다.");
     }
 
     private int totalTryCount() {
@@ -50,11 +50,15 @@ public class ResultView {
         System.out.println();
     }
 
-    private void makeBar(String carName, int record) throws NullPointerException {
-        String status = BLANK;
+    private void makeBar(String carName, int record) {
+        StringBuilder status = new StringBuilder();
         for (int startPostion = 1; startPostion <= record; startPostion++) {
-            status += BAR;
+            status.append(BAR);
         }
-        System.out.println(carName + "  : " + status);
+        print(carName, status);
+    }
+
+    private void print(String carName, StringBuilder status) {
+        System.out.println(carName + "  : " + status.toString());
     }
 }

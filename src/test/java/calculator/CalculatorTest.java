@@ -1,7 +1,6 @@
 package calculator;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -22,8 +21,9 @@ public class CalculatorTest {
     }
     @Test
     public void 스트링더하기()throws Exception{
-        int input=   calculator.input("3 + 5");
+        int input =   calculator.input("3 + 5");
         assertThat(input).isEqualTo(8);
+
 
     }
     @Test
