@@ -32,8 +32,7 @@ public class CarTest {
     @Test
     public void 이동() {
         car = new Car(0);
-        final MoveStrategy strategy = new FakeMoveStrategy(true);
-        car.move(strategy);
+        car.move(() -> true);
         final int position = car.getPosition();
         assertThat(position).isEqualTo(1);
     }
@@ -41,24 +40,15 @@ public class CarTest {
     @Test
     public void 정지() {
         car = new Car(0);
-        final MoveStrategy strategy = new FakeMoveStrategy(false);
-        car.move(strategy);
+        car.move(() -> false);
         final int position = car.getPosition();
         assertThat(position).isEqualTo(0);
     }
 
     @Test
-    public void 시작위치_9() {
-        car = new Car(9);
-        final int position = car.getPosition();
-        assertThat(position).isEqualTo(9);
-    }
-
-    @Test
     public void 시작위치_9에서_이동() {
         car = new Car(9);
-        final MoveStrategy strategy = new FakeMoveStrategy(true);
-        car.move(strategy);
+        car.move(() -> true);
         final int position = car.getPosition();
         assertThat(position).isEqualTo(10);
     }
@@ -66,8 +56,7 @@ public class CarTest {
     @Test
     public void 시작위치_9에서_정지() {
         car = new Car(9);
-        final MoveStrategy strategy = new FakeMoveStrategy(false);
-        car.move(strategy);
+        car.move(() -> false);
         final int position = car.getPosition();
         assertThat(position).isEqualTo(9);
     }
