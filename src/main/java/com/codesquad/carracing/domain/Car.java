@@ -11,6 +11,10 @@ public class Car {
         this.position = position;
     }
 
+    public Car(Car srcCar) {
+        this.position = srcCar.position;
+    }
+
     public int getPosition() {
         return this.position;
     }

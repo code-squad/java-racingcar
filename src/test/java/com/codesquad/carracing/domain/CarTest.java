@@ -30,6 +30,20 @@ public class CarTest {
     }
 
     @Test
+    public void 사본생성_값이같음() {
+        final Car srcCar = new Car(2);
+        car = new Car(srcCar);
+        assertThat(car).isEqualToComparingFieldByField(srcCar);
+    }
+
+    @Test
+    public void 사본생성_참조값다름() {
+        final Car srcCar = new Car(2);
+        car = new Car(srcCar);
+        assertThat(car).isNotEqualTo(srcCar);
+    }
+
+    @Test
     public void 이동() {
         car = new Car(0);
         car.move(() -> true);
