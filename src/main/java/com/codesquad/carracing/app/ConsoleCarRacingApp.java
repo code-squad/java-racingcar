@@ -4,7 +4,6 @@ import com.codesquad.carracing.domain.*;
 import com.codesquad.carracing.infrastructure.BoundedRandomGenerator;
 import com.codesquad.carracing.ui.*;
 
-import java.util.List;
 import java.util.Random;
 
 public class ConsoleCarRacingApp {
@@ -18,11 +17,11 @@ public class ConsoleCarRacingApp {
 
         final CarRacing racing = new CarRacing(numberOfCars);
 
+        System.out.println("실행 결과");
         for (int i = 0; i < numberOfTries; i++) {
             final RacingResult racingResult = racing.nextTry(moveStrategy);
-
-            printResult(racingResult);
-            //resultView.render
+            ResultView.renderResult(racingResult);
+            System.out.println();
         }
     }
 
@@ -38,25 +37,4 @@ public class ConsoleCarRacingApp {
 
         return strategy;
     }
-
-    private static void printResult(final RacingResult racingResult) {
-        final List<Car> cars = racingResult.getCars();
-        for (final Car car : cars) {
-            System.out.format("position: %d\n", car.getPosition());
-        }
-    }
-
-//    private static void printCars(final List<Car> cars) {
-//        for (final Car car : cars) {
-//            ConsoleCarRacingApp.printDistance(car.getPosition());
-//            System.out.println();
-//        }
-//        System.out.println();
-//    }
-//
-//    private static void printDistance(final int position) {
-//        for (int i = 0; i <= position; i++) {
-//            System.out.print("-");
-//        }
-//    }
 }
