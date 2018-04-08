@@ -1,13 +1,21 @@
 package racingcar;
 
+import java.util.List;
+
 public class RacingCarMain {
     public static void main(String[] args) {
-
-        int car = InputRacingCarView.inputCarNumber();
+        String[] cars = InputRacingCarView.inputCarNames();
         int move = InputRacingCarView.inputCarMove();
 
-        RacingCar racingCar = new RacingCar(car);
+        RacingCar racingCar = new RacingCar(cars);
+        List<Car> carInfo = null;
 
-        OutputRacingCarView.printRacing(racingCar, move);
+        for (int i = 0; i < move; i++) {
+            carInfo = racingCar.carPositionMove();
+            OutputRacingCarView.printCarPosition(carInfo);
+            System.out.println();
+        }
+
+        OutputRacingCarView.printWinner(racingCar.searchWinner());
     }
 }

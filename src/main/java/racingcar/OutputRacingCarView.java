@@ -1,25 +1,25 @@
 package racingcar;
 
+import java.util.List;
+
 public class OutputRacingCarView {
 
-    public static void printRacing(RacingCar racingCar, int move) {
-        for (int i = 0; i < move; i++) {
-            printCarPosition(racingCar.carPositionMove());
-            System.out.println();
+    public static void printCarPosition(List<Car> carInfo) {
+        for (int i = 0; i < carInfo.size(); i++) {
+            System.out.println(printCarMove(carInfo.get(i).getCarName(), carInfo.get(i).getCarMove()));
         }
     }
 
-    public static void printCarPosition(int[] carPositions) {
-        for (int i = 0; i < carPositions.length; i++) {
-            printCarMove(carPositions[i]);
-            System.out.println();
-        }
-    }
-
-    public static void printCarMove(int carPosition) {
+    public static String printCarMove(String carName, int carPosition) {
+        carName += " : ";
         for (int j = 0; j < carPosition; j++) {
-            System.out.print("-");
+            carName += "-";
         }
+        return carName;
+    }
+
+    public static void printWinner(String winnerNames) {
+        System.out.println(winnerNames + "가 최종 우승했습니다.");
     }
 
 }
