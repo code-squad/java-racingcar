@@ -1,4 +1,4 @@
-package game;
+package game.domain;
 
 import org.junit.Before;
 import org.junit.Test;

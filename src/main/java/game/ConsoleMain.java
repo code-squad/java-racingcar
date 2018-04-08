@@ -1,9 +1,11 @@
-import game.GameResult;
-import game.InputView;
-import game.RacingGame;
-import game.ResultView;
+package game;
 
-public class RacingCarApplication {
+import game.domain.GameResult;
+import game.domain.RacingGame;
+import game.view.InputView;
+import game.view.ResultView;
+
+public class ConsoleMain {
 
     public static void main(String[] args) {
         String carNames = InputView.getCarNo();
