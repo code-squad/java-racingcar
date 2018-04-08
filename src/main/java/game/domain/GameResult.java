@@ -1,4 +1,4 @@
-package game;
+package game.domain;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -20,19 +20,25 @@ public class GameResult {
     }
 
     public void record(List<Car> cars) {
-        getRecords().add(cars);
+        records.add(cars);
     }
 
     public String draw() {
         StringBuilder result = new StringBuilder();
-        getRecords().forEach(cars -> {
-            cars.forEach(car -> {
-                result.append(car.getName() + " : ");
-                IntStream.rangeClosed(0, car.getPosition())
-                        .forEach(i -> result.append("-"));
+        records.forEach(cars -> {
+            result.append(draw(cars));
+            result.append("\n");
+        });
+        return result.toString();
+    }
 
-                result.append("\n");
-            });
+    public String draw(List<Car> cars) {
+        StringBuilder result = new StringBuilder();
+        cars.forEach(car -> {
+            result.append(car.getName() + " : ");
+            IntStream.rangeClosed(0, car.getPosition())
+                    .forEach(i -> result.append("-"));
+
             result.append("\n");
         });
         return result.toString();
@@ -44,8 +50,8 @@ public class GameResult {
                 .collect(Collectors.toList());
     }
 
-    private List<Car> last() {
-        return new ArrayList<>(getRecords().get(getRecords().size() - 1));
+    public List<Car> last() {
+        return new ArrayList<>(records.get(records.size() - 1));
     }
 
     private Integer top() {
@@ -53,9 +59,5 @@ public class GameResult {
                 .max(Comparator.comparing(Car::getPosition))
                 .get()
                 .getPosition();
-    }
-
-    public List<List<Car>> getRecords() {
-        return new ArrayList<>(records);
     }
 }

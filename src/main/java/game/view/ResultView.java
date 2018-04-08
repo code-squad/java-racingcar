@@ -1,4 +1,7 @@
-package game;
+package game.view;
+
+import game.domain.GameResult;
+import game.domain.Car;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -13,9 +16,13 @@ public class ResultView implements View {
         System.out.println(winners + "이(가) 최종 우승했습니다.");
     }
 
-    private static String join(List<Car> cars) {
+    public static String join(List<Car> cars) {
         return cars.stream()
                 .map(Car::getName)
                 .collect(Collectors.joining(", "));
+    }
+
+    public static String html(GameResult gameResult) {
+        return gameResult.draw(gameResult.last());
     }
 }

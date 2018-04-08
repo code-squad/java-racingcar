@@ -1,5 +1,6 @@
-package game;
+package game.domain;
 
+import game.domain.GameRule;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;

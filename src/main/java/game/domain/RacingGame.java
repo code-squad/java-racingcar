@@ -1,4 +1,4 @@
-package game;
+package game.domain;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -12,6 +12,14 @@ public class RacingGame {
 
     public RacingGame(String carName) {
         this.cars = initCars(carName);
+    }
+
+    public RacingGame(String[] names) {
+        List<Car> cars = new ArrayList<>();
+        Arrays.stream(names)
+                .forEach(name -> cars.add(new Car(GameRule.START_POSITION, name)));
+
+        this.cars = cars;
     }
 
     static List<Car> initCars(String carNameWithComma) {
