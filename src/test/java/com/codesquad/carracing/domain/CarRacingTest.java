@@ -2,6 +2,7 @@ package com.codesquad.carracing.domain;
 
 import org.junit.Test;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -26,6 +27,15 @@ public class CarRacingTest {
     @Test
     public void 레이싱_자동차_이름두개로() {
         new CarRacing("pobi,crong", ",");
+    }
+
+    @Test
+    public void 리스트로생성() {
+        final List<Car> cars = Arrays.asList(
+                new Car("AAA", 1),
+                new Car("BBB", 2)
+        );
+        new CarRacing(cars);
     }
 
     @Test

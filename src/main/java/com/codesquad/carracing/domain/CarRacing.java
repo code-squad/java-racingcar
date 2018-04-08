@@ -19,18 +19,28 @@ public class CarRacing {
         }
     }
 
+    public CarRacing(List<Car> cars) {
+        validateLessThanMinNumberOfCars(cars.size());
+        this.cars = cars;
+    }
+
     public CarRacing(final String names, final String delimiter) {
+        this(generateCarsFromNames(names, delimiter));
+    }
+
+    public static List<Car> generateCarsFromNames(String names, String delimiter) {
         if (names == null || names.isEmpty()) {
             throw new IllegalArgumentException("하나 이상의 자동차 이름이 입력되어야 합니다.");
         }
 
         final String[] carNames = CarRacing.split(names, delimiter);
-        validateLessThanMinNumberOfCars(carNames.length);
 
-        cars = new ArrayList<>();
+        List<Car> cars = new ArrayList<>();
         for (final String carName : carNames) {
             cars.add(new Car(carName, 1));
         }
+
+        return cars;
     }
 
     public static String[] split(final String names, final String delimiter) {
