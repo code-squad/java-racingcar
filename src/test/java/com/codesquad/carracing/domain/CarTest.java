@@ -30,6 +30,25 @@ public class CarTest {
     }
 
     @Test
+    public void 이름과위치로_생성() {
+        new Car("pobi", 1);
+    }
+
+    @Test
+    public void 이름조회() {
+        car = new Car("pobi", 1);
+        final String name = car.getName();
+        assertThat(name).isEqualTo("pobi");
+    }
+
+    @Test
+    public void 다른이름비교() {
+        car = new Car("pobi", 1);
+        final String name = car.getName();
+        assertThat(name).isNotEqualTo("crong");
+    }
+
+    @Test
     public void 사본생성_값이같음() {
         final Car srcCar = new Car(2);
         car = new Car(srcCar);

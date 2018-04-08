@@ -6,16 +6,26 @@ import java.util.stream.Collectors;
 
 public class CarRacing {
 
+    public static final int NUMBER_OF_CARS_MIN = 1;
+    public static final int NUMBER_OF_TRIES_MIN = 1;
+
     private final List<Car> cars;
 
     public CarRacing(final int numberOfCars) {
-        if (numberOfCars == 0) {
-            throw new IllegalArgumentException("최소 1대 이상의 자동차가 필요합니다.");
-        }
+        validateLessThanMinNumberOfCars(numberOfCars);
 
         cars = new ArrayList<>();
         for (int i = 0; i < numberOfCars; i++) {
             cars.add(new Car());
+        }
+    }
+
+    public CarRacing(final String[] carNames) {
+        validateLessThanMinNumberOfCars(carNames.length);
+
+        cars = new ArrayList<>();
+        for (final String carName : carNames) {
+            cars.add(new Car(carName, 1));
         }
     }
 
@@ -27,6 +37,16 @@ public class CarRacing {
 
     private static RacingResult makeRacingResult(final List<Car> racedCars) {
         return new RacingResult(racedCars);
+    }
+
+    private void validateLessThanMinNumberOfCars(final int number) {
+        if (number < CarRacing.NUMBER_OF_CARS_MIN) {
+            throw new IllegalArgumentException("자동차는 " + Integer.toString(CarRacing.NUMBER_OF_CARS_MIN) + " 이상이 입력되어야 합니다.");
+        }
+    }
+
+    public RacingResult current() {
+        return makeRacingResult(makeClone(this.cars));
     }
 
     public RacingResult nextTry(final MoveStrategy strategy) {

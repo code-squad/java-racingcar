@@ -1,8 +1,9 @@
 package com.codesquad.carracing.ui;
 
+import com.codesquad.carracing.domain.CarRacing;
+
 public class InputView {
-    private static final int NUMBER_OF_CARS_MIN = 1;
-    private static final int NUMBER_OF_TRIES_MIN = 1;
+
     private final Writer writer;
     private final Reader reader;
 
@@ -21,9 +22,24 @@ public class InputView {
     }
 
     private void validateLessThanMinNumberOfCars(final int number) {
-        if (number < InputView.NUMBER_OF_CARS_MIN) {
-            throw new IllegalArgumentException("자동차는 " + Integer.toString(InputView.NUMBER_OF_CARS_MIN) + " 이상이 입력되어야 합니다.");
+        if (number < CarRacing.NUMBER_OF_CARS_MIN) {
+            throw new IllegalArgumentException("자동차는 " + Integer.toString(CarRacing.NUMBER_OF_CARS_MIN) + " 이상이 입력되어야 합니다.");
         }
+    }
+
+    public String[] inputCarNames() {
+        writer.writeLine("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
+        final String names = reader.readLine();
+
+        if (names == null || names.isEmpty()) {
+            throw new IllegalArgumentException("하나 이상의 자동차 이름이 입력되어야 합니다.");
+        }
+
+        final String[] carNames = names.split(",");
+
+        validateLessThanMinNumberOfCars(carNames.length);
+
+        return carNames;
     }
 
     public int inputNumberOfTries(final String messageForNumberOfTries) {
@@ -45,8 +61,8 @@ public class InputView {
     }
 
     private void validateLessThanMinNumberOfTries(final int number) {
-        if (number < InputView.NUMBER_OF_TRIES_MIN) {
-            throw new IllegalArgumentException("시도횟수는 " + Integer.toString(InputView.NUMBER_OF_TRIES_MIN) + " 이상이 입력되어야 합니다.");
+        if (number < CarRacing.NUMBER_OF_TRIES_MIN) {
+            throw new IllegalArgumentException("시도횟수는 " + Integer.toString(CarRacing.NUMBER_OF_TRIES_MIN) + " 이상이 입력되어야 합니다.");
         }
     }
 }

@@ -1,18 +1,24 @@
 package com.codesquad.carracing.domain;
 
 public class Car {
+    private final String name;
     private int position;
 
     public Car() {
-        this.position = 0;
+        this("", 0);
     }
 
     public Car(final int position) {
-        this.position = position;
+        this("", position);
     }
 
-    public Car(Car srcCar) {
-        this.position = srcCar.position;
+    public Car(final Car srcCar) {
+        this(srcCar.name, srcCar.position);
+    }
+
+    public Car(final String name, final int position) {
+        this.name = name;
+        this.position = position;
     }
 
     public int getPosition() {
@@ -23,5 +29,9 @@ public class Car {
         if (moveStrategy.isMovable()) {
             this.position++;
         }
+    }
+
+    public String getName() {
+        return this.name;
     }
 }
