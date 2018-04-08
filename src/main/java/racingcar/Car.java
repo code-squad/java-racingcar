@@ -10,14 +10,16 @@ public class Car {
     }
 
     public void carMove(int move) {
-        this.move = move;
+        if (move >= 4) {
+            this.move++;
+        }
     }
 
-    public String returnCarName() {
+    public String getCarName() {
         return carName;
     }
 
-    public int returnCarMove() {
+    public int getCarMove() {
         return move;
     }
 

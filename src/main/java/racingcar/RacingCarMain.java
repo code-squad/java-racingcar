@@ -16,6 +16,6 @@ public class RacingCarMain {
             System.out.println();
         }
 
-        OutputRacingCarView.printWinner(carInfo);
+        OutputRacingCarView.printWinner(racingCar.searchWinner());
     }
 }
