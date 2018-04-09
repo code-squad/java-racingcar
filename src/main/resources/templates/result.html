@@ -60,9 +60,9 @@
             <h2 class="text-center">박진감 넘치는 자동차 레이싱 게임 with Pobi</h2>
             <div class="form-show-div" class="form-group">
                 <h3>결과입니다</h3>
-                {{#cars}}
-                <div id="standings">{{name}} : {{position}}&#128652;</div>
-                {{/cars}}
+                {{#records}}
+                <div id="standings">{{name}} : {{{letterDistance}}}&#128652;</div>
+                {{/records}}
                 <br/>
                 <div>{{winners}}이 우승했습니다.</div>
             </div>

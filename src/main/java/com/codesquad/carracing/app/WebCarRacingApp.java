@@ -2,6 +2,7 @@ package com.codesquad.carracing.app;
 
 import com.codesquad.carracing.domain.*;
 import com.codesquad.carracing.infrastructure.BoundedRandomGenerator;
+import com.codesquad.carracing.view.RacingRecords;
 import spark.ModelAndView;
 import spark.template.handlebars.HandlebarsTemplateEngine;
 
@@ -40,9 +41,10 @@ public class WebCarRacingApp {
 
             final Map<String, Object> model = new HashMap<>();
             final RacingResult racingResult = run(numberOfTries, racing);
+            final RacingRecords records = RacingRecords.writeRecord(racingResult.getCars(), "&nbsp;");
 
-            model.put("cars", racingResult.getCars());
             model.put("winners", String.join(", ", racingResult.getWinners()));
+            model.put("records", records.getRecords());
 
             return render(model, "/result.html");
         });
