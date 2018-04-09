@@ -19,7 +19,8 @@ public class Game {
         System.out.println("");
 
         if (carNames.length > 0 && howMuchTimes > 0)
-            showWinners(drawCarsWithName(startRaceWithName(makeCarsList(carNames), howMuchTimes)));
+            showWinners(drawCarsWithName(startRaceWithName(makeCarsList(carNames), howMuchTimes, carNames.length), carNames.length));
+
     }
 
     private static List<Car> makeCarsList(String[] carNames) {

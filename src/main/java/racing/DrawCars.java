@@ -4,17 +4,18 @@ import java.util.*;
 
 public class DrawCars {
 
-    public static List<Car> drawCarsWithName(List<List<Car>> result) {
+    public static List<Car> drawCarsWithName(List<Car> result, int names) {
 
-        for (List<Car> carList : result) {
-            for (Car car : carList)
-                System.out.println(generateLinesWithName(car.getName(), car.getPosition()));
+        for (int i = 0; i< result.size(); i++) {
+            System.out.println(generateLinesWithName(result.get(i).getName(), result.get(i).getPosition()));
 
-            System.out.println("");
-            System.out.println("");
+            if (i % names == (names - 1)) {
+                System.out.println("");
+                System.out.println("");
+            }
         }
 
-        return result.get(result.size() - 1);
+        return result;
     }
 
     private static String generateLinesWithName(String name, int num) {

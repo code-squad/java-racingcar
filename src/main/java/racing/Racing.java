@@ -2,7 +2,6 @@ package racing;
 
 
 import java.util.*;
-import java.util.Random;
 
 /**
  * 기능 요구사항
@@ -26,33 +25,31 @@ import java.util.Random;
 
 public class Racing {
 
-    public static List<List<Car>> startRaceWithName(List<Car> cars, int times) {
-        return getGameResultWithName(cars, times, null);
+    public static List<Car> startRaceWithName(List<Car> cars, int times, int names) {
+        return getGameResultWithName(cars, times, names);
     }
 
-    private static List<List<Car>> getGameResultWithName(List<Car> cars, int times, List<List<Car>> result) {
+    private static List<Car> getGameResultWithName(List<Car> cars, int times, int names) {
 
         if (times == 0)
-            return result;
+            return cars;
 
-        if (result == null)
-            result = new ArrayList<>();
+        cars.addAll(addSingleResult(cars, names));
 
-        result.add(addSingleResult(cars));
-
-        return getGameResultWithName(cars, --times, result);
+        return getGameResultWithName(cars, --times, names);
 
     }
 
-    private static List<Car> addSingleResult(List<Car> cars) {
+    private static List<Car> addSingleResult(List<Car> cars, int names) {
         List<Car> temp = new ArrayList<>();
 
-        for (Car car : cars) {
-            temp.add(new Car(car));
+        for (int i = cars.size() - names ; i < cars.size(); i++) {
+            Car newCar = new Car(cars.get(i));
+            newCar.movePosition();
 
-            car.movePosition();
-
+            temp.add(newCar);
         }
+
         return temp;
     }
 
