@@ -8,7 +8,10 @@ public class GameResult {
     public List<Car> cars;
 
     public GameResult(List<Car> cars) {
-        this.cars = cars;
+        this.cars = new ArrayList<>();
+        for (Car car : cars) {
+            this.cars.add(new Car(car.name, car.position));
+        }
     }
 
     public static String getWinnerNames(List<Car> cars) {
@@ -34,7 +37,7 @@ public class GameResult {
         return ranking.get(bestPosition);
     }
 
-    protected static List<Car> getRankers(List<Car> cars, Car car) {
+    private static List<Car> getRankers(List<Car> cars, Car car) {
         if(cars == null) {
             cars = new ArrayList<>();
         }
@@ -44,7 +47,7 @@ public class GameResult {
     }
 
 
-    protected static int getBestPosition(int bestPosition, int position) {
+    static int getBestPosition(int bestPosition, int position) {
         return Math.max(bestPosition, position);
     }
 }
