@@ -16,14 +16,14 @@ public class RacingGameTest {
 
     @Before
     public void setup(){
-        game = new RacingGame("brown,kevin");
-        game.readyRacing();
+        game = new RacingGame();
+        game.readyRacing("brown,kevin");
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void 충분하지_않은_Car_Trial_수(){
-        RacingGame testGame = new RacingGame("brown");
-        testGame.readyRacing();
+        RacingGame testGame = new RacingGame();
+        testGame.readyRacing("brown");
     }
 
     @Test
@@ -32,7 +32,7 @@ public class RacingGameTest {
         int num = 8;
 
         game.move(car, num);
-        assertThat(car.getLocation()).isEqualTo("-");
+        assertThat(car.getDistance()).isEqualTo(1);
 
     }
 
@@ -43,7 +43,7 @@ public class RacingGameTest {
 
         game.move(car, num);
 
-        assertThat(car.getLocation()).isEqualTo("");
+        assertThat(car.getDistance()).isEqualTo(0);
     }
 
     @Test
@@ -70,15 +70,19 @@ public class RacingGameTest {
     @Test
     public void findBestDriverTest(){
         Car brown = new Car("brown");
+        Car karl = new Car("karl");
         List<Car> target = new ArrayList<>();
 
-        brown.go();
-        brown.go();
-        brown.go();
+        target.add(brown);
+        target.add(karl);
 
-        game.findBestDriver(3, target, brown);
+        brown.move(6);
+        brown.move(6);
+        brown.move(6);
 
-        assertThat(target.size()).isEqualTo(1);
+        List<Car> actual = game.findBestDrivers(3,target);
+
+        assertThat(actual.size()).isEqualTo(1);
     }
 
 

@@ -5,8 +5,17 @@ import java.util.List;
 public class RacingResult {
 
     public static void printResult(List<Car> cars){
-        cars.forEach(System.out::println);
+        cars.forEach(RacingResult::printCarResult);
         printSplitBetweenTrials();
+    }
+
+    private static void printCarResult(Car car) {
+        StringBuilder builder = new StringBuilder(car.getName()+":");
+        for(int i = 0; i < car.getDistance(); i++){
+            builder.append("-");
+        }
+
+        System.out.println(builder.toString());
     }
 
     public static void printBestDriver(List<String> cars){
@@ -15,7 +24,6 @@ public class RacingResult {
 
     public static String getResultMention(List<String> cars) {
         String result = cars.get(0);
-
         for(int i = 1; i < cars.size(); i++){
             result = result + ", "+ cars.get(i);
         }

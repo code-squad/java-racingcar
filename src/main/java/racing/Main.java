@@ -6,9 +6,9 @@ public class Main {
         String driverNames = RacingInput.inputCars();
         int trials = RacingInput.inputTrials();
 
-        RacingGame game = new RacingGame(driverNames);
+        RacingGame game = new RacingGame();
 
-        game.readyRacing();
+        game.readyRacing(driverNames);
 
         for(int i = 0; i < trials; i++){
             RacingResult.printResult(game.moveAll());

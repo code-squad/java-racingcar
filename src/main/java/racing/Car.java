@@ -1,33 +1,29 @@
 package racing;
 
 public class Car {
-    private StringBuilder location;
     private String name;
+    private int position;
 
     public Car(String name){
         this.name= name;
-        location = new StringBuilder();
+        this.position = 0;
     }
 
-    public void go(){
-        location.append('-');
+    public void move(int num){
+        if(num > 4)
+            this.position++;
     }
 
-    public String getLocation(){
-        return this.location.toString();
-    }
-
-    @Override
-    public String toString() {
-        return this.name + ": "+ this.location.toString();
-    }
 
     public int getDistance(){
-        return this.location.length();
+        return this.position;
     }
 
     public String getName(){
         return this.name;
     }
 
+    public boolean matchDistance(int bestDistance) {
+        return this.position == bestDistance;
+    }
 }
