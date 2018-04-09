@@ -1,5 +1,7 @@
 package racing.player;
 
+import java.util.Arrays;
+
 public class Car {
 
     private static final int SUFFICIENT_SPEED = 4;
@@ -19,7 +21,7 @@ public class Car {
     }
 
     public void move(int randomValue) {
-        if(randomValue >= SUFFICIENT_SPEED) {
+        if (randomValue >= SUFFICIENT_SPEED) {
             this.position++;
         }
     }
@@ -30,5 +32,12 @@ public class Car {
 
     public int getPosition() {
         return position;
+    }
+
+    public String[] getDistance() {
+        String[] distance = new String[this.position];
+        Arrays.fill(distance, " ");
+
+        return distance;
     }
 }
