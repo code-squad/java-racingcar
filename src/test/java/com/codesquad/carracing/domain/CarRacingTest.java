@@ -111,18 +111,4 @@ public class CarRacingTest {
         final int position = cars.get(1).getPosition();
         assertThat(position).isEqualTo(2);
     }
-
-    @Test
-    public void 콤마이름분리() {
-        final String names = "AAA,BBB";
-        final String[] split = CarRacing.split(names, ",");
-        assertThat(split).containsExactly("AAA", "BBB");
-    }
-
-    @Test
-    public void 띄어쓰기이름분리() {
-        final String names = "AAA BBB CCC";
-        final String[] split = CarRacing.split(names, " ");
-        assertThat(split).containsExactly("AAA", "BBB", "CCC");
-    }
 }

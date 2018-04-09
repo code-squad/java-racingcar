@@ -34,7 +34,7 @@ public class CarRacing {
             throw new IllegalArgumentException("하나 이상의 자동차 이름이 입력되어야 합니다.");
         }
 
-        final String[] carNames = CarRacing.split(names, delimiter);
+        final String[] carNames = names.split(delimiter);
 
         final List<Car> cars = new ArrayList<>();
         for (final String carName : carNames) {
@@ -42,10 +42,6 @@ public class CarRacing {
         }
 
         return cars;
-    }
-
-    public static String[] split(final String names, final String delimiter) {
-        return names.split(delimiter);
     }
 
     private static List<Car> makeClone(final List<Car> srcCars) {
