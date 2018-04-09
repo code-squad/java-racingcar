@@ -9,13 +9,6 @@ public class CarTest {
     private Car car;
 
     @Test
-    public void 기본생성_위치_0() {
-        car = new Car();
-        final int position = car.getPosition();
-        assertThat(position).isEqualTo(0);
-    }
-
-    @Test
     public void 시작위치_1로_생성() {
         car = new Car(1);
         final int position = car.getPosition();

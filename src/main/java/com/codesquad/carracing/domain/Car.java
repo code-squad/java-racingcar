@@ -4,10 +4,6 @@ public class Car {
     private final String name;
     private int position;
 
-    public Car() {
-        this("", 0);
-    }
-
     public Car(final int position) {
         this("", position);
     }

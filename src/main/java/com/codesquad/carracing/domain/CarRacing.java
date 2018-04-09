@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 public class CarRacing {
 
+    public static final int DEFAULT_POSITION = 0;
     public static final int NUMBER_OF_CARS_MIN = 1;
 
     private final List<Car> cars;
@@ -15,11 +16,11 @@ public class CarRacing {
 
         cars = new ArrayList<>();
         for (int i = 0; i < numberOfCars; i++) {
-            cars.add(new Car());
+            cars.add(new Car(DEFAULT_POSITION));
         }
     }
 
-    public CarRacing(List<Car> cars) {
+    public CarRacing(final List<Car> cars) {
         validateLessThanMinNumberOfCars(cars.size());
         this.cars = cars;
     }
@@ -28,14 +29,14 @@ public class CarRacing {
         this(generateCarsFromNames(names, delimiter));
     }
 
-    public static List<Car> generateCarsFromNames(String names, String delimiter) {
+    public static List<Car> generateCarsFromNames(final String names, final String delimiter) {
         if (names == null || names.isEmpty()) {
             throw new IllegalArgumentException("하나 이상의 자동차 이름이 입력되어야 합니다.");
         }
 
         final String[] carNames = CarRacing.split(names, delimiter);
 
-        List<Car> cars = new ArrayList<>();
+        final List<Car> cars = new ArrayList<>();
         for (final String carName : carNames) {
             cars.add(new Car(carName, 1));
         }
