@@ -3,7 +3,6 @@ package racing;
 
 import java.util.*;
 import java.util.Random;
-import java.util.stream.Collectors;
 
 /**
  * 기능 요구사항
@@ -51,19 +50,10 @@ public class Racing {
         for (Car car : cars) {
             temp.add(new Car(car));
 
-            if (assertCanGo())
-                car.setPosition(1);
+            car.movePosition();
 
         }
         return temp;
-    }
-
-    public static boolean assertCanGo() {
-        return generateRandomNumber(9) >= 4;
-    }
-
-    public static int generateRandomNumber(int bound) {
-        return new Random().nextInt(bound);
     }
 
 }

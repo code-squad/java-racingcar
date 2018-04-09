@@ -1,5 +1,7 @@
 package racing;
 
+import java.util.Random;
+
 public class Car {
 
     private String name;
@@ -24,8 +26,17 @@ public class Car {
         return position;
     }
 
-    public void setPosition(int increase) {
-        this.position += increase;
+    public void movePosition() {
+        if (assertCanGo())
+            this.position += 1;
+    }
+
+    public static boolean assertCanGo() {
+        return generateRandomNumber(9) >= 4;
+    }
+
+    public static int generateRandomNumber(int bound) {
+        return new Random().nextInt(bound);
     }
 
 }
