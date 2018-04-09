@@ -1,24 +1,28 @@
 package racing;
 
-import java.util.List;
+import java.util.*;
 
 public class DrawCars {
 
-    public static void drawCars(List<List<Integer>> arr) {
-        for (int i=0; i<arr.size(); i++) {
-            for (int j=0; j<arr.get(i).size(); j++) {
-                System.out.println(generateLines(arr.get(i).get(j)));
+    public static List<Car> drawCarsWithName(List<Car> result, int names) {
+
+        for (int i = 0; i< result.size(); i++) {
+            System.out.println(generateLinesWithName(result.get(i).getName(), result.get(i).getPosition()));
+
+            if (i % names == (names - 1)) {
+                System.out.println("");
+                System.out.println("");
             }
-            System.out.println("");
-            System.out.println("");
         }
+
+        return result;
     }
 
-    private static String generateLines(int num) {
+    private static String generateLinesWithName(String name, int num) {
         StringBuilder builder = new StringBuilder();
-        for (int i=0; i<num; i++) {
+        builder.append(name + " : ");
+        for (int i = 0; i < num; i++)
             builder.append("-");
-        }
 
         return builder.toString();
     }
