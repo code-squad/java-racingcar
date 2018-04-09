@@ -1,30 +1,29 @@
 package racing;
 
 public class Car {
-    private static int RACING_NUM_DETERMINE = 1;
-    private StringBuilder location;
-    private final int number; // 추후에 필요할 수 있을 것 같아 임시로 만들어둠
+    private String name;
+    private int position;
 
-
-    public Car(){
-        this(RACING_NUM_DETERMINE++);
+    public Car(String name){
+        this.name= name;
+        this.position = 0;
     }
 
-    private Car(int number){
-        this.number = number;
-        location = new StringBuilder();
+    public void move(int num){
+        if(num > 4)
+            this.position++;
     }
 
-    public void go(){
-        location.append('-');
+
+    public int getDistance(){
+        return this.position;
     }
 
-    public String getLocation(){
-        return this.location.toString();
+    public String getName(){
+        return this.name;
     }
 
-    @Override
-    public String toString() {
-        return this.location.toString();
+    public boolean matchDistance(int bestDistance) {
+        return this.position == bestDistance;
     }
 }
