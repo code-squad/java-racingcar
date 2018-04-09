@@ -13,9 +13,9 @@ public class InputView {
         return splitCarsName(inputString);
     }
 
-    private static List<String> splitCarsName(String inputString) {
+    public static List<String> splitCarsName(String inputString) {
         List<String> carsName = new ArrayList<>();
-        String[] inputCarsName = inputString.split(",");
+        String[] inputCarsName = inputString.split(",| ");
         for (String carName:inputCarsName) {
             carsName.add(carName);
         }

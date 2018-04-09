@@ -8,6 +8,7 @@ public class Car {
     private List<Integer> barHistory = new ArrayList<>();
     private int bar = 0;
     private String name;
+    private String space = "";
 
     public Car(String name) {
         if(name == null || name.isEmpty()) {
@@ -18,9 +19,11 @@ public class Car {
 
     public void move(int randomValue) {
         if(randomValue > STAND_VALUE){
-            bar++;
+            this.bar++;
+            this.space += "부릉";
         }
         barHistory.add(bar);
+        System.out.println("space : " + space);
     }
 
     public boolean matchCondition(int winningCondition){
@@ -49,4 +52,9 @@ public class Car {
         return name;
     }
 
+
+    public String getSpace() {
+
+        return space;
+    }
 }

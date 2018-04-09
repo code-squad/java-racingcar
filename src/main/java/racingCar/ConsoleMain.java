@@ -6,8 +6,7 @@ import racingCar.view.InputView;
 import racingCar.view.ResultView;
 
 import java.util.List;
-
-public class RacingCarMain {
+public class ConsoleMain {
     public static void main(String[] args) {
         List<String> carsName = InputView.setCarsName();
         int tryCount = InputView.setTryNo();
