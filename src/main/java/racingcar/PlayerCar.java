@@ -19,6 +19,7 @@ public class PlayerCar {
         return position;
     }
     public String getCarName() { return carName;}
+
     public boolean isBiggerThenPosition(int otherPosition){
         if(position.length() > otherPosition) {
             return true;
