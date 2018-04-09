@@ -9,13 +9,6 @@ public class CarTest {
     private Car car;
 
     @Test
-    public void 기본생성_위치_0() {
-        car = new Car();
-        final int position = car.getPosition();
-        assertThat(position).isEqualTo(0);
-    }
-
-    @Test
     public void 시작위치_1로_생성() {
         car = new Car(1);
         final int position = car.getPosition();
@@ -27,6 +20,25 @@ public class CarTest {
         car = new Car(2);
         final int position = car.getPosition();
         assertThat(position).isEqualTo(2);
+    }
+
+    @Test
+    public void 이름과위치로_생성() {
+        new Car("pobi", 1);
+    }
+
+    @Test
+    public void 이름조회() {
+        car = new Car("pobi", 1);
+        final String name = car.getName();
+        assertThat(name).isEqualTo("pobi");
+    }
+
+    @Test
+    public void 다른이름비교() {
+        car = new Car("pobi", 1);
+        final String name = car.getName();
+        assertThat(name).isNotEqualTo("crong");
     }
 
     @Test

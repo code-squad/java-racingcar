@@ -2,6 +2,7 @@ package com.codesquad.carracing.domain;
 
 import org.junit.Test;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -24,23 +25,65 @@ public class CarRacingTest {
     }
 
     @Test
+    public void 레이싱_자동차_이름두개로() {
+        new CarRacing("pobi,crong", ",");
+    }
+
+    @Test
+    public void 리스트로생성() {
+        final List<Car> cars = Arrays.asList(
+                new Car("AAA", 1),
+                new Car("BBB", 2)
+        );
+        new CarRacing(cars);
+    }
+
+    @Test
+    public void 기본위치() {
+        final CarRacing racing = new CarRacing(1);
+        final List<Car> cars = racing.current().getCars();
+        final int position = cars.get(0).getPosition();
+        assertThat(position).isEqualTo(0);
+    }
+
+    @Test
+    public void 이름자동차_기본위치_1() {
+        final CarRacing racing = new CarRacing("pobi", ",");
+        final List<Car> cars = racing.current().getCars();
+        final int position = cars.get(0).getPosition();
+        assertThat(position).isEqualTo(1);
+    }
+
+    @Test
+    public void 두번째이름자동차_기본위치1() {
+        final CarRacing racing = new CarRacing("pobi,crong", ",");
+        final List<Car> cars = racing.current().getCars();
+        final int position = cars.get(1).getPosition();
+        assertThat(position).isEqualTo(1);
+    }
+
+    @Test
+    public void 이름자동차_이동1회_위치2() {
+        final CarRacing racing = new CarRacing("pobi", ",");
+        final List<Car> cars = racing.nextTry(() -> true).getCars();
+        final int position = cars.get(0).getPosition();
+        assertThat(position).isEqualTo(2);
+    }
+
+    @Test
     public void 이동1회_위치1() {
         final CarRacing racing = new CarRacing(1);
         final List<Car> cars = racing.nextTry(() -> true).getCars();
-
-        assertThat(cars)
-                .extracting("position")
-                .contains(1);
+        final int position = cars.get(0).getPosition();
+        assertThat(position).isEqualTo(1);
     }
 
     @Test
     public void 이동1회_위치2가아님() {
         final CarRacing racing = new CarRacing(1);
         final List<Car> cars = racing.nextTry(() -> true).getCars();
-
-        assertThat(cars)
-                .extracting("position")
-                .doesNotContain(2);
+        final int position = cars.get(0).getPosition();
+        assertThat(position).isNotEqualTo(2);
     }
 
     @Test
@@ -48,14 +91,12 @@ public class CarRacingTest {
         final CarRacing racing = new CarRacing(1);
         racing.nextTry(() -> true);
         final List<Car> cars = racing.nextTry(() -> true).getCars();
-
-        assertThat(cars)
-                .extracting("position")
-                .contains(2);
+        final int position = cars.get(0).getPosition();
+        assertThat(position).isEqualTo(2);
     }
 
     @Test
-    public void 두번째차_위치1() {
+    public void 두번째차_이동1회_위치1() {
         final CarRacing racing = new CarRacing(2);
         final List<Car> cars = racing.nextTry(() -> true).getCars();
         final int position = cars.get(1).getPosition();

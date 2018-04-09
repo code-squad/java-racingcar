@@ -1,4 +1,4 @@
-package com.codesquad.carracing.ui;
+package com.codesquad.carracing.view;
 
 import org.junit.Test;
 
@@ -82,16 +82,6 @@ public class InputViewTest {
         view.inputNumberOfCars("");
     }
 
-    @Test(expected = IllegalArgumentException.class)
-    public void 자동차_수량이_1보다_작음() {
-        final String inputNumberOfCars = "0";
-        final Writer writer = new MockWriter();
-        final Reader reader = new FakeReader(inputNumberOfCars);
-        final InputView view = new InputView(writer, reader);
-
-        view.inputNumberOfCars("");
-    }
-
     @Test
     public void 시도_횟수_입력시_메시지() {
         final String messageForNumberOfTries = "시도 횟수는 몇 번 인가요?";
@@ -168,13 +158,5 @@ public class InputViewTest {
         view.inputNumberOfTries("");
     }
 
-    @Test(expected = IllegalArgumentException.class)
-    public void 시도_횟수가_1보다_작음() {
-        final String inputNumberOfTries = "0";
-        final Writer writer = new MockWriter();
-        final Reader reader = new FakeReader(inputNumberOfTries);
-        final InputView view = new InputView(writer, reader);
 
-        view.inputNumberOfTries("");
-    }
 }

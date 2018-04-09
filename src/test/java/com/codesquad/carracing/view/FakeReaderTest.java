@@ -1,4 +1,4 @@
-package com.codesquad.carracing.ui;
+package com.codesquad.carracing.view;
 
 import org.junit.Test;
 
@@ -37,9 +37,9 @@ public class FakeReaderTest {
 
     @Test
     public void 문자열_입력안함_페이크_호출검증() {
-        FakeReader reader = new FakeReader("");
+        final FakeReader reader = new FakeReader("");
 
-        boolean isRead = reader.isRead();
+        final boolean isRead = reader.isRead();
         assertThat(isRead).isFalse();
 
     }
