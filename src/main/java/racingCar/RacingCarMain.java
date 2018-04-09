@@ -1,17 +1,23 @@
 package racingCar;
 
+import racingCar.game.Racing;
+import racingCar.game.Winner;
+import racingCar.view.InputView;
+import racingCar.view.ResultView;
+
 import java.util.List;
 
 public class RacingCarMain {
-
     public static void main(String[] args) {
-        InputView inputView = new InputView();
-        inputView.setup();
+        List<String> carsName = InputView.setCarsName();
+        int tryCount = InputView.setTryNo();
 
-        Racing racingCar = new Racing(inputView.getCarNumbers(), inputView.getTimes());
-        List<Car> result = racingCar.race();
+        Racing racingCar = new Racing(carsName, tryCount);
+        racingCar.race();
 
-        ResultView resultView = new ResultView();
-        resultView.result(result);
+        Winner winner = new Winner(racingCar.getGameResult());
+
+        ResultView resultView = new ResultView(racingCar.getGameResult());
+        resultView.result(winner.winnerCheck());
     }
 }
