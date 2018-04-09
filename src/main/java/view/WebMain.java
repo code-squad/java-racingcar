@@ -15,9 +15,7 @@ import static spark.Spark.*;
 import static spark.Spark.staticFiles;
 
 public class WebMain {
-
     private static RacingGame racingGame;
-    private static GameResult gameResult;
 
     public static void main(String[] args) {
         staticFiles.location("/templates");
@@ -54,9 +52,7 @@ public class WebMain {
         });
     }
 
-
-
-    public static String render(Map<String, Object> model, String templatePath) {
+    private static String render(Map<String, Object> model, String templatePath) {
         return new HandlebarsTemplateEngine().render(new ModelAndView(model, templatePath));
     }
 }
