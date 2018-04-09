@@ -7,52 +7,29 @@ import java.util.*;
 
 public class RacingGame {
 
-    private static Random random = new Random();
-    public List<Car> carList;
     public static final int RULENUM = 4;
+    private static Random random = new Random();
+    public List<Car> cars;
 
-    public RacingGame(List<Car> carList) {
-        this.carList = carList;
+    public RacingGame(List<Car> cars) {
+        this.cars = cars;
     }
 
     public GameResult choiceMovingCar() {
-        for(int j = 0; j < carList.size(); j++) {
-            if(isGetMoreThanFiveNum()) {
-                moveCar(j);
-            }
-        }
-        return new GameResult(this.carList);
-    }
-
-    public boolean isGetMoreThanFiveNum() {
-        return random.nextInt(10) > RULENUM;
-    }
-
-    public void moveCar(int moveNum) {
-        carList.get(moveNum).addCarPostion();
-    }
-
-    public GameResult choiceWinner(GameResult result) {
-
-        Collections.sort(carList);
-        int maxCarPosition = carList.get(0).getCarPostion();
-
-        for(Car car:carList) {
-            addMaxCarPostion(result, maxCarPosition, car);
+        for(Car car: cars) {
+          car.move(getRandomMoveValue());
         }
 
-        return result;
+        return new GameResult(this.cars);
     }
 
-    private void addMaxCarPostion(GameResult result, int maxCarPosition, Car car) {
-        if(maxCarPosition == car.getCarPostion()) {
-            result.addWinner(car);
-        }
+    public int getRandomMoveValue() {
+        return random.nextInt(10);
     }
 
     public static void main(String[] args) {
 
-        RacingGame racingGame = new RacingGame(InputView.getCarList());
+        RacingGame racingGame = new RacingGame(InputView.getcars());
         int tryNo = InputView.getTryNo();
         GameResult result = null;
 
@@ -61,6 +38,6 @@ public class RacingGame {
             ResultView.printCarRoutes(result);
         }
 
-        ResultView.printWinnerCarRacing(racingGame.choiceWinner(result));
+        ResultView.printWinnerCarRacing(result.getWinnerNames());
     }
 }

@@ -9,16 +9,22 @@ public class Car implements Comparable<Car>{
         this.carName = carName;
     }
 
-    public void addCarPostion() {
-        carPostion++;
-    }
-
     public String getCarName() {
         return carName;
     }
 
     public int getCarPostion() {
         return carPostion;
+    }
+
+    public void move(int randomValue) {
+        if(randomValue >= RacingGame.RULENUM) {
+            carPostion += 1;
+        }
+    }
+
+    public boolean matchPosition(int maxCarPostion) {
+        return carPostion == maxCarPostion;
     }
 
     @Override

@@ -17,28 +17,15 @@ public class ResultView {
         systemOutprintCarRoute();
     }
 
-    public static void printWinnerCarRacing(GameResult result) {
-        StringBuilder sb = makeWinerStringBuilder(result);
-        systemOutPrintWinner(sb);
-    }
-
-    private static void systemOutPrintWinner(StringBuilder sb) {
+    public static void printWinnerCarRacing(StringBuilder sb) {
+        sb.append("가 최종 우승했습니다.");
         System.out.println(sb.toString());
     }
 
     private static StringBuilder makeWinerStringBuilder(GameResult result) {
         StringBuilder sb = new StringBuilder();
-        boolean isFirst = true;
 
-        for(Car car: result.getWinnerList()) {
-            if(isFirst) {
-                sb.append(car.getCarName());
-                isFirst = false;
-                continue;
-            }
-            sb.append(", ").append(car.getCarName());
-        }
-        sb.append("가 최종 우승했습니다.");
+
         return sb;
     }
 
