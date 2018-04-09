@@ -1,17 +1,23 @@
 package racing;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
+import com.google.common.collect.Lists;
+
+import java.util.*;
 
 import static java.util.stream.Collectors.joining;
 
 public class GameResult {
 
-    public static void showWinners(Map<String, Integer> result) {
-        int maxValue = Collections.max(result.values());
+    public static void showWinners(List<Car> result) {
 
-        final String resultName = result.entrySet()
+        Map<String, Integer> temp = new HashMap<>();
+
+        for (Car car : result)
+            temp.put(car.getName(), car.getPosition());
+
+        int maxValue = Collections.max(temp.values());
+
+        final String resultName = temp.entrySet()
                 .stream()
                 .filter(num -> num.getValue() >= maxValue)
                 .map(Map.Entry::getKey)
