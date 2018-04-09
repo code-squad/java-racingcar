@@ -1,7 +1,7 @@
 package racingCar;
 
-import racingCar.game.Racing;
-import racingCar.game.Winner;
+import racingCar.domain.Racing;
+import racingCar.domain.Winner;
 import racingCar.view.InputView;
 import racingCar.view.ResultView;
 import spark.ModelAndView;

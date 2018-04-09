@@ -1,6 +1,6 @@
 package racingCar;
 
-import racingCar.game.Racing;
+import racingCar.domain.Racing;
 
 import static org.assertj.core.api.Java6Assertions.assertThat;
 
