@@ -1,4 +1,4 @@
-package racingcar;
+package racingcar.domain;
 
 import org.junit.Test;
 
@@ -11,7 +11,7 @@ public class PlayerCarTest {
         PlayerCar playerCar = new PlayerCar("test");
         playerCar.moveCar(4);
 
-        assertThat(playerCar.getCarPosition()).isEqualTo("--");
+        assertThat(playerCar.getPosition()).isEqualTo("--");
     }
 
     @Test
@@ -19,6 +19,6 @@ public class PlayerCarTest {
         PlayerCar playerCar = new PlayerCar("test");
         playerCar.moveCar(3);
 
-        assertThat(playerCar.getCarPosition()).isEqualTo("-");
+        assertThat(playerCar.getPosition()).isEqualTo("-");
     }
 }

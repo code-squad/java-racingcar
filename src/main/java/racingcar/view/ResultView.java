@@ -1,11 +1,13 @@
-package racingcar;
+package racingcar.view;
+
+import racingcar.domain.PlayerCar;
 
 import java.util.List;
 
 public class ResultView {
     public void printRoundState(List<PlayerCar> playerCars){
         for(PlayerCar playerCar : playerCars){
-            System.out.println( playerCar.getCarName() + " : " +  playerCar.getCarPosition() );
+            System.out.println( playerCar.getCarName() + " : " +  playerCar.getPosition() );
         }
     }
 

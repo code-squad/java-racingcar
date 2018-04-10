@@ -1,4 +1,4 @@
-package racingcar;
+package racingcar.domain;
 
 public class PlayerCar {
     static final int MOVE_MIN_VALUE = 4;
@@ -15,7 +15,7 @@ public class PlayerCar {
             position += "-";
     }
 
-    public String getCarPosition(){
+    public String getPosition(){
         return position;
     }
     public String getCarName() { return carName;}

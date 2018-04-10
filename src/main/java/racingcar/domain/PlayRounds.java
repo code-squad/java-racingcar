@@ -1,4 +1,4 @@
-package racingcar;
+package racingcar.domain;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,11 +14,12 @@ public class PlayRounds {
         }
     }
 
-    public void playSingleRounds() {
+    public List<PlayerCar> playSingleRounds() {
         Random random = new Random();
         for (PlayerCar playerCar : playerCars) {
             playerCar.moveCar(random.nextInt(10));
         }
+        return playerCars;
     }
 
     public List<PlayerCar> getPlayerCars() {
@@ -30,7 +31,7 @@ public class PlayRounds {
         int maxLength = -1;
         for (PlayerCar playerCar : playerCars) {
             winners = makeWinnerList(maxLength, playerCar, winners);
-            maxLength = winners.get(0).getCarPosition().length();
+            maxLength = winners.get(0).getPosition().length();
         }
 
         return winners;

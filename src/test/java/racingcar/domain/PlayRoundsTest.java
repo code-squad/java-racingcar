@@ -1,4 +1,4 @@
-package racingcar;
+package racingcar.domain;
 
 import org.junit.Test;
 
@@ -15,7 +15,7 @@ public class PlayRoundsTest {
         testCar.setCarPosition("---");
         int maxLength = -1;
         List<PlayerCar> winners = new ArrayList<>();
-        maxLength = playRounds.makeWinnerList(maxLength, testCar, winners).get(0).getCarPosition().length();
+        maxLength = playRounds.makeWinnerList(maxLength, testCar, winners).get(0).getPosition().length();
 
         assertThat(maxLength).isEqualTo(3);
     }
@@ -41,11 +41,11 @@ public class PlayRoundsTest {
         List<PlayerCar> winners = new ArrayList<>();
         int maxLength = -1;
         winners = playRounds.makeWinnerList(maxLength, testCar, winners);
-        maxLength = winners.get(0).getCarPosition().length();
+        maxLength = winners.get(0).getPosition().length();
 
         PlayerCar testCar2 = new PlayerCar("test2");
         testCar2.setCarPosition("--");
-        maxLength = playRounds.makeWinnerList(maxLength, testCar2, winners).get(0).getCarPosition().length();
+        maxLength = playRounds.makeWinnerList(maxLength, testCar2, winners).get(0).getPosition().length();
 
         assertThat(maxLength).isEqualTo(3);
     }
@@ -60,7 +60,7 @@ public class PlayRoundsTest {
         List<PlayerCar> winners = new ArrayList<>();
         int maxLength = -1;
         winners = playRounds.makeWinnerList(maxLength, testCar, winners);
-        maxLength = winners.get(0).getCarPosition().length();
+        maxLength = winners.get(0).getPosition().length();
 
         PlayerCar testCar2 = new PlayerCar("test2");
         testCar2.setCarPosition("---");

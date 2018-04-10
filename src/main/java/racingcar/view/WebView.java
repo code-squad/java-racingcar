@@ -1,4 +1,4 @@
-package racingcar.webview;
+package racingcar.view;
 
 import spark.ModelAndView;
 import spark.template.handlebars.HandlebarsTemplateEngine;
