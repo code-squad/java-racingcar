@@ -2,6 +2,7 @@ package racingcar.domain;
 
 public class Car implements Comparable<Car>{
 
+    private String printCarPosition = "";
     private String carName;
     private int carPostion;
 
@@ -17,9 +18,14 @@ public class Car implements Comparable<Car>{
         return carPostion;
     }
 
+    public String getPrintCarPosition() {
+        return printCarPosition;
+    }
+
     public void move(int randomValue) {
         if(randomValue >= RacingGame.RULENUM) {
             carPostion += 1;
+            printCarPosition += "-";
         }
     }
 

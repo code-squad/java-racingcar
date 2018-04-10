@@ -27,6 +27,8 @@ public class GameResult {
         return cars.get(line).getCarName();
     }
 
+    public List<Car> getCars() { return cars; }
+
     public StringBuilder getWinnerNames() {
 
         Collections.sort(cars);

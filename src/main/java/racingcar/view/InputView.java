@@ -11,15 +11,18 @@ public class InputView {
     private static Scanner scanner = new Scanner(System.in);
 
     public static List<Car> getcars() {
-        List<Car> cars = new ArrayList<>();
-        System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분.");
-        return makeCars(cars);
+
+        System.out.println("경주할 자동차 이름을 입력하세요(이름은 띄어쓰기로 구분.");
+        return makeCars(scanner.nextLine().split(" "));
     }
 
-    private static List<Car> makeCars(List<Car> cars) {
-        for(String carName:scanner.nextLine().split(",")) {
+    public static List<Car> makeCars(String[] carNames) {
+        List<Car> cars = new ArrayList<>();
+
+        for(String carName:carNames) {
             cars.add(new Car(carName));
         }
+
         return cars;
     }
 
