@@ -6,8 +6,7 @@ public class RacingGameApp {
         startRacingGame();
     }
 
-    public static void startRacingGame() {
-
+    public static void startRacingGame(){
         RacingGame racingGame = createRacingGame();
 
         int racingCnt = InputView.getInputTimeCnt();
