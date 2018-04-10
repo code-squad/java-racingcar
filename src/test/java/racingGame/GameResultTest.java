@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -58,7 +59,7 @@ public class GameResultTest {
         cars.add(car2);
         cars.add(car3);
         GameResult result = new GameResult(cars);
-        ArrayList<Car> winnerCars = GameResult.getWinnerCars(result);
+        List<Car> winnerCars = result.getWinnerCars();
         assertThat(winnerCars.get(0).equals(car1) && winnerCars.size() == 1).isTrue();
     }
 
@@ -68,7 +69,7 @@ public class GameResultTest {
         cars.add(car2);
         cars.add(car3);
         GameResult result = new GameResult(cars);
-        ArrayList<Car> winnerCars = GameResult.getWinnerCars(result);
+        List<Car> winnerCars = result.getWinnerCars();
         assertThat(winnerCars.get(0).equals(car2) && winnerCars.get(1).equals(car3)).isTrue();
     }
 
