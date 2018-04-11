@@ -19,18 +19,9 @@ public class RacingGameTest {
     }
 
     @Test
-    public void 테스트_RacingGame_comparePostion() {
+    public void 테스트_RacingGame_getRaceTopPosition() {
         RacingGame racingGame = new RacingGame(RacingGameApp.splitNames("pobi,crong,honux"));
-        assertThat(racingGame.comparetPosition(3,2)).isEqualTo(3);
-        assertThat(racingGame.comparetPosition(2,4)).isEqualTo(4);
-
-
-    }
-
-    @Test
-    public void 테스트_RacingGame_getTopPostion() {
-        RacingGame racingGame = new RacingGame(RacingGameApp.splitNames("pobi,crong,honux"));
-        assertThat(racingGame.getTopPosition()).isEqualTo(0);
+        assertThat(racingGame.getRaceTopPosition()).isEqualTo(0);
     }
 
     @Test
@@ -39,5 +30,43 @@ public class RacingGameTest {
         assertThat(racingGame.getWinnnersRacing()).contains("pobi");
         assertThat(racingGame.getWinnnersRacing()).contains("crong");
         assertThat(racingGame.getWinnnersRacing()).contains("honux");
+    }
+
+    @Test
+    public void 테스트_Car_addPosition() {
+        Car car = new Car("test");
+
+        car.addPosition(3);
+        assertThat(car.getPosition()).isEqualTo(0);
+
+        car.addPosition(4);
+        assertThat(car.getPosition()).isEqualTo(1);
+    }
+
+    @Test
+    public void 테스트_Car_getTopPosition() {
+        Car car = new Car("test");
+
+        assertThat(car.getTopPosition(0)).isEqualTo(0);
+        assertThat(car.getTopPosition(1)).isEqualTo(1);
+
+        car.addPosition(4); // position 1 전진
+
+        assertThat(car.getTopPosition(0)).isEqualTo(1);
+        assertThat(car.getTopPosition(2)).isEqualTo(2);
+
+    }
+
+    @Test
+    public void 테스트_Car_isMatchPosition() {
+        Car car = new Car("test");
+
+        assertThat(car.isMatchPosition(0)).isEqualTo(true);
+        assertThat(car.isMatchPosition(1)).isEqualTo(false);
+
+        car.addPosition(4); // position 1 전진
+
+        assertThat(car.isMatchPosition(0)).isEqualTo(false);
+        assertThat(car.isMatchPosition(1)).isEqualTo(true);
     }
 }

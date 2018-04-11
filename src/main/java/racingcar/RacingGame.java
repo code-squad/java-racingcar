@@ -2,10 +2,12 @@ package racingcar;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class RacingGame {
 
     private List<Car> cars;
+    private Random random = new Random();
 
     public RacingGame(String[] carNames) {
         cars = createCars(carNames);
@@ -23,24 +25,21 @@ public class RacingGame {
 
     List<Car> move() {
         for(int i = 0; i < cars.size(); i++) {
-            cars.get(i).addPosition();
+            cars.get(i).addPosition(getRandomValue());
         }
 
         return cars;
     }
 
-    int getTopPosition() {
-        int topPosition = 0;
-        for(int i = 0; i < cars.size(); i++) {
-            topPosition = comparetPosition(topPosition, cars.get(i).getPosition());
-        }
-
-        return topPosition;
+    int getRandomValue() {
+        return random.nextInt(10);
     }
 
-    int comparetPosition(int topPosition, int position) {
-        if(position >= topPosition) {
-            topPosition = position;
+    int getRaceTopPosition() {
+        int topPosition = 0;
+        for(int i = 0; i < cars.size(); i++) {
+            Car car = cars.get(i);
+            topPosition = car.getTopPosition(topPosition);
         }
 
         return topPosition;
@@ -49,7 +48,7 @@ public class RacingGame {
     List<String> getWinnnersRacing() {
         List<String> winners = new ArrayList<String>();
 
-        int topPosition = getTopPosition();
+        int topPosition = getRaceTopPosition();
         for(int i = 0; i < cars.size(); i++) {
             Car car = cars.get(i);
             addWinners(winners, topPosition, car);
@@ -59,11 +58,9 @@ public class RacingGame {
     }
 
     private void addWinners(List<String> winners, int topPosition, Car car) {
-        if(topPosition == car.getPosition()) {
+        if(car.isMatchPosition(topPosition)) {
             winners.add(car.getCarName());
         }
     }
-
-
 
 }

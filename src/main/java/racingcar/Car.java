@@ -1,11 +1,9 @@
 package racingcar;
 
-import java.util.Random;
-
 public class Car {
+
     private int position;
     private String carName;
-    private static Random random = new Random();
 
     public Car(String carName) {
         this.carName = carName;
@@ -19,13 +17,21 @@ public class Car {
         return carName;
     }
 
-
-    void addPosition() {
-        if(getRandomValue() >= 4)
+    void addPosition(int randomValue) {
+        if(randomValue >= 4)
             position++;
     }
 
-    int getRandomValue() {
-        return random.nextInt(10);
+    boolean isMatchPosition(int topPosition) {
+        if(position == topPosition)
+            return true;
+        return false;
     }
+
+    int getTopPosition(int currentTopPosition) {
+        if(position <= currentTopPosition)
+            return currentTopPosition;
+        return position;
+    }
+
 }
