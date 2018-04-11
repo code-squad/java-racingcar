@@ -11,7 +11,7 @@ public class CarTest {
 
     @Before
     public void setUp(){
-        car = new Car();
+        car = new Car("myCar");
     }
 
     @Test
@@ -20,7 +20,7 @@ public class CarTest {
         for(int i=4; i<10; ++i) {
             result += car.move(i);
         }
-        assertThat(result == 0);
+        assertThat(result).isEqualTo(0);
     }
 
     @Test
@@ -29,7 +29,7 @@ public class CarTest {
         for(int i=0; i<4; ++i) {
             result *= car.move(i);
         }
-        assertThat(result != 0);
+        assertThat(result).isNotEqualTo(0);
     }
 
     @After

@@ -4,22 +4,24 @@ import java.util.Random;
 
 public class Car {
     private int position; //차의 현재 위치
+    private String name;
     private Random random = new Random();
 
-    public Car() {
+    public Car(String name) {
         this.position = 0;
+        this.name = name;
     }
-    public Car(int position) {
+
+    public Car(String name, int position) {
         this.position = position;
+        this.name = name;
     }
 
     public int getPosition() {
         return position;
     }
 
-    public void setPosition(int position) {
-        this.position = position;
-    }
+    public String getName() { return name; }
 
     public int move() {
         return move(makeRandomNumber());
@@ -37,4 +39,20 @@ public class Car {
         return random.nextInt(10);
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if(o == null) return false;
+        if (this == o) return true;
+        if (!(o instanceof Car)) return false;
+
+        Car car = (Car) o;
+
+        if (position != car.position) return false;
+        return name.equals(car.name);
+    }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }
