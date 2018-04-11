@@ -7,19 +7,22 @@ public class RacingGameApp {
     }
 
     public static void startRacingGame(){
-        RacingGame racingGame = createRacingGame(InputView.getInputCarCnt());
-        int racingCnt = InputView.getInputTimeCnt();
+        RacingGame racingGame = createRacingGame();
 
-        StringBuilder result = new StringBuilder();
+        int racingCnt = InputView.getInputTimeCnt();
         for(int i = 0; i < racingCnt; i++) {
-            OutputView.addGameResult(racingGame.move(),result);
+            OutputView.printRacingResult(racingGame.move());
         }
 
-        OutputView.drawResult(result.toString());
-
+        OutputView.printWinners(racingGame.getWinnnersRacing());
     }
 
-    public static RacingGame createRacingGame(int carCnt){
-        return new RacingGame(carCnt);
+    public static RacingGame createRacingGame(){
+        return new RacingGame(splitNames(InputView.getInputCarNames()));
     }
+
+    public static String[] splitNames(String inputName) {
+        return inputName.split(",");
+    }
+
 }
