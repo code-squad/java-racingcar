@@ -2,6 +2,7 @@ package racing;
 
 import org.junit.Before;
 import org.junit.Test;
+import racing.domain.Car;
 
 import java.util.ArrayList;
 import java.util.Arrays;

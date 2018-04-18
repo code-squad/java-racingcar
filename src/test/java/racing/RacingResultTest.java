@@ -1,6 +1,7 @@
 package racing;
 
 import org.junit.Test;
+import racing.view.RacingResult;
 
 import java.util.Arrays;
 import java.util.List;

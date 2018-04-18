@@ -1,6 +1,8 @@
 package racing;
 
-public class Main {
+import racing.view.RacingResult;
+
+public class ConsoleMain {
 
     public static void main(String[] arg){
         String driverNames = RacingInput.inputCars();
@@ -14,6 +16,6 @@ public class Main {
             RacingResult.printResult(game.moveAll());
         }
 
-        RacingResult.printBestDriver(game.getBestDrivers());
+        System.out.println(RacingResult.printBestDriver(game.getBestDrivers()));
     }
 }

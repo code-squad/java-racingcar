@@ -1,25 +1,29 @@
-package racing;
+package racing.view;
+
+import racing.domain.Car;
 
 import java.util.List;
 
 public class RacingResult {
 
     public static void printResult(List<Car> cars){
-        cars.forEach(RacingResult::printCarResult);
+        cars.forEach( car -> {
+            System.out.println(RacingResult.printCarResult(car));
+        });
         printSplitBetweenTrials();
     }
 
-    private static void printCarResult(Car car) {
+    public static String printCarResult(Car car) {
         StringBuilder builder = new StringBuilder(car.getName()+":");
         for(int i = 0; i < car.getDistance(); i++){
             builder.append("-");
         }
 
-        System.out.println(builder.toString());
+        return builder.toString();
     }
 
-    public static void printBestDriver(List<String> cars){
-        System.out.println(getResultMention(cars));
+    public static String printBestDriver(List<String> cars){
+        return getResultMention(cars);
     }
 
     public static String getResultMention(List<String> cars) {
