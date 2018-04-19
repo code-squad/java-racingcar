@@ -68,7 +68,6 @@ public class RacingGame {
                 .collect(Collectors.toList());
     }
 
-
     private int getMaxDistance() {
         return this.racingCars.stream()
                 .mapToInt(car -> car.getDistance())

@@ -7,7 +7,6 @@ public class ConsoleMain {
     public static void main(String[] arg){
         String driverNames = RacingInput.inputCars();
         int trials = RacingInput.inputTrials();
-
         RacingGame game = new RacingGame();
 
         game.readyRacing(driverNames);

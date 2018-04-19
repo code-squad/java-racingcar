@@ -17,8 +17,6 @@ import static spark.Spark.post;
 public class WebMain {
     public static void main(String[] args){
         RacingGame game = new RacingGame();
-
-
         port(8080);
 
         get("/", (req,resp) ->
@@ -47,7 +45,6 @@ public class WebMain {
             }
 
             List<String> drivers = new ArrayList<>();
-
             cars.forEach(car -> {
                 drivers.add(RacingResult.printCarResult(car));
             });

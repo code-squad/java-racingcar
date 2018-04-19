@@ -14,7 +14,6 @@ public class Car {
             this.position++;
     }
 
-
     public int getDistance(){
         return this.position;
     }
