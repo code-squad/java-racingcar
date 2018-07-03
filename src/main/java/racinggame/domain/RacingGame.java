@@ -1,7 +1,7 @@
 package racinggame.domain;
 
-public class Cars {
-    public Cars(String carNames) {
+public class RacingGame {
+    public RacingGame(String carNames) {
 
     }
 
