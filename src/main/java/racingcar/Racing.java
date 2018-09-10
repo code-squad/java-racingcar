@@ -6,8 +6,6 @@ public class Racing {
     private int time;
     private int[] carPositions;
 
-    public Racing() {
-    }
 
     public Racing(int time, int carNum) {
         this.time = time;
@@ -19,7 +17,7 @@ public class Racing {
 
     public void move() {
         Random random = new Random();
-        for(int i=0; i<this.carPositions.length; i++){
+        for (int i = 0; i < this.carPositions.length; i++) {
             int randNum = random.nextInt(10);
             if (randNum >= 4) this.carPositions[i]++;
         }
@@ -33,16 +31,15 @@ public class Racing {
         printStatus(this.carPositions);
     }
 
-    public String repeatString(int n){
+    public static String repeatString(int n) {
         StringBuffer sb = new StringBuffer();
-        for(int i=0; i<n; i++){
+        for (int i = 0; i < n; i++) {
             sb.append("-");
         }
         return sb.toString();
     }
 
-
-    public void printStatus(int[] carPositions) {
+    public static void printStatus(int[] carPositions) {
         System.out.println("실행결과");
         for (int i : carPositions) {
             System.out.println(repeatString(i));
