@@ -1,49 +1,34 @@
 package racingcar;
 
-import java.util.Random;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Racing {
     private int time;
-    private int[] carPositions;
+    private List<Car> cars = new ArrayList<>();
 
 
-    public Racing(int time, int carNum) {
+    public Racing(int time, String[] carNames) {
         this.time = time;
-        this.carPositions = new int[carNum];
-        for (int i = 0; i < carNum; i++) {
-            this.carPositions[i] = 1;
+        for (int i = 0; i < carNames.length; i++) {
+            this.cars.add(new Car(carNames[i]));
         }
-    }
-
-    public void move() {
-        Random random = new Random();
-        for (int i = 0; i < this.carPositions.length; i++) {
-            int randNum = random.nextInt(10);
-            if (randNum >= 4) this.carPositions[i]++;
-        }
-
     }
 
     public void run() {
         for (int i = 0; i < this.time; i++) {
-            move();
+            turn();
         }
-        printStatus(this.carPositions);
     }
 
-    public static String repeatString(int n) {
-        StringBuffer sb = new StringBuffer();
-        for (int i = 0; i < n; i++) {
-            sb.append("-");
+    public void turn() {
+        for (int i = 0; i < this.cars.size(); i++) {
+            this.cars.get(i).move();
         }
-        return sb.toString();
     }
 
-    public static void printStatus(int[] carPositions) {
-        System.out.println("실행결과");
-        for (int i : carPositions) {
-            System.out.println(repeatString(i));
-        }
+    public List<Car> getCars() {
+        return this.cars;
     }
 
 }
