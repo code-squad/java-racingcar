@@ -4,19 +4,19 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Racing {
+    public static final int POS_BOUND = 10;
+    public static final int POS_STD = 4;
+
     private int time;
-    private int carNum;
-    public static ArrayList<Car> carList = new ArrayList<>();
-    public static ArrayList<Car> resultList = new ArrayList<>();
+    private static ArrayList<Car> carList = new ArrayList<>();
 
     public Racing(int time, String[] carNames) {
         this.time = time;
-        this.carNum = carNames.length;
         init(carNames);
     }
 
     public void init(String[] carNames) {
-        for (int i = 0; i < carNum; i++) {
+        for (int i = 0; i < carNames.length; i++) {
             Car car = new Car(carNames[i], 1);
             carList.add(car);
         }
@@ -29,27 +29,27 @@ public class Racing {
     }
 
     public void selectCar(int i) {
-        for (int j = 0; j < carNum; j++) {
-            posAdd(j);  // move each car
+        for (Car car : carList) {
+            posAdd(car);  // move each car
         }
     }
 
-    public void posAdd(int j) {
+    public void posAdd(Car car) {
         Random random = new Random();
-        int posAdder = random.nextInt(10);
-        if (posAdder >= 4) {
-            int nowPos = carList.get(j).getCarPosition();
-            carList.get(j).setCarPosition(nowPos + 1);
+        int posAdder = random.nextInt(POS_BOUND);
+        if (posAdder >= POS_STD) {
+            car.carPosition++;
         }
+    }
+
+    public static ArrayList<Car> getCarList() {
+        return carList;
     }
 
     public static void main(String[] args) {
-        InputView input = new InputView();
-        ResultView result = new ResultView();
-
-        input.userInput();
-        Racing racing = new Racing(input.time, input.carNames.split(","));
+        InputView.userInput();
+        Racing racing = new Racing(InputView.getTime(), InputView.getCarNames().split(","));
         racing.run();
-        result.print();
+        ResultView.print();
     }
 }

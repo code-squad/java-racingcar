@@ -3,37 +3,44 @@ package racingcar;
 import java.util.ArrayList;
 
 public class ResultView {
-    private ArrayList<Car> carList = Racing.carList;
-    private ArrayList<Car> resultList = Racing.resultList;
+    public static final String POS_CHAR = "-";
 
-    public void print() {
+    private ResultView() {
+    }  // prevent making ResultView object
+
+    public static void print() {
+        ArrayList<Car> carList = Racing.getCarList();
+        ArrayList<Car> resultList = new ArrayList<>();
+
         System.out.println("실행 결과");
-        for (int i = 0; i < carList.size(); i++) {
-            compareCarPos(i);
-            showCarPos(i);
+        for (Car car : carList) {
+            showCarPos(car);
             System.out.println();
+            resultList = compareCarPos(car, resultList);
         }
         System.out.println();
-        showResult();
+        showResult(resultList);
     }
 
-    public void showCarPos(int i) {
-        System.out.print(carList.get(i).getCarName() + " : ");  // print userName
-        for (int j = 0; j < carList.get(i).getCarPosition(); j++) {
-            System.out.print("-");  // print userPosition
+    public static void showCarPos(Car car) {
+        System.out.print(car.getCarName() + " : ");  // print userName
+        for (int j = 0; j < car.getCarPosition(); j++) {
+            System.out.print(POS_CHAR);  // print userPosition
         }
     }
 
-    public void compareCarPos(int i) {
-        if (resultList.size() == 0 || resultList.get(0).getCarPosition() == carList.get(i).getCarPosition()) {
-            resultList.add(carList.get(i));
-        } else if (resultList.get(0).getCarPosition() < carList.get(i).getCarPosition()) {
+    public static ArrayList<Car> compareCarPos(Car car, ArrayList<Car> resultList) {
+        if (resultList.size() == 0 || resultList.get(0).getCarPosition() == car.getCarPosition()) {
+            resultList.add(car);
+        } else if (resultList.get(0).getCarPosition() < car.getCarPosition()) {
             resultList.clear();
-            resultList.add(carList.get(i));
+            resultList.add(car);
         }
+
+        return resultList;
     }
 
-    public void showResult() {
+    public static void showResult(ArrayList<Car> resultList) {
         for (int i = 0; i < resultList.size() - 1; i++) {
             System.out.print(resultList.get(i).getCarName() + ", ");
         }
