@@ -6,7 +6,8 @@ import java.util.Scanner;
 public class RacingGame {
     private static final String POSITION_CHARACTER = "-";
     private int time;
-    private Car[] cars;
+    private ArrayList<Car> cars;
+    private ArrayList<String> winnerList = new ArrayList<>();
 
     public static void main(String[] args) {
         RacingGame game = new RacingGame();
@@ -20,9 +21,9 @@ public class RacingGame {
         Scanner sc = new Scanner(System.in);
         System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
         String[] nameList = sc.nextLine().split(",");
-        cars = new Car[nameList.length];
-        for (int i = 0; i < cars.length; i++) {
-            cars[i] = new Car(nameList[i]);
+        cars = new ArrayList<>();
+        for (String name : nameList) {
+            cars.add(new Car(name));
         }
         System.out.println("시도할 회수는 몇 회 인가요?");
         time = sc.nextInt();
@@ -40,22 +41,21 @@ public class RacingGame {
     }
 
     private void each() {
-        for (int carIndex = 0; carIndex < cars.length; carIndex++) {
-            cars[carIndex].move();
+        for (Car car : cars) {
+            car.move();
         }
     }
 
 
     public void printResult() {
-        for (int carIndex = 0; carIndex < cars.length; carIndex++) {
-            System.out.print(cars[carIndex].getName() + " : ");
-            printACarPosition(carIndex);
+        for (Car car : cars) {
+            System.out.print(car.getName() + " : ");
+            printACarPosition(car.getPosition());
         }
     }
 
-    private void printACarPosition(int carIndex) {
-        int position = cars[carIndex].getPosition();
-        for (int l = 0; l < position; l++) {
+    private void printACarPosition(int position) {
+        for (int i = 0; i < position; i++) {
             System.out.print(POSITION_CHARACTER);
         }
         System.out.println();
@@ -63,28 +63,26 @@ public class RacingGame {
 
     public void printWinner() {
         int bestPosition = getMaxPosition();
-        ArrayList<String> winnerList = getWinnerList(bestPosition);
+        setWinnerList(bestPosition);
         printWinnerList(winnerList);
     }
 
     private int getMaxPosition() {
         int bestPosition = -1;
-        for (int i = 0; i < cars.length; i++) {
-            bestPosition = Math.max(bestPosition, cars[i].getPosition());
+        for (Car car : cars) {
+            bestPosition = car.comparePosition(bestPosition);
         }
         return bestPosition;
     }
 
-    private ArrayList<String> getWinnerList(int bestPosition) {
-        ArrayList<String> winnerList = new ArrayList<>();
-        for (int i = 0; i < cars.length; i++) {
-            checkWinner(cars[i], bestPosition, winnerList);
+    private void setWinnerList(int bestPosition) {
+        for (Car car : cars) {
+            checkWinner(car, bestPosition);
         }
-        return winnerList;
     }
 
-    private void checkWinner(Car car, int bestPosition, ArrayList<String> winnerList) {
-        if (bestPosition == car.getPosition()) {
+    private void checkWinner(Car car, int bestPosition) {
+        if (car.isWinner(bestPosition)) {
             winnerList.add(car.getName());
         }
     }
@@ -95,6 +93,6 @@ public class RacingGame {
             System.out.print(",");
             System.out.print(winnerList.get(i));
         }
-        System.out.println();
+        System.out.println("가 최종우승자입니다");
     }
 }

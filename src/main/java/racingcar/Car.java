@@ -27,4 +27,12 @@ public class Car {
             position++;
         }
     }
+
+    public int comparePosition(int bestPosition) {
+        return Math.max(this.position, bestPosition);
+    }
+
+    public boolean isWinner(int bestPosition) {
+        return this.position == bestPosition;
+    }
 }
