@@ -11,5 +11,6 @@ public class Main {
         Racing racing = new Racing(time, cars);
         racing.run();
         racing.printRacingResult();
+
     }
 }
