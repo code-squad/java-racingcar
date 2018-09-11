@@ -3,8 +3,8 @@ package race;
 import java.util.*;
 
 public class CarRacing {
-    private static final int jumpValue = 4;
-    private static final String resultString = "-";
+    private static final int JUMP = 4;
+    private static final String RESULT = "-";
     private int time;
     private int[] carPositions;
 
@@ -40,7 +40,7 @@ public class CarRacing {
 
     public void check(int j) {
         Random rnd = new Random();
-        if (rnd.nextInt(10) >= jumpValue) {
+        if (rnd.nextInt(10) >= JUMP) {
             carPositions[j]++;
         }
     }
@@ -55,7 +55,7 @@ public class CarRacing {
 
     public void valuePrint(int k) {
         for (int i = 0; i < carPositions[k]; i++) {
-            System.out.print(resultString);
+            System.out.print(RESULT);
         }
     }
 
