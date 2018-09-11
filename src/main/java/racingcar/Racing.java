@@ -1,22 +1,24 @@
 package racingcar;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 import java.util.Random;
 
 public class Racing {
     private int time;
     private int carNum;
-    private ArrayList<Integer> carPositions = new ArrayList<>();
+    public static ArrayList<Car> carList = new ArrayList<>();
+    public static ArrayList<Car> resultList = new ArrayList<>();
 
-    public Racing(int time, int carNum) {
+    public Racing(int time, String[] carNames) {
         this.time = time;
-        this.carNum = carNum;
+        this.carNum = carNames.length;
+        init(carNames);
     }
 
-    public void init() {
+    public void init(String[] carNames) {
         for (int i = 0; i < carNum; i++) {
-            carPositions.add(1);
+            Car car = new Car(carNames[i], 1);
+            carList.add(car);
         }
     }
 
@@ -36,40 +38,18 @@ public class Racing {
         Random random = new Random();
         int posAdder = random.nextInt(10);
         if (posAdder >= 4) {
-            carPositions.set(j, carPositions.get(j) + 1);
-        }
-    }
-
-    public void print() {
-        System.out.println("실행 결과");
-        for (int i = 0; i < carPositions.size(); i++) {
-            showCarPos(i);
-            System.out.println();
-        }
-    }
-
-    public void showCarPos(int i) {
-        for (int j = 0; j < carPositions.get(i); j++) {
-            System.out.print("-");
+            int nowPos = carList.get(j).getCarPosition();
+            carList.get(j).setCarPosition(nowPos + 1);
         }
     }
 
     public static void main(String[] args) {
-        Scanner scan = new Scanner(System.in);
-        int carNum, time;
+        InputView input = new InputView();
+        ResultView result = new ResultView();
 
-        try{
-            System.out.println("자동차 대수는 몇 대 인가요? ");
-            carNum = scan.nextInt();
-            System.out.println("시도할 회수는 몇 회 인가요?");
-            time = scan.nextInt();
-        }catch(Exception e){
-            return;
-        }
-
-        Racing racing = new Racing(time, carNum);  // 피드백 반영 → 객체 외부에서 상태값 변경하지 않도록
-        racing.init();
+        input.userInput();
+        Racing racing = new Racing(input.time, input.carNames.split(","));
         racing.run();
-        racing.print();
+        result.print();
     }
 }
