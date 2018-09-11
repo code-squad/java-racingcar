@@ -1,5 +1,6 @@
 package racingcar;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class RacingGame {
@@ -12,6 +13,7 @@ public class RacingGame {
         game.getInput();
         game.run();
         game.printResult();
+        game.printWinner();
     }
 
     public void getInput() {
@@ -59,5 +61,40 @@ public class RacingGame {
         System.out.println();
     }
 
+    public void printWinner() {
+        int bestPosition = getMaxPosition();
+        ArrayList<String> winnerList = getWinnerList(bestPosition);
+        printWinnerList(winnerList);
+    }
 
+    private int getMaxPosition() {
+        int bestPosition = -1;
+        for (int i = 0; i < cars.length; i++) {
+            bestPosition = Math.max(bestPosition, cars[i].getPosition());
+        }
+        return bestPosition;
+    }
+
+    private ArrayList<String> getWinnerList(int bestPosition) {
+        ArrayList<String> winnerList = new ArrayList<>();
+        for (int i = 0; i < cars.length; i++) {
+            checkWinner(cars[i], bestPosition, winnerList);
+        }
+        return winnerList;
+    }
+
+    private void checkWinner(Car car, int bestPosition, ArrayList<String> winnerList) {
+        if (bestPosition == car.getPosition()) {
+            winnerList.add(car.getName());
+        }
+    }
+
+    private void printWinnerList(ArrayList<String> winnerList) {
+        System.out.print(winnerList.get(0));
+        for (int i = 1; i < winnerList.size(); i++) {
+            System.out.print(",");
+            System.out.print(winnerList.get(i));
+        }
+        System.out.println();
+    }
 }
