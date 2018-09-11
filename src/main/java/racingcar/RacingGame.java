@@ -4,26 +4,26 @@ import java.util.Scanner;
 import java.util.Random;
 
 public class RacingGame {
-    private static final int Condition = 4;
-    private static final int Bound = 10;
+    private static final int BOUNDOFRANDOM = 10;
+    private static final int CONDITIONTOADVANCE = 4;
+    private static final String MARKOFADVANCE = "-";
 
     private int[] carPositions;
 
     public static void main(String[] args) {
         RacingGame racingGame = new RacingGame();
         Scanner scanner = new Scanner(System.in);
-        Random random = new Random();
 
         int vehicles = racingGame.getVehicles(scanner);
         int trials = racingGame.getTrials(scanner);
 
-        racingGame.play(racingGame, random, vehicles, trials);
+        racingGame.play(vehicles, trials);
     }
 
-    public void play(RacingGame racingGame, Random random, int vehicles, int trials) {
-        racingGame.setCarpositions(vehicles);
-        racingGame.run(random, vehicles, trials);
-        racingGame.print(vehicles);
+    public void play(int vehicles, int trials) {
+        setCarpositions(vehicles);
+        run(vehicles, trials);
+        print(vehicles);
     }
 
     public int getVehicles(Scanner scanner) {
@@ -43,20 +43,21 @@ public class RacingGame {
         return carPositions;
     }
 
-    public void run(Random random, int vehicles, int trials) {
+    public void run(int vehicles, int trials) {
         for (int i = 0; i < trials; i++) {
-            runByVehicles(random, vehicles);
+            runByVehicles(vehicles);
         }
     }
 
-    public void runByVehicles(Random random, int vehicles) {
+    public void runByVehicles(int vehicles) {
         for (int i = 0; i < vehicles; i++) {
-            runByCondition(random, i);
+            runByCondition(i);
         }
     }
 
-    public void runByCondition(Random random, int i) {
-        if (random.nextInt(Bound) >= Condition) {
+    public void runByCondition(int i) {
+        Random random = new Random();
+        if (random.nextInt(BOUNDOFRANDOM) >= CONDITIONTOADVANCE) {
             carPositions[i]++;
         }
     }
@@ -68,7 +69,7 @@ public class RacingGame {
     public void print(int vehicles) {
         System.out.println("실행 결과");
         for (int i = 0; i < vehicles; i++) {
-            String result = repeat("-", carPositions[i]);
+            String result = repeat(MARKOFADVANCE, carPositions[i]);
             System.out.println(result);
         }
     }
