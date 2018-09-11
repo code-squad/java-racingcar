@@ -4,13 +4,12 @@ public class Main {
     public static void main(String[] args) {
         Inputs inputs = new Inputs();
         int time = inputs.getTime();
-        int cars = inputs.getCars();
+        String[] carNames = inputs.getCarName();
 
+        Racing racing = new Racing(time, carNames);
         inputs.close();
 
-        Racing racing = new Racing(time, cars);
         racing.run();
-        racing.printRacingResult();
-
     }
+
 }
