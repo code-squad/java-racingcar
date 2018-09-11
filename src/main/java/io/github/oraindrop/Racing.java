@@ -6,49 +6,54 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Racing {
-    public static void main(String[] args) {
-        Racing race = new Racing();
-        List<String> carPosition = new ArrayList<>();
-        List<Integer> inputList = new ArrayList<>();
+    static final int RANDOM_SIZE = 10;
+    static final int FORWARD_CONDITION = 4;
 
-        inputList = race.inputSizeTime();
-        carPosition = race.run(inputList.get(0), inputList.get(1));
-        race.printResult(carPosition);
+    private int size;
+    private int time;
+    private List<String> carPosition;
+
+    public Racing(int size, int time) {
+        this.size = size;
+        this.time = time;
     }
 
-    public List<String> run(int size, int time){
+    public void run(){
+        this.carPosition = new ArrayList<>();
+        for(int i = 0; i < this.size; i++){
+            String position = this.calculatePosition();
+            this.carPosition.add(position);
+        }
+    }
+
+    public String calculatePosition(){
         Random rnd = new Random();
-        List<String> list = new ArrayList<>();
-        for(int i = 0; i < size; i++){
-            String s = "";
-            for(int j = 0; j < time; j++){
-                if(rnd.nextInt(10) >= 4){
-                    s += "-";
-                }
+        String s = "";
+        for(int j = 0; j < this.time; j++){
+            if(rnd.nextInt(RANDOM_SIZE) >= FORWARD_CONDITION){
+                s += "-";
             }
-            list.add(s);
         }
-        return list;
+        return s;
     }
 
-    public List<Integer> inputSizeTime(){
-        List<Integer> inputResult = new ArrayList<>();
-        Scanner sc = new Scanner(System.in);
-
-        System.out.println("자동차 대수는 몇 대 인가요?");
-        inputResult.add(sc.nextInt());
-
-        System.out.println("시도할 회수는 몇 회 인가요?");
-        inputResult.add(sc.nextInt());
-
-        sc.close();
-        return inputResult;
-    }
-
-    public void printResult(List<String> output){
+    public void printResult(){
         System.out.println("실행 결과");
-        for(int i = 0; i < output.size(); i++){
-            System.out.println(output.get(i));
+        for(int i = 0; i < this.carPosition.size(); i++){
+            System.out.println(this.carPosition.get(i));
         }
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int sizeNum = 0;
+        int timeNum = 0;
+        System.out.println("자동차 대수는 몇 대 인가요?");
+        sizeNum = sc.nextInt();
+        System.out.println("시도할 회수는 몇 회 인가요?");
+        timeNum = sc.nextInt();
+        Racing race = new Racing(sizeNum, timeNum);
+        race.run();
+        race.printResult();
     }
 }
