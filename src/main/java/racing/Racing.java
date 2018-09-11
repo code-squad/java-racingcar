@@ -1,8 +1,10 @@
-package racingstep01;
+package racing;
 
 import java.util.Random;
 
 public class Racing {
+    static final int stopStandard = 4;
+    static final int randomStandard = 10;
     private int time;
     private int[] carPositions; //  다른 클래스에서는 결과값을 변경하지 못하도록 private 설정!
     Random random;
@@ -32,8 +34,8 @@ public class Racing {
 
     public int getNum() {
         /* 전진(4 이상) 또는 정지(4 미만) */
-        int num = random.nextInt(10);
-        return num >= 4 ? num : 0;
+        int num = random.nextInt(randomStandard);
+        return num >= stopStandard ? num : 0;
     }
 
     public void printRacingResult() {
