@@ -1,12 +1,11 @@
 package racingcar;
 
-import java.util.Random;
 import java.util.Scanner;
 
 public class RacingGame {
-    private static Random rnd = new Random();
+    private static final String POSITION_CHARACTER = "-";
     private int time;
-    private int[] carPositions;
+    private Car[] cars;
 
     public static void main(String[] args) {
         RacingGame game = new RacingGame();
@@ -17,9 +16,12 @@ public class RacingGame {
 
     public void getInput() {
         Scanner sc = new Scanner(System.in);
-        System.out.println("자동차 대수는 몇 대 인가요?");
-        int numberOfCar = sc.nextInt();
-        carPositions = new int[numberOfCar];
+        System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
+        String[] nameList = sc.nextLine().split(",");
+        cars = new Car[nameList.length];
+        for (int i = 0; i < cars.length; i++) {
+            cars[i] = new Car(nameList[i]);
+        }
         System.out.println("시도할 회수는 몇 회 인가요?");
         time = sc.nextInt();
         sc.close();
@@ -36,28 +38,26 @@ public class RacingGame {
     }
 
     private void each() {
-        for (int carIndex = 0; carIndex < carPositions.length; carIndex++) {
-            move(carIndex);
+        for (int carIndex = 0; carIndex < cars.length; carIndex++) {
+            cars[carIndex].move();
         }
     }
 
-    private void move(int carIndex) {
-        if (rnd.nextInt(10) >= 4) {
-            carPositions[carIndex]++;
-        }
-    }
 
     public void printResult() {
-        for (int carIndex = 0; carIndex < carPositions.length; carIndex++) {
+        for (int carIndex = 0; carIndex < cars.length; carIndex++) {
+            System.out.print(cars[carIndex].getName() + " : ");
             printACarPosition(carIndex);
         }
     }
 
     private void printACarPosition(int carIndex) {
-        int position = carPositions[carIndex];
+        int position = cars[carIndex].getPosition();
         for (int l = 0; l < position; l++) {
-            System.out.print("-");
+            System.out.print(POSITION_CHARACTER);
         }
         System.out.println();
     }
+
+
 }
