@@ -3,10 +3,10 @@ package race;
 import java.util.*;
 
 public class CarRacing {
-    private int time;
-    private int[] carPositions;
     private static final int jumpValue = 4;
     private static final String resultString = "-";
+    private int time;
+    private int[] carPositions;
 
     public static void main(String[] args) {
         CarRacing game = new CarRacing();
