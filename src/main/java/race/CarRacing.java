@@ -5,6 +5,8 @@ import java.util.*;
 public class CarRacing {
     private int time;
     private int[] carPositions;
+    private static final int jumpValue = 4;
+    private static final String resultString = "-";
 
     public static void main(String[] args) {
         CarRacing game = new CarRacing();
@@ -30,16 +32,15 @@ public class CarRacing {
 
 
     public void go() {
-
         for (int j = 0; j < carPositions.length; j++) {
             check(j);
-
         }
     }
 
+
     public void check(int j) {
         Random rnd = new Random();
-        if (rnd.nextInt(10) >= 4) {
+        if (rnd.nextInt(10) >= jumpValue) {
             carPositions[j]++;
         }
     }
@@ -54,7 +55,7 @@ public class CarRacing {
 
     public void valuePrint(int k) {
         for (int i = 0; i < carPositions[k]; i++) {
-            System.out.print("-");
+            System.out.print(resultString);
         }
     }
 
