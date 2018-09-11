@@ -5,7 +5,6 @@ import java.util.List;
 
 public class ResultView {
 
-
     public static String repeatString(int n) {
         StringBuffer sb = new StringBuffer();
         for (int i = 0; i < n; i++) {
@@ -28,7 +27,7 @@ public class ResultView {
     public static List<Car> checkWinner(List<Car> cars, int maxPosition) {
         List<Car> winner = new ArrayList<>();
         for (Car car : cars) {
-            if (car.getPosition() == maxPosition) {
+            if (car.isMaxPostion(maxPosition)) {
                 winner.add(car);
             }
         }
