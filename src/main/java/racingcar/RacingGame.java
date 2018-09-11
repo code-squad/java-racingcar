@@ -7,7 +7,6 @@ public class RacingGame {
     private static final String POSITION_CHARACTER = "-";
     private int time;
     private ArrayList<Car> cars;
-    private ArrayList<String> winnerList = new ArrayList<>();
 
     public static void main(String[] args) {
         RacingGame game = new RacingGame();
@@ -46,7 +45,6 @@ public class RacingGame {
         }
     }
 
-
     public void printResult() {
         for (Car car : cars) {
             System.out.print(car.getName() + " : ");
@@ -63,8 +61,8 @@ public class RacingGame {
 
     public void printWinner() {
         int bestPosition = getMaxPosition();
-        setWinnerList(bestPosition);
-        printWinnerList(winnerList);
+        setWinner(bestPosition);
+        printWinnerList();
     }
 
     private int getMaxPosition() {
@@ -75,24 +73,27 @@ public class RacingGame {
         return bestPosition;
     }
 
-    private void setWinnerList(int bestPosition) {
+    private void setWinner(int bestPosition) {
         for (Car car : cars) {
-            checkWinner(car, bestPosition);
+            car.checkWinner(bestPosition);
         }
     }
 
-    private void checkWinner(Car car, int bestPosition) {
-        if (car.isWinner(bestPosition)) {
-            winnerList.add(car.getName());
+    private void printWinnerList() {
+       String winnerNmae = "";
+        for (Car car : cars) {
+            winnerNmae += checkWinner(car);
+
         }
+        winnerNmae = winnerNmae.substring(0, winnerNmae.length()-1);
+        System.out.print(winnerNmae);
+        System.out.println("가 승리했습니다.");
     }
 
-    private void printWinnerList(ArrayList<String> winnerList) {
-        System.out.print(winnerList.get(0));
-        for (int i = 1; i < winnerList.size(); i++) {
-            System.out.print(",");
-            System.out.print(winnerList.get(i));
+    private String checkWinner(Car car){
+        if(car.isWinner()){
+           return car.getName() + ",";
         }
-        System.out.println("가 최종우승자입니다");
+        return "";
     }
 }
