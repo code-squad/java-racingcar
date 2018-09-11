@@ -14,9 +14,8 @@ public class RacingGame {
         int[] carArrays = makeCarsList(cars, movingCount);
         System.out.println("실행 결과");
         displayCar(carArrays, movingCount);
-
         // 배열값 확인용
-        //System.out.println(Arrays.toString(carArrays));
+//        System.out.println(Arrays.toString(carArrays));
     }
 
     //cars 와 movingCount를 곱해서 1차원 배열로만듬
@@ -30,16 +29,20 @@ public class RacingGame {
     }
 
     // 자동차 배열을 하나 읽어 출력
+    // intend 를 줄이자.
     public static void displayCar(int[] cars, int movingCount) {
         for (int i = 0; i < cars.length; i++) {
-            if (i != 0 && i % movingCount == 0) {
-                System.out.println("");
-            }
-            if (cars[i] >= MOVE_CAR) {
-                System.out.print("-");
-            }
+            drawLine(cars, movingCount, i);
         }
         System.out.println("");
     }
 
+    public static void drawLine(int[] cars, int movingCount, int i)  {
+        if (i != 0 && i % movingCount == 0) {
+            System.out.println("");
+        }
+        if (cars[i] >= MOVE_CAR) {
+            System.out.print("-");
+        }
+    }
 }
