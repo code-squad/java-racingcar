@@ -3,6 +3,8 @@ package race;
 import java.util.*;
 
 public class CarRacing {
+    private static final int JUMP = 4;
+    private static final String RESULT = "-";
     private int time;
     private int[] carPositions;
 
@@ -10,17 +12,14 @@ public class CarRacing {
         CarRacing game = new CarRacing();
         game.input();
         game.run();
-        game.valuePrint();
+        game.valueArray();
     }
 
     public void input() {
         Scanner scan = new Scanner(System.in);
-
         System.out.println("자동차 대수는 몇 대 인가요?");
         int numberOfCar = scan.nextInt();
-
         carPositions = new int[numberOfCar];
-
         System.out.println("시도할 회수는 몇 회 인가요?");
         time = scan.nextInt();
     }
@@ -33,21 +32,32 @@ public class CarRacing {
 
 
     public void go() {
-        Random rnd = new Random();
         for (int j = 0; j < carPositions.length; j++) {
-            if (rnd.nextInt(10) >= 4) {
-                carPositions[j]++;
-            }
+            check(j);
         }
     }
 
 
-    public void valuePrint() {
+    public void check(int j) {
+        Random rnd = new Random();
+        if (rnd.nextInt(10) >= JUMP) {
+            carPositions[j]++;
+        }
+    }
+
+
+    public void valueArray() {
         for (int k = 0; k < carPositions.length; k++) {
-            for (int l = 0; l < carPositions[k]; l++) {
-                System.out.print("-");
-            }
+            valuePrint(k);
             System.out.println();
         }
     }
+
+    public void valuePrint(int k) {
+        for (int i = 0; i < carPositions[k]; i++) {
+            System.out.print(RESULT);
+        }
+    }
+
+
 }
