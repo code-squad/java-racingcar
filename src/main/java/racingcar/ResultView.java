@@ -3,40 +3,39 @@ package racingcar;
 import java.util.ArrayList;
 
 public class ResultView {
-    public static final String POS_CHAR = "-";
-
     private ResultView() {
     }  // prevent making ResultView object
 
-    public static void print() {
-        ArrayList<Car> carList = Racing.getCarList();
-        ArrayList<Car> resultList = new ArrayList<>();
-
+    public static void printPos(ArrayList<Car> carList) {
         System.out.println("실행 결과");
         for (Car car : carList) {
             showCarPos(car);
             System.out.println();
-            resultList = compareCarPos(car, resultList);
         }
         System.out.println();
-        showResult(resultList);
     }
 
     public static void showCarPos(Car car) {
         System.out.print(car.getCarName() + " : ");  // print userName
-        for (int j = 0; j < car.getCarPosition(); j++) {
-            System.out.print(POS_CHAR);  // print userPosition
+        car.showCarPosition();
+    }
+
+    public static void printResult(ArrayList<Car> carList) {
+        ArrayList<Car> resultList = new ArrayList<>();
+
+        for (Car car : carList) {
+            resultList = compareCarPos(car, resultList);
         }
+        showResult(resultList);
     }
 
     public static ArrayList<Car> compareCarPos(Car car, ArrayList<Car> resultList) {
-        if (resultList.size() == 0 || resultList.get(0).getCarPosition() == car.getCarPosition()) {
+        if (resultList.size() == 0 || resultList.get(0).areMoreFar(car) == 0) {
             resultList.add(car);
-        } else if (resultList.get(0).getCarPosition() < car.getCarPosition()) {
+        } else if (resultList.get(0).areMoreFar(car) == -1) {
             resultList.clear();
             resultList.add(car);
         }
-
         return resultList;
     }
 

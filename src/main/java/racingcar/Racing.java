@@ -8,7 +8,7 @@ public class Racing {
     public static final int POS_STD = 4;
 
     private int time;
-    private static ArrayList<Car> carList = new ArrayList<>();
+    private ArrayList<Car> carList = new ArrayList<>();
 
     public Racing(int time, String[] carNames) {
         this.time = time;
@@ -16,8 +16,8 @@ public class Racing {
     }
 
     public void init(String[] carNames) {
-        for (int i = 0; i < carNames.length; i++) {
-            Car car = new Car(carNames[i], 1);
+        for (String carName : carNames) {
+            Car car = new Car(carName, 1);
             carList.add(car);
         }
     }
@@ -38,18 +38,19 @@ public class Racing {
         Random random = new Random();
         int posAdder = random.nextInt(POS_BOUND);
         if (posAdder >= POS_STD) {
-            car.carPosition++;
+            car.addPosition();  // to avoid setter method, I made BEHAVIOR method
         }
     }
 
-    public static ArrayList<Car> getCarList() {
+    public ArrayList<Car> getCarList() {
         return carList;
     }
 
     public static void main(String[] args) {
-        InputView.userInput();
-        Racing racing = new Racing(InputView.getTime(), InputView.getCarNames().split(","));
+        ArrayList<String> inputValue = InputView.userInput();
+        Racing racing = new Racing(Integer.parseInt(inputValue.get(1)), inputValue.get(0).split(","));
         racing.run();
-        ResultView.print();
+        ResultView.printPos(racing.getCarList());
+        ResultView.printResult(racing.getCarList());
     }
 }
