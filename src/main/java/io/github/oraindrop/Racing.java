@@ -5,6 +5,7 @@ import java.util.*;
 public class Racing {
     static final int RANDOM_SIZE = 10;
     private List<Car> cars;
+    private List<String> winnerList;
 
     public void readyRace(String names){
         String[] nameArr = names.split(",");
@@ -18,34 +19,29 @@ public class Racing {
         for(int i = 0; i < time; i++){
             this.run();
         }
-        this.makeResultMessage();
     }
 
     public void run(){
         Random rnd = new Random();
-        for(Car car : cars){
+        for(Car car : this.cars){
             car.decideForward(rnd.nextInt(RANDOM_SIZE));
         }
     }
 
-    public void sortCars(){
-        Collections.sort(cars, new Comparator<Car>() {
-            @Override
-            public int compare(Car o1, Car o2) {
-                if(o1.getResult().length() > o2.getResult().length()) return -1;
-                if(o1.getResult().length() < o2.getResult().length()) return 1;
-                return 0;
-            }
-        });
+    public void calculateWinner(){
+        this.winnerList = new ArrayList<>();
+        Collections.sort(this.cars);
+        int maxScore = this.cars.get(0).getResult().length();
+        for(Car car : this.cars){
+            car.decideWinFlag(maxScore);
+            this.makeWinnerList(car.isWinFlag(), car.getName());
+        }
     }
 
-    public void judge(List<String> winners, int maxScore, Car car){
-        int score = car.getResult().length();
-        if(maxScore > score){
-           return;
+    public void makeWinnerList(boolean isWin, String name){
+        if(isWin){
+            this.winnerList.add(name);
         }
-        winners.add(car.getName());
-        return;
     }
 
 
@@ -60,13 +56,8 @@ public class Racing {
 
     public String makeWinnerMessage(){
         StringBuilder sb = new StringBuilder();
-        this.sortCars();
-        int maxScore = this.cars.get(0).getResult().length();
-        List<String> winnerList = new ArrayList<>();
-        for(Car car : cars){
-            this.judge(winnerList, maxScore, car);
-        }
-        String s = String.join(", ", winnerList);
+        this.calculateWinner();
+        String s = String.join(", ", this.winnerList);
         sb.append(s + "가 최종 우승 했습니다.");
         return sb.toString();
     }
