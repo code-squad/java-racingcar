@@ -1,5 +1,6 @@
-import java.util.*;
+package racingcar;
 
+import java.util.*;
 
 public class RacingGame {
     static final int MOVE_CAR = 4;
@@ -7,11 +8,21 @@ public class RacingGame {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("자동차 대수는 몇 대 인가요?");
-        int cars = scanner.nextInt();
+        System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
+        String carNames = scanner.nextLine();
+        String[] names = carNames.split(",");
         System.out.println("시도할 횟수는 몇번인가요?");
         int movingCount = scanner.nextInt();
-        int[] carArrays = makeCarsList(cars, movingCount);
+
+        Car[] car = new Car[names.length];
+
+        // car 객체를 생성해서 배열에 집어넣고 그배열을 출력하는 식으로 하면될듯
+        /////////////////////// 여기서부터다시
+        for (int i = 0; i < names.length; i++) {
+            car[i] = new Car(names[i],i);
+            car[i].carInfo();
+        }
+        int[] carArrays = makeCarsList(names.length, movingCount);
         System.out.println("실행 결과");
         displayCar(carArrays, movingCount);
         // 배열값 확인용
@@ -45,4 +56,5 @@ public class RacingGame {
             System.out.print("-");
         }
     }
+
 }
