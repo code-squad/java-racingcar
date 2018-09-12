@@ -5,12 +5,13 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.Random;
 
-public class racingcar {
-    static Scanner sc;
+public class Racingcar {
+    static Scanner sc = new Scanner(System.in);
+    static final int RESTRICTNUM = 4;
+    static final int RANGE =10;
 
     //자동차 대수 입력 받기
     public static int getCarNum() {
-        sc = new Scanner(System.in);
         System.out.println("자동차 대수는 몇 대 인가요?");
         int carNum = sc.nextInt();
         return carNum;
@@ -27,30 +28,32 @@ public class racingcar {
     //랜덤값 받기
     public static int getRandNum() {
         Random random = new Random();
-        int randNum = random.nextInt(10);
+        int randNum = random.nextInt(RANGE);
         return randNum;
     }
 
-    //이동 가능 여부 체크
-    public static boolean isPossibleMove() {
-        final int minRandNum = 4;
-        if (getRandNum() >= minRandNum) {
-            return true;
+    //이동 거리 측정
+    public static String countMove(String distance) {
+        if (getRandNum() >= RESTRICTNUM) {
+            distance += "-";
         }
-        return false;
+        return distance;
+    }
+
+    //자동차 1대 이동하기
+    public static void moveOneCar(List<String> result, int tryNum) {
+        String distance = "";
+        for (int i = 0; i < tryNum; i++) {
+            distance = countMove(distance);
+        }
+        result.add(distance);
     }
 
     //경주하기
     public static List<String> run(int carNum, int tryNum) {
         List<String> result = new ArrayList();
         for (int i = 0; i < carNum; i++) {
-            String str = "";
-            for (int j = 0; j < tryNum; j++) {
-                if (isPossibleMove()) {
-                    str += "-";
-                }
-            }
-            result.add(str);
+            moveOneCar(result, tryNum);
         }
         return result;
     }
