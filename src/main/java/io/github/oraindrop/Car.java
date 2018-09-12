@@ -34,7 +34,7 @@ public class Car implements Comparable<Car>{
     }
 
     public void decideForward(int randomNum) {
-        if(randomNum >= 4){
+        if(randomNum >= FORWARD_CONDITION){
             this.result += "-";
         }
     }
