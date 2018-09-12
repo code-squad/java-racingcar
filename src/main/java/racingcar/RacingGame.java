@@ -61,8 +61,13 @@ public class RacingGame {
 
     public void printWinner() {
         int bestPosition = getMaxPosition();
-        setWinner(bestPosition);
-        printWinnerList();
+        String comma = "";
+        for (Car car : cars) {
+            if (car.getPosition() == bestPosition) {
+                System.out.print(comma + car.getName());
+                comma = ",";
+            }
+        }
     }
 
     private int getMaxPosition() {
@@ -71,29 +76,5 @@ public class RacingGame {
             bestPosition = car.comparePosition(bestPosition);
         }
         return bestPosition;
-    }
-
-    private void setWinner(int bestPosition) {
-        for (Car car : cars) {
-            car.checkWinner(bestPosition);
-        }
-    }
-
-    private void printWinnerList() {
-       String winnerNmae = "";
-        for (Car car : cars) {
-            winnerNmae += checkWinner(car);
-
-        }
-        winnerNmae = winnerNmae.substring(0, winnerNmae.length()-1);
-        System.out.print(winnerNmae);
-        System.out.println("가 승리했습니다.");
-    }
-
-    private String checkWinner(Car car){
-        if(car.isWinner()){
-           return car.getName() + ",";
-        }
-        return "";
     }
 }
