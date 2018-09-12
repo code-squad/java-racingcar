@@ -8,12 +8,10 @@ public class Car {
     private static Random rnd = new Random();
     private String name;
     private int position;
-    private boolean isWinner;
 
     public Car(String name) {
         this.name = name;
         this.position = 1;
-        this.isWinner = false;
     }
 
     public String getName() {
@@ -33,14 +31,5 @@ public class Car {
     public int comparePosition(int bestPosition) {
         return Math.max(this.position, bestPosition);
     }
-
-    public void checkWinner(int bestPosition) {
-        if(this.position == bestPosition){
-            this.isWinner = true;
-        }
-    }
-
-    public boolean isWinner(){
-        return isWinner;
-    }
 }
+
