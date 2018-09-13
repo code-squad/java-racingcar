@@ -1,18 +1,17 @@
-package step1;
+package test;
 
-import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
-public class Racingcar {
+public class RacingCar {
 
     static Scanner s = new Scanner(System.in);
+    static int input = 0;
 
     public static void main(String[] args) {
-        int car = 0;
-        int carMove[] = new int[3];
+        int carMove[] = new int[0];
+        int car = carNumber();
 
-        car = carNumber();
         carMove = moveNumber();
 
         System.out.println("************");
@@ -25,15 +24,12 @@ public class Racingcar {
 
     static int carNumber() {
         System.out.println("자동차 대수는 몇 대 인가요?");
-        int car = s.nextInt();
-
-        return car;
+        return input = s.nextInt();
     }
 
     static int[] moveNumber() {
         System.out.println("시도할 회수는 몇 회 인가요?");
         int[] action = new int[s.nextInt()];
-
         return action;
     }
 
@@ -49,11 +45,13 @@ public class Racingcar {
 
     static void out(int[] carMove) {
         for (int i = 0; i < carMove.length; i++) {
-            if (carMove[i] >= 4 ) {
-                System.out.print("-");
-            } else {
-                System.out.print("");
-            }
+            Repetition(carMove[i]);
+        }
+    }
+
+    private static void Repetition(int i) {
+        if (i >= 4) {
+            System.out.print("-");
         }
     }
 }
