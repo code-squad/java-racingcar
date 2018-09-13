@@ -6,6 +6,7 @@ import racingcar.Car;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertFalse;
 
 public class CarTest {
     private static final String TEST_NAME = "test_name";
@@ -43,8 +44,8 @@ public class CarTest {
     }
 
     @Test
-    public void checkWInnerTest() {
-        assertEquals(car.checkWInner(INITIAL_POSITION), TEST_NAME + COMMA);
-        assertEquals(car.checkWInner(Integer.MAX_VALUE), BLANK);
+    public void isWInnerTest() {
+        assertTrue(car.isWinner(INITIAL_POSITION));
+        assertFalse(car.isWinner(Integer.MAX_VALUE));
     }
 }

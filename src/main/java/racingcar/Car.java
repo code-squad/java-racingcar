@@ -30,16 +30,13 @@ public class Car {
             position++;
         }
     }
+
     public int comparePosition(int bestPosition) {
         return Math.max(this.position, bestPosition);
     }
 
-    public String checkWInner(int bestPosition) {
-        if(position == bestPosition){
-            return name + COMMA;
-        }
-        return BLANK;
-
+    public boolean isWinner(int bestPosition) {
+        return bestPosition == position;
     }
 }
 
