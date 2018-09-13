@@ -1,59 +1,55 @@
 package io.github.oraindrop;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
 
 public class Racing {
     static final int RANDOM_SIZE = 10;
-    static final int FORWARD_CONDITION = 4;
+    private List<Car> cars;
 
-    private int size;
-    private int time;
-    private List<String> carPosition;
+    public void readyRace(String inputCarNames){
+        String[] carNames = inputCarNames.split(",");
+        this.cars = new ArrayList<>();
+        for(String carName : carNames){
+            this.cars.add(new Car(carName));
+        }
+    }
 
-    public Racing(int size, int time) {
-        this.size = size;
-        this.time = time;
+    public void race(int runTime){
+        for(int i = 0; i < runTime; i++){
+            this.run();
+        }
+        this.finishRace();
     }
 
     public void run(){
-        this.carPosition = new ArrayList<>();
-        for(int i = 0; i < this.size; i++){
-            String position = this.calculatePosition();
-            this.carPosition.add(position);
-        }
-    }
-
-    public String calculatePosition(){
         Random rnd = new Random();
-        String s = "";
-        for(int j = 0; j < this.time; j++){
-            if(rnd.nextInt(RANDOM_SIZE) >= FORWARD_CONDITION){
-                s += "-";
-            }
+        for(Car car : this.cars){
+            car.decideForward(rnd.nextInt(RANDOM_SIZE));
         }
-        return s;
     }
 
-    public void printResult(){
-        System.out.println("실행 결과");
-        for(int i = 0; i < this.carPosition.size(); i++){
-            System.out.println(this.carPosition.get(i));
+    public void finishRace(){
+        ResultView.printResultMessage(this.cars);
+        ResultView.printWinnerMessage(this.pickWinner());
+    }
+
+    public List<String> pickWinner() {
+        List<String> winners = new ArrayList<>();
+        Collections.sort(this.cars);
+        int maxScore = this.cars.get(0).getScore();
+        int len = this.cars.size();
+        for (int i = 0; i < len && maxScore == this.cars.get(i).getScore(); i++) {
+            winners.add(this.cars.get(i).getName());
         }
+        return winners;
     }
 
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int sizeNum = 0;
-        int timeNum = 0;
-        System.out.println("자동차 대수는 몇 대 인가요?");
-        sizeNum = sc.nextInt();
-        System.out.println("시도할 회수는 몇 회 인가요?");
-        timeNum = sc.nextInt();
-        Racing race = new Racing(sizeNum, timeNum);
-        race.run();
-        race.printResult();
+        Racing racing = new Racing();
+        String inputCarNames = InputView.inputCarNames();
+        int inputRunTime = InputView.inputRunTime();
+
+        racing.readyRace(inputCarNames);
+        racing.race(inputRunTime);
     }
 }
