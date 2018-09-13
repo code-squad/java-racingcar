@@ -1,8 +1,7 @@
 package racing;
 
-import java.util.Objects;
-
 public class Car implements Comparable<Car>{
+    static final char POSITION_IMAGE = '-';
     private String name;
     private int carPosition = 0;
 
@@ -10,20 +9,25 @@ public class Car implements Comparable<Car>{
         this.name = name;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public int getCarPosition() {
         return carPosition;
     }
 
-    public void setCarPosition(int carPosition) {
-        this.carPosition = carPosition;
+    public void move(int distance) {
+        carPosition += distance;
+    }
+
+    public String getCarDistance() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(name).append(" : ");
+        for (int i = 0; i < carPosition; i++)
+            sb.append(POSITION_IMAGE);
+
+        return sb.toString();
+    }
+
+    public String getWinner(Car c) {
+        return c.getCarPosition() == carPosition ? name + "," : "";
     }
 
     @Override

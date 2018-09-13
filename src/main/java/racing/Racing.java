@@ -5,26 +5,31 @@ public class Racing {
     static final int STOP_STANDARD = 0;
     static final int START_STANDARD = 4;
     static final int RANDOM_STANDARD = 10;
-    static final char POSITION_IMAGE = '-';
+    /* 변수명에는 타입을 넣지 말기 ex) RESULT_STRING */
     private int time;
     private Car[] cars;
     Random random;
 
     Racing(int time, String[] names) {
         cars = new Car[names.length];
-        for(int i = 0; i < cars.length; i++) {
+        for(int i = 0; i < cars.length; i++)
             cars[i] = new Car(names[i]);
-        }
+
         random = new Random();
         this.time = time;
     }
 
     public void run() {
         /* 반복횟수만큼 움직임(4 ~ 9) */
-        for(int i = 0; i < cars.length; i++) {
-            printRacingResult(cars[i]);
-        }
-        printWinnerByComparable();
+        for(int i = 0; i < cars.length; i++)
+            moveCar(cars[i], time);
+
+    }
+
+    public void moveCar(Car car, int time) {
+        for (int i = 0; i < time; i++)
+            car.move(getNum());
+
     }
 
     public int getNum() {
@@ -33,7 +38,7 @@ public class Racing {
         return num >= START_STANDARD ? num : STOP_STANDARD;
     }
 
-    public void printRacingResult(Car car) {
+    public void printRacingResult() {
         /* 경주 최종결과 출력 */
         /* 문자열을 + 를 통해 연결을 하면, 연결할때마다 String 객체를 계속 생성해야 하기 때문에 StringBuilder 사용 */
         /*
@@ -51,33 +56,25 @@ public class Racing {
                 Thread Safe
         */
         StringBuilder sb = new StringBuilder();
-        for(int i = 0; i < time; i++) {
-            car.setCarPosition(car.getCarPosition() + getNum());
-        }
-
-        sb.append(car.getName() + " : ");
-        for(int i = 0; i < car.getCarPosition(); i++) {
-            sb.append(POSITION_IMAGE);
-        }
+        for(int i = 0; i < cars.length; i++)
+            sb.append(cars[i].getCarDistance() + "\n");
 
         System.out.println(sb.toString());
-
     }
 
-    public void printWinnerByComparable() {
+    public void printWinners() {
         /* 최종 우승자들 출력 */
+        String winners = getWinners();
+        System.out.println(winners.substring(0, winners.length() - 2) + "가 최종 우승했습니다.");
+    }
+
+    public String getWinners() {
         StringBuilder sb = new StringBuilder();
         Arrays.sort(cars);
-        sb.append(cars[0].getName() + ", ");
-        System.out.println();
-        for(int i = 1; i < cars.length; i++) {
-            if(cars[0].getCarPosition() == cars[i].getCarPosition()) {
-                sb.append(cars[i].getName() + ", ");
-            } else {
-                break;
-            }
-        }
-        System.out.println(sb.toString().substring(0, sb.toString().length() - 2) + "가 최종 우승했습니다.");
-    }
+        for(int i = 0; i < cars.length; i++)
+            sb.append(cars[i].getWinner(cars[0]));
 
+        sb.append("\n");
+        return sb.toString();
+    }
 }
