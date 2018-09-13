@@ -22,20 +22,26 @@ public class ResultView {
     }
 
     public static void printResult(ArrayList<Car> carList) {
+        showResult(compareCarPos(carList));
+    }
+
+    public static ArrayList<Car> compareCarPos(ArrayList<Car> carList) {
+
+        int maxPos = Racing.POS_CAR_INIT;
+        for (Car car : carList) {
+            maxPos = car.findMaxPos(car, maxPos);
+        }
+
+        return findWhoWin(carList, maxPos);
+    }
+
+    public static ArrayList<Car> findWhoWin(ArrayList<Car> carList, int maxPos) {
         ArrayList<Car> resultList = new ArrayList<>();
 
         for (Car car : carList) {
-            resultList = compareCarPos(car, resultList);
-        }
-        showResult(resultList);
-    }
-
-    public static ArrayList<Car> compareCarPos(Car car, ArrayList<Car> resultList) {
-        if (resultList.size() == 0 || resultList.get(0).areMoreFarThan(car) == 0) {
-            resultList.add(car);
-        } else if (resultList.get(0).areMoreFarThan(car) == -1) {
-            resultList.clear();
-            resultList.add(car);
+            if (car.hasSamePos(maxPos)) {
+                resultList.add(car);
+            }
         }
         return resultList;
     }

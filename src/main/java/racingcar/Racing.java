@@ -5,7 +5,6 @@ import java.util.Random;
 
 public class Racing {
     public static final int POS_BOUND = 10;
-    public static final int POS_STD = 4;
     public static final int POS_CAR_INIT = 1;
 
     private static int time;
@@ -24,11 +23,11 @@ public class Racing {
 
     public void run() {
         for (int i = 0; i < time; i++) {
-            selectCar(i);
+            selectCar();
         }
     }
 
-    public void selectCar(int i) {
+    public void selectCar() {
         for (Car car : carList) {
             addPos(car);  // move each car
         }
@@ -36,10 +35,7 @@ public class Racing {
 
     public void addPos(Car car) {
         Random random = new Random();
-        int posAdder = random.nextInt(POS_BOUND);
-        if (posAdder >= POS_STD) {
-            car.addPosition();  // to avoid setter method, I made BEHAVIOR method
-        }
+        car.addPosition(random.nextInt(POS_BOUND));
     }
 
     public ArrayList<Car> getCarList() {

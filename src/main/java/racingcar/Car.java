@@ -2,6 +2,7 @@ package racingcar;
 
 public class Car {
     public static final String DASH = "-";
+    public static final int POS_STD = 4;
 
     private String carName;
     private int carPosition;
@@ -11,8 +12,10 @@ public class Car {
         this.carPosition = carPosition;
     }
 
-    public void addPosition() {
-        carPosition++;
+    public void addPosition(int posVal) {
+        if (posVal >= POS_STD) {
+            carPosition++;
+        }
     }
 
     public String getCarName() {
@@ -25,15 +28,18 @@ public class Car {
         }
     }
 
-    public int areMoreFarThan(Car otherCar) {
-        int gap = carPosition - otherCar.carPosition;
-        if (gap == 0) {
-            return 0;
-        } else if (gap < 0) {  // otherCar is more far than me
-            return -1;
-        } else {
-            return 1;  // This car is more far than other
+    public boolean hasSamePos(int pos) {
+        if (carPosition == pos) {
+           return true;
         }
+        return false;
+    }
+
+    public int findMaxPos(Car car, int maxPos) {
+        if (car.carPosition > maxPos) {
+            return car.carPosition;
+        }
+        return maxPos;
     }
 
 }
