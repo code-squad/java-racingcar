@@ -1,25 +1,29 @@
 package racingcar;
 
-import java.util.Random;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class RacingGame {
-    private static Random rnd = new Random();
+    private static final String POSITION_CHARACTER = "-";
     private int time;
-    private int[] carPositions;
+    private ArrayList<Car> cars;
 
     public static void main(String[] args) {
         RacingGame game = new RacingGame();
         game.getInput();
         game.run();
         game.printResult();
+        game.printWinner();
     }
 
     public void getInput() {
         Scanner sc = new Scanner(System.in);
-        System.out.println("자동차 대수는 몇 대 인가요?");
-        int numberOfCar = sc.nextInt();
-        carPositions = new int[numberOfCar];
+        System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
+        String[] nameList = sc.nextLine().split(",");
+        cars = new ArrayList<>();
+        for (String name : nameList) {
+            cars.add(new Car(name));
+        }
         System.out.println("시도할 회수는 몇 회 인가요?");
         time = sc.nextInt();
         sc.close();
@@ -36,28 +40,41 @@ public class RacingGame {
     }
 
     private void each() {
-        for (int carIndex = 0; carIndex < carPositions.length; carIndex++) {
-            move(carIndex);
-        }
-    }
-
-    private void move(int carIndex) {
-        if (rnd.nextInt(10) >= 4) {
-            carPositions[carIndex]++;
+        for (Car car : cars) {
+            car.move();
         }
     }
 
     public void printResult() {
-        for (int carIndex = 0; carIndex < carPositions.length; carIndex++) {
-            printACarPosition(carIndex);
+        for (Car car : cars) {
+            System.out.print(car.getName() + " : ");
+            printACarPosition(car.getPosition());
         }
     }
 
-    private void printACarPosition(int carIndex) {
-        int position = carPositions[carIndex];
-        for (int l = 0; l < position; l++) {
-            System.out.print("-");
+    private void printACarPosition(int position) {
+        for (int i = 0; i < position; i++) {
+            System.out.print(POSITION_CHARACTER);
         }
         System.out.println();
+    }
+
+    public void printWinner() {
+        int bestPosition = getMaxPosition();
+        String comma = "";
+        for (Car car : cars) {
+            if (car.getPosition() == bestPosition) {
+                System.out.print(comma + car.getName());
+                comma = ",";
+            }
+        }
+    }
+
+    private int getMaxPosition() {
+        int bestPosition = -1;
+        for (Car car : cars) {
+            bestPosition = car.comparePosition(bestPosition);
+        }
+        return bestPosition;
     }
 }
