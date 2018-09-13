@@ -5,18 +5,14 @@ import java.util.Scanner;
 public class InputView {
     private static Scanner sc = new Scanner(System.in);
 
-    public String inputCarNames(){
-        String carNames = "";
+    public static String inputCarNames(){
         System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
-        carNames = sc.next();
-        return carNames;
+        return sc.next();
     }
 
-    public int inputTime(){
-        int timeNum = 0;
+    public static int inputRunTime(){
         System.out.println("시도할 회수는 몇 회 인가요?");
-        timeNum = sc.nextInt();
-        return timeNum;
+        return sc.nextInt();
     }
 
 }

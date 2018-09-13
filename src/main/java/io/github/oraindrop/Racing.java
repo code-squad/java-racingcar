@@ -5,20 +5,20 @@ import java.util.*;
 public class Racing {
     static final int RANDOM_SIZE = 10;
     private List<Car> cars;
-    private List<String> winnerList;
 
-    public void readyRace(String names){
-        String[] nameArr = names.split(",");
+    public void readyRace(String inputCarNames){
+        String[] carNames = inputCarNames.split(",");
         this.cars = new ArrayList<>();
-        for(int i = 0; i < nameArr.length; i++){
-            this.cars.add(new Car(nameArr[i]));
+        for(String carName : carNames){
+            this.cars.add(new Car(carName));
         }
     }
 
-    public void race(int time){
-        for(int i = 0; i < time; i++){
+    public void race(int runTime){
+        for(int i = 0; i < runTime; i++){
             this.run();
         }
+        this.finishRace();
     }
 
     public void run(){
@@ -28,50 +28,28 @@ public class Racing {
         }
     }
 
-    public void calculateWinner(){
-        this.winnerList = new ArrayList<>();
+    public void finishRace(){
+        ResultView.printResultMessage(this.cars);
+        ResultView.printWinnerMessage(this.pickWinner());
+    }
+
+    public List<String> pickWinner() {
+        List<String> winners = new ArrayList<>();
         Collections.sort(this.cars);
-        int maxScore = this.cars.get(0).getResult().length();
-        for(Car car : this.cars){
-            car.decideWinFlag(maxScore);
-            this.makeWinnerList(car.isWinFlag(), car.getName());
+        int maxScore = this.cars.get(0).getScore();
+        int len = this.cars.size();
+        for (int i = 0; i < len && maxScore == this.cars.get(i).getScore(); i++) {
+            winners.add(this.cars.get(i).getName());
         }
+        return winners;
     }
-
-    public void makeWinnerList(boolean isWin, String name){
-        if(isWin){
-            this.winnerList.add(name);
-        }
-    }
-
-
-    public String makeResultMessage(){
-        StringBuilder sb = new StringBuilder();
-        sb.append("실행 결과\n");
-        for(Car car : cars){
-            sb.append(car.getName() + " : " + car.getResult() + "\n");
-        }
-        return sb.toString();
-    }
-
-    public String makeWinnerMessage(){
-        StringBuilder sb = new StringBuilder();
-        this.calculateWinner();
-        String s = String.join(", ", this.winnerList);
-        sb.append(s + "가 최종 우승 했습니다.");
-        return sb.toString();
-    }
-
 
     public static void main(String[] args) {
-        InputView inputView = new InputView();
-        ResultView resultView = new ResultView();
         Racing racing = new Racing();
-        String carNames = inputView.inputCarNames();
-        int runTime = inputView.inputTime();
+        String inputCarNames = InputView.inputCarNames();
+        int inputRunTime = InputView.inputRunTime();
 
-        racing.readyRace(carNames);
-        racing.race(runTime);
-        resultView.print(racing.makeResultMessage(), racing.makeWinnerMessage());
+        racing.readyRace(inputCarNames);
+        racing.race(inputRunTime);
     }
 }
