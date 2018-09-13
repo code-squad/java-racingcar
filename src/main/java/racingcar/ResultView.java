@@ -3,6 +3,7 @@ package racingcar;
 import java.util.ArrayList;
 
 public class ResultView {
+
     private ResultView() {
     }  // prevent making ResultView object
 
@@ -17,7 +18,7 @@ public class ResultView {
 
     public static void showCarPos(Car car) {
         System.out.print(car.getCarName() + " : ");  // print userName
-        car.showCarPosition();
+        car.showCarPosition();  // print car position
     }
 
     public static void printResult(ArrayList<Car> carList) {
@@ -30,9 +31,9 @@ public class ResultView {
     }
 
     public static ArrayList<Car> compareCarPos(Car car, ArrayList<Car> resultList) {
-        if (resultList.size() == 0 || resultList.get(0).areMoreFar(car) == 0) {
+        if (resultList.size() == 0 || resultList.get(0).areMoreFarThan(car) == 0) {
             resultList.add(car);
-        } else if (resultList.get(0).areMoreFar(car) == -1) {
+        } else if (resultList.get(0).areMoreFarThan(car) == -1) {
             resultList.clear();
             resultList.add(car);
         }

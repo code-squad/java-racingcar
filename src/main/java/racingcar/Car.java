@@ -1,7 +1,7 @@
 package racingcar;
 
 public class Car {
-    public static final String POS_CHAR = "-";
+    public static final String DASH = "-";
 
     private String carName;
     private int carPosition;
@@ -21,18 +21,18 @@ public class Car {
 
     public void showCarPosition() {
         for (int i = 0; i < carPosition; i++) {
-            System.out.print(POS_CHAR);  // print userPosition
+            System.out.print(DASH);  // print userPosition
         }
     }
 
-    public int areMoreFar(Car otherCar) {
+    public int areMoreFarThan(Car otherCar) {
         int gap = carPosition - otherCar.carPosition;
         if (gap == 0) {
             return 0;
-        } else if (gap < 0) {  // otherCar are more far from me
+        } else if (gap < 0) {  // otherCar is more far than me
             return -1;
         } else {
-            return 1;  // I am more far from other
+            return 1;  // This car is more far than other
         }
     }
 
