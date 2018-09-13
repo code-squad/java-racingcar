@@ -4,21 +4,21 @@ import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
-public class racingcar {
+public class Racingcar {
 
     static Scanner s = new Scanner(System.in);
 
     public static void main(String[] args) {
         int car = 0;
-        int carmove[] = new int[3];
+        int carMove[] = new int[3];
 
         car = carNumber();
-        carmove = moveNumber();
+        carMove = moveNumber();
 
         System.out.println("************");
         for (int i = 0; i < car; i++) {
-            moveRandom(carmove);
-            out(carmove);
+            moveRandom(carMove);
+            out(carMove);
             System.out.println();
         }
     }
@@ -37,19 +37,19 @@ public class racingcar {
         return action;
     }
 
-    static int[] moveRandom(int[] carmove) {
+    static int[] moveRandom(int[] carMove) {
         Random r = new Random();
-        for (int i = 0; i < carmove.length; i++) {
-            carmove[i] = r.nextInt(9);
+        for (int i = 0; i < carMove.length; i++) {
+            carMove[i] = r.nextInt(9);
         }
 
-        //     System.out.println(Arrays.toString(carmove)); ->확인용
-        return carmove;
+        //System.out.println(Arrays.toString(carMove));     //랜덤값 확인용
+        return carMove;
     }
 
-    static void out(int[] carmove) {
-        for (int i = 0; i < carmove.length; i++) {
-            if (carmove[i] >= 4) {
+    static void out(int[] carMove) {
+        for (int i = 0; i < carMove.length; i++) {
+            if (carMove[i] >= 4 ) {
                 System.out.print("-");
             } else {
                 System.out.print("");
