@@ -1,22 +1,24 @@
 package racingcar;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 import java.util.Random;
 
 public class Racing {
-    private int time;
-    private int carNum;
-    private ArrayList<Integer> carPositions = new ArrayList<>();
+    public static final int POS_BOUND = 10;
+    public static final int POS_STD = 4;
+    public static final int POS_CAR_INIT = 1;
 
-    public Racing(int time, int carNum) {
-        this.time = time;
-        this.carNum = carNum;
+    private static int time;
+    private ArrayList<Car> carList = new ArrayList<>();
+
+    public Racing(String[] carNames) {
+        init(carNames);
     }
 
-    public void init() {
-        for (int i = 0; i < carNum; i++) {
-            carPositions.add(1);
+    public void init(String[] carNames) {
+        for (String carName : carNames) {
+            Car car = new Car(carName, POS_CAR_INIT);
+            carList.add(car);
         }
     }
 
@@ -27,49 +29,29 @@ public class Racing {
     }
 
     public void selectCar(int i) {
-        for (int j = 0; j < carNum; j++) {
-            posAdd(j);  // move each car
+        for (Car car : carList) {
+            addPos(car);  // move each car
         }
     }
 
-    public void posAdd(int j) {
+    public void addPos(Car car) {
         Random random = new Random();
-        int posAdder = random.nextInt(10);
-        if (posAdder >= 4) {
-            carPositions.set(j, carPositions.get(j) + 1);
+        int posAdder = random.nextInt(POS_BOUND);
+        if (posAdder >= POS_STD) {
+            car.addPosition();  // to avoid setter method, I made BEHAVIOR method
         }
     }
 
-    public void print() {
-        System.out.println("실행 결과");
-        for (int i = 0; i < carPositions.size(); i++) {
-            showCarPos(i);
-            System.out.println();
-        }
-    }
-
-    public void showCarPos(int i) {
-        for (int j = 0; j < carPositions.get(i); j++) {
-            System.out.print("-");
-        }
+    public ArrayList<Car> getCarList() {
+        return carList;
     }
 
     public static void main(String[] args) {
-        Scanner scan = new Scanner(System.in);
-        int carNum, time;
-
-        try{
-            System.out.println("자동차 대수는 몇 대 인가요? ");
-            carNum = scan.nextInt();
-            System.out.println("시도할 회수는 몇 회 인가요?");
-            time = scan.nextInt();
-        }catch(Exception e){
-            return;
-        }
-
-        Racing racing = new Racing(time, carNum);  // 피드백 반영 → 객체 외부에서 상태값 변경하지 않도록
-        racing.init();
+        ArrayList<String> racingInfos = InputView.userInput();
+        Racing.time = Integer.parseInt(racingInfos.get(1));
+        Racing racing = new Racing(racingInfos.get(0).split(","));
         racing.run();
-        racing.print();
+        ResultView.printPos(racing.getCarList());
+        ResultView.printResult(racing.getCarList());
     }
 }
