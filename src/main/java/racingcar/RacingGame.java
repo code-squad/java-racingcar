@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class RacingGame {
-    private static final String POSITION_CHARACTER = "-";
+    private static final String DASH = "-";
+    private static final String SPLIT_FACTOR = ",";
     private int time;
     private ArrayList<Car> cars;
 
@@ -18,8 +19,8 @@ public class RacingGame {
 
     public void getInput() {
         Scanner sc = new Scanner(System.in);
-        System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
-        String[] nameList = sc.nextLine().split(",");
+        System.out.println("경주할 자동차 이름을 입력하세요(이름은 " + SPLIT_FACTOR + "를 기준으로 구분).");
+        String[] nameList = sc.nextLine().split(SPLIT_FACTOR);
         cars = new ArrayList<>();
         for (String name : nameList) {
             cars.add(new Car(name));
@@ -54,20 +55,19 @@ public class RacingGame {
 
     private void printACarPosition(int position) {
         for (int i = 0; i < position; i++) {
-            System.out.print(POSITION_CHARACTER);
+            System.out.print(DASH);
         }
         System.out.println();
     }
 
     public void printWinner() {
         int bestPosition = getMaxPosition();
-        String comma = "";
+        StringBuilder sb = new StringBuilder();
         for (Car car : cars) {
-            if (car.getPosition() == bestPosition) {
-                System.out.print(comma + car.getName());
-                comma = ",";
-            }
+            sb.append(car.checkWInner(bestPosition));
         }
+        sb.setLength(sb.length() - 1);
+        System.out.println(sb.toString());
     }
 
     private int getMaxPosition() {
@@ -76,5 +76,31 @@ public class RacingGame {
             bestPosition = car.comparePosition(bestPosition);
         }
         return bestPosition;
+    }
+
+    private RacingGame before() {
+        RacingGame game = new RacingGame();
+        game.cars = new ArrayList<Car>();
+        game.cars.add(new Car("test1"));
+        game.cars.add(new Car("test2"));
+        game.cars.add(new Car("test2"));
+        return game;
+    }
+
+    public boolean zeroTimeTest() {
+        RacingGame game = before();
+        game.run();
+        return game.getMaxPosition() == 1;
+    }
+
+    public boolean fiveTimeTest() {
+        boolean flag = true;
+        for (int i = 0; i < 100 && flag; i++) {
+            RacingGame game = before();
+            game.time = 5;
+            game.run();
+            flag = (1 <= game.getMaxPosition()) && (game.getMaxPosition() <= 6);
+        }
+        return flag;
     }
 }
