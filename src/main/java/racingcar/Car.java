@@ -1,12 +1,9 @@
 package racingcar;
 
-import java.util.*;
-
 public class Car{
     private String name;
     private int position = 0;
     private String randomCount = "";
-    private static ArrayList<String> winners = new ArrayList();
 
     public Car(String name) {
         this.name = name;
