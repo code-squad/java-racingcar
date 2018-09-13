@@ -5,54 +5,57 @@ import java.util.Random;
 
 public class RacingGame {
     public static Scanner s = new Scanner(System.in);
+    int[] carPositions;
 
     public static void main(String[] args) {
-        output(time(makeCar()));
+        RacingGame g = new RacingGame();
+        g.makeCar();
+        g.initCarPos(g.time());
+        g.output();
     }
 
-    public static int[] makeCar(){
+    public void makeCar(){
         System.out.println("자동차 대수는 몇 대 인가요?");
-
-        int[] carPositions = new int[s.nextInt()];
-        return carPositions;
+        carPositions = new int[s.nextInt()];
     }
 
-    public static int[] time(int[] carPositions) {
+    public int time() {
         System.out.println("시도할 횟수는 몇 회 인가요?");
         int count = s.nextInt();
+        return count;
+    }
+    public void initCarPos(int count){
         for (int i = 0; i < carPositions.length; i++) {
             carPositions[i] = 0;
-            moveRanCreate(carPositions, count, i);
+            moveRanCreate(count, i);
         }
-        return carPositions;
     }
-
-    public static void moveRanCreate(int [] carPositions, int count, int i) {
+    public void moveRanCreate(int count, int i) {
         Random rnd = new Random();
         for (int j = 0; j < count; j++) {
-            run(carPositions, rnd.nextInt(10), i);
+            run(rnd.nextInt(10), i);
         }
     }
 
-    public static void run(int [] carPositions, int move, int i){
+    public void run(int move, int i){
         if (move >= 4)
             carPositions[i] += 1;
     }
 
-    public static void output(int[] carPositions){
+    public void output(){
         for (int i = 0; i < carPositions.length; i++) {
-            carDist(carPositions, i);
-            finishLine(carPositions, i);
+            carDist(i);
+            finishLine(i);
         }
     }
 
-    private static void carDist(int[] carPositions, int i) {
+    public void carDist(int i) {
         for (int j = 0; j < carPositions[i]; j++) {
             System.out.print("-");
         }
     }
 
-    private static void finishLine(int[] carPositions, int i) {
+    public void finishLine(int i) {
         if(i < carPositions.length -1)
             System.out.println();
     }
