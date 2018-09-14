@@ -1,6 +1,9 @@
 import java.util.Scanner;
 
 public class Racingcar {
+
+    static final int Possible_Move_Num = 4;
+    static final int Random_Num = 10;
     // commit test
     public static int carNum() {
         Scanner scanner = new Scanner(System.in);
@@ -24,12 +27,12 @@ public class Racingcar {
         }
     }
 
-    private static void moveNum(int carMove, int[] cars, int i) {
+    public static void moveNum(int carMove, int[] cars, int i) {
         int ran;
         for (int j = 0; j < carMove; j++) {
-            ran = (int) (Math.random() * 10);
+            ran = (int) (Math.random() * Random_Num);
             cars[i] = ran;
-            if (ran >= 4) {
+            if (ran >= Possible_Move_Num) {
                 System.out.print("-");
             }
         }
