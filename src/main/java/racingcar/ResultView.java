@@ -3,13 +3,14 @@ package racingcar;
 import java.util.ArrayList;
 
 public class ResultView {
+    public static final String DASH = "-";
 
     private ResultView() {
     }  // prevent making ResultView object
 
-    public static void printPos(ArrayList<Car> carList) {
+    public static void printPos(ArrayList<Car> cars) {
         System.out.println("실행 결과");
-        for (Car car : carList) {
+        for (Car car : cars) {
             showCarPos(car);
             System.out.println();
         }
@@ -18,33 +19,41 @@ public class ResultView {
 
     public static void showCarPos(Car car) {
         System.out.print(car.getCarName() + " : ");  // print userName
-        car.showCarPosition();  // print car position
+        for (int i = 0; i < car.getCarPosition(); i++) {
+            System.out.print(DASH);  // print userPosition
+        }
     }
 
-    public static void printResult(ArrayList<Car> carList) {
-        ArrayList<Car> resultList = new ArrayList<>();
-
-        for (Car car : carList) {
-            resultList = compareCarPos(car, resultList);
-        }
-        showResult(resultList);
+    public static void printResult(ArrayList<Car> cars) {
+        showResult(compareCarPos(cars));
     }
 
-    public static ArrayList<Car> compareCarPos(Car car, ArrayList<Car> resultList) {
-        if (resultList.size() == 0 || resultList.get(0).areMoreFarThan(car) == 0) {
-            resultList.add(car);
-        } else if (resultList.get(0).areMoreFarThan(car) == -1) {
-            resultList.clear();
-            resultList.add(car);
+    public static ArrayList<Car> compareCarPos(ArrayList<Car> cars) {
+
+        int maxPos = Racing.POS_CAR_INIT;
+        for (Car car : cars) {
+            maxPos = car.findMaxPos(maxPos);
         }
-        return resultList;
+
+        return findWhoWin(cars, maxPos);
     }
 
-    public static void showResult(ArrayList<Car> resultList) {
-        for (int i = 0; i < resultList.size() - 1; i++) {
-            System.out.print(resultList.get(i).getCarName() + ", ");
+    public static ArrayList<Car> findWhoWin(ArrayList<Car> cars, int maxPos) {
+        ArrayList<Car> winners = new ArrayList<>();
+
+        for (Car car : cars) {
+            if (car.hasSamePos(maxPos)) {
+                winners.add(car);
+            }
         }
-        System.out.print(resultList.get(resultList.size() - 1).getCarName());  // last one formatting
+        return winners;
+    }
+
+    public static void showResult(ArrayList<Car> winners) {
+        for (int i = 0; i < winners.size() - 1; i++) {
+            System.out.print(winners.get(i).getCarName() + ", ");
+        }
+        System.out.print(winners.get(winners.size() - 1).getCarName());  // last one formatting
         System.out.println("가 최종 우승했습니다.");
     }
 
