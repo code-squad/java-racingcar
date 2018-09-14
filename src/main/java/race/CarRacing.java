@@ -3,61 +3,28 @@ package race;
 import java.util.*;
 
 public class CarRacing {
-    private static final int JUMP = 4;
-    private static final String RESULT = "-";
-    private int time;
-    private int[] carPositions;
+
+    private static int findMax(Car[] car) {
+        int max = -1;
+        for (int i = 0; i < car.length; i++) {
+            max = max < car[i].getPosition()? car[i].getPosition() : max;
+        }
+        return max;
+    }
+
 
     public static void main(String[] args) {
-        CarRacing game = new CarRacing();
-        game.input();
-        game.run();
-        game.valueArray();
-    }
-
-    public void input() {
         Scanner scan = new Scanner(System.in);
-        System.out.println("자동차 대수는 몇 대 인가요?");
-        int numberOfCar = scan.nextInt();
-        carPositions = new int[numberOfCar];
-        System.out.println("시도할 회수는 몇 회 인가요?");
-        time = scan.nextInt();
-    }
+        String[] nameArr = InputView.inputName(scan).split(",");
+        Car[] car = new Car[nameArr.length];
+        int tryCount = InputView.inputCount(scan);
 
-    public void run() {
-        for (int i = 0; i < time; i++) {
-            go();
+        for (int i = 0 ; i< car.length ; ++i) {
+            car[i] = new Car(nameArr[i], tryCount);
+            ResultView.namePrint(car[i].getName());
+            ResultView.dashPrint(car[i].getPosition());
         }
+
+        ResultView.whoVictory(car,findMax(car));
     }
-
-
-    public void go() {
-        for (int j = 0; j < carPositions.length; j++) {
-            check(j);
-        }
-    }
-
-
-    public void check(int j) {
-        Random rnd = new Random();
-        if (rnd.nextInt(10) >= JUMP) {
-            carPositions[j]++;
-        }
-    }
-
-
-    public void valueArray() {
-        for (int k = 0; k < carPositions.length; k++) {
-            valuePrint(k);
-            System.out.println();
-        }
-    }
-
-    public void valuePrint(int k) {
-        for (int i = 0; i < carPositions[k]; i++) {
-            System.out.print(RESULT);
-        }
-    }
-
-
 }
