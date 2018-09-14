@@ -6,7 +6,6 @@ public class Racing {
     /* 변수명에는 타입을 넣지 말기 ex) RESULT_STRING */
     private int time;
     private Car[] cars;
-    private String[] names;
 
     public Racing() {
 
@@ -18,7 +17,6 @@ public class Racing {
             cars[i] = new Car(names[i]);
 
         this.time = time;
-        this.names = names;
     }
 
     public void run() {
@@ -39,7 +37,7 @@ public class Racing {
     public void printRacingResult() {
         StringBuilder sb = new StringBuilder();
         for(int i = 0; i < cars.length; i++)
-            sb.append(names[i]).append(" : ").append(cars[i].getCarDistance() + "\n");
+            sb.append(cars[i].getName()).append(" : ").append(cars[i].getCarDistance() + "\n");
 
         System.out.println(sb.toString());
     }
@@ -52,7 +50,7 @@ public class Racing {
         for(String winner : winnerList)
             sb.append(winner).append(",");
 
-        System.out.println(sb.toString().substring(0, sb.toString().length() - 1) + "가 최종 우승했습니다.");
+        System.out.println(String.join(",", winnerList) + "가 최종 우승했습니다.");
     }
 
     /* 가장 멀리 이동한 자동차 찾기! */
@@ -64,12 +62,8 @@ public class Racing {
     /* 가장 멀리 이동한 자동차(우승자)들 찾기! */
     public List<String> getWinners(Car[] cars) {
         List<String> winners = new ArrayList<>();
-        String winner = "";
-        int i = 0;
-        while((winner = cars[i].checkWinner(getWinner(cars))) != "") {
-            winners.add(winner);
-            i++;
-        }
+        for(Car car : cars)
+            if(car.isWinner(getWinner(cars))) winners.add(car.getName());
 
         return winners;
     }

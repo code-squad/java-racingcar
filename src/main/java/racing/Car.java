@@ -10,6 +10,10 @@ public class Car implements Comparable<Car>{
         this.name = name;
     }
 
+    public String getName() {
+        return name;
+    }
+
     private int getCarPosition() {
         return carPosition;
     }
@@ -26,8 +30,8 @@ public class Car implements Comparable<Car>{
         return sb.toString();
     }
 
-    public String checkWinner(Car c) {
-        return c.getCarPosition() == this.carPosition ? name : "";
+    public boolean isWinner(Car c) {
+        return c.getCarPosition() == this.carPosition ? true : false;
     }
 
     @Override
