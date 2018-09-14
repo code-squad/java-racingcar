@@ -3,22 +3,24 @@ package racingcar;
 import java.util.Random;
 
 public class Car {
-    public String name;
-    public int position = 0;
+    private String name;
+    private int position = 0;
 
     public Car(String name){
         this.name = name;
     }
 
-    public void moveRanCreate(int count) {
+    public void run() {
         Random rnd = new Random();
-        for (int i = 0; i < count; i++) {
-            run(rnd.nextInt(10), i);
-        }
+        if (rnd.nextInt(10) >= 4)
+            position += 1;
     }
 
-    public void run(int move, int i){
-        if (move >= 4)
-            position += 1;
+    public String getUserName(){
+        return name;
+    }
+
+    public int getPosition(){
+        return position;
     }
 }

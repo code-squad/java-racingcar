@@ -1,27 +1,26 @@
 package racingcar;
 
 public class RacingGame {
-    int[] carPositions;
+
     public static void main(String[] args) {
-        InputView input = new InputView();
-        RacingGame game = new RacingGame();
-
-        String[] userArr = input.userName();
-        int time = input.time();
-
+        String[] userArr = InputView.userName();
+        int time = InputView.time();
         Car[] carArr = new Car[userArr.length];
-
         for (int i = 0; i < userArr.length; i++) {
             Car car = new Car(userArr[i]);
             carArr[i] = car;
-            carArr[i].moveRanCreate(time);
         }
+        for (int i = 0; i < time; i++) {
+            runCar(carArr);
+        }
+        int[] carPositions = new int[userArr.length];
+        ResultView.output(carPositions, carArr);
+    }
 
-        game.carPositions = new int[userArr.length];
-
-        ResultView result = new ResultView(game, carArr);
-
-        result.output();
+    public static void runCar(Car[] carArr){
+        for (int j = 0; j < carArr.length; j++) {
+            carArr[j].run();
+        }
     }
 
 
