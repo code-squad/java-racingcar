@@ -33,7 +33,7 @@ public class RacingTest {
         for (int i = 0; i < cars.length; i++)
             cars[i].move(i + 2);
 
-        assertEquals(racing.getWinner(cars).getCarDistance(), "-");
+        assertEquals(racing.getFirstWinner(cars).getCarDistance(), "-");
     }
 
     @Test
@@ -41,7 +41,7 @@ public class RacingTest {
         for (int i = 0; i < cars.length; i++)
             cars[i].move(i + 3);
 
-        List<String> winnerList = racing.getWinners(cars);
+        List<String> winnerList = racing.getWinnersList(cars);
         for(String winner : winnerList)
             assertEquals(winner, "C");
 

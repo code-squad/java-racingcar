@@ -2,11 +2,11 @@ package racing;
 
 import java.util.Scanner;
 
-public class Inputs {
+public class InputView {
     static final String SPLIT_STANDARD = ",";
     static Scanner sc = new Scanner(System.in);
 
-    Inputs() {
+    InputView() {
 
     }
 
