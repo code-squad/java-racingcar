@@ -6,11 +6,9 @@ import java.util.Scanner;
 
 public class Racing {
 
-    public static final int STANDARD = 4;
-
     ArrayList<Car> cars = new ArrayList<>();
 
-    public void run(){
+    public ArrayList<Car> run(){
         InputView iv = new InputView();
 
         cars = iv.getCars();
@@ -20,20 +18,7 @@ public class Racing {
             playGame();
         }
 
-        int higher = 0;
-        for (Car car : cars) {
-            higher = selectWinner(car.getPosition(), higher);
-        }
-
-        ResultView.printResult(cars);
-        ResultView.printWinner(cars, higher);
-    }
-
-    public int selectWinner(int pos, int max) {
-        if(pos > max){
-            max = pos;
-        }
-        return max;
+        return cars;
     }
 
     public void playGame() {
@@ -46,9 +31,30 @@ public class Racing {
     }
 
     public int moveCar(int move) {
+        final int STANDARD = 4;
+
         if(move > STANDARD) {
             return 1;
         }
         return 0;
     }
+
+    public static int compareScore(int score, int higher) {
+        if(score > higher){
+            higher = score;
+        }
+        return higher;
+    }
+
+    public static int findHigherScore(ArrayList<Car> cars) {
+        int higher = 0;
+        for (Car car : cars) {
+            higher = Racing.compareScore(car.showPos(), higher);
+        }
+        return higher;
+    }
+
+
+
+
 }

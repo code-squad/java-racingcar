@@ -1,41 +1,49 @@
 package racingcar;
+
 import java.util.ArrayList;
 
 public class ResultView {
 
     public static final String DASH = "-";
-    public static final String COMMA = ", ";
-    public static final int COMMA_LENGTH = 2;
+    public static final String COMMA = ",";
 
 
     public static void printResult(ArrayList<Car> cars) {
         System.out.println("\n실행결과");
         for (Car car : cars) {
-            System.out.print(car.getName() + " : ");
-            printMove(car.getPosition());
+            System.out.print(car.showName() + " : ");
+            printMove(car.showPos());
         }
     }
 
     public static void printMove(int move) {
-        for(int i = 0 ; i < move; i++) {
+        for (int i = 0; i < move; i++) {
             System.out.print(DASH);
         }
         System.out.println();
     }
 
-    public static void printWinner(ArrayList<Car> cars, int highest) {
-        StringBuffer sb = new StringBuffer();
-        for (Car car : cars) {
-            sb.append(selectWinner(car.getPosition(), car.getName(), highest));
-        }
+    public static void printWinner(ArrayList<Car> cars) {
+        ArrayList<String> winners = new ArrayList<>();
 
-        System.out.println(sb.deleteCharAt(sb.length() - COMMA_LENGTH) + "가 최종 우승했습니다.");
+        int highest = Racing.findHigherScore(cars);
+
+        for (Car car : cars) {
+            winners.add((selectWinner(car.showPos(), car.showName(), highest)));
+            removeNullData(winners);
+        }
+        System.out.println("\n" + String.join(COMMA, winners) + "가 최종 우승했습니다.");
     }
 
     public static String selectWinner(int pos, String name, int highest) {
         if (pos == highest) {
-            return name + COMMA;
+            return name;
         }
-        return "";
+        return null;
+    }
+
+    public static ArrayList removeNullData(ArrayList<String> names) {
+        names.remove(null);
+        return names;
     }
 }

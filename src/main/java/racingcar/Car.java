@@ -1,6 +1,7 @@
 package racingcar;
 
 public class Car {
+
     private String name;
     private int position = 0;
 
@@ -8,11 +9,11 @@ public class Car {
         this.name = name;
     }
 
-    public String getName() {
+    private String getName() {
         return name;
     }
 
-    public int getPosition() {
+    private int getPosition() {
         return position;
     }
 
@@ -22,5 +23,13 @@ public class Car {
 
     public void plusMove(int move) {
         setPosition(move + position);
+    }
+
+    public int showPos() {
+        return getPosition();
+    }
+
+    public String showName() {
+        return getName();
     }
 }
