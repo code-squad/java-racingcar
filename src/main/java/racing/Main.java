@@ -9,5 +9,4 @@ public class Main {
         racing.printRacingResult();
         racing.printWinners();
     }
-
 }
