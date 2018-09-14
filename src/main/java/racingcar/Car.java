@@ -22,6 +22,11 @@ public class Car {
         return carName;
     }
 
+    // used for Testing
+    public int getCarPosition() {
+        return carPosition;
+    }
+
     public void showCarPosition() {
         for (int i = 0; i < carPosition; i++) {
             System.out.print(DASH);  // print userPosition
@@ -30,7 +35,7 @@ public class Car {
 
     public boolean hasSamePos(int pos) {
         if (carPosition == pos) {
-           return true;
+            return true;
         }
         return false;
     }
