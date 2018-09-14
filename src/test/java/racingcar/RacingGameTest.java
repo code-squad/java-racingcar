@@ -36,7 +36,7 @@ public class RacingGameTest {
     }
 
     @Test
-    public void getMaxPositionTest(){
+    public void getBestPositionTest(){
         game.initCars(INPUT_NAME);
         game.run(5);
         ArrayList<Result> resultList = game.returnResult();

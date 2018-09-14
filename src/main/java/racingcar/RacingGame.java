@@ -3,8 +3,6 @@ package racingcar;
 import java.util.ArrayList;
 
 public class RacingGame {
-    private static final String DASH = "-";
-    private static final String SPLIT_FACTOR = ",";
     private ArrayList<Car> cars;
 
     public void initCars(String[] inputName) {

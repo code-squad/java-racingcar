@@ -1,7 +1,6 @@
 package racingcar;
 
 import java.util.ArrayList;
-import java.util.Map;
 
 public class OutputView {
     private static final String WINNER_SEPARATE_FACTOR = ",";
