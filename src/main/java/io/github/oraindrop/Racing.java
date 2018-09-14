@@ -3,11 +3,13 @@ package io.github.oraindrop;
 import java.util.*;
 
 public class Racing {
-    static final int RANDOM_SIZE = 10;
+    private static final int RANDOM_SIZE = 10;
+    private static final String COMMA = ",";
+
     private List<Car> cars;
 
     public void readyRace(String inputCarNames){
-        String[] carNames = inputCarNames.split(",");
+        String[] carNames = inputCarNames.split(COMMA);
         this.cars = new ArrayList<>();
         for(String carName : carNames){
             this.cars.add(new Car(carName));
@@ -44,12 +46,14 @@ public class Racing {
         return winners;
     }
 
+    public List<Car> getCars() {
+        return cars;
+    }
+
     public static void main(String[] args) {
         Racing racing = new Racing();
-        String inputCarNames = InputView.inputCarNames();
-        int inputRunTime = InputView.inputRunTime();
 
-        racing.readyRace(inputCarNames);
-        racing.race(inputRunTime);
+        racing.readyRace(InputView.inputCarNames());
+        racing.race(InputView.inputRunTime());
     }
 }
