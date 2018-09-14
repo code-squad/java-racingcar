@@ -4,10 +4,6 @@ import java.util.Scanner;
 
 public class InputValue {
 
-    public void InputValue() {
-
-    }
-
     public static int setMovingCount(Scanner scanner) {
         System.out.println("시도할 횟수는 몇번인가요?");
         return scanner.nextInt();

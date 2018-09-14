@@ -8,29 +8,29 @@ public class RacingGame {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        InputValue inputvalue = new InputValue();
-        OutputValue outputValue = new OutputValue();
 
-        String[] names = inputvalue.setNames(scanner).split(",");
-        int movingCount = inputvalue.setMovingCount(scanner);
+        String[] names = InputValue.setNames(scanner).split(",");
+        int movingCount = InputValue.setMovingCount(scanner);
 
-        Car[] cars = new Car[names.length];
-        carNames(names, cars);
+        Car[] cars =  carNames(names);
         carRandomCount(cars, movingCount);
+        String[] winners = winners(cars);
 
-        outputValue.displayGame(cars);
-        outputValue.displayWinners(cars);
+        OutputValue.displayGame(cars);
+        OutputValue.displayWinners(winners);
     }
-    private static void carNames(String[] names, Car[] cars) {
+    private static Car[] carNames(String[] names) {
+        Car[] cars = new Car[names.length];
         for (int i = 0; i < names.length; i++) {
             cars[i] = new Car(names[i]);
         }
+        return cars;
     }
 
     private static void carRandomCount(Car[] cars, int movingCount) {
         for (Car car : cars) {
-            car.setRandomCount(makePositionNum(movingCount));
-            increasePosition(car);
+            String randoms = makePositionNum(movingCount);
+            increasePosition(car, randoms);
         }
     }
     private static String makePositionNum(int movingCount) {
@@ -41,60 +41,31 @@ public class RacingGame {
         }
         return carArrays;
     }
-    //
-    private static void increasePosition(Car car) {
-        String[] carRandomCount = car.randomCount().split("");
-        int carPosition = 0;
-        for (int i = 0; i < car.randomCount().length(); i++) {
-           carPosition += isIncreasePosition(carRandomCount[i]);
+
+    private static void increasePosition(Car car, String randoms) {
+        String[] carRandomCount = randoms.split("");
+        for (int i = 0; i < randoms.length(); i++) {
+            car.setPosition(Integer.parseInt(carRandomCount[i]));
         }
-        car.increasePosition(carPosition);
-    }
-    private static int isIncreasePosition(String carRandomCount)  {
-        if (Integer.parseInt(carRandomCount) >= MOVE_CAR) {
-            return 1;
-        }
-        return 0;
     }
 
-    public static String drawDash(int carPosition) {
-        String position = "";
-        for (int i = 0; i < carPosition; i++) {
-            position += "-";
-        }
-        return position;
-    }
-
-
+    //getter 를 최대한 안써보려고 노력했는데 더 줄이는 방법을 모르겠습니다.
+    //좀더 공부해보도록 하겠습니다.
     public static String[] winners(Car[] cars) {
         ArrayList<String> winners = new ArrayList<>();
         for (Car car : cars) {
-            if(compareCar(car, findMax(cars))) {
-                winners.add(car.name());
+            if(car.isMaxPosition(findMax(cars))) {
+                winners.add(car.getName());
             }
         }
         return winners.toArray(new String[winners.size()]);
     }
-    // 자동차 포지션값이랑 맥스값이랑 같은지 확인
-    private static boolean compareCar (Car car, int max) {
-        if (car.position() == max) {
-            return true;
-        }
-        return false;
-    }
 
     // 최고값 찾기
     private static int findMax(Car[] car) {
-        int max = car[0].position();
+        int max = 0;
         for (int i = 0; i < car.length; i++) {
-            max = findMaxPosition(max, car[i]);
-        }
-
-        return max;
-    }
-    private static int findMaxPosition(int max, Car car) {
-        if(car.position() > max) {
-            return car.position();
+            max = car[i].compareMaxPosition(max);
         }
         return max;
     }
