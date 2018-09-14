@@ -1,17 +1,24 @@
+package racingcar;
+
 import static org.junit.Assert.assertEquals;
+
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import racingcar.Car;
-import racingcar.ResultView;
-
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 
 
 public class CarTest {
+
+    // stackoverflow 참조
+    private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+    private final PrintStream originalOut = System.out;
+
     Car car1;
     Car car2;
     List<Car> allCars;
@@ -19,6 +26,8 @@ public class CarTest {
 
     @Before
     public void setUp(){
+        System.setOut(new PrintStream(outContent));
+
         car1 = new Car("test1", 3);
         car2 = new Car("test3", 3);
         allCars = new ArrayList<Car>();
@@ -61,15 +70,22 @@ public class CarTest {
         for(int i=0; i<winners.size(); i++){
             assertEquals(winners.get(i), result.get(i));
         }
-
     }
+
+    // System.out.println() test
+    @Test
+    public void printWinnerTest(){
+        ResultView.printWinner(allCars, 3);
+        String expectResult = "test1, test3가 최종 우승하였습니다.";
+        assertEquals(expectResult, outContent.toString());
+    }
+
 
     @After
     public void tearDown() {
         car1 = null;
         car2 = null;
-        allCars = null;
-        winners = null;
+        System.setOut(originalOut);
     }
 
 }
