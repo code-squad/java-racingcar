@@ -3,13 +3,14 @@ package racingcar;
 import java.util.ArrayList;
 
 public class ResultView {
+    public static final String DASH = "-";
 
     private ResultView() {
     }  // prevent making ResultView object
 
-    public static void printPos(ArrayList<Car> carList) {
+    public static void printPos(ArrayList<Car> cars) {
         System.out.println("실행 결과");
-        for (Car car : carList) {
+        for (Car car : cars) {
             showCarPos(car);
             System.out.println();
         }
@@ -18,39 +19,41 @@ public class ResultView {
 
     public static void showCarPos(Car car) {
         System.out.print(car.getCarName() + " : ");  // print userName
-        car.showCarPosition();  // print car position
+        for (int i = 0; i < car.getCarPosition(); i++) {
+            System.out.print(DASH);  // print userPosition
+        }
     }
 
-    public static void printResult(ArrayList<Car> carList) {
-        showResult(compareCarPos(carList));
+    public static void printResult(ArrayList<Car> cars) {
+        showResult(compareCarPos(cars));
     }
 
-    public static ArrayList<Car> compareCarPos(ArrayList<Car> carList) {
+    public static ArrayList<Car> compareCarPos(ArrayList<Car> cars) {
 
         int maxPos = Racing.POS_CAR_INIT;
-        for (Car car : carList) {
-            maxPos = car.findMaxPos(car, maxPos);
+        for (Car car : cars) {
+            maxPos = car.findMaxPos(maxPos);
         }
 
-        return findWhoWin(carList, maxPos);
+        return findWhoWin(cars, maxPos);
     }
 
-    public static ArrayList<Car> findWhoWin(ArrayList<Car> carList, int maxPos) {
-        ArrayList<Car> resultList = new ArrayList<>();
+    public static ArrayList<Car> findWhoWin(ArrayList<Car> cars, int maxPos) {
+        ArrayList<Car> winners = new ArrayList<>();
 
-        for (Car car : carList) {
+        for (Car car : cars) {
             if (car.hasSamePos(maxPos)) {
-                resultList.add(car);
+                winners.add(car);
             }
         }
-        return resultList;
+        return winners;
     }
 
-    public static void showResult(ArrayList<Car> resultList) {
-        for (int i = 0; i < resultList.size() - 1; i++) {
-            System.out.print(resultList.get(i).getCarName() + ", ");
+    public static void showResult(ArrayList<Car> winners) {
+        for (int i = 0; i < winners.size() - 1; i++) {
+            System.out.print(winners.get(i).getCarName() + ", ");
         }
-        System.out.print(resultList.get(resultList.size() - 1).getCarName());  // last one formatting
+        System.out.print(winners.get(winners.size() - 1).getCarName());  // last one formatting
         System.out.println("가 최종 우승했습니다.");
     }
 

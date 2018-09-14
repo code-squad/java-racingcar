@@ -1,7 +1,6 @@
 package racingcar;
 
 public class Car {
-    public static final String DASH = "-";
     public static final int POS_STD = 4;
 
     private String carName;
@@ -22,29 +21,17 @@ public class Car {
         return carName;
     }
 
-    // used for Testing
+
     public int getCarPosition() {
         return carPosition;
     }
 
-    public void showCarPosition() {
-        for (int i = 0; i < carPosition; i++) {
-            System.out.print(DASH);  // print userPosition
-        }
-    }
-
     public boolean hasSamePos(int pos) {
-        if (carPosition == pos) {
-            return true;
-        }
-        return false;
+        return carPosition == pos;
     }
 
-    public int findMaxPos(Car car, int maxPos) {
-        if (car.carPosition > maxPos) {
-            return car.carPosition;
-        }
-        return maxPos;
+    public int findMaxPos(int maxPos) {
+        return carPosition > maxPos ? carPosition : maxPos;
     }
 
 }

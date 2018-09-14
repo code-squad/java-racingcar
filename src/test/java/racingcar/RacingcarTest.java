@@ -14,16 +14,16 @@ public class RacingcarTest {
     public final static int POS_MAX = 7;
     public final static int[] POS_CAR = {POS_MAX, POS_MIN, 5, POS_MAX};
     Random random = new Random();
-    ArrayList<Car> carList;
+    ArrayList<Car> cars;
     ArrayList<Car> winner;
 
     @Before
     public void setUp() throws Exception {
-        carList = new ArrayList<>();
+        cars = new ArrayList<>();
         winner = new ArrayList<>();
         for (int i = 0; i < POS_CAR.length; i++) {
             Car car = new Car("testCar" + i, POS_CAR[i]);
-            carList.add(car);
+            cars.add(car);
             if (car.getCarPosition() == POS_MAX) {
                 winner.add(car);
             }
@@ -32,12 +32,12 @@ public class RacingcarTest {
 
     @After
     public void tearDown() throws Exception {
-        carList = null;
+        cars = null;
     }
 
     @Test
     public void addPosition() {
-        for (Car car : carList) {
+        for (Car car : cars) {
             int randomVal = random.nextInt(Racing.POS_BOUND);
             int beforeAdd = car.getCarPosition();
             car.addPosition(randomVal);
@@ -54,15 +54,22 @@ public class RacingcarTest {
     @Test
     public void findMaxPos() {
         int maxPos = Racing.POS_CAR_INIT;
-        for (Car car : carList) {
-            maxPos = car.findMaxPos(car, maxPos);
+        for (Car car : cars) {
+            maxPos = car.findMaxPos(maxPos);
         }
         assertEquals(POS_MAX, maxPos);
     }
 
     @Test
     public void findWhoWin() {
-        assertEquals(winner, ResultView.findWhoWin(carList, POS_MAX));
+        assertEquals(winner, ResultView.findWhoWin(cars, POS_MAX));
+    }
+
+    @Test
+    public void hasSamePos() {
+        for (int i = 0; i < cars.size(); i++) {
+            assertEquals(true, cars.get(i).hasSamePos(POS_CAR[i]));
+        }
     }
 
 

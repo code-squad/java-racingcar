@@ -8,7 +8,7 @@ public class Racing {
     public static final int POS_CAR_INIT = 1;
 
     private static int time;
-    private ArrayList<Car> carList = new ArrayList<>();
+    private ArrayList<Car> cars = new ArrayList<>();
 
     public Racing(String[] carNames) {
         init(carNames);
@@ -17,7 +17,7 @@ public class Racing {
     public void init(String[] carNames) {
         for (String carName : carNames) {
             Car car = new Car(carName, POS_CAR_INIT);
-            carList.add(car);
+            cars.add(car);
         }
     }
 
@@ -28,7 +28,7 @@ public class Racing {
     }
 
     public void selectCar() {
-        for (Car car : carList) {
+        for (Car car : cars) {
             addPos(car);  // move each car
         }
     }
@@ -38,8 +38,8 @@ public class Racing {
         car.addPosition(random.nextInt(POS_BOUND));
     }
 
-    public ArrayList<Car> getCarList() {
-        return carList;
+    public ArrayList<Car> getCars() {
+        return cars;
     }
 
     public static void main(String[] args) {
@@ -47,7 +47,7 @@ public class Racing {
         Racing.time = Integer.parseInt(racingInfos.get(1));
         Racing racing = new Racing(racingInfos.get(0).split(","));
         racing.run();
-        ResultView.printPos(racing.getCarList());
-        ResultView.printResult(racing.getCarList());
+        ResultView.printPos(racing.getCars());
+        ResultView.printResult(racing.getCars());
     }
 }
