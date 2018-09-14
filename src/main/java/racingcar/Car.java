@@ -23,4 +23,10 @@ public class Car {
     public int getPosition(){
         return position;
     }
+
+    public void carPos(){
+        for (int j = 0; j < position; j++) {
+            System.out.print("-");
+        }
+    }
 }

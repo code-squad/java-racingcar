@@ -1,8 +1,8 @@
 package racingcar;
 
 public class ResultView {
-    public static void output(int [] carPos, Car[] carArr){
-        for (int i = 0; i < carPos.length; i++) {
+    public static void output(Car[] carArr){
+        for (int i = 0; i < carArr.length; i++) {
             carDist(i, carArr);
             finishLine(i, carArr);
         }
@@ -11,9 +11,7 @@ public class ResultView {
 
     public static void carDist(int i, Car[] carArr) {
         System.out.print(carArr[i].getUserName() + " : ");
-        for (int j = 0; j < carArr[i].getPosition(); j++) {
-            System.out.print("-");
-        }
+        carArr[i].carPos();
     }
 
     public static void winUser(Car[] carArr) {

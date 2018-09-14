@@ -1,29 +1,22 @@
 package practice;
+import org.junit.After;
+import org.junit.Test;
+import org.junit.Before;
+import java.util.Scanner;
 
 public class ExSpace {
-
-
-    public static void main(String[] args) {
-        for (int i = 0; i < 4; i++) {
-            for (int j = 0; j < 3; j++) {
-                System.out.println("ㅎㅇ");
-            }
-        }
-    }
-
-
+    public static Scanner s = new Scanner(System.in);
 
     public static void main(String[] args) {
-        for (int i = 0; i < 4; i++) {
-            a();
-        }
+
     }
 
-
-    public static void a(){
-        for (int j = 0; j < 3; j++) {
-            System.out.println("ㅎㅇ");
+    @Test
+    public void test1() throws Exception{
+        String value = s.nextLine();
+        String[] values = value.split(" ");
+        for (int i = 0; i < values.length; i++) {
+            System.out.println(values[i]);
         }
     }
-
 }
