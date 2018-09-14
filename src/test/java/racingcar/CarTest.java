@@ -1,8 +1,7 @@
-package racingcartest;
+package racingcar;
 
 import org.junit.Before;
 import org.junit.Test;
-import racingcar.Car;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -12,8 +11,6 @@ public class CarTest {
     private static final String TEST_NAME = "test_name";
     private static final int INITIAL_POSITION = 1;
     private static final int UNREACHABLE_POSITION = 0;
-    private static final String BLANK = "";
-    private static final String COMMA = ",";
     private static final int TEST_CASE = 100;
     private Car car;
 
