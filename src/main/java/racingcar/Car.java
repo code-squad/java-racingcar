@@ -21,7 +21,7 @@ public class Car {
         return carName;
     }
 
-
+    // used for testing
     public int getCarPosition() {
         return carPosition;
     }

@@ -19,8 +19,10 @@ public class ResultView {
 
     public static void showCarPos(Car car) {
         System.out.print(car.getCarName() + " : ");  // print userName
-        for (int i = 0; i < car.getCarPosition(); i++) {
+        int pos = Racing.POS_CAR_INIT - 1;
+        while (!car.hasSamePos(pos)) {
             System.out.print(DASH);  // print userPosition
+            pos++;
         }
     }
 
