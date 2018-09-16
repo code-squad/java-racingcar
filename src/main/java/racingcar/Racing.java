@@ -39,22 +39,11 @@ public class Racing {
         return 0;
     }
 
-    public static int compareScore(int score, int higher) {
-        if(score > higher){
-            higher = score;
-        }
-        return higher;
-    }
-
     public static int findHigherScore(ArrayList<Car> cars) {
         int higher = 0;
         for (Car car : cars) {
-            higher = Racing.compareScore(car.showPos(), higher);
+            higher = car.maxPosition(higher);
         }
         return higher;
     }
-
-
-
-
 }

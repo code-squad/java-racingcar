@@ -29,17 +29,10 @@ public class ResultView {
         int highest = Racing.findHigherScore(cars);
 
         for (Car car : cars) {
-            winners.add((selectWinner(car.showPos(), car.showName(), highest)));
+            winners.add(car.compareScore(highest));
             removeNullData(winners);
         }
         System.out.println("\n" + String.join(COMMA, winners) + "가 최종 우승했습니다.");
-    }
-
-    public static String selectWinner(int pos, String name, int highest) {
-        if (pos == highest) {
-            return name;
-        }
-        return null;
     }
 
     public static ArrayList removeNullData(ArrayList<String> names) {

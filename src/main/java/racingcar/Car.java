@@ -32,4 +32,13 @@ public class Car {
     public String showName() {
         return getName();
     }
+
+    public int maxPosition(int higher) {
+        return higher > this.position ? higher : this.position;
+    }
+
+    public String compareScore(int higher) {
+        return higher == this.position ? name : null;
+    }
+
 }
