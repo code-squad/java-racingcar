@@ -2,7 +2,7 @@ package racingcar;
 
 public class Car {
 
-    private static final int MINRANDNUM = 4;
+    private static final int MIN_RANDNUM = 4;
 
     private String name;
     private int position = 0;
@@ -19,7 +19,7 @@ public class Car {
 
 
     public int move(int randNum) {
-        if (randNum >= MINRANDNUM)
+        if (randNum >= MIN_RANDNUM)
             return ++this.position;
         return this.position;
     }

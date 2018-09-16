@@ -80,7 +80,6 @@ public class CarTest {
         assertEquals(expectResult, outContent.toString());
     }
 
-
     @After
     public void tearDown() {
         car1 = null;
