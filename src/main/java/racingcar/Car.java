@@ -1,10 +1,7 @@
 package racingcar;
 
-import java.util.Random;
-
 public class Car {
 
-    private static final int MAXRANDNUM = 10;
     private static final int MINRANDNUM = 4;
 
     private String name;
@@ -14,15 +11,21 @@ public class Car {
         this.name = name;
     }
 
-    public void move() {
-        Random random = new Random();
+    // test용 생성자
+    public Car(String name, int position) {
+        this.name = name;
+        this.position = position;
+    }
 
-        int randNum = random.nextInt(MAXRANDNUM);
-        if (randNum >= MINRANDNUM) this.position++;
+
+    public int move(int randNum) {
+        if (randNum >= MINRANDNUM)
+            return ++this.position;
+        return this.position;
     }
 
     public boolean isMaxPostion(int maxPosition) {
-        return (this.position == maxPosition)? true : false;
+        return this.position == maxPosition;
     }
 
     public String getName() {
