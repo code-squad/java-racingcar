@@ -1,13 +1,15 @@
 package com.zingoworks.racing;
 
-import java.util.Scanner;
+import java.util.*;
 
 public class RacingGame {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-
-        Car.setCars();
-        Process.doRun(Car.cars, InputView.getTrials(sc));
-        ResultView.printResult();
+        String[] carName = InputView.setCarsName(sc);
+        int trials = InputView.getTrials(sc);
+        Process p = new Process(carName, trials);
+        Car[] cars = p.setCars();
+        ArrayList<String> winners = p.findWinner();
+        ResultView r = new ResultView(cars, p.winner(winners));
     }
 }
