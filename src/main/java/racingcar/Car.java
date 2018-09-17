@@ -22,10 +22,4 @@ public class Car {
             carList[i] = car;
         }
     }
-
-
-
-
-
-
 }
