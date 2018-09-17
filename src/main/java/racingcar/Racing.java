@@ -51,17 +51,27 @@ public class Racing {
         ArrayList<Car> winners = new ArrayList<>();
         int maxPosition = 0;
 
-        for(int i = 0; i < cars.length; i++) {
-            maxPosition = cars[i].maxPosition(maxPosition);
-        }
+        maxPosition = getMaxPosition(cars, maxPosition);
 
         for(int i = 0; i < cars.length; i++) {
-            if(cars[i].isMaxPosition(maxPosition)) {
-                winners.add(cars[i]);
-            }
+            addWinners(cars[i], winners, maxPosition);
         }
         return winners;
     }
+
+    private static void addWinners(Car car, ArrayList<Car> winners, int maxPosition) {
+        if(car.isMaxPosition(maxPosition)) {
+            winners.add(car);
+        }
+    }
+
+    private static int getMaxPosition(Car[] cars, int maxPosition) {
+        for(int i = 0; i < cars.length; i++) {
+            maxPosition = cars[i].maxPosition(maxPosition);
+        }
+        return maxPosition;
+    }
+
 
     public static String generateWinnerText(ArrayList<Car> cars) {
         String winnersText = "";
