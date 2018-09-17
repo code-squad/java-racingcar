@@ -1,3 +1,5 @@
+package racingcar;
+
 public class Lengthtest {
     public static void main(String[] args) {
         String[] s = {"asd", "asdfee", "zdree"};

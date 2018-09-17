@@ -9,15 +9,21 @@ public class Car{
     public Car(String name) {
         this.name = name;
     }
+
+    public Car(String name, int position) {
+        this.name = name;
+        this.position = position;
+    }
+
     public int getPosition() {
         return this.position;
     }
+
     public String getName() {
         return this.name;
     }
 
-    // 포지션 값을 이렇게 증가시키라는 건가요 아직 부족해서 설명에 대한 이해력이 부족한것 같습니다.아니라면 조금 더 수정해보겠습니다.
-    public void setPosition(int i) {
+    public void movePosition(int i) {
         if (i >= MOVE_CAR) {
             this.position ++;
         }
@@ -32,6 +38,7 @@ public class Car{
     public int compareMaxPosition(int max) {
         return Math.max(this.position, max);
     }
+
     public void printCarName() {
         System.out.print(this.name);
     }

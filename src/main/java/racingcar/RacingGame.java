@@ -14,11 +14,11 @@ public class RacingGame {
 
         Car[] cars =  carNames(names);
         carRandomCount(cars, movingCount);
-        String[] winners = winners(cars);
 
         OutputValue.displayGame(cars);
-        OutputValue.displayWinners(winners);
+        OutputValue.displayWinners(winners(cars));
     }
+
     private static Car[] carNames(String[] names) {
         Car[] cars = new Car[names.length];
         for (int i = 0; i < names.length; i++) {
@@ -45,12 +45,11 @@ public class RacingGame {
     private static void increasePosition(Car car, String randoms) {
         String[] carRandomCount = randoms.split("");
         for (int i = 0; i < randoms.length(); i++) {
-            car.setPosition(Integer.parseInt(carRandomCount[i]));
+            car.movePosition(Integer.parseInt(carRandomCount[i]));
         }
     }
 
-    //getter 를 최대한 안써보려고 노력했는데 더 줄이는 방법을 모르겠습니다.
-    //좀더 공부해보도록 하겠습니다.
+    // winner 의 name 만 string[] 으로 받아옴
     public static String[] winners(Car[] cars) {
         ArrayList<String> winners = new ArrayList<>();
         for (Car car : cars) {
@@ -62,7 +61,7 @@ public class RacingGame {
     }
 
     // 최고값 찾기
-    private static int findMax(Car[] car) {
+    public static int findMax(Car[] car) {
         int max = 0;
         for (int i = 0; i < car.length; i++) {
             max = car[i].compareMaxPosition(max);
