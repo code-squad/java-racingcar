@@ -3,50 +3,19 @@ package racingcar;
 import java.util.*;
 
 public class RacingGame {
-    static final int MOVE_CAR = 4;
     static final int MAXIMUM_NUM = 10;
+    private Car[] cars;
 
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+    public RacingGame(String carsName) {
+        this.cars = carNames(carsName.split(","));
+    }
 
-        String[] names = InputValue.setNames(scanner).split(",");
-        int movingCount = InputValue.setMovingCount(scanner);
+    public Car[] getCars() {
+        return this.cars;
+    }
 
-        Car[] cars =  carNames(names);
+    public void run(int movingCount) {
         carRandomCount(cars, movingCount);
-
-        OutputValue.displayGame(cars);
-        OutputValue.displayWinners(winners(cars));
-    }
-
-    private static Car[] carNames(String[] names) {
-        Car[] cars = new Car[names.length];
-        for (int i = 0; i < names.length; i++) {
-            cars[i] = new Car(names[i]);
-        }
-        return cars;
-    }
-
-    private static void carRandomCount(Car[] cars, int movingCount) {
-        for (Car car : cars) {
-            String randoms = makePositionNum(movingCount);
-            increasePosition(car, randoms);
-        }
-    }
-    private static String makePositionNum(int movingCount) {
-        String carArrays = "";
-        Random random = new Random();
-        for (int i = 0; i < movingCount; i++) {
-            carArrays += String.valueOf(random.nextInt(MAXIMUM_NUM));
-        }
-        return carArrays;
-    }
-
-    private static void increasePosition(Car car, String randoms) {
-        String[] carRandomCount = randoms.split("");
-        for (int i = 0; i < randoms.length(); i++) {
-            car.movePosition(Integer.parseInt(carRandomCount[i]));
-        }
     }
 
     // winner 의 name 만 string[] 으로 받아옴
@@ -67,5 +36,35 @@ public class RacingGame {
             max = car[i].compareMaxPosition(max);
         }
         return max;
+    }
+
+    private static Car[] carNames(String[] names) {
+        Car[] cars = new Car[names.length];
+        for (int i = 0; i < names.length; i++) {
+            cars[i] = new Car(names[i]);
+        }
+        return cars;
+    }
+
+    private static void carRandomCount(Car[] cars, int movingCount) {
+        for (Car car : cars) {
+            String randoms = makePositionNum(movingCount);
+            increasePosition(car, randoms);
+        }
+    }
+    private static String makePositionNum(int movingCount) {
+        String carRandomNums = "";
+        Random random = new Random();
+        for (int i = 0; i < movingCount; i++) {
+            carRandomNums += String.valueOf(random.nextInt(MAXIMUM_NUM));
+        }
+        return carRandomNums;
+    }
+
+    private static void increasePosition(Car car, String randoms) {
+        String[] carRandomCount = randoms.split("");
+        for (int i = 0; i < randoms.length(); i++) {
+            car.movePosition(Integer.parseInt(carRandomCount[i]));
+        }
     }
 }
