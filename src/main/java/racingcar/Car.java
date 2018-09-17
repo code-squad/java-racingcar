@@ -1,8 +1,8 @@
 package racingcar;
 
-import static racingcar.RacingGame.MOVE_CAR;
-
 public class Car{
+    static final int MOVE_CAR = 4;
+
     private String name;
     private int position = 0;
 
