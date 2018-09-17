@@ -2,7 +2,6 @@ package racingcar;
 
 public class Car {
     public static final int POS_STD = 4;
-
     private String carName;
     private int carPosition;
 
