@@ -11,7 +11,7 @@ public class OutputValue {
         }
     }
     public static void displayWinners(String[] winners) {
-        System.out.print("우승자는: " + String.join(",",winners));
+        System.out.print("우승자는: " + String.join(",",winners) + " 입니다.");
     }
 
 
