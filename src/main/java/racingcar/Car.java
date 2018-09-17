@@ -1,31 +1,45 @@
 package racingcar;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Random;
 
 public class Car {
+    static final int RESTRICTNUM = 4;
+    static final int RANGE = 10;
     private String name;
     private int position = 0;
 
-    //자동차 객체 리스트 생성
-    public static List<Car> createCars(int numOfCars) {
-        List<Car> cars = new ArrayList<>();
-        for (int i = 0; i < numOfCars; i++) {
-            cars.add(new Car());
-        }
-        return cars;
+    public Car(String name) {
+        this.name = name;
     }
 
-    //자동차 name 초기화
-    public static void initCarName(List<Car> cars,String[] names) {
-        InputView input = new InputView();
-        for (int i = 0; i < names.length; i++) {
-            cars.get(i).name = names[i];
-        }
+    //랜덤값 받기
+    public int getRandNum() {
+        Random random = new Random();
+        return random.nextInt(RANGE);
     }
 
-    public void setPosition(int position) {
-        this.position = position;
+    //이동 거리 측정
+    public int countMove(int distance) {
+        if (getRandNum() >= RESTRICTNUM) {
+            distance++;
+        }
+        return distance;
+    }
+
+    //자동차 이동하기
+    public void moveCar(int tryNum) {
+        int distance = 0;
+        for (int i = 0; i < tryNum; i++) {
+            distance = countMove(distance);
+        }
+        this.position = distance;
+    }
+
+    public boolean checkMax(int getPos) {
+        if (this.position == getPos) {
+            return true;
+        }
+        return false;
     }
 
     public String getName() {
