@@ -1,39 +1,41 @@
 package racingcar;
 
 public class RacingGame {
-    Car[] cars;
+    static Car[] cars;
+    static String[] users;
 
-    public static void createCars(RacingGame game){
-        String[] users = InputView.userName();
-        game.cars = new Car[users.length];
-        makeCar(users, game);
+    RacingGame(int carNum){
+        cars = new Car[carNum];
+        makeCar(users);
     }
 
-    public static void makeCar(String[] users, RacingGame game){
-        for (int i = 0; i < game.cars.length; i++) {
+    public void makeCar(String[] users){
+        for (int i = 0; i < cars.length; i++) {
             Car car = new Car(users[i]);
-            game.cars[i] = car;
+            cars[i] = car;
         }
     }
 
-    public static void timer( RacingGame game) {
-        int time = InputView.time();
+    public void move(int time) {
         for (int i = 0; i < time; i++) {
-            runCar(game.cars);
+            runCar(cars);
         }
     }
 
-    public static void runCar(Car[] cars) {
-        for (int j = 0; j < cars.length; j++) {
-            cars[j].run();
+    public void runCar(Car[] cars) {
+        for (int i = 0; i < cars.length; i++) {
+            cars[i].run();
         }
     }
 
     public static void main(String[] args) {
-        RacingGame game = new RacingGame();
-        createCars(game);
-        timer(game);
-        ResultView.output(game.cars);
+        users = InputView.userName();
+        int carNum = users.length;
+        int time = InputView.time();
+
+        RacingGame game = new RacingGame(carNum);
+        game.move(time);
+        ResultView.output(cars);
     }
 }
 
