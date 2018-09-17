@@ -1,10 +1,8 @@
 package race;
 
-import javax.xml.transform.Result;
-import java.util.*;
-
 public class CarRacing {
-    private static int MAX = -1;
+
+    private static Car[] car;
 
     private static Car[] makeCar(String[] nameArr, Car[] car) {
         for (int i = 0; i < car.length; i++) {
@@ -33,24 +31,30 @@ public class CarRacing {
 
     private static void maxSet(Car[] car) {
         for (int i = 0; i < car.length; i++) {
-            MAX = car[i].maxPosition();
+            car[i].maxPosition();
         }
     }
 
-    private static void victory(Car[] car) {
+    private static String victory(Car[] car) {
+        String champion = "";
         for (int i = 0; i < car.length; i++) {
-            car[i].victory();
+            champion += car[i].victory();
         }
+        return champion;
+    }
+
+    public static Car[] getCarArray(){
+        return car;
     }
 
     public static void main(String[] args) {
         String[] nameArr = InputView.inputName().split(",");
         int tryCount = InputView.inputCount();
-        Car[] car = new Car[nameArr.length];
+        car = new Car[nameArr.length];
         car = makeCar(nameArr, car);
         transport(tryCount, car);
         valuePrint(car);
         maxSet(car);
-        victory(car);
+        ResultView.victory(victory(car));
     }
 }
