@@ -19,18 +19,17 @@ public class Car {
     }
 
     //이동 거리 측정
-    public int countMove(int distance) {
-        if (getRandNum() >= RESTRICTNUM) {
+    public int countMove(int distance, int randNum) {
+        if (randNum >= RESTRICTNUM) {
             distance++;
         }
         return distance;
     }
 
     //자동차 이동하기
-    public void moveCar(int tryNum) {
-        int distance = 0;
+    public void moveCar(int tryNum,int distance) {
         for (int i = 0; i < tryNum; i++) {
-            distance = countMove(distance);
+            distance = countMove(distance, getRandNum());
         }
         this.position = distance;
     }
