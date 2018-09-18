@@ -1,6 +1,6 @@
 import org.junit.Test;
 import racingcar.Car;
-import racingcar.Racing;
+import racingcar.RacingGame;
 
 import java.util.ArrayList;
 
@@ -9,9 +9,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class RacingTest {
     @Test
     public void findWinners() {
-        Car[] cars = {new Car("pobi", 3), new Car("honux", 1)};
+        ArrayList<Car> cars = new ArrayList<>();
+        cars.add(new Car("pobi", 3));
+        cars.add(new Car("honux", 1));
 
-        ArrayList<Car> winners = Racing.findWinners(cars);
+        ArrayList<Car> winners = RacingGame.findWinners(cars);
 
         assertThat(winners.size()).isEqualTo(1);
         assertThat(winners.get(0).getName()).isEqualTo("pobi");
@@ -24,30 +26,18 @@ public class RacingTest {
         winners.add(new Car("honux", 3));
         winners.add(new Car("b", 3));
 
-        String text = Racing.generateWinnerText(winners);
+        String text = RacingGame.generateWinnerText(winners);
         assertThat(text).isEqualTo("pobi,honux,b");
     }
 
     @Test
-    public void moveCar() {
-        int countMove = Racing.moveCar(5);
-        assertThat(countMove).isEqualTo(1);
-    }
-
-    @Test
-    public void nonMovecar() {
-        int countMove = Racing.moveCar(3);
-        assertThat(countMove).isEqualTo(0);
-    }
-
-    @Test
-    public void findHigherScore() {
+    public void getMaxPosition() {
         ArrayList<Car> cars = new ArrayList<>();
         cars.add(new Car("pobi", 6));
         cars.add(new Car("honux", 2));
         cars.add(new Car("b", 3));
 
-        int max = Racing.findHigherScore(cars);
+        int max = RacingGame.getMaxPosition(cars);
         assertThat(max).isEqualTo(6);
     }
 }

@@ -1,6 +1,8 @@
 package racingcar;
 
 public class Car {
+    private static final int FORWARD_NUM = 4;
+    private final int MIN_COUNT = 1;
 
     private String name;
     private int position = 0;
@@ -18,32 +20,12 @@ public class Car {
         return name;
     }
 
-    private int getPosition() {
+    public int getPosition() {
         return position;
     }
 
-    private void setPosition(int pos) {
-        this.position = pos;
-    }
-
-    public void plusMove(int move) {
-        setPosition(move + position);
-    }
-
-    public int showPos() {
-        return getPosition();
-    }
-
-    public String showName() {
-        return getName();
-    }
-
-    public int maxPosition(int higher) {
-        return higher > this.position ? higher : this.position;
-    }
-
-    public String compareScore(int higher) {
-        return higher == this.position ? name : null;
+    public int getMaxPosition(int max) {
+        return max > this.position ? max : this.position;
     }
 
     public boolean isMaxPosition(int max) {
@@ -51,5 +33,11 @@ public class Car {
             return true;
         }
         return false;
+    }
+
+    public void moveCar(int random) {
+        if(random >= FORWARD_NUM) {
+            this.position = this.position + MIN_COUNT;
+        }
     }
 }
