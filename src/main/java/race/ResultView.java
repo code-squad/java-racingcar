@@ -9,10 +9,10 @@ public class ResultView {
         System.out.print(name + " : ");
     }
 
-    public static void victory(String name){
+    public static String victory(String name){
         String answer = name.substring(0,name.length()-1);
         answer += "가 우승했습니다.";
-        System.out.println(answer);
+        return answer;
     }
 
     public static void dashPrint (int carPosition){
