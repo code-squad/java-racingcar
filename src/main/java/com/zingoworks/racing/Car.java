@@ -8,7 +8,7 @@ public class Car {
         this.name = name;
         this.position = position;
     }
-
+//123
     public static void updatePosition(Car car) {
         car.position++;
     }
