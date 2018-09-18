@@ -27,7 +27,7 @@ public class RacingGame {
 
     private void runByTrials(Car car, int trials) {
         for (int i = 0; i < trials; i++) {
-            Car.updatePosition(car);
+            car.updatePosition();
         }
     }
 
@@ -40,7 +40,7 @@ public class RacingGame {
     }
 
     private void addWinners(ArrayList<Car> winners, Car car) {
-        if (Car.checkWinner(car, cars)) {
+        if (checkWinner(car)) {
             winners.add(car);
         }
     }
@@ -48,15 +48,22 @@ public class RacingGame {
     public String generateWinnerText(ArrayList<Car> winners) {
         String winnerText = "";
         for (Car winner : winners) {
-            winnerText += Car.extractNameOfCar(winner) + " ";
+            winnerText += winner.extractNameOfCar() + " ";
         }
         return winnerText;
     }
 
-    public static int extractMaxposition(Car[] cars) {
+    public boolean checkWinner(Car car) {
+        if (car.extractPosition() == extractMaxposition()) {
+            return true;
+        }
+        return false;
+    }
+
+    public int extractMaxposition() {
         int max = 0;
         for (int i = 0; i < cars.length; i++) {
-            max = Car.updateMaxposition(cars[i], max);
+            max = cars[i].updateMaxposition(max);
         }
         return max;
     }

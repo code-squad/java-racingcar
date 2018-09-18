@@ -14,32 +14,25 @@ public class Car {
         this.position = position;
     }
 
-    public static void updatePosition(Car car) {
+    public void updatePosition() {
         Random random = new Random();
         if (random.nextInt(BOUND_RANDOM) >= FORWARD_NUM) {
-            car.position++;
+            this.position++;
         }
     }
 
-    public static int extractPosition(Car car) {
-        return car.position;
+    public int extractPosition() {
+        return this.position;
     }
 
-    public static String extractNameOfCar(Car car) {
-        return car.name;
+    public String extractNameOfCar() {
+        return this.name;
     }
 
-    public static int updateMaxposition(Car car, int max) {
-        if (max < car.position) {
-            max = car.position;
+    public int updateMaxposition(int max) {
+        if (max < this.position) {
+            max = this.position;
         }
         return max;
-    }
-
-    public static boolean checkWinner(Car car, Car[] cars) {
-        if (car.position == RacingGame.extractMaxposition(cars)) {
-            return true;
-        }
-        return false;
     }
 }
