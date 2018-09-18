@@ -1,6 +1,11 @@
 package com.zingoworks.racing;
 
+import java.util.Random;
+
 public class Car {
+    private static final int BOUND_RANDOM = 10;
+    private static final int FORWARD_NUM = 4;
+
     private String name;
     private int position;
 
@@ -9,29 +14,24 @@ public class Car {
         this.position = position;
     }
 
-    public static void updatePosition(Car car) {
-        car.position++;
-    }
-
-    public static int extractPosition(Car car) {
-        return car.position;
-    }
-
-    public static String extractNameOfCar(Car car) {
-        return car.name;
-    }
-
-    public static int extractMaxposition(Car[] cars) {
-        int max = 0;
-        for (int i = 0; i < cars.length; i++) {
-            max = updateMaxposition(cars[i], max);
+    public void updatePosition() {
+        Random random = new Random();
+        if (random.nextInt(BOUND_RANDOM) >= FORWARD_NUM) {
+            this.position++;
         }
-        return max;
     }
 
-    private static int updateMaxposition(Car car, int max) {
-        if (max < car.position) {
-            max = car.position;
+    public int extractPosition() {
+        return this.position;
+    }
+
+    public String extractNameOfCar() {
+        return this.name;
+    }
+
+    public int updateMaxposition(int max) {
+        if (max < this.position) {
+            max = this.position;
         }
         return max;
     }
