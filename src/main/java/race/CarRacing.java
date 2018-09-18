@@ -2,57 +2,47 @@ package race;
 
 public class CarRacing {
 
-    private static Car[] car;
-
-    private static Car[] makeCar(String[] nameArr, Car[] car) {
+    public static Car[] makeCar(String[] nameArr, Car[] car) {
         for (int i = 0; i < car.length; i++) {
             car[i] = new Car(nameArr[i]);
         }
        return car;
     }
 
-    private static void transport(int tryCount, Car[] car) {
+    public static void transport(int tryCount, Car[] car) {
         for (int i = 0; i < tryCount; i++) {
             move(car);
         }
     }
-    private static void move(Car[] car) {
+
+    public static void move(Car[] car) {
         for (int j = 0; j < car.length; j++) {
             car[j].go();
         }
     }
 
-    private static void valuePrint(Car[] car) {
+    public static void valuePrint(Car[] car) {
         for (int i = 0; i < car.length; i++) {
            ResultView.namePrint(car[i].getName());
            ResultView.dashPrint(car[i].getPosition());
         }
     }
 
-    public static void maxSet(Car[] car) {
+    public static int maxSet(Car[] car) {
+        int max = -1;
         for (int i = 0; i < car.length; i++) {
-            car[i].maxPosition();
+            if (max < car[i].getPosition())
+                max = car[i].getPosition();
         }
+        return max;
     }
 
-    public static String victory(Car[] car) {
-        String champion = "";
+    public static String findVictory(int max,Car[] car){
+        String victory = "";
         for (int i = 0; i < car.length; i++) {
-            champion += car[i].victory();
+            if (max == car[i].getPosition())
+                victory += car[i].getName() + ",";
         }
-        System.out.println(champion);
-        return champion;
-    }
-
-
-    public static void main(String[] args) {
-        String[] nameArr = InputView.inputName().split(",");
-        int tryCount = InputView.inputCount();
-        car = new Car[nameArr.length];
-        car = makeCar(nameArr, car);
-        transport(tryCount, car);
-        valuePrint(car);
-        maxSet(car);
-        System.out.println(ResultView.victory(victory(car)));
+        return victory;
     }
 }

@@ -13,4 +13,11 @@ public class CarTest {
         assertThat(num).isEqualTo(0);
     }
 
+    @Test
+    public void what(){
+        String answer = "asdf";
+        answer += "bbbbbb";
+        System.out.println(answer);
+    }
+
 }
