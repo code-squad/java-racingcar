@@ -15,7 +15,7 @@ public class RacingCar {
     //자동차 움직이기
     public void run(int tryNum) {
         for (int i = 0; i < this.cars.size(); i++) {
-            this.cars.get(i).moveCar(tryNum);
+            this.cars.get(i).moveCar(tryNum,0);
         }
     }
 
@@ -43,5 +43,9 @@ public class RacingCar {
             countDist.add(this.cars.get(i).getPosition());
         }
         return Collections.max(countDist);
+    }
+
+    public List<Car> getCars(){
+        return cars;
     }
 }
