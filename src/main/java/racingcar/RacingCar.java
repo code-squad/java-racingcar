@@ -3,7 +3,7 @@ package racingcar;
 import java.util.*;
 
 public class RacingCar {
-    List<Car> cars = new ArrayList<>();
+    private List<Car> cars = new ArrayList<>();
 
     //자동차 객체 리스트 생성 및 name 초기화
     public void makeCar(String[] names) {
@@ -15,7 +15,7 @@ public class RacingCar {
     //자동차 움직이기
     public void run(int tryNum) {
         for (int i = 0; i < this.cars.size(); i++) {
-            this.cars.get(i).moveCar(tryNum,0);
+            this.cars.get(i).moveCar(tryNum, 0);
         }
     }
 
@@ -45,7 +45,7 @@ public class RacingCar {
         return Collections.max(countDist);
     }
 
-    public List<Car> getCars(){
+    public List<Car> getCars() {
         return cars;
     }
 }

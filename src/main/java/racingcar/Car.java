@@ -27,7 +27,7 @@ public class Car {
     }
 
     //자동차 이동하기
-    public void moveCar(int tryNum,int distance) {
+    public void moveCar(int tryNum, int distance) {
         for (int i = 0; i < tryNum; i++) {
             distance = countMove(distance, getRandNum());
         }
