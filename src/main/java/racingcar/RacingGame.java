@@ -1,11 +1,11 @@
 package racingcar;
 
 public class RacingGame {
-    static Car[] cars;
-    static String[] users;
+    private Car[] cars;
+    private String winName = "";
 
-    RacingGame(int carNum){
-        cars = new Car[carNum];
+    RacingGame(String[] users){
+        cars = new Car[users.length];
         makeCar(users);
     }
 
@@ -28,14 +28,46 @@ public class RacingGame {
         }
     }
 
-    public static void main(String[] args) {
-        users = InputView.userName();
-        int carNum = users.length;
-        int time = InputView.time();
+    public String output(){
+        for (int i = 0; i < cars.length; i++) {
+            carDist(i);
+            finishLine(i);
+        }
+        return winUser();
+    }
 
-        RacingGame game = new RacingGame(carNum);
-        game.move(time);
-        ResultView.output(cars);
+    public void carDist(int i) {
+        System.out.print(cars[i].getUserName() + " : ");
+        cars[i].desh();
+    }
+
+    public String winUser() {
+        int max = getMax();
+        System.out.println();
+        for (int i = 0; i < cars.length; i++) {
+            winName = winNameAll(i, max);
+        }
+        return winName;
+    }
+
+    public int getMax() {
+        int max = cars[0].getPosition();
+        for (int i = 1; i < cars.length; i++) {
+            max = cars[i].findMaxPos(max);
+        }
+        return max;
+    }
+
+    public String winNameAll(int i, int max) {
+        if(cars[i].isMaxPos(max)){
+            winName += (cars[i].getUserName() + " ");
+        }
+        return winName;
+    }
+
+    public void finishLine(int i) {
+        if(i < cars.length -1)
+            System.out.println();
     }
 }
 
