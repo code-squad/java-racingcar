@@ -31,7 +31,7 @@ public class Car {
 
     public void desh(){
         for (int j = 0; j < position; j++) {
-            System.out.print("-");
+            ResultView.printDesh();
         }
     }
 
