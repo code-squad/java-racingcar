@@ -1,7 +1,8 @@
 package com.zingoworks.racing;
 
+import org.junit.Assert;
 import org.junit.Test;
-import static org.assertj.core.api.Assertions.assertThat;
+import java.util.ArrayList;
 
 public class RacingGameTest {
 
@@ -10,7 +11,11 @@ public class RacingGameTest {
         String[] carNames = {"a", "b", "c"};
         int tryNo = 0;
         RacingGame racingGame = new RacingGame(carNames);
+        ArrayList<Car> cars = new ArrayList<>();
+        cars.add(racingGame.getCars()[0]);
+        cars.add(racingGame.getCars()[1]);
+        cars.add(racingGame.getCars()[2]);
         racingGame.racing(tryNo);
-        assertThat((racingGame.findWinners().size())).isEqualTo(3);
+        Assert.assertEquals(cars, racingGame.findWinners());
     }
 }
