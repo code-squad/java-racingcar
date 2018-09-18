@@ -10,6 +10,11 @@ public class Car {
         this.name = name;
     }
 
+    public Car(String name, int pos){
+        this.name = name;
+        this.position = pos;
+    }
+
     public void run() {
         Random rnd = new Random();
         if (rnd.nextInt(10) >= 4)
@@ -24,9 +29,20 @@ public class Car {
         return position;
     }
 
-    public void carPos(){
+    public void desh(){
         for (int j = 0; j < position; j++) {
             System.out.print("-");
         }
+    }
+
+    public int findMaxPos(int maxPos){
+        if(this.position > maxPos){
+            return this.position;
+        }
+        return maxPos;
+    }
+
+    public boolean isMaxPos(int maxPos){
+        return this.position == maxPos;
     }
 }

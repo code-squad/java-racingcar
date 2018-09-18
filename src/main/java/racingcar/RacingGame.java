@@ -1,38 +1,41 @@
 package racingcar;
 
 public class RacingGame {
-    Car[] carArr;
+    static Car[] cars;
+    static String[] users;
 
-    public static void createCarArr(RacingGame game){
-        String[] userArr = InputView.userName();
-        game.carArr = new Car[userArr.length];
-        makeCar(userArr, game);
+    RacingGame(int carNum){
+        cars = new Car[carNum];
+        makeCar(users);
     }
 
-    public static void makeCar(String[] userArr, RacingGame game){
-        for (int i = 0; i < game.carArr.length; i++) {
-            Car car = new Car(userArr[i]);
-            game.carArr[i] = car;
+    public void makeCar(String[] users){
+        for (int i = 0; i < cars.length; i++) {
+            Car car = new Car(users[i]);
+            cars[i] = car;
         }
     }
 
-    public static void timer( RacingGame game) {
-        int time = InputView.time();
+    public void move(int time) {
         for (int i = 0; i < time; i++) {
-            runCar(game.carArr);
+            runCar(cars);
         }
     }
-    public static void runCar(Car[] carArr) {
-        for (int j = 0; j < carArr.length; j++) {
-            carArr[j].run();
+
+    public void runCar(Car[] cars) {
+        for (int i = 0; i < cars.length; i++) {
+            cars[i].run();
         }
     }
 
     public static void main(String[] args) {
-        RacingGame game = new RacingGame();
-        createCarArr(game);
-        timer(game);
-        ResultView.output(game.carArr);
+        users = InputView.userName();
+        int carNum = users.length;
+        int time = InputView.time();
+
+        RacingGame game = new RacingGame(carNum);
+        game.move(time);
+        ResultView.output(cars);
     }
 }
 

@@ -1,48 +1,47 @@
 package racingcar;
 
 public class ResultView {
-    public static void output(Car[] carArr){
-        for (int i = 0; i < carArr.length; i++) {
-            carDist(i, carArr);
-            finishLine(i, carArr);
+    static String winName = "";
+
+    public static void output(Car[] cars){
+        for (int i = 0; i < cars.length; i++) {
+            carDist(i, cars);
+            finishLine(i, cars);
         }
-        winUser(carArr);
+        winUser(cars);
     }
 
-    public static void carDist(int i, Car[] carArr) {
-        System.out.print(carArr[i].getUserName() + " : ");
-        carArr[i].carPos();
+    public static void carDist(int i, Car[] cars) {
+        System.out.print(cars[i].getUserName() + " : ");
+        cars[i].desh();
     }
 
-    public static void winUser(Car[] carArr) {
-        int max = carArr[0].getPosition();
-        String winName = "";
-        for (int i = 1; i < carArr.length; i++) {
-            max = maxChecker(max, i, carArr);
-        }
+    public static void winUser(Car[] cars) {
+        int max = getMax(cars);
         System.out.println();
-        for (int i = 0; i < carArr.length; i++) {
-            winName = winNameAll(i, max, winName, carArr);
+        for (int i = 0; i < cars.length; i++) {
+            winName = winNameAll(i, max, winName, cars);
         }
         System.out.println(winName + "가 최종 우승했습니다.");
     }
 
-    public static int maxChecker(int max, int i, Car[] carArr) {
-        if(max <= carArr[i].getPosition()){
-            max = carArr[i].getPosition();
+    public static int getMax(Car[] cars) {
+        int max = cars[0].getPosition();
+        for (int i = 1; i < cars.length; i++) {
+            max = cars[i].findMaxPos(max);
         }
         return max;
     }
 
-    public static String winNameAll(int i, int max, String winName, Car[] carArr) {
-        if(carArr[i].getPosition() == max){
-            winName += (carArr[i].getUserName() + "  ");
+    public static String winNameAll(int i, int max, String winName, Car[] cars) {
+        if(cars[i].isMaxPos(max)){
+            winName += (cars[i].getUserName() + " ");
         }
         return winName;
     }
 
-    public static void finishLine(int i, Car[] carArr) {
-        if(i < carArr.length -1)
+    public static void finishLine(int i, Car[] cars) {
+        if(i < cars.length -1)
             System.out.println();
     }
 }
