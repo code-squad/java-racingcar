@@ -8,4 +8,15 @@ public class ResultView {
     public static void printDesh(){
         System.out.print("-");
     }
+
+    public static void finishLine(int i, int carsLen) {
+        if(i < carsLen -1)
+            System.out.println();
+    }
+
+    public static void carDist(int i, Car[] cars) {
+        System.out.print(cars[i].getUserName() + " : ");
+        cars[i].desh();
+    }
+
 }

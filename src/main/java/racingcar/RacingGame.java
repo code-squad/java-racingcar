@@ -30,15 +30,10 @@ public class RacingGame {
 
     public String output(){
         for (int i = 0; i < cars.length; i++) {
-            carDist(i);
-            finishLine(i);
+            ResultView.carDist(i, cars);
+            ResultView.finishLine(i, cars.length);
         }
         return winUser();
-    }
-
-    public void carDist(int i) {
-        System.out.print(cars[i].getUserName() + " : ");
-        cars[i].desh();
     }
 
     public String winUser() {
@@ -63,11 +58,6 @@ public class RacingGame {
             winName += (cars[i].getUserName() + " ");
         }
         return winName;
-    }
-
-    public void finishLine(int i) {
-        if(i < cars.length -1)
-            System.out.println();
     }
 }
 
