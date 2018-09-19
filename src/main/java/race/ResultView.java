@@ -5,21 +5,22 @@ import java.util.*;
 public class ResultView {
     private static final String DASH = "-";
 
+
     public static void namePrint(String name) {
         System.out.print(name + " : ");
     }
 
-    public static String victory(String name){
-        String answer = name.substring(0,name.length()-1);
-        answer += "가 우승했습니다.";
-        return answer;
-    }
-
-    public static void dashPrint (int carPosition){
+    public static void dashPrint (int carPosition) {
         for (int k = 0; k < carPosition; k++) {
             System.out.print(DASH);
         }
         System.out.println();
+    }
+
+    public static void victory(ArrayList<String> names) {
+        String[] champions = names.toArray(new String[names.size()]);
+        System.out.print(  String.join("," , champions));
+        System.out.println("가 우승했습니다.");
     }
 
 }

@@ -1,58 +1,55 @@
 package race;
 
-public class CarRacing {
+import java.util.ArrayList;
 
+public class CarRacing {
     private static Car[] car;
 
-    private static Car[] makeCar(String[] nameArr, Car[] car) {
+
+    public CarRacing(int length) {
+        car = new Car[length];
+    }
+
+    public static Car[] makeCar(String[] nameArr) {
         for (int i = 0; i < car.length; i++) {
             car[i] = new Car(nameArr[i]);
         }
        return car;
     }
 
-    private static void transport(int tryCount, Car[] car) {
+    public static void transport(int tryCount) {
         for (int i = 0; i < tryCount; i++) {
-            move(car);
+            move();
         }
     }
-    private static void move(Car[] car) {
+
+    public static void move() {
         for (int j = 0; j < car.length; j++) {
             car[j].go();
         }
     }
 
-    private static void valuePrint(Car[] car) {
+    public static void valuePrint() {
         for (int i = 0; i < car.length; i++) {
            ResultView.namePrint(car[i].getName());
            ResultView.dashPrint(car[i].getPosition());
         }
     }
 
-    public static void maxSet(Car[] car) {
+    public static int maxSet() {
+        int max = -1;
         for (int i = 0; i < car.length; i++) {
-            car[i].maxPosition();
+            max = car[i].maxSet(max);
         }
+        return max;
     }
 
-    public static String victory(Car[] car) {
-        String champion = "";
+    public static ArrayList<String> result(int max) {
+        ArrayList<String> champion = new ArrayList<>();
         for (int i = 0; i < car.length; i++) {
-            champion += car[i].victory();
+            if(max == car[i].getPosition())
+                champion.add(car[i].getName());
         }
-        System.out.println(champion);
         return champion;
-    }
-
-
-    public static void main(String[] args) {
-        String[] nameArr = InputView.inputName().split(",");
-        int tryCount = InputView.inputCount();
-        car = new Car[nameArr.length];
-        car = makeCar(nameArr, car);
-        transport(tryCount, car);
-        valuePrint(car);
-        maxSet(car);
-        System.out.println(ResultView.victory(victory(car)));
     }
 }

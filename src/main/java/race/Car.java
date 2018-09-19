@@ -1,12 +1,12 @@
 package race;
 
-import java.util.Random;
+import java.util.*;
 
 public class Car {
+
     private static final int RANDOM = 10;
     private static final int MOVE = 4;
-    private static int max = -1;
-    static Random rnd = new Random();
+    Random rnd = new Random();
     private String name;
     private int position = 0;
 
@@ -32,18 +32,9 @@ public class Car {
         return position;
     }
 
-    public void maxPosition() {
-        if (max < position)
-            max = position;
-    }
-
-    public String victory() {
-        if (max == position)
-            return name + ",";
-        return "";
-    }
-
-    public static int getMax(){
+    public int maxSet(int max) {
+        if(max < this.position)
+            return position;
         return max;
     }
 }
