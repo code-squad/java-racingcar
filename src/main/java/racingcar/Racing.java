@@ -8,7 +8,6 @@ public class Racing {
     private static final String COMMA = ",";
 
     private ArrayList<Car> cars = new ArrayList<>();
-    private int MAX_POSITION = 0;
 
     public void readyGame(String inputCarsName) {
         String[] carNames = inputCarsName.split(COMMA);
@@ -38,24 +37,12 @@ public class Racing {
     private ArrayList<String> choiceWinner() {
         ArrayList<String> winners = new ArrayList<>();
         for (Car car : cars) {
-            judgeMaxPosition(car);
+            car.judgeMaxPosition();
         }
         for (Car car : cars) {
-            compareMaxPosition(winners, car);
+            car.compareMaxPosition(winners);
         }
         return winners;
-    }
-
-    private void judgeMaxPosition(Car car) {
-        if(car.getPosition() > MAX_POSITION) {
-            MAX_POSITION = car.getPosition();
-        }
-    }
-
-    private void compareMaxPosition(ArrayList<String> winners, Car car) {
-        if (car.getPosition() == MAX_POSITION) {
-            winners.add(car.getName());
-        }
     }
 
     private void closeGame() {

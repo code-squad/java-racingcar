@@ -1,8 +1,12 @@
 package racingcar;
 
 
+import java.util.ArrayList;
+
 public class Car {
     private static final int CONDITION = 4;
+
+    private static int MAX_POSITION = 0;
 
     private String name;
     private int position;
@@ -24,6 +28,18 @@ public class Car {
 
     public int getPosition() {
         return this.position;
+    }
+
+    public void judgeMaxPosition() {
+        if(this.position > MAX_POSITION) {
+            MAX_POSITION = this.position;
+        }
+    }
+
+    public void compareMaxPosition(ArrayList<String> winners) {
+        if (this.position == MAX_POSITION) {
+            winners.add(this.name);
+        }
     }
 }
 
