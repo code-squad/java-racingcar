@@ -34,7 +34,7 @@ public class Racing {
         return (random.nextInt(Max_RANDOM_NUM) - 1);
     }
 
-    private ArrayList<String> choiceWinner() {
+    public ArrayList<String> choiceWinner() {
         ArrayList<String> winners = new ArrayList<>();
         for (Car car : cars) {
             car.judgeMaxPosition();

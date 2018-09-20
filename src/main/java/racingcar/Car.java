@@ -1,6 +1,5 @@
 package racingcar;
 
-
 import java.util.ArrayList;
 
 public class Car {
@@ -17,7 +16,7 @@ public class Car {
     }
 
     public void move(int randomNum)  {
-        if (randomNum > CONDITION) {
+        if (randomNum >= CONDITION) {
             this.position++;
         }
     }
@@ -40,6 +39,11 @@ public class Car {
         if (this.position == MAX_POSITION) {
             winners.add(this.name);
         }
+    }
+
+    // CarTest 확인용
+    public int getMaxPosition() {
+        return MAX_POSITION;
     }
 }
 
