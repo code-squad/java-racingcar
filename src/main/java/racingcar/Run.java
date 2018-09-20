@@ -3,38 +3,49 @@ package racingcar;
 import java.util.ArrayList;
 
 public class Run {
-    InputView ip = new InputView();
+    public static final String OUT_COMMMA = "-";
     ArrayList<Car> cars = new ArrayList<>();
 
     public void paly() {
-        ip.input();
-        ip.moveNumber();
-        carinstuns();
+        String inputCar;
+        String[] car;
+        int time;
 
-        for (int i = 0; i < ip.time; i++) {
-            comparison();
-        }
-
+        inputCar = InputView.input();
+        car = carNumverCut(inputCar);
+        time = InputView.moveNumber();
+        carinstuns(car);
+        randomCamparison(time);
         printRun();
         win();
     }
 
-    public void carinstuns() {              //객체 생성
-        for (int i = 0; i < ip.cutName.length; i++)
-            cars.add(new Car(ip.cutName[i]));
+    private void randomCamparison(int time) {
+        for (int i = 0; i < time; i++) {
+            comparison();
+        }
+    }
+
+    public String[] carNumverCut(String car) { //이름 자르기[입력] 사용 ok
+        String[] cutName = car.split(",");
+        return cutName;
+    }
+
+   public void carinstuns(String[] b) {              //객체 생성
+        for (int i = 0; i <b.length; i++)
+            cars.add(new Car(b[i]));
     }
 
     public void comparison() {              //랜덤값 반복
         for (int i = 0; i < cars.size(); i++)  //자동차 만큼 돌아간다.
             cars.get(i).moveRandom();            //랜덤을 실행하라.[랜덤값 입력됨]
-
     }
 
     public void printRun() {                  //출력
         System.out.println("출력 결과");
         for (int i = 0; i < cars.size(); i++) {
-            System.out.print(cars.get(i).name + " : ");
-            checkRun(cars.get(i).moveMax);
+            System.out.print(cars.get(i).reName() + " : ");
+            checkRun(cars.get(i).reMoveMax());
             System.out.println();
         }
         System.out.println();
@@ -42,7 +53,7 @@ public class Run {
 
     public void checkRun(int num) {
         for (int i = 0; i < num; i++)
-            System.out.print("-");
+            System.out.print(OUT_COMMMA);
     }
 
     public void win() {                     //최종값 출력
@@ -55,8 +66,8 @@ public class Run {
     }
 
     private int getNum(int num, int i) {
-        if (num < cars.get(i).moveMax) {
-            num = cars.get(i).moveMax;
+        if (num < cars.get(i).reMoveMax()) {
+            num = cars.get(i).reMoveMax();
         }
         return num;
     }
@@ -71,8 +82,8 @@ public class Run {
     }
 
     private void winCheckMax(int num, ArrayList<String> winner, int i) {
-        if (num == cars.get(i).moveMax) {
-            winner.add(cars.get(i).name);
+        if (num == cars.get(i).reMoveMax()) {
+            winner.add(cars.get(i).reName());
         }
     }
 }
