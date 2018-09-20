@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class InputView {
-        static Scanner scanner = new Scanner(System.in);
+    static Scanner scanner = new Scanner(System.in);
 
     // 운전자의 이름들을 스캐너로 갖고옴.
     // playGame의 carNum으로 가서 차들의 숫자 계산

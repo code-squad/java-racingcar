@@ -4,22 +4,35 @@ public class GameInfo {
     static final int RANDOM_NUM = 10;
     static final int POSSIBLE_MOVE_NUM = 4;
 
-    Car[] cars = null;
+    private int carPosition = 0;
+    private String name;
 
-    //자동차 위치때문에 생성자 만듬.
-    //자동차 위치를 가져와 playGame에서 사용해야 하기 때문!
-    public GameInfo( Car[] cars) {
-        this.cars = cars;
-     }
+    GameInfo[] cars = null;
 
-    //자동차 게임 실행 시켜주는 메소드
-    public void playGame(int move, Car[] cars) {
-        for(int j = 0; j < move; j++) {
-            InsidePlayGame(cars);
+    public void plusMove(int num) {
+        this.carPosition += num;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public int getCarPosition() {
+        return this.carPosition;
+    }
+
+    public GameInfo(String name) {
+        this.name = name;
+    }
+
+    public static void play(int move, GameInfo[] cars) {
+        for (int j = 0; j < move; j++) {
+            insidePlayGame(cars);
         }
     }
+
     //playGame 안에 들어가 있는 메소드
-    private void InsidePlayGame(Car[] cars) {
+    private static void insidePlayGame(GameInfo[] cars) {
         for (int i = 0; i < cars.length; i++) {
             // Main cars의 인스턴스.
             cars[i].plusMove(checkMove(randomNum()));
@@ -27,17 +40,18 @@ public class GameInfo {
     }
 
     //랜덤숫자 만듬
-    public static int  randomNum() {
+
+    public static int randomNum() {
         int random;
-        random = (int)(Math.random() * RANDOM_NUM);
+        random = (int) (Math.random() * RANDOM_NUM);
         return random;
     }
 
-//     메소 랜덤값을 통해서 이동, 4이상 부터 체크
-    public int checkMove(int random) {
-        if(random >= POSSIBLE_MOVE_NUM) {
+    //     메소 랜덤값을 통해서 이동, 4이상 부터 체크
+    public static int checkMove(int random) {
+        if (random >= POSSIBLE_MOVE_NUM) {
             return 1;
-        }else{
+        } else {
             return 0;
         }
     }
