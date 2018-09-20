@@ -39,10 +39,14 @@ public class Racing {
         for (Car car : cars) {
             car.judgeMaxPosition();
         }
+        findWinner(winners);
+        return winners;
+    }
+
+    private void findWinner(ArrayList<String> winners) {
         for (Car car : cars) {
             car.compareMaxPosition(winners);
         }
-        return winners;
     }
 
     private void closeGame() {
