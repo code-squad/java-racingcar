@@ -6,10 +6,7 @@ public class Run {
     public static final String OUT_COMMMA = "-";
     ArrayList<Car> cars = new ArrayList<>();
 
-    public void play() {
-        String inputCar = InputView.input();
-        String[] car = carNumverCut(inputCar);
-        int time = InputView.moveNumber();
+    public void play(String[] car, int time) {
         carinstuns(car);
         randomCamparison(time);
         printRun();
