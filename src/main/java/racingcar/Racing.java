@@ -1,65 +1,52 @@
 package racingcar;
+
+import java.util.ArrayList;
 import java.util.Random;
-import java.util.Scanner;
 
 public class Racing {
+    private static final int Max_RANDOM_NUM = 10;
+    private static final String COMMA = ",";
 
-    private static final int CONDITION = 4;
-    private static final String DASH = "-";
+    private ArrayList<Car> cars = new ArrayList<>();
 
-    private int time;
-    private int[] carPositions;
-
-    public void run() {
-        inputData();
-        move();
-        print();
+    public void readyGame(String inputCarsName) {
+        String[] carNames = inputCarsName.split(COMMA);
+        for (String carName : carNames) {
+            this.cars.add(new Car(carName));
+        }
     }
 
-    private void inputData() {
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.println("자동차 대수는 몇 대 인가요?");
-        carPositions = new int[scanner.nextInt()];
-
-        System.out.println("시도할 회수는 몇 회 인가요?");
-        time = scanner.nextInt();
+    public void runGame(int time) {
+        for (int i = 0; i < time; i++) {
+            this.playGame();
+        }
+        this.closeGame();
     }
 
-    private static int movingJudge() {
+    private void playGame() {
+        for (Car car : this.cars) {
+            car.move(this.makeRandomNum());
+        }
+    }
+
+    private int makeRandomNum() {
         Random random = new Random();
-
-        return (random.nextInt(10) - 1);
+        return (random.nextInt(Max_RANDOM_NUM) - 1);
     }
 
-    private void move() {
-        for (int i = 1; i < time + 1; i++) {
-            moveCount();
+    private ArrayList<String> choiceWinner() {
+        ArrayList<String> winners = new ArrayList<>();
+        for (Car car : cars) {
+            car.judgeMaxPosition();
         }
+        for (Car car : cars) {
+            car.compareMaxPosition(winners);
+        }
+        return winners;
     }
 
-    private void moveCount() {
-        for (int i = 0; i < carPositions.length; i++) {
-            moveDecide(i);
-        }
-    }
-
-    private void moveDecide(int i) {
-        if (movingJudge() > CONDITION) {
-            carPositions[i]++;
-        }
-    }
-
-    private void print() {
-        for (int i = 0; i < carPositions.length; i++) {
-            printImagery(carPositions[i]);
-            System.out.println();
-        }
-    }
-
-    private void printImagery(int carPosition) {
-        for (int i = 0; i < carPosition; i++) {
-            System.out.printf(DASH);
-        }
+    private void closeGame() {
+        ResultView.printResult(this.cars);
+        ResultView.printWinner(this.choiceWinner());
     }
 }
