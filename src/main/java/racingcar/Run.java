@@ -6,14 +6,10 @@ public class Run {
     public static final String OUT_COMMMA = "-";
     ArrayList<Car> cars = new ArrayList<>();
 
-    public void paly() {
-        String inputCar;
-        String[] car;
-        int time;
-
-        inputCar = InputView.input();
-        car = carNumverCut(inputCar);
-        time = InputView.moveNumber();
+    public void play() {
+        String inputCar = InputView.input();
+        String[] car = carNumverCut(inputCar);
+        int time = InputView.moveNumber();
         carinstuns(car);
         randomCamparison(time);
         printRun();
@@ -27,13 +23,12 @@ public class Run {
     }
 
     public String[] carNumverCut(String car) { //이름 자르기[입력] 사용 ok
-        String[] cutName = car.split(",");
-        return cutName;
+        return car.split(",");
     }
 
-   public void carinstuns(String[] b) {              //객체 생성
-        for (int i = 0; i <b.length; i++)
-            cars.add(new Car(b[i]));
+   public void carinstuns(String[] car) {              //객체 생성
+        for (int i = 0; i <car.length; i++)
+            cars.add(new Car(car[i]));
     }
 
     public void comparison() {              //랜덤값 반복
@@ -44,8 +39,8 @@ public class Run {
     public void printRun() {                  //출력
         System.out.println("출력 결과");
         for (int i = 0; i < cars.size(); i++) {
-            System.out.print(cars.get(i).reName() + " : ");
-            checkRun(cars.get(i).reMoveMax());
+            System.out.print(cars.get(i).getName() + " : ");
+            checkRun(cars.get(i).getMoveMax());
             System.out.println();
         }
         System.out.println();
@@ -62,12 +57,11 @@ public class Run {
             num = getNum(num, i);
         }
         winCheck(num);
-
     }
 
     private int getNum(int num, int i) {
-        if (num < cars.get(i).reMoveMax()) {
-            num = cars.get(i).reMoveMax();
+        if (num < cars.get(i).getMoveMax()) {
+            num = cars.get(i).getMoveMax();
         }
         return num;
     }
@@ -77,13 +71,12 @@ public class Run {
         for (int i = 0; i < cars.size(); i++) {
             winCheckMax(num, winner, i);
         }
-
         System.out.println(String.join(",", winner) + " 최종 우승자 입니다.");
     }
 
     private void winCheckMax(int num, ArrayList<String> winner, int i) {
-        if (num == cars.get(i).reMoveMax()) {
-            winner.add(cars.get(i).reName());
+        if (num == cars.get(i).getMoveMax()) {
+            winner.add(cars.get(i).getName());
         }
     }
 }

@@ -19,12 +19,10 @@ package racingcar;
 import java.util.Random;
 
 public class Car {
-
     public static final int RANDOM_NUM = 9;
     public static final int RANGE = 4;
     private String name; //car 이름값 입력
     private int moveMax;
-
 
     public Car(String name) {           //생성자
         this.name = name;
@@ -33,7 +31,6 @@ public class Car {
     public int moveRandom() {
         Random r = new Random();
         int num = r.nextInt(RANDOM_NUM);
-
         lncrease(num);
         return moveMax;
     }
@@ -41,17 +38,14 @@ public class Car {
     private void lncrease(int num) {
         if (num >= RANGE) {
             moveMax++;
-
         }
     }
 
-    public String reName(){
-        String rn = name;
-        return rn;
+    public String getName() {
+        return name;
     }
 
-    public int reMoveMax(){
-        int rmm = moveMax;
-        return rmm;
+    public int getMoveMax() {
+        return moveMax;
     }
 }

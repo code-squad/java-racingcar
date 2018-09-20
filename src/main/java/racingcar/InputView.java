@@ -15,7 +15,6 @@ public class InputView {
     public static int moveNumber() {          //동작 횟수
         System.out.println("시도할 회수는 몇회인가요?");
         int time = s.nextInt();
-
         System.out.println();
         return time;
     }
