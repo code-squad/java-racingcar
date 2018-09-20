@@ -1,38 +1,28 @@
 
 public class GameInfo {
 
-    static final int RANDOM_NUM = 10;
-    static final int POSSIBLE_MOVE_NUM = 4;
+    private static final int RANDOM_NUM = 10;
+    private static final int POSSIBLE_MOVE_NUM = 4;
 
-    private int carPosition = 0;
-    private String name;
+    private static Car[] cars;
 
-    GameInfo[] cars = null;
-
-    public void plusMove(int num) {
-        this.carPosition += num;
+    public static Car[] cars(int name, String[] names) {
+        cars = new Car[name];
+        for (int i = 0; i < name; i++) {
+            cars[i] = new Car(names[i]);
+        }
+        return cars;
     }
 
-    public String getName() {
-        return this.name;
-    }
-
-    public int getCarPosition() {
-        return this.carPosition;
-    }
-
-    public GameInfo(String name) {
-        this.name = name;
-    }
-
-    public static void play(int move, GameInfo[] cars) {
+    public static Car play(int move, Car[] cars) {
         for (int j = 0; j < move; j++) {
             insidePlayGame(cars);
         }
+        return null;
     }
 
     //playGame 안에 들어가 있는 메소드
-    private static void insidePlayGame(GameInfo[] cars) {
+    private static void insidePlayGame(Car[] cars) {
         for (int i = 0; i < cars.length; i++) {
             // Main cars의 인스턴스.
             cars[i].plusMove(checkMove(randomNum()));
@@ -57,3 +47,4 @@ public class GameInfo {
     }
 
 }
+

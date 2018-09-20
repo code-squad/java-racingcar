@@ -2,7 +2,7 @@ public class ResultView {
     public static int MAX_NUM = 0;
 
 
-    public static void printResult(GameInfo[] cars) {
+    public static void printResult(Car[] cars) {
         System.out.println("실행결과");
         for (int i = 0; i < cars.length; i++) {
             System.out.print(cars[i].getName() + " : ");
@@ -17,7 +17,7 @@ public class ResultView {
         }
     }
 
-    public void checkWinner(GameInfo[] cars) {
+    public static void checkWinner(Car[] cars) {
         int max = winner(cars);
         System.out.print("final winner : ");
         for (int i = 0; i < cars.length; i++) {
@@ -27,7 +27,7 @@ public class ResultView {
         }
     }
 
-    public static int winner(GameInfo[] cars) {
+    public static int winner(Car[] cars) {
         for (int i = 0; i < cars.length; i++) {
             if (MAX_NUM < cars[i].getCarPosition()) {
                 MAX_NUM = cars[i].getCarPosition();
