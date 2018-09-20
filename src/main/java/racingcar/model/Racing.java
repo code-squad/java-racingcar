@@ -1,4 +1,6 @@
-package racingcar;
+package racingcar.model;
+
+import racingcar.view.ResultView;
 
 import java.util.ArrayList;
 import java.util.Random;
