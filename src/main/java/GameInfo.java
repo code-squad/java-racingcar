@@ -14,11 +14,10 @@ public class GameInfo {
         return cars;
     }
 
-    public static Car play(int move, Car[] cars) {
+    public static void play(int move, Car[] cars) {
         for (int j = 0; j < move; j++) {
             insidePlayGame(cars);
         }
-        return null;
     }
 
     //playGame 안에 들어가 있는 메소드
