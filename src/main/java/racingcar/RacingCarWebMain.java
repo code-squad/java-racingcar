@@ -3,6 +3,7 @@ package racingcar;
 import spark.ModelAndView;
 import spark.template.handlebars.HandlebarsTemplateEngine;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,7 +15,10 @@ public class RacingCarWebMain {
 
     public static void main(String[] args) {
         port(8080);
-        staticFiles.location("static");
+
+        get("/", (request, response) -> {
+            return render("index.html");
+        });
 
         post("/name", (request, response) -> {
             names = InputRacingCarView.separateCarName(
@@ -36,8 +40,13 @@ public class RacingCarWebMain {
                 carInfo = racingCar.carPositionMove();
             }
 
+            List<String> result = new ArrayList<>();
+            for(Car car : carInfo) {
+                result.add(OutputRacingCarView.printCarMove(car.getCarName(), car.getMove()));
+            }
+
             Map<String, Object> model = new HashMap<>();
-            model.put("carInfo", carInfo);
+            model.put("result", result);
             model.put("winner", racingCar.searchWinner());
 
             return render(model, "result.html");
@@ -45,7 +54,12 @@ public class RacingCarWebMain {
 
     }
 
+    public static String render(String templatePath) {
+        return render(null, templatePath);
+    }
+
     public static String render(Map<String, Object> model, String templatePath) {
         return new HandlebarsTemplateEngine().render(new ModelAndView(model, templatePath));
     }
+
 }

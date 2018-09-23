@@ -61,10 +61,10 @@
             <div class="form-show-div" class="form-group">
                 <h3>결과입니다</h3>
                 (이름마다 쉼표(,)로 구분해 주세요.)
-                {{#carInfo}}
-                <div id="standings">{{carName}} : &nbsp;&nbsp;&nbsp;&#128652;</div>
+                {{#result}}
+                <div id="standings">{{.}}<span>&#128652;</div>
                 <br/>
-                {{/carInfo}}
+                {{/result}}
                 <div>{{winner}}이 우승했습니다.</div>
             </div>
         </div>

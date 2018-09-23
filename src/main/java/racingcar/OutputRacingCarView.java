@@ -6,7 +6,7 @@ public class OutputRacingCarView {
 
     public static void printCarPosition(List<Car> carInfo) {
         for (int i = 0; i < carInfo.size(); i++) {
-            System.out.println(printCarMove(carInfo.get(i).getCarName(), carInfo.get(i).getCarMove()));
+            System.out.println(printCarMove(carInfo.get(i).getCarName(), carInfo.get(i).getMove()));
         }
     }
 

@@ -19,7 +19,7 @@ public class Car {
         return carName;
     }
 
-    public int getCarMove() {
+    public int getMove() {
         return move;
     }
 

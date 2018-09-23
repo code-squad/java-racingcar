@@ -45,7 +45,7 @@ public class RacingCar {
     }
 
     private void addWinnerNames(List<String> winnerNames, int winnerValue, Car car) {
-        if (winnerValue == car.getCarMove()) {
+        if (winnerValue == car.getMove()) {
             winnerNames.add(car.getCarName());
         }
     }
@@ -53,7 +53,7 @@ public class RacingCar {
     private int searchWinnerValue(List<Car> carInfo) {
         int winnerValue = 0;
         for (int i = 0; i < carInfo.size(); i++) {
-            winnerValue = compareWinnerCarPosition(winnerValue, carInfo.get(i).getCarMove());
+            winnerValue = compareWinnerCarPosition(winnerValue, carInfo.get(i).getMove());
         }
         return winnerValue;
     }
