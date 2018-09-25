@@ -4,9 +4,10 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import racingcar.CarsInfo;
 import racingcar.InputRacingCarView;
 import racingcar.OutputRacingCarView;
-import racingcar.RacingCar;
+import racingcar.Racing;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -45,8 +46,8 @@ public class RacingCarTest {
 
     @Test
     public void 랜덤() {
-        RacingCar racingCar = new RacingCar(new String[]{"testCar1"});
-        assertThat(racingCar.returnRandom()).isBetween(0, 9);
+        CarsInfo carsInfo = CarsInfo.makeRacingCarInfo(new String[]{"testCar1"});
+        assertThat(carsInfo.returnRandom()).isBetween(0, 9);
     }
 
     @Test
@@ -56,8 +57,18 @@ public class RacingCarTest {
 
     @Test
     public void 우승자_확인() {
-        RacingCar racingCar = new RacingCar(new String[]{"testCar1", "testCar2", "testCar3"});
-        assertEquals("testCar1, testCar2, testCar3", racingCar.searchWinner());
+        Racing racing = new Racing(new String[]{"testCar1", "testCar2", "testCar3"});
+        assertEquals("testCar1, testCar2, testCar3", racing.returnRacingWinningResult());
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void CarsInfo_생성_null() {
+        CarsInfo.makeRacingCarInfo(null);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void CarsInfo_생성_EmptyString() {
+        CarsInfo.makeRacingCarInfo(new String[]{});
     }
 
 }

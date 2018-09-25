@@ -32,22 +32,22 @@ public class RacingCarWebMain {
         });
 
         get("/result", (request, response) -> {
-            RacingCar racingCar = new RacingCar(names);
+            Racing racing = new Racing(names);
             int turn = Integer.valueOf(request.queryParams("turn"));
 
-            List<Car> carInfo = null;
-            for(int i = 0; i < turn; i++) {
-                carInfo = racingCar.carPositionMove();
+            for (int i = 0; i < turn; i++) {
+                racing.carPositionMove();
             }
 
             List<String> result = new ArrayList<>();
-            for(Car car : carInfo) {
-                result.add(OutputRacingCarView.printCarMove(car.getCarName(), car.getMove()));
+            int carsInfoSize = racing.getCarsInfoSize();
+            for (int i = 0; i < carsInfoSize; i++) {
+                result.add(OutputRacingCarView.printCarMove(racing.findCarNameByIndex(i), racing.findCarMoveByIndex(i)));
             }
 
             Map<String, Object> model = new HashMap<>();
             model.put("result", result);
-            model.put("winner", racingCar.searchWinner());
+            model.put("winner", racing.returnRacingWinningResult());
 
             return render(model, "result.html");
         });

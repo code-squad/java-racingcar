@@ -23,4 +23,12 @@ public class Car {
         return move;
     }
 
+    public boolean isEqualsWinningPosition(int winningPosition) {
+        return winningPosition == this.move ? true : false;
+    }
+
+    public int compareWinningNumberWithCarMove(int winningPosition) {
+        return winningPosition < this.move ? this.move : winningPosition;
+    }
+
 }

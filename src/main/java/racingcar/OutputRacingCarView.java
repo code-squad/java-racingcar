@@ -1,12 +1,11 @@
 package racingcar;
 
-import java.util.List;
-
 public class OutputRacingCarView {
 
-    public static void printCarPosition(List<Car> carInfo) {
-        for (int i = 0; i < carInfo.size(); i++) {
-            System.out.println(printCarMove(carInfo.get(i).getCarName(), carInfo.get(i).getMove()));
+    public static void printCarPosition(Racing racing) {
+        int carsInfoSize = racing.getCarsInfoSize();
+        for (int i = 0; i < carsInfoSize; i++) {
+            System.out.println(printCarMove(racing.findCarNameByIndex(i), racing.findCarMoveByIndex(i)));
         }
     }
 
