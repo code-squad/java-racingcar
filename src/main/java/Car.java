@@ -6,6 +6,12 @@ public class Car {
         this.name = name;
     }
 
+    //테스트 용
+    public Car(String name, int carPosition) {
+        this.name = name;
+        this.carPosition = carPosition;
+    }
+
     public void plusMove(int num) {
         this.carPosition += num;
     }

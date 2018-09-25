@@ -1,7 +1,10 @@
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 public class ResultView {
     public static int MAX_NUM = 0;
 
-
+    // 자동차의 이름과 차의 위치를 표시 한 메소드
     public static void printResult(Car[] cars) {
         System.out.println("실행결과");
         for (int i = 0; i < cars.length; i++) {
@@ -11,19 +14,29 @@ public class ResultView {
         }
     }
 
+    // 자동차 위치 대쉬 - 로 표시 할 메소드
     public static void printDash(int num) {
         for (int i = 0; i < num; i++) {
             System.out.print("-");
         }
     }
 
-    public static void checkWinner(Car[] cars) {
+    public static ArrayList<String> winners(Car[] cars) {
         int max = winner(cars);
-        System.out.print("final winner : ");
-        for (int i = 0; i < cars.length; i++) {
-            if (max == cars[i].getCarPosition()) {
-                System.out.print(cars[i].getName() + " , ");
+        ArrayList<String> winnerName = new ArrayList<>();
+        for(int i = 0; i < cars.length; i++) {
+            if(max == cars[i].getCarPosition()){
+                winnerName.add(cars[i].getName());
             }
+        }
+        return winnerName;
+    }
+
+    public static void checkWinner(Car[] cars) {
+        System.out.print("final winner : ");
+        ArrayList<String> win = winners(cars);
+        for(int i = 0; i < win.size(); i++) {
+            System.out.print(win.get(i) + ",");
         }
     }
 
@@ -35,6 +48,7 @@ public class ResultView {
         }
         return MAX_NUM;
     }
+
 
 
 }
