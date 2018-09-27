@@ -2,6 +2,7 @@ import car.GameInfo;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import view.InputView;
 
 import static junit.framework.TestCase.assertEquals;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -11,7 +12,7 @@ public class GameInfoTest {
 
     @Before
     public void setup() {
-        game = new GameInfo();
+        game = new GameInfo(InputView.name());
     }
 
     @Test

@@ -7,10 +7,10 @@ public class GameInfo {
 
     private Car[] cars;
 
-    public GameInfo (String name){
+    public GameInfo(String name) {
         String[] names = name.split(",");
         cars = new Car[names.length];
-        for(int i = 0; i < names.length; i++) {
+        for (int i = 0; i < names.length; i++) {
             cars[i] = new Car(names[i]);
         }
     }

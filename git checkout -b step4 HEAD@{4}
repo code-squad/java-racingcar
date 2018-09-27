@@ -1,0 +1,36 @@
+[33mdc8983b[m[33m ([m[1;36mHEAD -> [m[1;32mstep5[m[33m, [m[1;31mupstream/daesoop[m[33m, [m[1;32mdaesoop[m[33m)[m HEAD@{0}: checkout: moving from daesoop to step5
+[33mdc8983b[m[33m ([m[1;36mHEAD -> [m[1;32mstep5[m[33m, [m[1;31mupstream/daesoop[m[33m, [m[1;32mdaesoop[m[33m)[m HEAD@{1}: rebase finished: returning to refs/heads/daesoop
+[33mdc8983b[m[33m ([m[1;36mHEAD -> [m[1;32mstep5[m[33m, [m[1;31mupstream/daesoop[m[33m, [m[1;32mdaesoop[m[33m)[m HEAD@{2}: rebase: checkout upstream/daesoop
+[33ma0e9584[m HEAD@{3}: checkout: moving from step4 to daesoop
+[33m701f437[m HEAD@{4}: commit: 깃 베이스 테스트
+[33mfc04794[m HEAD@{5}: commit: 자동차게임 step4 완료했습니다.
+[33ma0e9584[m HEAD@{6}: checkout: moving from daesoop to step4
+[33ma0e9584[m HEAD@{7}: rebase finished: returning to refs/heads/daesoop
+[33ma0e9584[m HEAD@{8}: rebase: checkout upstream/daesoop
+[33m311adff[m HEAD@{9}: checkout: moving from step3 to daesoop
+[33m87ff264[m HEAD@{10}: commit: temp
+[33mdee9d68[m HEAD@{11}: commit: step3 피드백 다시 반영했습니다.
+[33m696b1a8[m HEAD@{12}: commit (merge): 자동차게임 step3 피드백 반영하였습니다.
+[33mc32b181[m HEAD@{13}: checkout: moving from daesoop to step3
+[33m311adff[m HEAD@{14}: rebase finished: returning to refs/heads/daesoop
+[33m311adff[m HEAD@{15}: rebase: checkout upstream/daesoop
+[33mddf0d0d[m HEAD@{16}: checkout: moving from step3 to daesoop
+[33mc32b181[m HEAD@{17}: commit: 자동차경주 step3 피드백 반영하였습니다.
+[33m95977e5[m HEAD@{18}: commit: 자동차 경주게임 step3 부족한 부분이 많지만 올리겠습니다.
+[33mddf0d0d[m HEAD@{19}: checkout: moving from daesoop to step3
+[33mddf0d0d[m HEAD@{20}: checkout: moving from daesoop to daesoop
+[33mddf0d0d[m HEAD@{21}: checkout: moving from step2 to daesoop
+[33m2369a9f[m HEAD@{22}: commit: step2 다시 한번 올리겠습니다.
+[33m366973c[m HEAD@{23}: commit: commit push test
+[33mddf0d0d[m HEAD@{24}: checkout: moving from daesoop to step2
+[33mddf0d0d[m HEAD@{25}: checkout: moving from origin/step2 to daesoop
+[33mddf0d0d[m HEAD@{26}: checkout: moving from Daesoop to origin/step2
+[33mddf0d0d[m HEAD@{27}: checkout: moving from step2 to Daesoop
+[33m08552e7[m HEAD@{28}: commit: 자동차게임 step2 다시 올려봅니다.
+[33mddf0d0d[m HEAD@{29}: checkout: moving from daesoop to step2
+[33mddf0d0d[m HEAD@{30}: reset: moving to HEAD^
+[33mf350a36[m HEAD@{31}: reset: moving to HEAD
+[33mf350a36[m HEAD@{32}: commit: git reset test
+[33mddf0d0d[m HEAD@{33}: rebase finished: returning to refs/heads/daesoop
+[33mddf0d0d[m HEAD@{34}: rebase: checkout upstream/daesoop
+[33mc4e7498[m[33m ([m[1;31morigin/daesoop[m[33m)[m HEAD@{35}: clone: from https://github.com/daesoop/java-racingcar
