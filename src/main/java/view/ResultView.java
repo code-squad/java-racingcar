@@ -31,6 +31,14 @@ public class ResultView {
         }
     }
 
+    public static void checkWinner(Car[] cars) {
+        System.out.print("final winner : ");
+        ArrayList<String> win = winners(cars);
+        for (int i = 0; i < win.size(); i++) {
+            System.out.print(win.get(i) + ",");
+        }
+    }
+
     public static ArrayList<String> winners(Car[] cars) {
         int max = winner(cars);
         ArrayList<String> winnerName = new ArrayList<>();
@@ -40,14 +48,6 @@ public class ResultView {
             }
         }
         return winnerName;
-    }
-
-    public static void checkWinner(Car[] cars) {
-        System.out.print("final winner : ");
-        ArrayList<String> win = winners(cars);
-        for (int i = 0; i < win.size(); i++) {
-            System.out.print(win.get(i) + ",");
-        }
     }
 
     public static int winner(Car[] cars) {

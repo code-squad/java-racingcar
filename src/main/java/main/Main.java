@@ -1,6 +1,5 @@
 package main;
 
-import car.Car;
 import car.GameInfo;
 import view.InputView;
 import view.ResultView;
