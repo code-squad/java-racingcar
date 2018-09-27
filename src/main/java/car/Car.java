@@ -1,3 +1,5 @@
+package car;
+
 public class Car {
     private int carPosition = 0;
     private String name;

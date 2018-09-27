@@ -1,3 +1,5 @@
+package view;
+
 import java.util.Scanner;
 
 public class InputView {
@@ -12,7 +14,7 @@ public class InputView {
 
     // 차 이동 횟수 숫자
     public static int carMove() {
-        System.out.println("Input Car Move Number!");
+        System.out.println("Input car.Car Move Number!");
         int carMove = scanner.nextInt();
         return carMove;
     }
