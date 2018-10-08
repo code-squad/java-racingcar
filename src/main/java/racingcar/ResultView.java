@@ -1,5 +1,6 @@
 package racingcar;
 
+
 import java.util.ArrayList;
 
 public class ResultView {
@@ -56,4 +57,5 @@ public class ResultView {
             winner.add(cars.get(i).getName());
         }
     }*/
+
 }
