@@ -1,31 +1,31 @@
 package racingcar.view;
 
-import racingcar.model.Car;
-
-import java.util.ArrayList;
+import racingcar.dto.CarDto;
+import racingcar.dto.RacingGameDto;
+import java.util.List;
 
 public class ResultView {
-    private static final String COMMA = ",";
-    private static final String DASH = "-";
-    private static final String ENTER = "\n";
+    private static final String POSITION_BAR = "-";
+    private static final String NAME_COLON = " : ";
 
-    public static void printResult(ArrayList<Car> cars) {
-        System.out.println(ENTER + "실행결과");
-        for (Car car : cars) {
-            System.out.printf(car.getName() + " : " + printImage(car.getPosition()) + ENTER);
-        }
-        System.out.println();
+    private ResultView() {
     }
 
-    private static String printImage(int position) {
-        String totalDash = "";
-        for (int i = 0; i < position; i++) {
-            totalDash += DASH;
+    public static void printResult(RacingGameDto result) {
+        List<CarDto> cars = result.getCars();
+
+        System.out.println("실행결과");
+        for (CarDto car : cars) {
+            printEachCarResult(car);
+            System.out.println();
         }
-        return totalDash;
+        System.out.println(result.getWinnerNames(cars) + "가 최종 우승했습니다.");
     }
 
-    public static void printWinner(ArrayList<String> winners) {
-        System.out.printf(String.join(COMMA, winners) + "가 최종우승했습니다.");
+    private static void printEachCarResult(CarDto car) {
+        System.out.print(car.getName() + NAME_COLON);
+        for (int i = 0; i < car.getPosition(); i++) {
+            System.out.print(POSITION_BAR);
+        }
     }
 }
