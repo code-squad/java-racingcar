@@ -23,13 +23,13 @@ public class RacingGameDto {
 
     static int setMaxPosition(List<CarDto> cars) {
         int maxPosition = 0;
-        for (CarDto car : cars) if(car.getPosition() > maxPosition) maxPosition = car.getPosition();
+        for (CarDto car : cars) maxPosition = car.compareMaxPosition(maxPosition);
         return maxPosition;
     }
 
     static List<CarDto> getWinners(int maxPosition, List<CarDto> cars) {
         List<CarDto> winners = new ArrayList<>();
-        for (CarDto car : cars) if (car.getPosition() == maxPosition) winners.add(car);
+        for (CarDto car : cars) if (car.isMaxPosition(maxPosition)) winners.add(car);
         return winners;
     }
 

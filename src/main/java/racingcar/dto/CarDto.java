@@ -19,6 +19,14 @@ public class CarDto {
         return position;
     }
 
+    public int compareMaxPosition(int maxPosition) {
+        return position > maxPosition ? position : maxPosition;
+    }
+
+    public Boolean isMaxPosition(int maxPosition) {
+        return position == maxPosition;
+    }
+
     public String getName() {
         return name;
     }

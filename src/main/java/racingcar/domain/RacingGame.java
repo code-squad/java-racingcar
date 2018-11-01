@@ -25,14 +25,14 @@ public class RacingGame {
         if (count < 1) throw new IllegalArgumentException("최소 1회는 실시해야 합니다.");
 
         for (int i = 0; i < count; i++) moveCar();
-        return RacingGameDto();
+        return racingGameDto();
     }
 
     private void moveCar() {
         for (Car car : cars) car.movePosition(RandomValueGenerator.generateRandomNum());
     }
 
-    private RacingGameDto RacingGameDto() {
+    private RacingGameDto racingGameDto() {
         RacingGameDto result = RacingGameDto.of();
         for (Car car : cars) result.setCars(car.CarDto());
         return result;
